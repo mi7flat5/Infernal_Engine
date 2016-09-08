@@ -20,20 +20,22 @@
 #include <stdlib.h>
 #include <mmsystem.h>
 
-#include"glm\glm.hpp"
-#include"GL\glew.h"
-#include"GLFW\glfw3.h"
-#include"GL\glut.h"
 
-#include<assimp\Importer.hpp>
-#include<assimp\scene.h>        
-#include<assimp\postprocess.h>
-#include<SOIL\SOIL.h>
+
+#include"glm\glm.hpp"
+#include"include\GL\glew.h"
+#include"include\GLFW\glfw3.h"
+#include"include\GL\glut.h"
+
+#include"include\assimp\Importer.hpp"
+#include"include\assimp\scene.h"        
+#include"include\assimp\postprocess.h"
+#include"include\SOIL\SOIL.h"
 #include<map>
 #include<vector>
 #include<iostream>
 #include<memory>
-#include"tinyxml2.h"
+#include"include\tinyxml2.h"
 #include"interfaces.h"
 #include"Template.h"
 #include"Utility.h"
