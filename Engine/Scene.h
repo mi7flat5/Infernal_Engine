@@ -1,5 +1,6 @@
 #pragma once
 #include"SceneNode.h"
+#include"EventManager.h"
 //class CameraNode;
 //class SkyNode;
 
@@ -25,6 +26,9 @@ public:
 	std::shared_ptr<ISceneNode> FindActor(ObjectId id);
 	bool AddChild(ObjectId id, std::shared_ptr<ISceneNode> kid);
 	bool RemoveChild(ObjectId id);
+
+	void NewRenderComponentDelegate(IEventDataPtr pEventData);
+	void ModifiedRenderComponentDelegate(IEventDataPtr pEventData);
 
 
 	void SetCamera(std::shared_ptr<CameraNode> camera) { m_Camera = camera; }

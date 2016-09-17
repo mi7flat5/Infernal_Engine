@@ -2,11 +2,15 @@
 #ifndef KERNEL_H
 #define KERNEL_H
 
+
 class Kernel
 {
-	std::shared_ptr<GLFWwindow> context;
-	GLFWwindow*dealloc;
+	std::shared_ptr<GLFWwindow> SharedContext;
+	GLFWwindow* pContext;
+	std::shared_ptr<EventManager> m_pEventManager;
+	std::shared_ptr<Scene> m_pScene;
 	GLuint HEIGHT, WIDTH;
+	std::shared_ptr<Scene> pScene;
 	void init();
 	void update();
 
@@ -19,6 +23,7 @@ public:
 
 	std::shared_ptr<GLFWwindow> Kernel::getContext()const;
 }; 
+
 
 
 

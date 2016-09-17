@@ -167,6 +167,9 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Engine.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="Entry.cpp" />
+    <ClCompile Include="Event.cpp" />
+    <ClCompile Include="EventManager.cpp" />
+    <ClCompile Include="EventManagerImpl.cpp" />
     <ClCompile Include="Kernel.cpp" />
     <ClCompile Include="Object3D.cpp" />
     <ClCompile Include="ObjectFactory.cpp" />
@@ -178,6 +181,9 @@
   <ItemGroup>
     <ClInclude Include="CubeMap.h" />
     <ClInclude Include="Engine.h" />
+    <ClInclude Include="Event.h" />
+    <ClInclude Include="EventManager.h" />
+    <ClInclude Include="EventManagerImpl.h" />
     <ClInclude Include="interfaces.h" />
     <ClInclude Include="Kernel.h" />
     <ClInclude Include="Object3D.h" />

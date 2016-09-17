@@ -25,6 +25,9 @@
     <Filter Include="Source Files\Utility">
       <UniqueIdentifier>{7fdb191b-f123-4961-8b24-1d169c6b27d1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\EventSystem">
+      <UniqueIdentifier>{bdc885bd-1cbc-49bb-8cb6-34236d16dd40}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Entry.cpp">
@@ -56,6 +59,15 @@
     </ClCompile>
     <ClCompile Include="CubeMap.cpp">
       <Filter>Source Files\3DRender</Filter>
+    </ClCompile>
+    <ClCompile Include="Event.cpp">
+      <Filter>Source Files\EventSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="EventManager.cpp">
+      <Filter>Source Files\EventSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="EventManagerImpl.cpp">
+      <Filter>Source Files\EventSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -97,6 +109,15 @@
     </ClInclude>
     <ClInclude Include="RenderComponentInterface.h">
       <Filter>Source Files\SHObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>Source Files\EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="EventManager.h">
+      <Filter>Source Files\EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="EventManagerImpl.h">
+      <Filter>Source Files\EventSystem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

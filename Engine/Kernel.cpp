@@ -13,12 +13,18 @@ void Kernel::runApp()
 {
 	ObjectFactory maker;
 	maker.CreateActor(INVALID_OBJECT_ID);
-	while (!glfwWindowShouldClose(context.get()))
+	
+	
+	
+	
+	while (!glfwWindowShouldClose(pContext))
 	{
 		update();
 	}
-
-	//glfwTerminate();//crashes with smart pointer
+	
+	
+	glfwTerminate();
+	
 }
 void Kernel::update() 
 {
@@ -27,13 +33,13 @@ void Kernel::update()
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glfwPollEvents();
-		glfwSwapBuffers(context.get());
+		glfwSwapBuffers(pContext);
 
 	
 
 
 }
-std::shared_ptr<GLFWwindow> Kernel::getContext() const { return std::shared_ptr<GLFWwindow>(context); }
+
 Kernel::~Kernel()
 {
 }
@@ -41,17 +47,17 @@ void Kernel::init()
 {
 	
 		glfwInit();
+		pContext = glfwCreateWindow(HEIGHT, WIDTH, "Loader", nullptr, nullptr);
+	
 		
-		context = std::shared_ptr<GLFWwindow>(glfwCreateWindow(HEIGHT, WIDTH, "Loader", nullptr, nullptr));
-		
-		if (context == nullptr)
+		if (pContext == nullptr)
 		{
 			std::cout << "Failed to create GLFW window" << std::endl;
 			glfwTerminate();
 			system("pause");
 
 		}
-		glfwMakeContextCurrent(context.get());
+		glfwMakeContextCurrent(pContext);
 		glewExperimental = GL_TRUE;
 		if (glewInit() != GLEW_OK)
 		{
@@ -71,6 +77,7 @@ void Kernel::init()
 		glDepthFunc(GL_LESS);
 		glEnable(GL_CULL_FACE);
 		glCullFace(GL_BACK);
-
-
+		
+		m_pEventManager.reset( INFERNAL_NEW EventManager("Infernal Event Mgr", true));
+		m_pScene.reset( INFERNAL_NEW Scene());
 }

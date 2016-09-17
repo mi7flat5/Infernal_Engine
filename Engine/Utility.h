@@ -1,3 +1,7 @@
+#ifndef UTILITY_H
+#define UTILITY_H
+
+
 #include<string>
 
 
@@ -33,8 +37,7 @@ void Split(const std::string& str, std::vector<std::string>& vec, char delimiter
 
 
 
-#pragma warning(push)
-#pragma warning(disable : 4311)
+
 
 // A hashed string.  It retains the initial (ANSI) string in addition to the hash value for easy reference.
 
@@ -60,8 +63,7 @@ public:
 		return m_identStr;
 	}
 
-	static
-	void * hash_name( char const *  pIdentStr );
+	static void * hash_name( char const *  pIdentStr );
 
 	bool operator< ( HashedString const & o ) const
 	{
@@ -74,7 +76,7 @@ public:
 		bool r = ( getHashValue() == o.getHashValue() );
 		return r;
 	}
-
+	
 private:
 
 	// note: m_ident is stored as a void* not an int, so that in
@@ -87,4 +89,4 @@ private:
 	std::string		   m_identStr;
 };
 //Remove the warning for warning #4311...
-#pragma warning(pop)
+#endif // !UTILITY_H

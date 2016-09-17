@@ -1,6 +1,6 @@
 #include"Engine.h"
 #include "RenderComponent.h"
-
+#include"Event.h"
 
 const char* MeshRenderComponent::g_Name = "MeshRenderComponent";
 const char* CubeMapRenderComponent::g_Name = "CubeMapRenderComponent";
@@ -16,6 +16,9 @@ bool BaseRenderComponent::VInit(tinyxml2::XMLElement * pData)
 void BaseRenderComponent::VPostInit(void)
 {
 	std::shared_ptr<SceneNode> pSceneNode(VGetSceneNode());
+	std::shared_ptr<EvtData_New_Render_Component> pEvent(INFERNAL_NEW EvtData_New_Render_Component(m_pOwner->GetId(), pSceneNode));
+	std::cout << "\n add component to scene triggering . . ." << '\n';
+	IEventManager::Get()->VTriggerEvent(pEvent);
 }
 
 void BaseRenderComponent::VOnChanged(void)

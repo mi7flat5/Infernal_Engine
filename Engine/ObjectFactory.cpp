@@ -5,6 +5,7 @@
 
 ObjectFactory::ObjectFactory()
 {
+	m_lastActorId = 0;
 	m_componentFactory.Register<MeshRenderComponent>(ObjectComponent::GetIdFromName(MeshRenderComponent::g_Name));
 }
 

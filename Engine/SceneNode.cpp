@@ -9,6 +9,7 @@ SceneNode::SceneNode() {}
 SceneNode::SceneNode(ObjectId ObjectId, WeakBaseRenderComponentPtr renderComponent, RenderPass renderPass)
 {
 	std::cout << "\nSceneNode created";
+	m_Props.m_RenderPass = renderPass;
 }
 
 
@@ -51,9 +52,15 @@ void SceneNode::VPostRender(Scene * pScene)
 {
 }
 
-bool SceneNode::VAddChild(std::shared_ptr<ISceneNode> kid)
+bool SceneNode::VAddChild(std::shared_ptr<ISceneNode> ikid)
 {
-	return false;
+	
+	m_Children.push_back(ikid);
+
+	std::shared_ptr<SceneNode> kid = std::static_pointer_cast<SceneNode>(ikid);
+
+	kid->m_pParent = this;
+	return true;
 }
 
 bool SceneNode::VRemoveChild(ObjectId id)
@@ -85,11 +92,15 @@ RootNode::RootNode() : SceneNode(INVALID_OBJECT_ID, WeakBaseRenderComponentPtr()
 	std::shared_ptr<SceneNode> invisibleGroup(INFERNAL_NEW SceneNode(INVALID_OBJECT_ID, WeakBaseRenderComponentPtr(), RenderPass_NotRendered));
 	m_Children.push_back(invisibleGroup);	// RenderPass_NotRendered = 3
 
+	std::cout << " \n root created \n";
+
 }
 
 bool RootNode::VAddChild(std::shared_ptr<ISceneNode> kid)
 {
+	
 	RenderPass pass = kid->VGet()->RenderPass();
+	std::cout << "pass num is: " << pass;
 	return m_Children[pass]->VAddChild(kid);
 }
 

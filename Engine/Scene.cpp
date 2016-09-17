@@ -1,11 +1,15 @@
 #include"Engine.h"
+#include"EventManager.h"
 #include "Scene.h"
+#include"Event.h"
 
 
 
 Scene::Scene()
 {
 	m_Root.reset(INFERNAL_NEW RootNode());
+	IEventManager* pEventMgr = IEventManager::Get();
+	pEventMgr->VAddListener(fastdelegate::MakeDelegate(this, &Scene::NewRenderComponentDelegate), EvtData_New_Render_Component::sk_EventType);
 }
 
 
@@ -48,4 +52,22 @@ bool Scene::AddChild(ObjectId id, std::shared_ptr<ISceneNode> kid)
 bool Scene::RemoveChild(ObjectId id)
 {
 	return false;
+}
+void Scene::NewRenderComponentDelegate(IEventDataPtr pEventData)
+{
+	std::shared_ptr<EvtData_New_Render_Component> pCastEventData = std::static_pointer_cast<EvtData_New_Render_Component>(pEventData);
+
+	ObjectId actorId = pCastEventData->GetActorId();
+	std::shared_ptr<SceneNode> pSceneNode(pCastEventData->GetSceneNode());
+
+	// FUTURE WORK: Add better error handling here.		
+	if (!pSceneNode)
+	{
+		std::string error = "Failed to restore scene node to the scene for actorid " + ToStr(actorId);
+		
+		return;
+	}
+	std::cout << "\n component added to scene" << "\n"<<" ObjectId is: "<<actorId;
+	AddChild(actorId, pSceneNode);
+	
 }

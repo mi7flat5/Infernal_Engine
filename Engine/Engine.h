@@ -32,13 +32,17 @@
 #include"assimp\postprocess.h"
 #include"SOIL\SOIL.h"
 #include<map>
+#include<list>
 #include<vector>
 #include<iostream>
+#include<string>
 #include<memory>
 #include"tinyxml2.h"
 #include"interfaces.h"
 #include"Template.h"
 #include"Utility.h"
+#include"Scene.h"
+#include"EventManagerImpl.h"
 
 
 
