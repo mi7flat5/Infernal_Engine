@@ -1,4 +1,13 @@
 #pragma once
+
+extern vec3 g_Up = vec3(0,1,0);
+extern vec3 g_Right = vec3(1, 0, 0);
+extern vec3 g_Forward= vec3(0,0,-1);
+
+extern vec4 g_Up4 = vec4(0, 1, 0,1);
+extern vec4 g_Right4 = vec4(1, 0, 0, 1);;
+extern vec4 g_Forward4 = vec4(0, 0, -1, 1);;
+
 class Geometry
 {
 public:
@@ -56,3 +65,30 @@ inline GLfloat Plane::Project(const vec3 & spherePos, const Plane * p)const {
 inline bool const Plane::Collision(const Sphere & s, const Plane*  p) const{
 	return Project(s.position, p) / p->ScalerNorm() < s.radius;
 }
+
+class Frustum {
+public:
+	enum Side { Near, Far, Top, Right, Bottom, Left, NumPlanes };
+
+	Plane m_Planes[NumPlanes];	// planes of the frusum in camera space
+	vec3 m_NearClip[4];			// verts of the near clip plane in camera space
+	vec3 m_FarClip[4];			// verts of the far clip plane in camera space
+
+	float m_Fov;				// field of view in radians
+	float m_Aspect;				// aspect ratio - width divided by height
+	float m_Near;				// near clipping distance
+	float m_Far;				// far clipping distance
+	Frustum();
+
+	bool Inside(const vec3 &point) const;
+	bool Inside(const Sphere &sphere) const;
+	const Plane &Get(Side side) { return m_Planes[side]; }
+	void SetFOV(float fov) { m_Fov = fov; Init(m_Fov, m_Aspect, m_Near, m_Far); }
+	void SetAspect(float aspect) { m_Aspect = aspect; Init(m_Fov, m_Aspect, m_Near, m_Far); }
+	void SetNear(float nearClip) { m_Near = nearClip; Init(m_Fov, m_Aspect, m_Near, m_Far); }
+	void SetFar(float farClip) { m_Far = farClip; Init(m_Fov, m_Aspect, m_Near, m_Far); }
+	void Init(const float fov, const float aspect, const float near, const float far);
+
+	void Render();
+
+};
