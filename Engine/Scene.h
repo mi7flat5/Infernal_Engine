@@ -4,16 +4,16 @@
 //class CameraNode;
 //class SkyNode;
 
-typedef std::map<ObjectId, std::shared_ptr<ISceneNode> > SceneActorMap;
+typedef std::map<ObjectId, std::shared_ptr<ISceneNode> > SceneObjectMap;
 class Scene
 {
 	std::shared_ptr<SceneNode>  	m_Root;
 	std::shared_ptr<CameraNode> 	m_Camera;
-	
+	std::shared_ptr<ISceneNode>  	m_ControlledObject;
 
 	/*MatrixStack 		*m_MatrixStack;
 	AlphaSceneNodes 		m_AlphaSceneNodes;*/
-	SceneActorMap 			m_ActorMap;
+	SceneObjectMap 			m_ObjectMap;
 
 public:
 	Scene();
@@ -32,7 +32,7 @@ public:
 
 
 	void SetCamera(std::shared_ptr<CameraNode> camera) { m_Camera = camera; }
-
+	void SetControlledObject(ObjectId pawn) { m_ControlledObject = m_ObjectMap[pawn]; }
 	const std::shared_ptr<CameraNode> GetCamera() const { return m_Camera; }
 
 	

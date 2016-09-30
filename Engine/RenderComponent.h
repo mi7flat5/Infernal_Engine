@@ -26,16 +26,21 @@ class CubeMapRenderComponent : public BaseRenderComponent
 {
 	std::string m_textureResource;
 public:
+	CubeMapRenderComponent();
 	static const char *g_Name;
 	virtual const char *VGetName() const { return g_Name; }
 	
-	virtual std::shared_ptr<SceneNode> VCreateSceneNode(void) override;
-		
+
 	
+	virtual std::shared_ptr<SceneNode> VCreateSceneNode(void) override;
 protected:
+	virtual bool VDelegateInit(tinyxml2::XMLElement* pData) override;
+	//hard coded cubemap
+	bool VDelegateInit();
+
 	  // factory method to create the appropriate scene node
 
-																	// editor stuff
+	// editor stuff
 	virtual void VCreateInheritedXmlElements(tinyxml2::XMLElement* pBaseElement);
 };
 
@@ -53,4 +58,5 @@ protected:
 	 // factory method to create the appropriate scene node
 	virtual void VCreateInheritedXmlElements(tinyxml2::XMLElement* pBaseElement);
 };
+
 

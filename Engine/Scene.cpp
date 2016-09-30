@@ -15,10 +15,20 @@ Scene::Scene()
 
 Scene::~Scene()
 {
+	IEventManager* pEventMgr = IEventManager::Get();
+	pEventMgr->VRemoveListener(fastdelegate::MakeDelegate(this, &Scene::NewRenderComponentDelegate), EvtData_New_Render_Component::sk_EventType);
 }
 
 void Scene::OnRender()
 {
+	/*if (m_Camera && m_ControlledObject)
+		m_Camera->SetTarget(m_ControlledObject);*/
+	if (m_Root->VPreRender(this))
+	{
+		m_Root->VRender(this);
+		m_Root->VRenderChildren(this);
+		m_Root->VPostRender(this);
+	}
 }
 
 void Scene::OnRestore()
@@ -43,7 +53,7 @@ bool Scene::AddChild(ObjectId id, std::shared_ptr<ISceneNode> kid)
 	if (id != INVALID_OBJECT_ID)
 	{
 		// This allows us to search for this later based on actor id
-		m_ActorMap[id] = kid;
+		m_ObjectMap[id] = kid;
 	}
 
 	return m_Root->VAddChild(kid); ;

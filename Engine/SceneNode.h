@@ -1,5 +1,7 @@
 #pragma once
-
+#include"Mesh.h"
+#include"Shaders.hpp"
+#include"LoadUtility.h"
 class SceneNode;
 class Scene;
 class ObjectComponent;
@@ -37,10 +39,11 @@ public:
 	const char * Name() const { return m_Name.c_str(); }
 	RenderPass RenderPass() const { return m_RenderPass; }
 	float Radius() const { return m_Radius; }
+
 };
 
 typedef std::vector<std::shared_ptr<ISceneNode> > SceneNodeList;
-
+typedef std::vector<Mesh> MeshList;
 
 
 class SceneNode : public ISceneNode
@@ -51,9 +54,13 @@ protected:
 	SceneNode				*m_pParent;
 	SceneNodeProperties		m_Props;
 	WeakBaseRenderComponentPtr	m_RenderComponent;
+	MeshList m_Meshes;
+	std::shared_ptr<Shaders> NodeShader;
 public:
 	SceneNode();
 	SceneNode(ObjectId ObjectId, WeakBaseRenderComponentPtr renderComponent, RenderPass renderPass);
+
+	void SetMeshList(std::vector<Mesh> inMesh);
 
 	virtual ~SceneNode();
 
@@ -64,7 +71,7 @@ public:
 	virtual void VOnRestore(Scene *pScene);
 	virtual void VOnUpdate(Scene *, unsigned long const elapsedMs);
 
-	virtual void VPreRender(Scene *pScene);
+	virtual bool VPreRender(Scene *pScene);
 	virtual bool VIsVisible(Scene *pScene) const;
 	virtual void VRender(Scene *pScene);
 	virtual void VRenderChildren(Scene *pScene);
@@ -80,7 +87,13 @@ public:
 
 	
 
-	const vec3 GetWorldPosition() const;					// [mrmike] added post-press to respect ancestor's position 
+	const vec3 GetWorldPosition() const {
+		vec4 Wposition = m_Props.m_ToWorld[3];
+		if (Wposition.w != 1)
+			return glm::vec3(Wposition) / Wposition.w;
+
+		else return glm::vec3(m_Props.m_ToWorld[3]);
+	}					
 
 	
 
@@ -104,7 +117,42 @@ public:
 };
 
 class CameraNode : public SceneNode {
+	GLfloat Xoffset, Zoffset, vdist, hdist;
+	GLfloat yaw, pitch, theta, phi;
+	GLfloat TerrainHeight;
+	GLfloat FieldOfView;
+	glm::vec3 front, campos, camfront, camup, Right, Target, Home;
+	void UpdateOffsetsVectors();
+	GLfloat radius;
+	glm::mat4 Projection;
+	glm::mat4 View;
+	std::shared_ptr<SceneNode> m_pTarget;
+public:
+	CameraNode(const ObjectId Id,
+		WeakBaseRenderComponentPtr renderComponent,
+		RenderPass renderPass)
+		: SceneNode(Id, renderComponent, renderPass), 
+		pitch(15),
+		campos(glm::vec3(0, 5, 5)),
+		camfront(glm::vec3(0, 0, -1)),
+		camup(glm::vec3(0, 1, 0)),
+		yaw(0),
+		FieldOfView(90.0f),Target(vec3(0,5,5)), radius(10) {
+		Projection = Transform::perspective(90.0, (float)600 / 800, 0.1f, 1800.0f);
+		UpdateOffsetsVectors();
+	
 
+	}
+	mat4 GetProjection() { return Projection; }
+	mat4 GetView() { return View; }
+	virtual void VOnUpdate(Scene *, unsigned long const elapsedMs);
+	virtual void VRender(Scene *pScene)override;
+	
+	void SetTarget(std::shared_ptr<SceneNode> pTarget)
+	{
+		Target = pTarget->GetWorldPosition();
+	}
+	
 };
 
 class OGLnode : public SceneNode
@@ -116,6 +164,36 @@ public:
 		: SceneNode(Id, renderComponent, renderPass) {
 		std::cout << "\nOGL SceneNode created";
 	}
+	
+	
+	virtual void VRender(Scene *pScene) override {}
+	
+	
+	
+};
+class CubemapNode : public SceneNode
+{
+	GLuint ProjectionMatrixID, ViewMatrixID,SkyBox;
+public:
+	CubemapNode(const ObjectId Id,
+		WeakBaseRenderComponentPtr renderComponent,
+		RenderPass renderPass)
+		: SceneNode(Id, renderComponent, renderPass) {
+		NodeShader.reset(new Shaders("shaders/3Dvert.glsl", "shaders/3Dfrag.glsl") );
+		LoadUtility::loadModel(m_Meshes, "assets/box.fbx" ,MeshType::SKYBOX);
+		SetUniforms();
 
-	virtual void VRender(Scene *pScene);
+	}
+	void SetUniforms()
+	{
+		SkyBox = glGetUniformLocation(NodeShader->getProgram(), "SkyBox");
+		ProjectionMatrixID = glGetUniformLocation(NodeShader->getProgram(), "Projection");
+		ViewMatrixID = glGetUniformLocation(NodeShader->getProgram(), "View");
+	}
+	virtual bool VPreRender(Scene *pScene) override;
+
+	virtual void VRender(Scene *pScene) override;
+	
+	virtual void VPostRender(Scene *pScene) override;
+
 };

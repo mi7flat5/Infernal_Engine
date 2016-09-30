@@ -6,6 +6,7 @@
 ObjectFactory::ObjectFactory()
 {
 	m_lastActorId = 0;
+	m_componentFactory.Register<CubeMapRenderComponent>(ObjectComponent::GetIdFromName(CubeMapRenderComponent::g_Name));
 	m_componentFactory.Register<MeshRenderComponent>(ObjectComponent::GetIdFromName(MeshRenderComponent::g_Name));
 }
 
@@ -27,16 +28,14 @@ StrongObjectPtr ObjectFactory::CreateActor(ObjectId serversActorId)
 		system("pause");
 	std::cout << "\nObject created in factory.";
 	StrongObjectComponentPtr a = VCreateComponent(pObject);
+	
+
 	a->SetOwner(pObject);
+	
+
 	pObject->AddComponent(a);
 	
 	
-	
-	
-	
-	std::cout<<"\nsize "<<pObject->GetComponents()->size();
-	
-
 	pObject->PostInit();
 	
 	return pObject;
@@ -48,14 +47,14 @@ void ObjectFactory::ModifyActor(StrongObjectPtr pActor, tinyxml2::XMLElement * o
 
 StrongObjectComponentPtr ObjectFactory::VCreateComponent(tinyxml2::XMLElement * pData)
 {
-	StrongObjectComponentPtr pComponent(m_componentFactory.Create(ObjectComponent::GetIdFromName("MeshRenderComponent")));
+	StrongObjectComponentPtr pComponent(m_componentFactory.Create(ObjectComponent::GetIdFromName("CubeMapRenderComponent")));
 	return pComponent;
 }
 StrongObjectComponentPtr ObjectFactory::VCreateComponent(StrongObjectPtr pObject)
 {
 	
 	
-	StrongObjectComponentPtr pComponent(m_componentFactory.Create(ObjectComponent::GetIdFromName("MeshRenderComponent")));
+	StrongObjectComponentPtr pComponent(m_componentFactory.Create(ObjectComponent::GetIdFromName("CubeMapRenderComponent")));
 		
 	std::cout<<"\nMesh render component added";
 	return pComponent;

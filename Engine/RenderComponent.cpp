@@ -1,6 +1,9 @@
 #include"Engine.h"
 #include "RenderComponent.h"
 #include"Event.h"
+#include"LoadUtility.h"
+#include"Mesh.h"
+#include"Shaders.hpp"
 
 const char* MeshRenderComponent::g_Name = "MeshRenderComponent";
 const char* CubeMapRenderComponent::g_Name = "CubeMapRenderComponent";
@@ -58,15 +61,11 @@ MeshRenderComponent::MeshRenderComponent(void)
 std::shared_ptr<SceneNode> MeshRenderComponent::VCreateSceneNode(void)
 {
 	WeakBaseRenderComponentPtr weak(this);
-	std::shared_ptr<SceneNode> bS;
 
-	if(m_pOwner)
-	bS.reset(INFERNAL_NEW OGLnode(m_pOwner->GetId(), weak, RenderPass_Actor));
-	
-	
-	std::shared_ptr<OGLnode> dS = std::static_pointer_cast<OGLnode, SceneNode>(bS);
-	
-	return dS;
+	std::shared_ptr<OGLnode> mesh;
+	mesh = std::shared_ptr<OGLnode>(INFERNAL_NEW OGLnode(m_pOwner->GetId(), weak, RenderPass_Actor));
+
+	return mesh;
 }
 
 void MeshRenderComponent::VCreateInheritedXmlElements(tinyxml2::XMLElement * pBaseElement)
@@ -75,12 +74,32 @@ void MeshRenderComponent::VCreateInheritedXmlElements(tinyxml2::XMLElement * pBa
 
 
 
+CubeMapRenderComponent::CubeMapRenderComponent(void)
+{
+	
+}
 
+bool CubeMapRenderComponent::VDelegateInit(tinyxml2::XMLElement * pData)
+{
+	return false;
+}
+
+bool CubeMapRenderComponent::VDelegateInit()
+{
+	return false;
+}
 
 std::shared_ptr<SceneNode> CubeMapRenderComponent::VCreateSceneNode(void)
 {
-	return std::shared_ptr<SceneNode>();
+	WeakBaseRenderComponentPtr weak(this);
+	
+	std::shared_ptr<CubemapNode> sky;
+	sky = std::shared_ptr<CubemapNode>(INFERNAL_NEW CubemapNode(m_pOwner->GetId(), weak, RenderPass_Sky));
+	
+	return sky;
 }
+
+
 
 void CubeMapRenderComponent::VCreateInheritedXmlElements(tinyxml2::XMLElement * pBaseElement)
 {

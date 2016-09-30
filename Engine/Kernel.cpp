@@ -33,6 +33,10 @@ void Kernel::update()
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glfwPollEvents();
+
+
+		m_pScene->OnRender();
+
 		glfwSwapBuffers(pContext);
 
 	
@@ -80,4 +84,7 @@ void Kernel::init()
 		
 		m_pEventManager.reset( INFERNAL_NEW EventManager("Infernal Event Mgr", true));
 		m_pScene.reset( INFERNAL_NEW Scene());
+		m_pCamera.reset(INFERNAL_NEW CameraNode(INVALID_OBJECT_ID,
+			WeakBaseRenderComponentPtr(),(RenderPass)0));
+		m_pScene->SetCamera(m_pCamera);
 }

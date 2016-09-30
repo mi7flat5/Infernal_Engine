@@ -76,7 +76,7 @@ public:
 	virtual void VOnUpdate(Scene *pScene, unsigned long const elapsedMs) = 0;
 	virtual void VOnRestore(Scene *pScene) = 0;
 
-	virtual void VPreRender(Scene *pScene) = 0;
+	virtual bool VPreRender(Scene *pScene) = 0;
 	virtual bool VIsVisible(Scene *pScene) const = 0;
 	virtual void VRender(Scene *pScene) = 0;
 	virtual void VRenderChildren(Scene *pScene) = 0;

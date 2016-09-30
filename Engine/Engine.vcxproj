@@ -78,8 +78,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\include\;$(IncludePath)</IncludePath>
-    <SourcePath>C:\Users\mi7fl\OneDrive\Documents\Visual Studio 2015\Projects\Engine\Engine\core;$(SourcePath)</SourcePath>
+    <IncludePath>$(ProjectDir)\include\;$(IncludePath)</IncludePath>
+    <SourcePath>$(VC_SourcePath);</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -96,7 +96,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>assimpd.lib;glew32.lib;glfw3.lib;glut32.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>assimp.lib;glfw3.lib;SOIL.lib;glut32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(ProjectDir)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -123,7 +123,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>Engine.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
@@ -132,7 +132,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(ProjectDir)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>assimp.lib;glfw3.lib;glut32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>assimp.lib;glfw3.lib;SOIL.lib;glut32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -170,12 +170,17 @@
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="EventManagerImpl.cpp" />
+    <ClCompile Include="Geometry.cpp" />
     <ClCompile Include="Kernel.cpp" />
+    <ClCompile Include="LoadUtility.cpp" />
+    <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Object3D.cpp" />
     <ClCompile Include="ObjectFactory.cpp" />
     <ClCompile Include="RenderComponent.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneNode.cpp" />
+    <ClCompile Include="Shaders.cpp" />
+    <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -184,8 +189,11 @@
     <ClInclude Include="Event.h" />
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="EventManagerImpl.h" />
+    <ClInclude Include="Geometry.h" />
     <ClInclude Include="interfaces.h" />
     <ClInclude Include="Kernel.h" />
+    <ClInclude Include="LoadUtility.h" />
+    <ClInclude Include="Mesh.h" />
     <ClInclude Include="Object3D.h" />
     <ClInclude Include="ObjectComponent.h" />
     <ClInclude Include="ObjectFactory.h" />
@@ -193,8 +201,38 @@
     <ClInclude Include="RenderComponentInterface.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneNode.h" />
+    <ClInclude Include="Shaders.hpp" />
     <ClInclude Include="Template.h" />
+    <ClInclude Include="Transform.h" />
     <ClInclude Include="Utility.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\3Dfrag.glsl" />
+    <None Include="shaders\3Dvert.glsl" />
+    <None Include="shaders\ColliderFrag.glsl" />
+    <None Include="shaders\ColliderVert.glsl" />
+    <None Include="shaders\dbgVert.glsl" />
+    <None Include="shaders\DiffTexFrag.glsl" />
+    <None Include="shaders\DiffTextVert.glsl" />
+    <None Include="shaders\DisplacementVertex.glsl" />
+    <None Include="shaders\dispmap.fs.glsl" />
+    <None Include="shaders\dispmap.tcs.glsl" />
+    <None Include="shaders\dispmap.tes.glsl" />
+    <None Include="shaders\dispmap.vs.glsl" />
+    <None Include="shaders\frag.glsl" />
+    <None Include="shaders\PassThrough.fs.glsl" />
+    <None Include="shaders\PassThrough.tcs.glsl" />
+    <None Include="shaders\PassThrough.tes.glsl" />
+    <None Include="shaders\PassThrough.vs.glsl" />
+    <None Include="shaders\ReflectFrag.glsl" />
+    <None Include="shaders\ReflectVert.glsl" />
+    <None Include="shaders\RefractFrag.glsl" />
+    <None Include="shaders\SkyModelReflect.glsl" />
+    <None Include="shaders\texFrag.glsl" />
+    <None Include="shaders\TexSpecNormFrag.glsl" />
+    <None Include="shaders\TexSpecNormVert.glsl" />
+    <None Include="shaders\texVert.glsl" />
+    <None Include="shaders\vert.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
