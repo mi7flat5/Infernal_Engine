@@ -17,6 +17,8 @@ public:
 
 	StrongObjectComponentPtr VCreateComponent(StrongObjectPtr pObject);
 
+	StrongObjectComponentPtr VCreateComponent(std::string ComponentName);
+
 	//May return NULL
 	virtual StrongObjectComponentPtr VCreateComponent(tinyxml2::XMLElement* pData);
 };

@@ -4,7 +4,7 @@
 
 
 
-Kernel::Kernel():WIDTH(600),HEIGHT(800)
+Kernel::Kernel()
 {
 	init();
 }
@@ -32,7 +32,9 @@ void Kernel::update()
 	
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		m_pController->UpdateControls();
 		glfwPollEvents();
+		m_pScene->OnUpdate(g_DeltaTime);//g_deltatime is handled in movementcontroller.cpp currently TODO move out to kernal update loop
 
 
 		m_pScene->OnRender();
@@ -47,11 +49,15 @@ void Kernel::update()
 Kernel::~Kernel()
 {
 }
+GLFWwindow * Kernel::getContext() const
+{
+	return pContext;
+}
 void Kernel::init()
 {
 	
 		glfwInit();
-		pContext = glfwCreateWindow(HEIGHT, WIDTH, "Loader", nullptr, nullptr);
+		pContext = glfwCreateWindow(WIDTH, HEIGHT, "Loader", nullptr, nullptr);
 	
 		
 		if (pContext == nullptr)
@@ -75,7 +81,7 @@ void Kernel::init()
 
 		
 
-		glViewport(0, 0, HEIGHT, WIDTH);
+		glViewport(0, 0, WIDTH, HEIGHT);
 		glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
 		glEnable(GL_DEPTH_TEST);
 		glDepthFunc(GL_LESS);
@@ -86,5 +92,8 @@ void Kernel::init()
 		m_pScene.reset( INFERNAL_NEW Scene());
 		m_pCamera.reset(INFERNAL_NEW CameraNode(INVALID_OBJECT_ID,
 			WeakBaseRenderComponentPtr(),(RenderPass)0));
+		m_pScene->AddChild(m_pCamera->GetObjectId(),m_pCamera);
 		m_pScene->SetCamera(m_pCamera);
+		m_pController.reset(INFERNAL_NEW MovementController(pContext,m_pCamera));
+
 }

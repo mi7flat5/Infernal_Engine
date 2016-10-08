@@ -12,6 +12,7 @@ Mesh::Mesh(const std::vector<Vertex> &inVerts, const std::vector<GLuint> &inIndi
 	this->indices = inIndice;
 	this->textures = inTextures;
 	MeshMaterial = Mat;
+	ShaderMode = 0;
 	setupMesh();
 }
 Mesh::~Mesh() {  }
@@ -95,9 +96,10 @@ void Mesh::DrawMesh(GLuint ShaderID, MeshType TexType) const
 {
 
 	glBindVertexArray(this->VAO);
-	switch (MeshMaterial)
+	switch (TexType)
 	{
 	case (MeshType::TEXTURE_2D) :
+		
 		DrawTexture();
 		break;
 	case (MeshType::TERRAIN) :
@@ -115,6 +117,7 @@ void Mesh::DrawMesh(GLuint ShaderID, MeshType TexType) const
 		break;
 	default:
 		DrawMesh();
+	
 		break;
 	}
 	glBindVertexArray(0);
@@ -122,6 +125,7 @@ void Mesh::DrawMesh(GLuint ShaderID, MeshType TexType) const
 //Used for non textured meshs
 void Mesh::DrawMesh() const
 {
+	
 	glDrawElements(GL_TRIANGLES, this->indices.size(), GL_UNSIGNED_INT, 0);
 }
 void Mesh::DrawCubeMap() const

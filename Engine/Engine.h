@@ -24,6 +24,7 @@
 
 #include"glm\glm.hpp"
 #include"glm\gtc\matrix_transform.hpp"
+#include"glm\gtc\type_ptr.hpp"
 #include"GL\glew.h"
 #include"GLFW\glfw3.h"
 #include"GL\glut.h"
@@ -53,6 +54,7 @@
 
 
 
+
 #if defined(_DEBUG)
 #	define INFERNAL_NEW new(_NORMAL_BLOCK,__FILE__, __LINE__)
 #else
@@ -65,3 +67,13 @@ using mat4 = glm::mat4;
 using mat3 = glm::mat3;
 
 
+extern vec3 g_Up;
+extern vec3 g_Right;
+extern vec3 g_Forward;
+
+extern vec4 g_Up4;
+extern vec4 g_Right4;
+extern vec4 g_Forward4;
+
+extern GLuint HEIGHT, WIDTH;
+extern GLdouble g_DeltaTime;

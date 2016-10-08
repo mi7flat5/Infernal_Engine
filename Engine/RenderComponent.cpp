@@ -62,8 +62,8 @@ std::shared_ptr<SceneNode> MeshRenderComponent::VCreateSceneNode(void)
 {
 	WeakBaseRenderComponentPtr weak(this);
 
-	std::shared_ptr<OGLnode> mesh;
-	mesh = std::shared_ptr<OGLnode>(INFERNAL_NEW OGLnode(m_pOwner->GetId(), weak, RenderPass_Actor));
+	std::shared_ptr<OGLMeshNode> mesh;
+	mesh = std::shared_ptr<OGLMeshNode>(INFERNAL_NEW OGLMeshNode(m_pOwner->GetId(), weak, RenderPass_Actor));
 
 	return mesh;
 }

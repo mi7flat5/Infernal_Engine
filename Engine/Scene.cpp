@@ -41,6 +41,7 @@ void Scene::OnLostDevice()
 
 void Scene::OnUpdate(const int deltaMilliseconds)
 {
+	m_Root->VOnUpdate(this, deltaMilliseconds);
 }
 
 std::shared_ptr<ISceneNode> Scene::FindActor(ObjectId id)

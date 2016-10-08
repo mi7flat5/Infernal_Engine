@@ -31,6 +31,8 @@ public:
 	virtual bool VOnKeyUp(const GLuint  c) = 0;
 };
 
+
+
 class IRenderState
 {
 public:
@@ -41,8 +43,8 @@ enum RenderPass
 {
 	RenderPass_0,
 	RenderPass_Static = RenderPass_0,
-	RenderPass_Actor,
 	RenderPass_Sky,
+	RenderPass_Actor,
 	RenderPass_NotRendered,
 	RenderPass_Last
 };

@@ -87,6 +87,9 @@
     <ClCompile Include="EventManager.cpp">
       <Filter>Source Files\EventSystem</Filter>
     </ClCompile>
+    <ClCompile Include="MovementController.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scene.h">
@@ -150,6 +153,9 @@
       <Filter>Source Files\Core</Filter>
     </ClInclude>
     <ClInclude Include="Transform.h">
+      <Filter>Source Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementController.hpp">
       <Filter>Source Files\Core</Filter>
     </ClInclude>
   </ItemGroup>

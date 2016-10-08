@@ -27,7 +27,7 @@ StrongObjectPtr ObjectFactory::CreateActor(ObjectId serversActorId)
 	if (!pObject)
 		system("pause");
 	std::cout << "\nObject created in factory.";
-	StrongObjectComponentPtr a = VCreateComponent(pObject);
+	StrongObjectComponentPtr a = VCreateComponent(std::string("CubeMapRenderComponent"));
 	
 
 	a->SetOwner(pObject);
@@ -38,7 +38,29 @@ StrongObjectPtr ObjectFactory::CreateActor(ObjectId serversActorId)
 	
 	pObject->PostInit();
 	
-	return pObject;
+
+	ObjectId nextObjectId2 = serversActorId;
+	if (nextObjectId2 == INVALID_OBJECT_ID)
+	{
+		nextObjectId2 = GetNextActorId();
+	}
+	StrongObjectPtr pObject2;
+
+	pObject2.reset(INFERNAL_NEW Object3D(nextObjectId2));
+	if (!pObject2)
+		system("pause");
+	std::cout << "\nObject created in factory2.";
+	StrongObjectComponentPtr a2 = VCreateComponent(std::string("MeshRenderComponent"));
+
+
+	a2->SetOwner(pObject2);
+
+
+	pObject2->AddComponent(a2);
+
+
+	pObject2->PostInit();
+	return pObject2;
 }
 
 void ObjectFactory::ModifyActor(StrongObjectPtr pActor, tinyxml2::XMLElement * overrides)
@@ -57,5 +79,14 @@ StrongObjectComponentPtr ObjectFactory::VCreateComponent(StrongObjectPtr pObject
 	StrongObjectComponentPtr pComponent(m_componentFactory.Create(ObjectComponent::GetIdFromName("CubeMapRenderComponent")));
 		
 	std::cout<<"\nMesh render component added";
+	return pComponent;
+}
+StrongObjectComponentPtr ObjectFactory::VCreateComponent(std::string ComponentName)
+{
+
+
+	StrongObjectComponentPtr pComponent(m_componentFactory.Create(ObjectComponent::GetIdFromName(ComponentName.c_str())));
+
+	std::cout << "\nMesh render component added";
 	return pComponent;
 }

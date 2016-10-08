@@ -10,6 +10,6 @@ uniform mat4 View;
 void main()
 {	
 	
-	gl_Position =  Projection*View*vec4(VP,1.0f);
+	gl_Position =  Projection*View*Model*vec4(VP,1.0f);
 
 }

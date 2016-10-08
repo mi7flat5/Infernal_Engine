@@ -2,6 +2,9 @@
 #include"Mesh.h"
 #include"Shaders.hpp"
 #include"LoadUtility.h"
+#include"Geometry.h"
+
+extern GLuint WIDTH, HEIGHT;
 class SceneNode;
 class Scene;
 class ObjectComponent;
@@ -18,7 +21,7 @@ protected:
 	ObjectId                 m_Id;
 	std::string				m_Name;
 	mat4					m_ToWorld, m_FromWorld;
-	float					m_Radius;
+	Sphere					m_BVsphere;
 	RenderPass				m_RenderPass;
 
 public:
@@ -38,7 +41,7 @@ public:
 	}
 	const char * Name() const { return m_Name.c_str(); }
 	RenderPass RenderPass() const { return m_RenderPass; }
-	float Radius() const { return m_Radius; }
+	float Radius() const { return m_BVsphere.radius; }
 
 };
 
@@ -58,7 +61,14 @@ protected:
 	std::shared_ptr<Shaders> NodeShader;
 public:
 	SceneNode();
-	SceneNode(ObjectId ObjectId, WeakBaseRenderComponentPtr renderComponent, RenderPass renderPass);
+	SceneNode(ObjectId ObjectId, WeakBaseRenderComponentPtr renderComponent, RenderPass renderPass)
+	{
+		std::cout << "\nSceneNode created";
+		m_Props.m_RenderPass = renderPass;
+		m_Props.m_Id = ObjectId;
+		
+
+	}
 
 	void SetMeshList(std::vector<Mesh> inMesh);
 
@@ -80,7 +90,8 @@ public:
 	virtual bool VAddChild(std::shared_ptr<ISceneNode> kid);
 	virtual bool VRemoveChild(ObjectId id);
 	virtual void VOnLostDevice(Scene *pScene);
-
+	virtual ObjectId GetObjectId()const { return m_Props.m_Id; }
+	Sphere GetBVSphere()const { return m_Props.m_BVsphere; }
 
 	
 
@@ -97,7 +108,8 @@ public:
 
 	
 
-	void SetRadius(const float radius) { m_Props.m_Radius = radius; }
+	void SetRadius(const float radius) { m_Props.m_BVsphere.radius = radius; }
+	void SetSpherePosition(const vec3 InPos) { m_Props.m_BVsphere.position = InPos; }
 
 
 
@@ -113,7 +125,7 @@ public:
 	virtual bool VAddChild(std::shared_ptr<ISceneNode> kid);
 	virtual void VRenderChildren(Scene *pScene);
 	virtual bool VRemoveChild(ObjectId id);
-	virtual bool VIsVisible(Scene *pScene) const { return true; }
+	virtual void VOnUpdate(Scene *, unsigned long const elapsedMs);
 };
 
 class CameraNode : public SceneNode {
@@ -124,49 +136,83 @@ class CameraNode : public SceneNode {
 	glm::vec3 front, campos, camfront, camup, Right, Target, Home;
 	void UpdateOffsetsVectors();
 	GLfloat radius;
-	glm::mat4 Projection;
-	glm::mat4 View;
+	mat4 Projection, View;
+	
 	std::shared_ptr<SceneNode> m_pTarget;
+	Frustum m_Frustum;
 public:
 	CameraNode(const ObjectId Id,
 		WeakBaseRenderComponentPtr renderComponent,
 		RenderPass renderPass)
 		: SceneNode(Id, renderComponent, renderPass), 
 		pitch(15),
-		campos(glm::vec3(0, 5, 5)),
+		campos(glm::vec3(0, 0, 0)),
 		camfront(glm::vec3(0, 0, -1)),
 		camup(glm::vec3(0, 1, 0)),
 		yaw(0),
-		FieldOfView(90.0f),Target(vec3(0,5,5)), radius(10) {
-		Projection = Transform::perspective(90.0, (float)600 / 800, 0.1f, 1800.0f);
+		FieldOfView(90.0f),Target(vec3(0,0,0)), radius(10) {
+		Projection = glm::perspective(90.0f, (float)HEIGHT / WIDTH, 0.1f, 1800.0f);
 		UpdateOffsetsVectors();
+		
 	
 
 	}
 	mat4 GetProjection() { return Projection; }
 	mat4 GetView() { return View; }
 	virtual void VOnUpdate(Scene *, unsigned long const elapsedMs);
+	void ExtractPlanesGL(bool normalize);
+	
+	
 	virtual void VRender(Scene *pScene)override;
 	
 	void SetTarget(std::shared_ptr<SceneNode> pTarget)
 	{
 		Target = pTarget->GetWorldPosition();
 	}
+	void SetYaw(GLfloat InYaw) { yaw += InYaw; }
+	void SetPitch(GLfloat InPitch) { pitch += InPitch; }
+	vec3 GetCameraPosition()const { return campos; }
+	Frustum* GetFrustum() { return &m_Frustum; }
+	void SetVectorTarget(vec3 inTarget) { Target = inTarget; }
 	
 };
 
-class OGLnode : public SceneNode
+class OGLMeshNode : public SceneNode
 {
+	GLuint ProjectionMatrixID, ViewMatrixID, ModelMatrixID, lightPosLoc, viewPosLoc, LC;
+	mat4 ModelMatrix;
+	vec3 lightColor;
 public:
-	OGLnode(const ObjectId Id,
+	OGLMeshNode(const ObjectId Id,
 		WeakBaseRenderComponentPtr renderComponent,
 		RenderPass renderPass)
-		: SceneNode(Id, renderComponent, renderPass) {
-		std::cout << "\nOGL SceneNode created";
+		: SceneNode(Id, renderComponent, renderPass) 
+	{
+		NodeShader.reset(new Shaders("shaders/dbgVert.glsl", "shaders/ColliderFrag.glsl"));
+		LoadUtility::loadModel(m_Meshes, "assets/box.fbx", MeshType::NO_TEXTURE);
+		for (GLuint i = 0; i < m_Meshes.size();i++)
+			m_Meshes[i].SetShader(NodeShader->getProgram());
+		SetUniforms();
+		ModelMatrix = mat4(1.0f);
+		
+		
+
+	}
+	void SetUniforms()
+	{
+		lightColor = glm::vec3(1, 1, 1);
+		ProjectionMatrixID = glGetUniformLocation(NodeShader->getProgram(), "Projection");
+		ViewMatrixID = glGetUniformLocation(NodeShader->getProgram(), "View");
+		ModelMatrixID = glGetUniformLocation(NodeShader->getProgram(), "Model");
+		
 	}
 	
+	virtual void VRender(Scene *pScene) override;
+	virtual bool VPreRender(Scene* pScene) override;
+	virtual void VOnUpdate(Scene *, unsigned long const elapsedMs)override;
+	virtual bool VIsVisible(Scene * pScene) const;
 	
-	virtual void VRender(Scene *pScene) override {}
+	
 	
 	
 	
