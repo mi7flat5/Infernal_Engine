@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\3DRender">
+      <UniqueIdentifier>{925f3c31-c46c-4b6d-ab7e-b1836a880863}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Prototype_Main">
+      <UniqueIdentifier>{dbd20ee6-6bc3-409d-86b4-4f742c9d7d3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Object">
+      <UniqueIdentifier>{3a614cb3-1f23-4646-afd1-3cb99ed03d5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Event System">
+      <UniqueIdentifier>{3f55eaba-8d9d-4c6a-b03e-dfac8e525e1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utility">
+      <UniqueIdentifier>{2a4edff1-a96a-4e39-a120-8e850c37c8e9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Engine_Source\Utility\interfaces.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\3DRender\CubeMap.h">
+      <Filter>Source Files\3DRender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\3DRender\Geometry.h">
+      <Filter>Source Files\3DRender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\3DRender\Mesh.h">
+      <Filter>Source Files\3DRender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\3DRender\Scene.h">
+      <Filter>Source Files\3DRender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\3DRender\SceneNode.h">
+      <Filter>Source Files\3DRender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\Prototype_Context\Kernel.h">
+      <Filter>Source Files\Prototype_Main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\SHObject\Object3D.h">
+      <Filter>Source Files\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\SHObject\ObjectComponent.h">
+      <Filter>Source Files\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\SHObject\ObjectFactory.h">
+      <Filter>Source Files\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\SHObject\RenderComponent.h">
+      <Filter>Source Files\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\SHObject\RenderComponentInterface.h">
+      <Filter>Source Files\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\EventSystem\Event.h">
+      <Filter>Source Files\Event System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\EventSystem\EventManager.h">
+      <Filter>Source Files\Event System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\EventSystem\EventManagerImpl.h">
+      <Filter>Source Files\Event System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\Utility\Utility.h">
+      <Filter>Source Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\Utility\Transform.h">
+      <Filter>Source Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\Utility\Template.h">
+      <Filter>Source Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\Utility\Shaders.hpp">
+      <Filter>Source Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\Utility\LoadUtility.h">
+      <Filter>Source Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\Core\MovementController.hpp">
+      <Filter>Source Files\Prototype_Main</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Engine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\3DRender\CubeMap.cpp">
+      <Filter>Source Files\3DRender</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\3DRender\Geometry.cpp">
+      <Filter>Source Files\3DRender</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\3DRender\Mesh.cpp">
+      <Filter>Source Files\3DRender</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\3DRender\Scene.cpp">
+      <Filter>Source Files\3DRender</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\3DRender\SceneNode.cpp">
+      <Filter>Source Files\3DRender</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\Prototype_Context\Entry.cpp">
+      <Filter>Source Files\Prototype_Main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\Prototype_Context\Kernel.cpp">
+      <Filter>Source Files\Prototype_Main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\SHObject\Object3D.cpp">
+      <Filter>Source Files\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\SHObject\ObjectFactory.cpp">
+      <Filter>Source Files\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\SHObject\RenderComponent.cpp">
+      <Filter>Source Files\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\EventSystem\Event.cpp">
+      <Filter>Source Files\Event System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\EventSystem\EventManager.cpp">
+      <Filter>Source Files\Event System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\EventSystem\EventManagerImpl.cpp">
+      <Filter>Source Files\Event System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\Utility\Utility.cpp">
+      <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\Utility\Transform.cpp">
+      <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\Utility\Shaders.cpp">
+      <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\Utility\LoadUtility.cpp">
+      <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\Core\MovementController.cpp">
+      <Filter>Source Files\Prototype_Main</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
