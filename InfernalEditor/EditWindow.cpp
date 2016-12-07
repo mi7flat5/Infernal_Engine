@@ -19,8 +19,7 @@ EditWindow::EditWindow(QWidget *parent)
 	m_pScene = nullptr;
 	m_pEventManager = nullptr;
 	//MainWindow = parent;
-	glewCheck = glewInit();
-	glewExperimental = GL_TRUE;
+	
 	
 }
 
@@ -68,20 +67,18 @@ void EditWindow::cleanup()
 }
 void EditWindow::initializeGL()
 {
-	if (glewCheck != GLEW_OK)
-	{
-		glewCheck = glewInit();
-		
-		QSurfaceFormat glFormat;
-		glFormat.setVersion(4, 3);
-		glFormat.setProfile(QSurfaceFormat::CoreProfile); // Requires >=Qt-4.8.0
-
-		context()->setFormat(glFormat);
-		
-		connect(context(), &QOpenGLContext::aboutToBeDestroyed, this, &EditWindow::cleanup);
-	}
+	glewCheck = glewInit();
+	glewExperimental = GL_TRUE;
 	initializeOpenGLFunctions();
 	
+
+	QSurfaceFormat glFormat;
+	glFormat.setVersion(4, 3);
+	glFormat.setProfile(QSurfaceFormat::CoreProfile); // Requires >=Qt-4.8.0
+
+	context()->setFormat(glFormat);
+
+	connect(context(), &QOpenGLContext::aboutToBeDestroyed, this, &EditWindow::cleanup);
 	
 	
 	

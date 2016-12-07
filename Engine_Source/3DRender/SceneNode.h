@@ -174,7 +174,7 @@ public:
 	vec3 GetCameraPosition()const { return campos; }
 	Frustum* GetFrustum() { return &m_Frustum; }
 	void SetVectorTarget(vec3 inTarget) { Target = inTarget; }
-	void SetProjection(GLuint width, GLuint height) { Projection = glm::perspective(45.0f, (float)height / width, 0.1f, 1800.0f); }
+	void SetProjection(GLuint width, GLuint height) { Projection = glm::perspective(90.0f, (float)height / width, 0.1f, 1800.0f); }
 	
 };
 
