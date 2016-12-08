@@ -23,7 +23,7 @@ void LoadUtility::loadModel( std::vector<Mesh> &InMeshVec,const std::string &pat
 	
 	if (!scene)
 	{
-		std::cout << "\nFailed to load! ";
+		std::cout << "\nFailed to load! ";//TODO
 		return;
 	}
 		
@@ -37,7 +37,7 @@ void LoadUtility::loadModel( std::vector<Mesh> &InMeshVec,const std::string &pat
 			tmpPos.x = tmpMesh->mVertices[j].x;
 			tmpPos.y = tmpMesh->mVertices[j].y;
 			tmpPos.z = tmpMesh->mVertices[j].z;
-			std::cout;
+			
 			
 			glm::vec3 tmpNorm;
 			if (tmpMesh->HasNormals())
@@ -137,8 +137,8 @@ void LoadUtility::loadModel( std::vector<Mesh> &InMeshVec,const std::string &pat
 			textures[0].id = loadCubemap();
 			
 		}
-		for (int i = 0; i<textures.size();i++)
-			std::cout << "\n" << textures[i].type;
+	/*	for (int i = 0; i<textures.size();i++)
+			std::cout << "\n" << textures[i].type;*/ //TODO add to event logging
 		InMeshVec.push_back(Mesh(verts, indices, textures,TextureType));
 		verts.clear();
 		indices.clear();
@@ -215,7 +215,7 @@ GLint LoadUtility::TextureFromFile(std::string texpath) //TODO Add exception for
 	
 	glBindTexture(GL_TEXTURE_2D, 0);
 	
-	std::cout << "\nTexture Loaded: " + FileName;
+	//std::cout << "\nTexture Loaded: " + FileName; add to event logging
 	SOIL_free_image_data(image);
 	
 	return TexID;
@@ -267,7 +267,7 @@ void LoadUtility::loadHeightMap(std::string Path, int &Width, int &Height, std::
 	
 	if (!image)
 	{
-		std::cout << "'\nFailed to load heightmap pixel data.";
+		//std::cout << "'\nFailed to load heightmap pixel data.";//TODO Add to logging
 	}
 	else {
 		InVec = std::vector< std::vector<GLfloat> >(Width, std::vector<GLfloat>(Height));
@@ -289,7 +289,7 @@ unsigned char* LoadUtility::loadHeightMap(std::string Path, int &Width, int &Hei
 	image = SOIL_load_image(Path.c_str(), &Width, &Height, 0, SOIL_LOAD_RGB);
 	if (!image)
 	{
-		std::cout << "'\nFailed to load heightmap pixel data.";
+		//std::cout << "'\nFailed to load heightmap pixel data.";//TODO Add to logging
 		return nullptr;
 	}
 	return image;
@@ -301,7 +301,7 @@ void LoadUtility::LoadCollider(const std::string &path, std::vector<glm::vec3> &
 	const aiScene *scene = importer.ReadFile(path,0);
 	if (!scene)
 	{
-		std::cout << "\nFile " << path << " Not found.";
+		//std::cout << "\nFile " << path << " Not found.";//TODO Add to logging
 		return;
 	}
 	std::map<aiVector3D, int>VertMap;
@@ -340,5 +340,5 @@ void LoadUtility::LoadCollider(const std::string &path, std::vector<glm::vec3> &
 		tmpPos.z = iterator->first.z;
 		InVerts.push_back(tmpPos);
 	}
-	std::cout << "\inverts size: " << InVerts.size();
+	//std::cout << "\inverts size: " << InVerts.size();//TODO Add to logging
 }

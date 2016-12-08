@@ -16,6 +16,35 @@
 
 
 
+#include<map>
+#include<list>
+#include<vector>
+#include<fstream>
+#include<sstream>
+#include<iostream>
+#include<string>
+#include<memory>
+#include <iomanip>
+#include <ctime>
+
+void flogout(const char*);
+
+
+
+#if defined(_DEBUG)
+#   define LOG_TO_FILE(str) flogout(str);
+#else
+#   define LOG_TO_FILE(str) 
+#endif
+
+
+
+#if defined(_DEBUG)
+#	define INFERNAL_NEW new(_NORMAL_BLOCK,__FILE__, __LINE__)
+#else
+#	define INFERNAL_NEW new
+#endif
+
 #include <crtdbg.h>
 #include <stdlib.h>
 #include <mmsystem.h>
@@ -29,6 +58,8 @@
 #include"GLFW\glfw3.h"
 #include"GL\glut.h"
 
+
+#include"Utility\Logger.h"
 #include"assimp\Importer.hpp"
 #include"assimp\scene.h"        
 #include"assimp\postprocess.h"
@@ -36,14 +67,7 @@
 #include"Utility\Transform.h"
 
 
-#include<map>
-#include<list>
-#include<vector>
-#include<fstream>
-#include<sstream>
-#include<iostream>
-#include<string>
-#include<memory>
+
 #include"tinyxml2.h"
 #include"Utility\interfaces.h"
 #include"Utility\Template.h"
@@ -54,14 +78,6 @@
 #include"SHObject\ObjectFactory.h"
 
 
-
-
-
-#if defined(_DEBUG)
-#	define INFERNAL_NEW new(_NORMAL_BLOCK,__FILE__, __LINE__)
-#else
-#	define INFERNAL_NEW new
-#endif
 
 using vec3 = glm::vec3;
 using vec4 = glm::vec4;
@@ -79,3 +95,4 @@ extern vec4 g_Forward4;
 
 extern GLuint HEIGHT, WIDTH;
 extern GLdouble g_DeltaTime;
+

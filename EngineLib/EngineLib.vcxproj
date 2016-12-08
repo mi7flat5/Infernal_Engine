@@ -184,8 +184,8 @@
     <ClInclude Include="..\Engine_Source\SHObject\RenderComponent.h" />
     <ClInclude Include="..\Engine_Source\SHObject\RenderComponentInterface.h" />
     <ClInclude Include="..\Engine_Source\Utility\interfaces.h" />
-    <ClInclude Include="..\Engine_Source\Utility\Kernel.h" />
     <ClInclude Include="..\Engine_Source\Utility\LoadUtility.h" />
+    <ClInclude Include="..\Engine_Source\Utility\Logger.h" />
     <ClInclude Include="..\Engine_Source\Utility\Shaders.hpp" />
     <ClInclude Include="..\Engine_Source\Utility\Template.h" />
     <ClInclude Include="..\Engine_Source\Utility\Transform.h" />

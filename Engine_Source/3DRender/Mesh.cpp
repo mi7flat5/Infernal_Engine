@@ -4,7 +4,7 @@
 void Mesh::SetMode(int in)
 {
 	ShaderMode = in;
-	std::cout << "'\nShaderMode changed to: " << ShaderMode;
+	
 }
 Mesh::Mesh(const std::vector<Vertex> &inVerts, const std::vector<GLuint> &inIndice, const std::vector<Texture> &inTextures, MeshType Mat)
 {
@@ -245,5 +245,5 @@ void Mesh::SetTextureMode()
 		ShaderMode = 6;
 	if ((diff > 0) && (spec > 0) && (norm > 0) && (disp >0))
 		ShaderMode = 7;
-	std::cout << "\nShader Mode: " << ShaderMode;
+	
 }

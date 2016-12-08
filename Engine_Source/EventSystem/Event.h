@@ -10,8 +10,36 @@
 
 //-- new object notification
 
-
+class EvtData_Log_Data;
 void RegisterEngineScriptEvents(void);
+
+#define EDITOR_LOG(str) std::shared_ptr<EvtData_Log_Data> pEvent(INFERNAL_NEW EvtData_Log_Data(std::string(str)));\
+IEventManager::Get()->VQueueEvent(pEvent);\
+
+class EvtData_Log_Data : public BaseEventData
+{
+	std::string logbuf;
+
+public:
+	explicit EvtData_Log_Data(const std::string &s) : logbuf(s) {}
+
+	virtual const EventType& VGetEventType(void) const 	{ return  sk_EventType; }
+	
+	const char* getLog() { return logbuf.c_str(); }
+	virtual IEventDataPtr VCopy(void) const
+	{
+		return IEventDataPtr(new EvtData_Log_Data(logbuf));
+	}
+	virtual const char* GetName(void) const
+	{
+		return "EvtData_Log_Data";
+	}
+	static const EventType sk_EventType;
+};
+
+
+
+
 
 class EvtData_New_Render_Component : public BaseEventData
 {
@@ -49,7 +77,7 @@ public:
 
 	virtual IEventDataPtr VCopy(void) const
 	{
-		return IEventDataPtr(INFERNAL_NEW EvtData_New_Render_Component(m_actorId, m_pSceneNode));
+		return IEventDataPtr(new EvtData_New_Render_Component(m_actorId, m_pSceneNode));
 	}
 
 	virtual const char* GetName(void) const
@@ -107,7 +135,7 @@ public:
 
 	virtual IEventDataPtr VCopy() const
 	{
-		return IEventDataPtr(INFERNAL_NEW EvtData_Modified_Render_Component(m_id));
+		return IEventDataPtr(new EvtData_Modified_Render_Component(m_id));
 	}
 
 	virtual const char* GetName(void) const

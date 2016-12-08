@@ -5,7 +5,7 @@
 #include <QMouseEvent>
 
 #include <QCoreApplication>
-
+#include"InfernalEditor.h"
 
 void EditWindow::resizeGL(int w, int h)
 {
@@ -18,6 +18,7 @@ EditWindow::EditWindow(QWidget *parent)
 	m_pCamera = nullptr;
 	m_pScene = nullptr;
 	m_pEventManager = nullptr;
+	maker = new ObjectFactory();
 	//MainWindow = parent;
 	
 	
@@ -36,6 +37,8 @@ EditWindow::~EditWindow()
 
 
 
+
+
 void EditWindow::init()
 {
 	makeCurrent();
@@ -45,13 +48,16 @@ void EditWindow::init()
 	if(!m_pScene)
 	m_pScene = new Scene();
 	if (!m_pCamera) {
+		InfernalEditor* fd = dynamic_cast<InfernalEditor*>(owner);
+		fd->registerDelegate();
 		m_pCamera = new CameraNode(INVALID_OBJECT_ID,
 			WeakBaseRenderComponentPtr(), (RenderPass)0);
 		std::shared_ptr<CameraNode> cam(m_pCamera);
 		m_pScene->AddChild(m_pCamera->GetObjectId(), cam);
 		m_pScene->SetCamera(cam);
-		maker = new ObjectFactory();
+		
 		maker->CreateActor(INVALID_OBJECT_ID);
+		
 	}
 	
 	
@@ -102,11 +108,12 @@ void EditWindow::paintGL()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
+	
 	m_pScene->OnUpdate(g_DeltaTime);//g_deltatime in Engine.h, will need to be managed somewhere in the editor
 
 
 	m_pScene->OnRender();
-	
+	m_pEventManager->VUpdate(1);
 	
 	
 }

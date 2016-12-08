@@ -96,8 +96,8 @@
     <ClInclude Include="..\Engine_Source\Core\MovementController.hpp">
       <Filter>Source Files\Prototype_Main</Filter>
     </ClInclude>
-    <ClInclude Include="..\InfernalEditor\Engine.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\Engine_Source\Utility\Logger.h">
+      <Filter>Source Files\Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -3,6 +3,8 @@
 #include"..\Utility\Shaders.hpp"
 #include"..\Utility\LoadUtility.h"
 #include"..\3DRender\Geometry.h"
+#include"..\EventSystem\Event.h"
+
 
 extern GLuint WIDTH, HEIGHT;
 class SceneNode;
@@ -63,7 +65,7 @@ public:
 	SceneNode();
 	SceneNode(ObjectId ObjectId, WeakBaseRenderComponentPtr renderComponent, RenderPass renderPass)
 	{
-		std::cout << "\nSceneNode created";
+		
 		m_Props.m_RenderPass = renderPass;
 		m_Props.m_Id = ObjectId;
 		
@@ -150,11 +152,15 @@ public:
 		camfront(glm::vec3(0, 0, -1)),
 		camup(glm::vec3(0, 1, 0)),
 		yaw(0),
-		FieldOfView(90.0f),Target(vec3(0,0,0)), radius(10) {
-		Projection = glm::perspective(90.0f, (float)WIDTH / HEIGHT, 0.1f, 1800.0f);
+		FieldOfView(90.0f),Target(vec3(0,0,0)), radius(30) {
+
+		Projection = glm::perspective(60.0f, (float)WIDTH / HEIGHT, 0.1f, 1800.0f);
 		UpdateOffsetsVectors();
 		
 	
+		EDITOR_LOG("Made a CameraNode")
+		
+		
 
 	}
 	mat4 GetProjection() { return Projection; }
@@ -174,7 +180,11 @@ public:
 	vec3 GetCameraPosition()const { return campos; }
 	Frustum* GetFrustum() { return &m_Frustum; }
 	void SetVectorTarget(vec3 inTarget) { Target = inTarget; }
-	void SetProjection(GLuint width, GLuint height) { Projection = glm::perspective(90.0f, (float)height / width, 0.1f, 1800.0f); }
+	void SetProjection(GLuint width, GLuint height) 
+	{ 
+		Projection = glm::perspective(60.0f, (float)height / width, 0.1f, 1800.0f);
+		EDITOR_LOG(std::string(std::string("Projection set ")+"Height: "+ ToStr(height) +" Width: " + ToStr(width)))
+	}
 	
 };
 
@@ -227,7 +237,7 @@ public:
 		WeakBaseRenderComponentPtr renderComponent,
 		RenderPass renderPass)
 		: SceneNode(Id, renderComponent, renderPass) {
-		std::cout << "here\n";
+		
 		NodeShader.reset(new Shaders("../shaders/3Dvert.glsl", "../shaders/3Dfrag.glsl") );
 		LoadUtility::loadModel(m_Meshes, "../assets/box.fbx" ,MeshType::SKYBOX);
 		SetUniforms();

@@ -34,7 +34,7 @@ void Kernel::update()
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		m_pController->UpdateControls();
 		glfwPollEvents();
-		m_pScene->OnUpdate(g_DeltaTime);//g_deltatime is handled in movementcontroller.cpp currently TODO move out to kernal update loop
+		m_pScene->OnUpdate(g_DeltaTime);//
 
 
 		m_pScene->OnRender();

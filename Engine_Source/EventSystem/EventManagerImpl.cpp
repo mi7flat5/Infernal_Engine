@@ -39,13 +39,14 @@ bool EventManager::VAddListener(const EventListenerDelegate& eventDelegate, cons
 	{
 		if (eventDelegate == (*it))
 		{
-			std::cout<<"Attempting to double-register a delegate"<<'\n';
+			std::cout<<"Attempting to double-register a delegate"<<'\n';//TODO
 			return false;
 		}
 	}
 
 	eventListenerList.push_back(eventDelegate);
-	std::cout << "Successfully added delegate for event type: " + ToStr(type, 16)<<'\n';
+	LOG_TO_FILE( std::string("Successfully added delegate for event type: " + ToStr(type, 16)).c_str());//TODO
+
 
 	return true;
 }
@@ -68,7 +69,7 @@ bool EventManager::VRemoveListener(const EventListenerDelegate& eventDelegate, c
 			if (eventDelegate == (*it))
 			{
 				listeners.erase(it);
-				std::cout << "Successfully removed delegate function from event type: " + ToStr(type, 16)<<std::endl;
+				std::cout << "Successfully removed delegate function from event type: " + ToStr(type, 16)<<std::endl;//TODO
 				success = true;
 				break;  // we don't need to continue because it should be impossible for the same delegate function to be registered for the same event more than once
 			}
@@ -94,7 +95,7 @@ bool EventManager::VTriggerEvent(const IEventDataPtr& pEvent) const
 		for (EventListenerList::const_iterator it = eventListenerList.begin(); it != eventListenerList.end(); ++it)
 		{
 			EventListenerDelegate listener = (*it);
-			std::cout<<"Sending Event " + std::string(pEvent->GetName()) + " to delegate."<<'\n';
+			
 			listener(pEvent);  // call the delegate
 			processed = true;
 		}
@@ -115,22 +116,22 @@ bool EventManager::VQueueEvent(const IEventDataPtr& pEvent)
 	// make sure the event is valid
 	if (!pEvent)
 	{
-		std::cout<<"Invalid event in VQueueEvent()"<<'\n';
+		LOG_TO_FILE("Invalid event in VQueueEvent()");//TODO
 		return false;
 	}
 
-	std::cout<<"Attempting to queue event: " + std::string(pEvent->GetName())<<'\n';
+		LOG_TO_FILE(std::string("Attempting to queue event: " + std::string(pEvent->GetName())).c_str());//TODO
 
 	auto findIt = m_eventListeners.find(pEvent->VGetEventType());
 	if (findIt != m_eventListeners.end())
 	{
 		m_queues[m_activeQueue].push_back(pEvent);
-		std::cout<<"Successfully queued event: " + std::string(pEvent->GetName())<<'\n';
+		LOG_TO_FILE(std::string("Succesfully queued event: " + std::string(pEvent->GetName())).c_str());//TODO
 		return true;
 	}
 	else
 	{
-		std::cout<<"Skipping event since there are no delegates registered to receive it: " + std::string(pEvent->GetName())<<'\n';
+		LOG_TO_FILE(std::string("Skipping event since there are no delegates registered to receive it: " + std::string(pEvent->GetName())).c_str());
 		return false;
 	}
 }
@@ -211,7 +212,7 @@ bool EventManager::VUpdate(unsigned long maxMillis)
 	m_activeQueue = (m_activeQueue + 1) % EVENTMANAGER_NUM_QUEUES;
 	m_queues[m_activeQueue].clear();
 
-	std::cout<<"Processing Event Queue " + ToStr(queueToProcess) + "; " + ToStr((unsigned long)m_queues[queueToProcess].size()) + " events to process"<<'\n';
+	LOG_TO_FILE(std::string("Processing Event Queue " + ToStr(queueToProcess) + "; " + ToStr((unsigned long)m_queues[queueToProcess].size()) + " events to process").c_str());//TODO
 
 	// Process the queue
 	while (!m_queues[queueToProcess].empty())

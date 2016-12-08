@@ -26,7 +26,7 @@ StrongObjectPtr ObjectFactory::CreateActor(ObjectId serversActorId)
 	pObject.reset(INFERNAL_NEW Object3D(nextObjectId));
 	if (!pObject)
 		system("pause");
-	std::cout << "\nObject created in factory.";
+	
 	StrongObjectComponentPtr a = VCreateComponent(std::string("CubeMapRenderComponent"));
 	
 
@@ -49,7 +49,7 @@ StrongObjectPtr ObjectFactory::CreateActor(ObjectId serversActorId)
 	pObject2.reset(INFERNAL_NEW Object3D(nextObjectId2));
 	if (!pObject2)
 		system("pause");
-	std::cout << "\nObject created in factory2.";
+	
 	StrongObjectComponentPtr a2 = VCreateComponent(std::string("MeshRenderComponent"));
 
 
@@ -78,7 +78,7 @@ StrongObjectComponentPtr ObjectFactory::VCreateComponent(StrongObjectPtr pObject
 	
 	StrongObjectComponentPtr pComponent(m_componentFactory.Create(ObjectComponent::GetIdFromName("CubeMapRenderComponent")));
 		
-	std::cout<<"\nMesh render component added";
+	
 	return pComponent;
 }
 StrongObjectComponentPtr ObjectFactory::VCreateComponent(std::string ComponentName)
@@ -87,6 +87,6 @@ StrongObjectComponentPtr ObjectFactory::VCreateComponent(std::string ComponentNa
 
 	StrongObjectComponentPtr pComponent(m_componentFactory.Create(ObjectComponent::GetIdFromName(ComponentName.c_str())));
 
-	std::cout << "\nMesh render component added";
+	
 	return pComponent;
 }

@@ -74,11 +74,11 @@ void Scene::NewRenderComponentDelegate(IEventDataPtr pEventData)
 	// FUTURE WORK: Add better error handling here.		
 	if (!pSceneNode)
 	{
-		std::string error = "Failed to restore scene node to the scene for actorid " + ToStr(actorId);
+		std::string error = "Failed to restore scene node to the scene for actorid " + ToStr(actorId);//TODO
 		
 		return;
 	}
-	std::cout << "\n component added to scene" << "\n"<<" ObjectId is: "<<actorId;
+	
 	AddChild(actorId, pSceneNode);
 	
 }

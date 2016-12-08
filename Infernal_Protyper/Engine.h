@@ -16,26 +16,6 @@
 
 
 
-#include <crtdbg.h>
-#include <stdlib.h>
-#include <mmsystem.h>
-#include <limits>
-
-
-#include"glm\glm.hpp"
-#include"glm\gtc\matrix_transform.hpp"
-#include"glm\gtc\type_ptr.hpp"
-#include"GL\glew.h"
-#include"GLFW\glfw3.h"
-#include"GL\glut.h"
-
-#include"assimp\Importer.hpp"
-#include"assimp\scene.h"        
-#include"assimp\postprocess.h"
-#include"SOIL\SOIL.h"
-#include"Utility\Transform.h"
-
-
 #include<map>
 #include<list>
 #include<vector>
@@ -44,6 +24,52 @@
 #include<iostream>
 #include<string>
 #include<memory>
+
+
+
+
+void flogout(const char*);
+
+
+
+
+#if  defined(_DEBUG)
+#    define LOG_TO_FILE(str) flogout(str);
+#else
+#    define LOG_TO_FILE(str) 
+#endif
+
+#if defined(_DEBUG)
+#	define INFERNAL_NEW new(_NORMAL_BLOCK,__FILE__, __LINE__)
+#else
+#	define INFERNAL_NEW new
+#endif
+
+#include <crtdbg.h>
+#include <stdlib.h>
+#include <mmsystem.h>
+#include <limits>
+#include <iomanip>
+#include <ctime>
+
+ 
+#include"glm\glm.hpp"
+#include"glm\gtc\matrix_transform.hpp"
+#include"glm\gtc\type_ptr.hpp"
+#include"GL\glew.h"
+#include"GLFW\glfw3.h"
+#include"GL\glut.h"
+
+
+#include"Utility\Logger.h"
+#include"assimp\Importer.hpp"
+#include"assimp\scene.h"        
+#include"assimp\postprocess.h"
+#include"SOIL\SOIL.h"
+#include"Utility\Transform.h"
+
+
+
 #include"tinyxml2.h"
 #include"Utility\interfaces.h"
 #include"Utility\Template.h"
@@ -54,14 +80,6 @@
 #include"SHObject\ObjectFactory.h"
 
 
-
-
-
-#if defined(_DEBUG)
-#	define INFERNAL_NEW new(_NORMAL_BLOCK,__FILE__, __LINE__)
-#else
-#	define INFERNAL_NEW new
-#endif
 
 using vec3 = glm::vec3;
 using vec4 = glm::vec4;
@@ -79,3 +97,4 @@ extern vec4 g_Forward4;
 
 extern GLuint HEIGHT, WIDTH;
 extern GLdouble g_DeltaTime;
+

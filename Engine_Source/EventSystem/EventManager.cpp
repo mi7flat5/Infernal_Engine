@@ -19,7 +19,7 @@ IEventManager::IEventManager(const char* pName, bool setAsGlobal)
 	{
 		if (g_pEventMgr)
 		{
-			std::cout<<"Attempting to create two global event managers! The old one will be destroyed and overwritten with this one."<<'\n';
+			std::cout<<"Attempting to create two global event managers! The old one will be destroyed and overwritten with this one."<<'\n';//TODO
 			delete g_pEventMgr;
 		}
 

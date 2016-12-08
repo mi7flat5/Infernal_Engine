@@ -13,123 +13,135 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\3DRender">
+      <UniqueIdentifier>{edfe475f-dec0-4041-81c7-022a89b46f49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Object">
+      <UniqueIdentifier>{00508f2c-272d-4ba7-b3da-21c1e514cd70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Event System">
+      <UniqueIdentifier>{6d7c4101-fadb-43a5-9b28-bb9b68eea276}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utility">
+      <UniqueIdentifier>{f261498e-b5c3-4361-a863-0a7b1f2251e6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Engine_Source\3DRender\CubeMap.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Engine_Source\3DRender\Geometry.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Engine_Source\3DRender\Mesh.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Engine_Source\3DRender\Scene.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Engine_Source\3DRender\SceneNode.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Engine_Source\EventSystem\Event.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Engine_Source\EventSystem\EventManager.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Engine_Source\EventSystem\EventManagerImpl.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Engine_Source\SHObject\Object3D.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Engine_Source\SHObject\ObjectComponent.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Engine_Source\SHObject\ObjectFactory.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Engine_Source\SHObject\RenderComponent.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Engine_Source\SHObject\RenderComponentInterface.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\Engine_Source\Utility\interfaces.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Engine_Source\Utility\Kernel.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Engine_Source\Utility\LoadUtility.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Engine_Source\Utility\Shaders.hpp">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Engine_Source\Utility\Template.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Engine_Source\Utility\Transform.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Engine_Source\Utility\Utility.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Engine.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\Engine_Source\3DRender\CubeMap.h">
+      <Filter>Source Files\3DRender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\3DRender\Geometry.h">
+      <Filter>Source Files\3DRender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\3DRender\Mesh.h">
+      <Filter>Source Files\3DRender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\3DRender\Scene.h">
+      <Filter>Source Files\3DRender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\3DRender\SceneNode.h">
+      <Filter>Source Files\3DRender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\EventSystem\Event.h">
+      <Filter>Source Files\Event System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\EventSystem\EventManager.h">
+      <Filter>Source Files\Event System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\EventSystem\EventManagerImpl.h">
+      <Filter>Source Files\Event System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\Utility\LoadUtility.h">
+      <Filter>Source Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\Utility\Shaders.hpp">
+      <Filter>Source Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\Utility\Template.h">
+      <Filter>Source Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\Utility\Transform.h">
+      <Filter>Source Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\Utility\Utility.h">
+      <Filter>Source Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\SHObject\Object3D.h">
+      <Filter>Source Files\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\SHObject\ObjectComponent.h">
+      <Filter>Source Files\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\SHObject\ObjectFactory.h">
+      <Filter>Source Files\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\SHObject\RenderComponent.h">
+      <Filter>Source Files\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\SHObject\RenderComponentInterface.h">
+      <Filter>Source Files\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\Utility\Logger.h">
+      <Filter>Source Files\Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Engine_Source\3DRender\CubeMap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Engine_Source\3DRender\Geometry.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Engine_Source\3DRender\Mesh.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Engine_Source\3DRender\Scene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Engine_Source\3DRender\SceneNode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Engine_Source\EventSystem\Event.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Engine_Source\EventSystem\EventManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Engine_Source\EventSystem\EventManagerImpl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Engine_Source\SHObject\Object3D.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Engine_Source\SHObject\ObjectFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Engine_Source\SHObject\RenderComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Engine_Source\Utility\LoadUtility.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Engine_Source\Utility\Shaders.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Engine_Source\Utility\Transform.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Engine_Source\Utility\Utility.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Engine.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\3DRender\CubeMap.cpp">
+      <Filter>Source Files\3DRender</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\3DRender\Geometry.cpp">
+      <Filter>Source Files\3DRender</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\3DRender\Mesh.cpp">
+      <Filter>Source Files\3DRender</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\3DRender\Scene.cpp">
+      <Filter>Source Files\3DRender</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\3DRender\SceneNode.cpp">
+      <Filter>Source Files\3DRender</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\EventSystem\Event.cpp">
+      <Filter>Source Files\Event System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\EventSystem\EventManager.cpp">
+      <Filter>Source Files\Event System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\EventSystem\EventManagerImpl.cpp">
+      <Filter>Source Files\Event System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\Utility\LoadUtility.cpp">
+      <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\Utility\Shaders.cpp">
+      <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\Utility\Transform.cpp">
+      <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\Utility\Utility.cpp">
+      <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\SHObject\Object3D.cpp">
+      <Filter>Source Files\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\SHObject\ObjectFactory.cpp">
+      <Filter>Source Files\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\SHObject\RenderComponent.cpp">
+      <Filter>Source Files\Object</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

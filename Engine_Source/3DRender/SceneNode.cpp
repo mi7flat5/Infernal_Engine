@@ -122,7 +122,7 @@ RootNode::RootNode() : SceneNode(INVALID_OBJECT_ID, WeakBaseRenderComponentPtr()
 	std::shared_ptr<SceneNode> invisibleGroup(INFERNAL_NEW SceneNode(INVALID_OBJECT_ID, WeakBaseRenderComponentPtr(), RenderPass_NotRendered));
 	m_Children.push_back(invisibleGroup);	// RenderPass_NotRendered = 3
 
-	std::cout << " \n root created \n";
+	
 
 }
 
@@ -130,7 +130,7 @@ bool RootNode::VAddChild(std::shared_ptr<ISceneNode> kid)
 {
 	
 	RenderPass pass = kid->VGet()->RenderPass();
-	std::cout << "pass num is: " << pass;
+	
 	return m_Children[pass]->VAddChild(kid);
 }
 
@@ -206,7 +206,7 @@ void CameraNode::VRender(Scene *pScene)
 	NewCampos.x = Target.x - Xoffset;
 	NewCampos.z = Target.z - Zoffset;
 	campos.x = NewCampos.x;
-	campos.y = Transform::Lerp(campos.y, NewCampos.y, .30);
+	campos.y = Transform::Lerp(campos.y, NewCampos.y, .30)+15.0f;//TODO Create variable for camera y offset
 	campos.z = NewCampos.z;
 	
 	View = glm::lookAt(campos, Target, camup);
@@ -351,11 +351,11 @@ bool OGLMeshNode::VIsVisible(Scene * pScene) const
 	{
 		if (pCurrentFrustum->Inside(GetBVSphere()))
 		{
-			//std::cout << "visible!!\n";
+			
 			return true;
 		}
 	}
-	//std::cout << "not visible\n";
+	
 	return false;
 
 }

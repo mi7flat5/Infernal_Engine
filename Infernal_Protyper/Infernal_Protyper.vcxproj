@@ -166,11 +166,11 @@
     <ClInclude Include="..\Engine_Source\SHObject\RenderComponentInterface.h" />
     <ClInclude Include="..\Engine_Source\Utility\interfaces.h" />
     <ClInclude Include="..\Engine_Source\Utility\LoadUtility.h" />
+    <ClInclude Include="..\Engine_Source\Utility\Logger.h" />
     <ClInclude Include="..\Engine_Source\Utility\Shaders.hpp" />
     <ClInclude Include="..\Engine_Source\Utility\Template.h" />
     <ClInclude Include="..\Engine_Source\Utility\Transform.h" />
     <ClInclude Include="..\Engine_Source\Utility\Utility.h" />
-    <ClInclude Include="..\InfernalEditor\Engine.h" />
     <ClInclude Include="Engine.h" />
   </ItemGroup>
   <ItemGroup>
