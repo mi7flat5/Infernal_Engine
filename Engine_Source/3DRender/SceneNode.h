@@ -13,7 +13,7 @@ class ObjectComponent;
 class BaseRenderComponent;
 typedef BaseRenderComponent* WeakBaseRenderComponentPtr;
 
-typedef BaseRenderComponent* WeakBaseRenderComponentPtr;
+
 
 class SceneNodeProperties
 {

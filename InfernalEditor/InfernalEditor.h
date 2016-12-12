@@ -25,6 +25,7 @@ void Log_event(IEventDataPtr pEventData);
 
 void newFile();
 	void open();
+	void loadfile(const QString & fileName);
 	void save();
 	void print();
 	void undo();
@@ -53,9 +54,11 @@ private:
 
 	QMenu *fileMenu;
 	QMenu *editMenu;
-	QMenu *formatMenu;
+	QMenu *ObjectMenu;
 	QMenu *helpMenu;
+
 	QActionGroup *alignmentGroup;
+	QAction *createObject;
 	QAction *newAct;
 	QAction *openAct;
 	QAction *saveAct;

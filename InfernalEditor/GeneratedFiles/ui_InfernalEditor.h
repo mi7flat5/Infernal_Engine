@@ -17,7 +17,6 @@
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTextBrowser>
@@ -31,6 +30,8 @@ class Ui_InfernalEditorClass
 {
 public:
     QAction *action_Open;
+    QAction *actionOpen;
+    QAction *action_Open_2;
     QWidget *centralWidget;
     QGridLayout *gridLayout;
     QGridLayout *gridLayout_2;
@@ -39,7 +40,6 @@ public:
     QTextBrowser *textBrowser;
     QGroupBox *groupBox_2;
     QMenuBar *menuBar;
-    QMenu *menuFile;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -56,6 +56,10 @@ public:
         InfernalEditorClass->setAutoFillBackground(true);
         action_Open = new QAction(InfernalEditorClass);
         action_Open->setObjectName(QStringLiteral("action_Open"));
+        actionOpen = new QAction(InfernalEditorClass);
+        actionOpen->setObjectName(QStringLiteral("actionOpen"));
+        action_Open_2 = new QAction(InfernalEditorClass);
+        action_Open_2->setObjectName(QStringLiteral("action_Open_2"));
         centralWidget = new QWidget(InfernalEditorClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         sizePolicy.setHeightForWidth(centralWidget->sizePolicy().hasHeightForWidth());
@@ -114,8 +118,6 @@ public:
         menuBar = new QMenuBar(InfernalEditorClass);
         menuBar->setObjectName(QStringLiteral("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 1290, 21));
-        menuFile = new QMenu(menuBar);
-        menuFile->setObjectName(QStringLiteral("menuFile"));
         InfernalEditorClass->setMenuBar(menuBar);
         mainToolBar = new QToolBar(InfernalEditorClass);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -123,10 +125,6 @@ public:
         statusBar = new QStatusBar(InfernalEditorClass);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         InfernalEditorClass->setStatusBar(statusBar);
-
-        menuBar->addAction(menuFile->menuAction());
-        menuFile->addSeparator();
-        menuFile->addAction(action_Open);
 
         retranslateUi(InfernalEditorClass);
 
@@ -137,9 +135,10 @@ public:
     {
         InfernalEditorClass->setWindowTitle(QApplication::translate("InfernalEditorClass", "InfernalEditor", 0));
         action_Open->setText(QApplication::translate("InfernalEditorClass", "&Open", 0));
+        actionOpen->setText(QApplication::translate("InfernalEditorClass", "Open", 0));
+        action_Open_2->setText(QApplication::translate("InfernalEditorClass", "&Open", 0));
         groupBox->setTitle(QApplication::translate("InfernalEditorClass", "GroupBox", 0));
         groupBox_2->setTitle(QApplication::translate("InfernalEditorClass", "GroupBox", 0));
-        menuFile->setTitle(QApplication::translate("InfernalEditorClass", "&File", 0));
     } // retranslateUi
 
 };

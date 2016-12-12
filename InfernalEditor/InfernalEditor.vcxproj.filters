@@ -77,14 +77,14 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="InfernalEditor.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="InfernalEditor.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
     <CustomBuild Include="InfernalEditor.qrc">
       <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="InfernalEditor.h">
+      <Filter>Source Files</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>

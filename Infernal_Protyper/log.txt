@@ -1,2 +1,8 @@
 failed to trigger
 failed to trigger
+12-11-2016 08-51-22: Successfully added delegate for event type: af4aff75
+12-11-2016 08-51-22: Attempting to queue event: EvtData_Log_Data
+12-11-2016 08-51-22: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+12-11-2016 19-40-33: Successfully added delegate for event type: af4aff75
+12-11-2016 19-40-33: Attempting to queue event: EvtData_Log_Data
+12-11-2016 19-40-33: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
