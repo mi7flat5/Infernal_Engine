@@ -21,6 +21,7 @@
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTextBrowser>
 #include <QtWidgets/QToolBar>
+#include <QtWidgets/QTreeView>
 #include <QtWidgets/QWidget>
 #include "EditWindow.h"
 
@@ -36,9 +37,10 @@ public:
     QGridLayout *gridLayout;
     QGridLayout *gridLayout_2;
     EditWindow *openGLWidget;
-    QGroupBox *groupBox;
     QTextBrowser *textBrowser;
     QGroupBox *groupBox_2;
+    QGroupBox *groupBox;
+    QTreeView *treeView;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -79,29 +81,21 @@ public:
         sizePolicy1.setHeightForWidth(openGLWidget->sizePolicy().hasHeightForWidth());
         openGLWidget->setSizePolicy(sizePolicy1);
         openGLWidget->setMinimumSize(QSize(16, 9));
+        openGLWidget->setSizeIncrement(QSize(16, 9));
+        openGLWidget->setBaseSize(QSize(0, 0));
         openGLWidget->setMouseTracking(true);
         openGLWidget->setFocusPolicy(Qt::ClickFocus);
         openGLWidget->setAutoFillBackground(true);
 
         gridLayout_2->addWidget(openGLWidget, 0, 0, 1, 1);
 
-        groupBox = new QGroupBox(centralWidget);
-        groupBox->setObjectName(QStringLiteral("groupBox"));
-        QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Preferred);
-        sizePolicy2.setHorizontalStretch(0);
-        sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(groupBox->sizePolicy().hasHeightForWidth());
-        groupBox->setSizePolicy(sizePolicy2);
-
-        gridLayout_2->addWidget(groupBox, 0, 1, 1, 1);
-
         textBrowser = new QTextBrowser(centralWidget);
         textBrowser->setObjectName(QStringLiteral("textBrowser"));
-        QSizePolicy sizePolicy3(QSizePolicy::Expanding, QSizePolicy::Fixed);
-        sizePolicy3.setHorizontalStretch(0);
-        sizePolicy3.setVerticalStretch(0);
-        sizePolicy3.setHeightForWidth(textBrowser->sizePolicy().hasHeightForWidth());
-        textBrowser->setSizePolicy(sizePolicy3);
+        QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Fixed);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(textBrowser->sizePolicy().hasHeightForWidth());
+        textBrowser->setSizePolicy(sizePolicy2);
         textBrowser->setReadOnly(false);
 
         gridLayout_2->addWidget(textBrowser, 1, 0, 1, 1);
@@ -110,6 +104,19 @@ public:
         groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
 
         gridLayout_2->addWidget(groupBox_2, 1, 1, 1, 1);
+
+        groupBox = new QGroupBox(centralWidget);
+        groupBox->setObjectName(QStringLiteral("groupBox"));
+        sizePolicy.setHeightForWidth(groupBox->sizePolicy().hasHeightForWidth());
+        groupBox->setSizePolicy(sizePolicy);
+        groupBox->setMinimumSize(QSize(16, 9));
+        groupBox->setSizeIncrement(QSize(16, 9));
+        groupBox->setBaseSize(QSize(16, 9));
+        treeView = new QTreeView(groupBox);
+        treeView->setObjectName(QStringLiteral("treeView"));
+        treeView->setGeometry(QRect(20, 40, 256, 192));
+
+        gridLayout_2->addWidget(groupBox, 0, 1, 1, 1);
 
 
         gridLayout->addLayout(gridLayout_2, 0, 1, 2, 1);
@@ -137,8 +144,8 @@ public:
         action_Open->setText(QApplication::translate("InfernalEditorClass", "&Open", 0));
         actionOpen->setText(QApplication::translate("InfernalEditorClass", "Open", 0));
         action_Open_2->setText(QApplication::translate("InfernalEditorClass", "&Open", 0));
-        groupBox->setTitle(QApplication::translate("InfernalEditorClass", "GroupBox", 0));
         groupBox_2->setTitle(QApplication::translate("InfernalEditorClass", "GroupBox", 0));
+        groupBox->setTitle(QApplication::translate("InfernalEditorClass", "GroupBox", 0));
     } // retranslateUi
 
 };

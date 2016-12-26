@@ -1,0 +1,5 @@
+<Object type="CubeMap" resource="..\XML\CubeMap.xml">
+    <CubeMapRenderComponent>
+        <Paths shaderV = "../shaders/3Dvert.glsl" shaderF = "../shaders/3Dfrag.glsl" mesh = "../assets/box.fbx"/>
+    </CubeMapRenderComponent>
+</Object>

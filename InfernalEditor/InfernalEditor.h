@@ -19,7 +19,7 @@ public slots:
 
 private slots:
 
-	void stdLogOut();
+	
 
 void Log_event(IEventDataPtr pEventData);
 
@@ -27,20 +27,8 @@ void newFile();
 	void open();
 	void loadfile(const QString & fileName);
 	void save();
-	void print();
-	void undo();
-	void redo();
-	void cut();
-	void copy();
-	void paste();
-	void bold();
-	void italic();
-	void leftAlign();
-	void rightAlign();
-	void justify();
-	void center();
-	void setLineSpacing();
-	void setParagraphSpacing();
+
+
 	void about();
 	void aboutQt();
 

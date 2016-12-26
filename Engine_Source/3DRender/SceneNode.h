@@ -196,12 +196,12 @@ class OGLMeshNode : public SceneNode
 public:
 	OGLMeshNode(const ObjectId Id,
 		WeakBaseRenderComponentPtr renderComponent,
-		RenderPass renderPass)
+		RenderPass renderPass, const char* shaderV, const char* shaderF, const char* meshPath)
 		: SceneNode(Id, renderComponent, renderPass) 
 	{
 		
-		NodeShader.reset(new Shaders("../shaders/dbgVert.glsl", "../shaders/ColliderFrag.glsl"));
-		LoadUtility::loadModel(m_Meshes, "../assets/box.fbx", MeshType::NO_TEXTURE);
+		NodeShader.reset(new Shaders(shaderV, shaderF));
+		LoadUtility::loadModel(m_Meshes, meshPath, MeshType::NO_TEXTURE);
 		for (GLuint i = 0; i < m_Meshes.size();i++)
 			m_Meshes[i].SetShader(NodeShader->getProgram());
 		SetUniforms();
@@ -235,11 +235,13 @@ class CubemapNode : public SceneNode
 public:
 	CubemapNode(const ObjectId Id,
 		WeakBaseRenderComponentPtr renderComponent,
-		RenderPass renderPass)
+		RenderPass renderPass, const char* shaderV, const char* shaderF, const char* meshPath)
 		: SceneNode(Id, renderComponent, renderPass) {
+		std::string paths = std::string(std::string(shaderV) + std::string("  ") + std::string(shaderF) + std::string("  ") + std::string(meshPath));
+		EDITOR_LOG(paths.c_str())
 		
-		NodeShader.reset(new Shaders("../shaders/3Dvert.glsl", "../shaders/3Dfrag.glsl") );
-		LoadUtility::loadModel(m_Meshes, "../assets/box.fbx" ,MeshType::SKYBOX);
+			NodeShader.reset(new Shaders(shaderV,shaderF ) );
+		LoadUtility::loadModel(m_Meshes, meshPath ,MeshType::SKYBOX);
 		SetUniforms();
 
 	}

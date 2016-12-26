@@ -15,8 +15,9 @@ Object3D::~Object3D()
 
 bool Object3D::Init(tinyxml2::XMLElement * pData)
 {
-	
-	return false;
+	m_Type = pData->Attribute("type"); 
+	m_resource = pData->Attribute("resource");
+	return true;
 }
 
 void Object3D::PostInit(void)

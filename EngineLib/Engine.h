@@ -75,6 +75,7 @@ void flogout(const char*);
 #include"3DRender\Scene.h"
 #include"3DRender\Mesh.h"
 #include"EventSystem\EventManagerImpl.h"
+#include"EventSystem\Event.h"
 #include"SHObject\ObjectFactory.h"
 
 

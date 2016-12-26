@@ -1,0 +1,5 @@
+<Object type="Mesh" resource="..\XML\box.xml">
+    <MeshRenderComponent>
+        <Paths shaderV = "../shaders/dbgVert.glsl" shaderF = "../shaders/ColliderFrag.glsl" mesh = "../assets/box.fbx"/>
+    </MeshRenderComponent>
+</Object>

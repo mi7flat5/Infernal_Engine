@@ -12,6 +12,9 @@ class BaseRenderComponent:public RenderComponentInterface
 protected:
 	virtual bool VDelegateInit(tinyxml2::XMLElement* pData) { return true; }
 	std::shared_ptr<SceneNode> m_pSceneNode;
+	const char* shaderV;
+	const char* shaderF;
+	const char* meshPath;
 public:
 	
 	virtual bool VInit(tinyxml2::XMLElement* pData) override;
@@ -24,6 +27,7 @@ public:
 };
 class CubeMapRenderComponent : public BaseRenderComponent
 {
+	
 	std::string m_textureResource;
 public:
 	CubeMapRenderComponent();

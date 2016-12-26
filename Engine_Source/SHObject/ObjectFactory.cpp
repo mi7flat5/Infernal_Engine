@@ -2,7 +2,8 @@
 #include "ObjectFactory.h"
 #include"RenderComponent.h"
 #include"Object3D.h"
-
+//#include"..\EventSystem\Event.h"
+using namespace tinyxml2;
 ObjectFactory::ObjectFactory()
 {
 	m_lastActorId = 0;
@@ -14,8 +15,23 @@ ObjectFactory::ObjectFactory()
 ObjectFactory::~ObjectFactory()
 {
 }
-StrongObjectPtr ObjectFactory::CreateActor(ObjectId serversActorId)
+StrongObjectPtr ObjectFactory::CreateActor(ObjectId serversActorId,const char* resourcePath)
 {
+	XMLDocument doc;
+	if (doc.LoadFile(resourcePath))
+	{
+		EDITOR_LOG("FileLoaded")
+	}
+	
+	XMLElement* pRoot = doc.FirstChildElement();
+	if (!pRoot)
+	{
+		EDITOR_LOG(std::string(std::string("No root element found, returning nullptr failed to load: ")+ std::string(resourcePath)).c_str());
+		
+		return StrongObjectPtr();
+	}
+
+	
 	ObjectId nextObjectId = serversActorId;
 	if (nextObjectId == INVALID_OBJECT_ID)
 	{
@@ -24,43 +40,29 @@ StrongObjectPtr ObjectFactory::CreateActor(ObjectId serversActorId)
 	StrongObjectPtr pObject;
 	
 	pObject.reset(INFERNAL_NEW Object3D(nextObjectId));
-	if (!pObject)
-		system("pause");
-	
-	StrongObjectComponentPtr a = VCreateComponent(std::string("CubeMapRenderComponent"));
-	
-
-	a->SetOwner(pObject);
-	
-
-	pObject->AddComponent(a);
-	
-	
-	pObject->PostInit();
-	
-
-	ObjectId nextObjectId2 = serversActorId;
-	if (nextObjectId2 == INVALID_OBJECT_ID)
+	if (!pObject->Init(pRoot))
 	{
-		nextObjectId2 = GetNextActorId();
+		EDITOR_LOG("Failed to initialize object returning nullptr")
+		return StrongObjectPtr();
 	}
-	StrongObjectPtr pObject2;
-
-	pObject2.reset(INFERNAL_NEW Object3D(nextObjectId2));
-	if (!pObject2)
-		system("pause");
 	
-	StrongObjectComponentPtr a2 = VCreateComponent(std::string("MeshRenderComponent"));
+	//StrongObjectComponentPtr a = VCreateComponent(std::string("CubeMapRenderComponent"));
+	for (XMLElement* pNode = pRoot->FirstChildElement(); pNode; pNode = pNode->NextSiblingElement())
+	{
+		StrongObjectComponentPtr pComponent(VCreateComponent(pNode));
+		if (pComponent)
+		{
+			pObject->AddComponent(pComponent);
+			pComponent->SetOwner(pObject);
+			pObject->PostInit();
+		}
+		else
+		{
+			return StrongObjectPtr();
+		}
+	}
 
-
-	a2->SetOwner(pObject2);
-
-
-	pObject2->AddComponent(a2);
-
-
-	pObject2->PostInit();
-	return pObject2;
+	return pObject;
 }
 
 void ObjectFactory::ModifyActor(StrongObjectPtr pActor, tinyxml2::XMLElement * overrides)
@@ -69,7 +71,25 @@ void ObjectFactory::ModifyActor(StrongObjectPtr pActor, tinyxml2::XMLElement * o
 
 StrongObjectComponentPtr ObjectFactory::VCreateComponent(tinyxml2::XMLElement * pData)
 {
-	StrongObjectComponentPtr pComponent(m_componentFactory.Create(ObjectComponent::GetIdFromName("CubeMapRenderComponent")));
+	const char* name = pData->Value();
+	StrongObjectComponentPtr pComponent(m_componentFactory.Create(ObjectComponent::GetIdFromName(name)));
+
+	if (pComponent)
+	{
+		if (!pComponent->VInit(pData))
+		{
+			EDITOR_LOG(std::string("Component failed to initialize: " + std::string(name)).c_str());
+			return StrongObjectComponentPtr();
+		}
+	}
+	else
+	{
+		EDITOR_LOG(std::string("Couldn't find ActorComponent named " + std::string(name)).c_str());
+		return StrongObjectComponentPtr();  // fail
+	}
+
+
+
 	return pComponent;
 }
 StrongObjectComponentPtr ObjectFactory::VCreateComponent(StrongObjectPtr pObject)

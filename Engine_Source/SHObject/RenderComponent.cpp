@@ -12,8 +12,18 @@ const char* CubeMapRenderComponent::g_Name = "CubeMapRenderComponent";
 
 bool BaseRenderComponent::VInit(tinyxml2::XMLElement * pData)
 {
+	tinyxml2::XMLElement* pPaths = pData->FirstChildElement();
 	
-	return false;
+	meshPath= pPaths->Attribute("mesh");
+	shaderV = pPaths->Attribute("shaderV");
+	shaderF = pPaths->Attribute("shaderF");
+	if (!meshPath)
+	{
+		EDITOR_LOG("Failed to load render component paths")
+			return false;
+	}
+
+	return true;
 }
 
 void BaseRenderComponent::VPostInit(void)
@@ -65,7 +75,7 @@ std::shared_ptr<SceneNode> MeshRenderComponent::VCreateSceneNode(void)
 	WeakBaseRenderComponentPtr weak(this);
 
 	std::shared_ptr<OGLMeshNode> mesh;
-	mesh = std::shared_ptr<OGLMeshNode>(INFERNAL_NEW OGLMeshNode(m_pOwner->GetId(), weak, RenderPass_Actor));
+	mesh = std::shared_ptr<OGLMeshNode>(INFERNAL_NEW OGLMeshNode(m_pOwner->GetId(), weak, RenderPass_Actor, shaderV, shaderF, meshPath));
 
 	return mesh;
 }
@@ -96,7 +106,8 @@ std::shared_ptr<SceneNode> CubeMapRenderComponent::VCreateSceneNode(void)
 	WeakBaseRenderComponentPtr weak(this);
 	
 	std::shared_ptr<CubemapNode> sky;
-	sky = std::shared_ptr<CubemapNode>(INFERNAL_NEW CubemapNode(m_pOwner->GetId(), weak, RenderPass_Sky));
+	
+	sky = std::shared_ptr<CubemapNode>(INFERNAL_NEW CubemapNode(m_pOwner->GetId(), weak, RenderPass_Sky,shaderV,shaderF,meshPath));
 	
 	return sky;
 }

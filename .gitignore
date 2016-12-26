@@ -19,7 +19,6 @@ RawBlameHistory     261 lines (212 sloc)  4.2 KB
 
 # User-specific files
 *.suo
-*.user
 *.userosscache
 *.sln.docstates
 

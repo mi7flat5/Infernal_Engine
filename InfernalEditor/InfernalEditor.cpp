@@ -11,8 +11,7 @@ InfernalEditor::InfernalEditor(QWidget *parent)
 	ui.openGLWidget->setOwner(this);
 	ui.textBrowser->append(QString("owner set"));
 	
-	
-	
+
 	
 	
 	
@@ -69,16 +68,16 @@ void InfernalEditor::Log_event(IEventDataPtr pEventData)
 	
 }
 
-//#ifndef QT_NO_CONTEXTMENU
-//void InfernalEditor::contextMenuEvent(QContextMenuEvent *event)
-//{
-//	QMenu menu(this);
-//	menu.addAction(cutAct);
-//	menu.addAction(copyAct);
-//	menu.addAction(pasteAct);
-//	menu.exec(event->globalPos());
-//}
-//#endif // QT_NO_CONTEXTMENU
+#ifndef QT_NO_CONTEXTMENU
+void InfernalEditor::contextMenuEvent(QContextMenuEvent *event)
+{
+	QMenu menu(this);
+	menu.addAction(cutAct);
+	menu.addAction(copyAct);
+	menu.addAction(pasteAct);
+	menu.exec(event->globalPos());
+}
+#endif // QT_NO_CONTEXTMENU
 
 void InfernalEditor::newFile()
 {

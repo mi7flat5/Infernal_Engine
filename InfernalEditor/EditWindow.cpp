@@ -22,6 +22,7 @@ EditWindow::EditWindow(QWidget *parent)
 	//MainWindow = parent;
 	
 	
+	
 }
 
 EditWindow::~EditWindow()
@@ -56,7 +57,8 @@ void EditWindow::init()
 		m_pScene->AddChild(m_pCamera->GetObjectId(), cam);
 		m_pScene->SetCamera(cam);
 		
-		maker->CreateActor(INVALID_OBJECT_ID);
+		maker->CreateActor(INVALID_OBJECT_ID,"..\\XML\\cubemap.xml");
+		maker->CreateActor(INVALID_OBJECT_ID, "..\\XML\\box.xml");
 		
 	}
 	

@@ -1,4 +1,5 @@
 #pragma once
+typedef std::string ObjectType;
 
 class Object3D
 {
@@ -7,6 +8,8 @@ public:
 	typedef std::map<ComponentId, StrongObjectComponentPtr> ObjectComponents;
 private:
 	ObjectId m_Id;
+	std::string m_resource;
+	ObjectType m_Type;
 	ObjectComponents m_components;
 public:
 	
