@@ -38,7 +38,13 @@ EditWindow::~EditWindow()
 
 
 
-
+bool EditWindow::AddObjectToScene(const char* resource) 
+{
+	makeCurrent();
+	maker->CreateActor(INVALID_OBJECT_ID,resource);
+	
+	return true;
+}
 
 void EditWindow::init()
 {
@@ -49,16 +55,15 @@ void EditWindow::init()
 	if(!m_pScene)
 	m_pScene = new Scene();
 	if (!m_pCamera) {
-		InfernalEditor* fd = dynamic_cast<InfernalEditor*>(owner);
-		fd->registerDelegate();
+		InfernalEditor* properOwnerPointer = dynamic_cast<InfernalEditor*>(owner);
+		properOwnerPointer->registerDelegate();
 		m_pCamera = new CameraNode(INVALID_OBJECT_ID,
 			WeakBaseRenderComponentPtr(), (RenderPass)0);
 		std::shared_ptr<CameraNode> cam(m_pCamera);
 		m_pScene->AddChild(m_pCamera->GetObjectId(), cam);
 		m_pScene->SetCamera(cam);
 		
-		maker->CreateActor(INVALID_OBJECT_ID,"..\\XML\\cubemap.xml");
-		maker->CreateActor(INVALID_OBJECT_ID, "..\\XML\\box.xml");
+		
 		
 	}
 	
@@ -127,9 +132,14 @@ void EditWindow::mousePressEvent(QMouseEvent *event)
 	
 }
 
-void EditWindow::mouseMoveEvent(QMouseEvent *event)
+void EditWindow::mouseReleaseEvent(QMouseEvent *event) 
 {
 
+}
+
+void EditWindow::mouseMoveEvent(QMouseEvent *event)
+{
+	
 }
 
 

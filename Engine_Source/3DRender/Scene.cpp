@@ -75,10 +75,10 @@ void Scene::NewRenderComponentDelegate(IEventDataPtr pEventData)
 	if (!pSceneNode)
 	{
 		std::string error = "Failed to restore scene node to the scene for actorid " + ToStr(actorId);//TODO
-		
+		EDITOR_LOG(error)
 		return;
 	}
-	
+	EDITOR_LOG("Added from scengraph delegate")
 	AddChild(actorId, pSceneNode);
 	
 }

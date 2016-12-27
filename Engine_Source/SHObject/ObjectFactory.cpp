@@ -61,7 +61,7 @@ StrongObjectPtr ObjectFactory::CreateActor(ObjectId serversActorId,const char* r
 			return StrongObjectPtr();
 		}
 	}
-
+	EDITOR_LOG("apparently successfully added object to scene")
 	return pObject;
 }
 

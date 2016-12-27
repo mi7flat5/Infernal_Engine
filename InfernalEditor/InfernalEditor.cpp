@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include <QtWidgets>
+
+#include "ActorCreationWindow.h"
 #include "InfernalEditor.h"
 
 
@@ -10,11 +12,33 @@ InfernalEditor::InfernalEditor(QWidget *parent)
 	
 	ui.openGLWidget->setOwner(this);
 	ui.textBrowser->append(QString("owner set"));
+	createMenus();
 	
 
+	m_pSceneTreeModel = new QStandardItemModel();
+	m_pSceneTreeModel->insertColumn(1);
+	m_pSceneViewRoot = new QStandardItem("Scene");
 	
+	m_pSceneTreeModel->setItem(0,m_pSceneViewRoot);
 	
+	QStringList labels;
+	labels.append("Object Name");
+	labels.append("Object Type");
 	
+	m_pSceneTreeModel->setHorizontalHeaderLabels(labels);
+	ui.treeView->setModel(m_pSceneTreeModel);
+	
+	m_pCreationwindow = new ActorCreationWindow();
+	m_pCreationwindow->hide();
+	m_pCreationwindow->SetOwner(this);
+	
+}
+void InfernalEditor::AddObjectToScene(const char* resourcePath, QStandardItem* inItem) 
+{
+	m_pSceneViewRoot->setChild(m_pSceneViewRoot->rowCount(),inItem);
+	ui.textBrowser->append(resourcePath);
+	ui.openGLWidget->AddObjectToScene(resourcePath);
+
 }
 void InfernalEditor::createActions()
 {
@@ -24,33 +48,29 @@ void InfernalEditor::createActions()
 	connect(openAct, &QAction::triggered, this, &InfernalEditor::open);
 	
 	createObject = new QAction(tr("&Create Object..."), this);
-	
+	connect(createObject, &QAction::triggered, this, &InfernalEditor::OpenCreationWindow);
 
 }
+void InfernalEditor::OpenCreationWindow() 
+{	
+	m_pCreationwindow->show();
 
+}
 void InfernalEditor::createMenus()
 {
-	
 	createActions();
+	fileMenu = menuBar()->addMenu(tr("&File"));
+	fileMenu->addAction(openAct);
 
-	
+	ObjectMenu = menuBar()->addMenu(tr("&Object"));
+	ObjectMenu->addAction(createObject);
 
 	/*fileMenu->addAction(newAct);
 	fileMenu->addAction(openAct);
 	fileMenu->addAction(saveAct);
 	fileMenu->addAction(printAct);
-
 	fileMenu->addSeparator();
 	fileMenu->addAction(exitAct);*/ //TODO IMPLEMENT THESE
-
-	fileMenu = menuBar()->addMenu(tr("&File"));
-	fileMenu->addAction(openAct);
-
-
-	ObjectMenu = menuBar()->addMenu(tr("&Object"));
-	ObjectMenu->addAction(createObject);
-
-
 }
 void InfernalEditor::registerDelegate()
 {
@@ -71,11 +91,11 @@ void InfernalEditor::Log_event(IEventDataPtr pEventData)
 #ifndef QT_NO_CONTEXTMENU
 void InfernalEditor::contextMenuEvent(QContextMenuEvent *event)
 {
-	QMenu menu(this);
-	menu.addAction(cutAct);
-	menu.addAction(copyAct);
-	menu.addAction(pasteAct);
-	menu.exec(event->globalPos());
+	//QMenu menu(this);
+	//menu.addAction(cutAct);
+	//menu.addAction(copyAct);
+	//menu.addAction(pasteAct);
+	////menu.exec(event->globalPos());
 }
 #endif // QT_NO_CONTEXTMENU
 
@@ -87,20 +107,20 @@ void InfernalEditor::newFile()
 void InfernalEditor::open()
 {
 	
-		/*QString fileName = QFileDialog::getOpenFileName(this);
+		QString fileName = QFileDialog::getOpenFileName(this);
 		if (!fileName.isEmpty())
-			loadfile(fileName);*/
+			loadfile(fileName);
 	
 }
 void InfernalEditor::loadfile(const QString &fileName)
 {
-	/*QFile file(fileName);
+	QFile file(fileName);
 	if (!file.open(QFile::ReadOnly | QFile::Text)) {
 		QMessageBox::warning(this, tr("Application"),
 			tr("Cannot read file %1:\n%2.")
 			.arg(QDir::toNativeSeparators(fileName), file.errorString()));
 		return;
-	}*/
+	}
 
 
 
@@ -125,5 +145,20 @@ void InfernalEditor::about()
 void InfernalEditor::aboutQt()
 {
 	
+}
+
+void InfernalEditor::mousePressEvent(QMouseEvent *event) 
+{
+
+}
+
+void InfernalEditor::mouseReleaseEvent(QMouseEvent *event)
+{
+
+}
+
+void InfernalEditor::mouseMoveEvent(QMouseEvent *event)
+{
+
 }
 

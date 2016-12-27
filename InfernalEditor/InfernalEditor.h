@@ -3,12 +3,17 @@
 #include <QtWidgets/QMainWindow>
 #include "ui_InfernalEditor.h"
 #include"EventSystem\Event.h"
+class ActorCreationWindow;
+
 class InfernalEditor : public QMainWindow
 {
-    Q_OBJECT
-
+	Q_OBJECT
+		QStandardItemModel *m_pSceneTreeModel;
+		QStandardItem* m_pSceneViewRoot;
 public:
     InfernalEditor(QWidget *parent = Q_NULLPTR);
+
+	void AddObjectToScene(const char* resourcePath, QStandardItem* inItem);
 	void registerDelegate();
 protected:
 #ifndef QT_NO_CONTEXTMENU
@@ -31,13 +36,18 @@ void newFile();
 
 	void about();
 	void aboutQt();
+protected:
+	void mousePressEvent(QMouseEvent *event) Q_DECL_OVERRIDE;
+	void mouseReleaseEvent(QMouseEvent *event) Q_DECL_OVERRIDE;
+	void mouseMoveEvent(QMouseEvent *event) Q_DECL_OVERRIDE;
 
 private:
     Ui::InfernalEditorClass ui;
 	
-	
+	ActorCreationWindow* m_pCreationwindow;
 
 	void createActions();
+	void OpenCreationWindow();
 	void createMenus();
 
 	QMenu *fileMenu;

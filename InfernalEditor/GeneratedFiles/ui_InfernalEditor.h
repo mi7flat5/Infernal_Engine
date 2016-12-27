@@ -75,7 +75,7 @@ public:
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         openGLWidget = new EditWindow(centralWidget);
         openGLWidget->setObjectName(QStringLiteral("openGLWidget"));
-        QSizePolicy sizePolicy1(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::MinimumExpanding);
         sizePolicy1.setHorizontalStretch(0);
         sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(openGLWidget->sizePolicy().hasHeightForWidth());
@@ -83,8 +83,8 @@ public:
         openGLWidget->setMinimumSize(QSize(16, 9));
         openGLWidget->setSizeIncrement(QSize(16, 9));
         openGLWidget->setBaseSize(QSize(0, 0));
-        openGLWidget->setMouseTracking(true);
-        openGLWidget->setFocusPolicy(Qt::ClickFocus);
+        openGLWidget->setMouseTracking(false);
+        openGLWidget->setFocusPolicy(Qt::NoFocus);
         openGLWidget->setAutoFillBackground(true);
 
         gridLayout_2->addWidget(openGLWidget, 0, 0, 1, 1);
