@@ -509,7 +509,7 @@
          </widget>
         </item>
         <item row="8" column="0">
-         <widget class="QPushButton" name="pushButton_2">
+         <widget class="QPushButton" name="_FragmentShaderButton">
           <property name="text">
            <string>Choose Fragment Shader</string>
           </property>
@@ -721,55 +721,12 @@
       <layout class="QGridLayout" name="gridLayout_4">
        <item row="0" column="0">
         <layout class="QGridLayout" name="gridLayout_3">
-         <item row="2" column="1">
-          <widget class="QLineEdit" name="typeText"/>
-         </item>
-         <item row="1" column="2">
-          <widget class="QLabel" name="_resourcePath_label">
-           <property name="text">
-            <string>Resource File</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLineEdit" name="NameText"/>
-         </item>
-         <item row="2" column="2">
-          <widget class="QLineEdit" name="ResourceFileText"/>
-         </item>
-         <item row="1" column="1">
-          <widget class="QLabel" name="_type_Label">
-           <property name="text">
-            <string>Object Type</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="_name_label">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>Object Name</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="2">
-          <widget class="QPushButton" name="LoadResourceButton">
-           <property name="text">
-            <string>Load From Resource</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="0" colspan="2">
+         <item row="3" column="0" colspan="2">
           <widget class="QGroupBox" name="ComponentsGroupBox">
            <property name="title">
             <string>Components</string>
            </property>
-           <widget class="QWidget" name="">
+           <widget class="QWidget" name="layoutWidget">
             <property name="geometry">
              <rect>
               <x>10</x>
@@ -804,6 +761,32 @@
            </widget>
           </widget>
          </item>
+         <item row="2" column="1">
+          <widget class="QComboBox" name="typeBox"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLineEdit" name="NameText"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="_name_label">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Object Name</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLabel" name="_type_Label">
+           <property name="text">
+            <string>Object Type</string>
+           </property>
+          </widget>
+         </item>
         </layout>
        </item>
       </layout>
@@ -811,23 +794,6 @@
     </layout>
    </item>
   </layout>
-  <zorder>_name_label</zorder>
-  <zorder>_type_Label</zorder>
-  <zorder>_component_label</zorder>
-  <zorder>NameText</zorder>
-  <zorder>typeText</zorder>
-  <zorder>LoadResourceButton</zorder>
-  <zorder>ComponentsGroupBox</zorder>
-  <zorder>Creation_Button</zorder>
-  <zorder>renderComponent</zorder>
-  <zorder>_resourcePath_label</zorder>
-  <zorder>ResourceFileText</zorder>
-  <zorder>Creation_Button</zorder>
-  <zorder>Creation_Button</zorder>
-  <zorder>transformComponent</zorder>
-  <zorder>transformComponent_2</zorder>
-  <zorder>horizontalSpacer</zorder>
-  <zorder>Creation_Button</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

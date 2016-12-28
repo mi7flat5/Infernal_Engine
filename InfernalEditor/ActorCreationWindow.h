@@ -10,10 +10,16 @@ class ActorCreationWindow : public QWidget
 		void SetOwner(QMainWindow* pMainWindow) { Owner = pMainWindow; }
 		QMainWindow* Owner;
 		void loadfile(const QString &fileName);
+		const char* GetRenderCompnentType();
 private slots:
 	void CreatObject();
 	
-	void open();
+	
+	void SetFragShader();
+	void SetVertexShader();
+	void SetMeshAsset();
+	
+
 public:
 	ActorCreationWindow(QWidget *parent = Q_NULLPTR);
 	~ActorCreationWindow();

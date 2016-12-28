@@ -6,3 +6,48 @@ failed to trigger
 12-11-2016 19-40-33: Successfully added delegate for event type: af4aff75
 12-11-2016 19-40-33: Attempting to queue event: EvtData_Log_Data
 12-11-2016 19-40-33: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+12-28-2016 21-28-48: Successfully added delegate for event type: af4aff75
+12-28-2016 21-28-48: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-28-48: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+12-28-2016 21-28-48: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-28-48: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+12-28-2016 21-28-48: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-28-48: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+12-28-2016 21-28-48: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-28-48: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+12-28-2016 21-32-25: Successfully added delegate for event type: af4aff75
+12-28-2016 21-32-25: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-32-25: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+12-28-2016 21-32-25: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-32-25: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+12-28-2016 21-32-25: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-32-25: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+12-28-2016 21-32-25: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-32-25: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+12-28-2016 21-32-46: Successfully added delegate for event type: af4aff75
+12-28-2016 21-32-46: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-32-46: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+12-28-2016 21-32-46: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-32-46: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+12-28-2016 21-32-46: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-32-46: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+12-28-2016 21-32-46: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-32-46: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+12-28-2016 21-33-02: Successfully added delegate for event type: af4aff75
+12-28-2016 21-33-02: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-33-02: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+12-28-2016 21-33-02: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-33-02: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+12-28-2016 21-33-02: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-33-02: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+12-28-2016 21-33-02: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-33-02: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+12-28-2016 21-42-40: Successfully added delegate for event type: af4aff75
+12-28-2016 21-42-40: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-42-40: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+12-28-2016 21-42-40: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-42-40: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+12-28-2016 21-42-40: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-42-40: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+12-28-2016 21-42-40: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-42-40: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data

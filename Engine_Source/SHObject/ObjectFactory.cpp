@@ -61,7 +61,7 @@ StrongObjectPtr ObjectFactory::CreateActor(ObjectId serversActorId,const char* r
 			return StrongObjectPtr();
 		}
 	}
-	EDITOR_LOG("apparently successfully added object to scene")
+	
 	return pObject;
 }
 
@@ -84,7 +84,7 @@ StrongObjectComponentPtr ObjectFactory::VCreateComponent(tinyxml2::XMLElement * 
 	}
 	else
 	{
-		EDITOR_LOG(std::string("Couldn't find ActorComponent named " + std::string(name)).c_str());
+		EDITOR_LOG(std::string("Couldn't find Component named " + std::string(name)).c_str());
 		return StrongObjectComponentPtr();  // fail
 	}
 

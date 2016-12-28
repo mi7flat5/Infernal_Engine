@@ -14,6 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QDoubleSpinBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QGroupBox>
@@ -40,7 +41,7 @@ public:
     QPushButton *_VertexShaderButton;
     QLabel *_assetPath_label;
     QLabel *_fragmentshader_label;
-    QPushButton *pushButton_2;
+    QPushButton *_FragmentShaderButton;
     QPushButton *_assetFile_button;
     QGroupBox *transformComponent;
     QGridLayout *gridLayout_5;
@@ -67,19 +68,16 @@ public:
     QDoubleSpinBox *doubleSpinBox_7;
     QGridLayout *gridLayout_4;
     QGridLayout *gridLayout_3;
-    QLineEdit *typeText;
-    QLabel *_resourcePath_label;
-    QLineEdit *NameText;
-    QLineEdit *ResourceFileText;
-    QLabel *_type_Label;
-    QLabel *_name_label;
-    QPushButton *LoadResourceButton;
     QGroupBox *ComponentsGroupBox;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QGridLayout *gridLayout;
     QCheckBox *RenderComponent_checkbox;
     QCheckBox *transformComponentCheckbox;
     QCheckBox *checkBox_3;
+    QComboBox *typeBox;
+    QLineEdit *NameText;
+    QLabel *_name_label;
+    QLabel *_type_Label;
 
     void setupUi(QWidget *ActorCreationWindow)
     {
@@ -215,10 +213,10 @@ public:
 
         gridLayout_2->addWidget(_fragmentshader_label, 3, 0, 1, 1);
 
-        pushButton_2 = new QPushButton(renderComponent);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        _FragmentShaderButton = new QPushButton(renderComponent);
+        _FragmentShaderButton->setObjectName(QStringLiteral("_FragmentShaderButton"));
 
-        gridLayout_2->addWidget(pushButton_2, 8, 0, 1, 1);
+        gridLayout_2->addWidget(_FragmentShaderButton, 8, 0, 1, 1);
 
         _assetFile_button = new QPushButton(renderComponent);
         _assetFile_button->setObjectName(QStringLiteral("_assetFile_button"));
@@ -375,30 +373,43 @@ public:
         gridLayout_3 = new QGridLayout();
         gridLayout_3->setSpacing(6);
         gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
-        typeText = new QLineEdit(ActorCreationWindow);
-        typeText->setObjectName(QStringLiteral("typeText"));
+        ComponentsGroupBox = new QGroupBox(ActorCreationWindow);
+        ComponentsGroupBox->setObjectName(QStringLiteral("ComponentsGroupBox"));
+        layoutWidget = new QWidget(ComponentsGroupBox);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(10, 10, 126, 65));
+        gridLayout = new QGridLayout(layoutWidget);
+        gridLayout->setSpacing(6);
+        gridLayout->setContentsMargins(11, 11, 11, 11);
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        gridLayout->setContentsMargins(0, 0, 0, 0);
+        RenderComponent_checkbox = new QCheckBox(layoutWidget);
+        RenderComponent_checkbox->setObjectName(QStringLiteral("RenderComponent_checkbox"));
 
-        gridLayout_3->addWidget(typeText, 2, 1, 1, 1);
+        gridLayout->addWidget(RenderComponent_checkbox, 0, 0, 1, 1);
 
-        _resourcePath_label = new QLabel(ActorCreationWindow);
-        _resourcePath_label->setObjectName(QStringLiteral("_resourcePath_label"));
+        transformComponentCheckbox = new QCheckBox(layoutWidget);
+        transformComponentCheckbox->setObjectName(QStringLiteral("transformComponentCheckbox"));
 
-        gridLayout_3->addWidget(_resourcePath_label, 1, 2, 1, 1);
+        gridLayout->addWidget(transformComponentCheckbox, 1, 0, 1, 1);
+
+        checkBox_3 = new QCheckBox(layoutWidget);
+        checkBox_3->setObjectName(QStringLiteral("checkBox_3"));
+
+        gridLayout->addWidget(checkBox_3, 2, 0, 1, 1);
+
+
+        gridLayout_3->addWidget(ComponentsGroupBox, 3, 0, 1, 2);
+
+        typeBox = new QComboBox(ActorCreationWindow);
+        typeBox->setObjectName(QStringLiteral("typeBox"));
+
+        gridLayout_3->addWidget(typeBox, 2, 1, 1, 1);
 
         NameText = new QLineEdit(ActorCreationWindow);
         NameText->setObjectName(QStringLiteral("NameText"));
 
         gridLayout_3->addWidget(NameText, 2, 0, 1, 1);
-
-        ResourceFileText = new QLineEdit(ActorCreationWindow);
-        ResourceFileText->setObjectName(QStringLiteral("ResourceFileText"));
-
-        gridLayout_3->addWidget(ResourceFileText, 2, 2, 1, 1);
-
-        _type_Label = new QLabel(ActorCreationWindow);
-        _type_Label->setObjectName(QStringLiteral("_type_Label"));
-
-        gridLayout_3->addWidget(_type_Label, 1, 1, 1, 1);
 
         _name_label = new QLabel(ActorCreationWindow);
         _name_label->setObjectName(QStringLiteral("_name_label"));
@@ -407,38 +418,10 @@ public:
 
         gridLayout_3->addWidget(_name_label, 1, 0, 1, 1);
 
-        LoadResourceButton = new QPushButton(ActorCreationWindow);
-        LoadResourceButton->setObjectName(QStringLiteral("LoadResourceButton"));
+        _type_Label = new QLabel(ActorCreationWindow);
+        _type_Label->setObjectName(QStringLiteral("_type_Label"));
 
-        gridLayout_3->addWidget(LoadResourceButton, 3, 2, 1, 1);
-
-        ComponentsGroupBox = new QGroupBox(ActorCreationWindow);
-        ComponentsGroupBox->setObjectName(QStringLiteral("ComponentsGroupBox"));
-        widget = new QWidget(ComponentsGroupBox);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(10, 10, 126, 65));
-        gridLayout = new QGridLayout(widget);
-        gridLayout->setSpacing(6);
-        gridLayout->setContentsMargins(11, 11, 11, 11);
-        gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        gridLayout->setContentsMargins(0, 0, 0, 0);
-        RenderComponent_checkbox = new QCheckBox(widget);
-        RenderComponent_checkbox->setObjectName(QStringLiteral("RenderComponent_checkbox"));
-
-        gridLayout->addWidget(RenderComponent_checkbox, 0, 0, 1, 1);
-
-        transformComponentCheckbox = new QCheckBox(widget);
-        transformComponentCheckbox->setObjectName(QStringLiteral("transformComponentCheckbox"));
-
-        gridLayout->addWidget(transformComponentCheckbox, 1, 0, 1, 1);
-
-        checkBox_3 = new QCheckBox(widget);
-        checkBox_3->setObjectName(QStringLiteral("checkBox_3"));
-
-        gridLayout->addWidget(checkBox_3, 2, 0, 1, 1);
-
-
-        gridLayout_3->addWidget(ComponentsGroupBox, 4, 0, 1, 2);
+        gridLayout_3->addWidget(_type_Label, 1, 1, 1, 1);
 
 
         gridLayout_4->addLayout(gridLayout_3, 0, 0, 1, 1);
@@ -449,20 +432,6 @@ public:
 
         gridLayout_7->addLayout(gridLayout_6, 0, 0, 1, 1);
 
-        _name_label->raise();
-        _type_Label->raise();
-        NameText->raise();
-        typeText->raise();
-        LoadResourceButton->raise();
-        ComponentsGroupBox->raise();
-        Creation_Button->raise();
-        renderComponent->raise();
-        _resourcePath_label->raise();
-        ResourceFileText->raise();
-        Creation_Button->raise();
-        Creation_Button->raise();
-        transformComponent->raise();
-        Creation_Button->raise();
 
         retranslateUi(ActorCreationWindow);
 
@@ -478,7 +447,7 @@ public:
         _VertexShaderButton->setText(QApplication::translate("ActorCreationWindow", "Choose Vertex Shader", 0));
         _assetPath_label->setText(QApplication::translate("ActorCreationWindow", "Asset File", 0));
         _fragmentshader_label->setText(QApplication::translate("ActorCreationWindow", "Fragment Shader", 0));
-        pushButton_2->setText(QApplication::translate("ActorCreationWindow", "Choose Fragment Shader", 0));
+        _FragmentShaderButton->setText(QApplication::translate("ActorCreationWindow", "Choose Fragment Shader", 0));
         _assetFile_button->setText(QApplication::translate("ActorCreationWindow", "Choose Asset File", 0));
         transformComponent->setTitle(QApplication::translate("ActorCreationWindow", "Transform Component", 0));
         label_12->setText(QApplication::translate("ActorCreationWindow", "Z", 0));
@@ -493,14 +462,12 @@ public:
         label_14->setText(QApplication::translate("ActorCreationWindow", "X", 0));
         label_2->setText(QApplication::translate("ActorCreationWindow", "X", 0));
         label_4->setText(QApplication::translate("ActorCreationWindow", "Z", 0));
-        _resourcePath_label->setText(QApplication::translate("ActorCreationWindow", "Resource File", 0));
-        _type_Label->setText(QApplication::translate("ActorCreationWindow", "Object Type", 0));
-        _name_label->setText(QApplication::translate("ActorCreationWindow", "Object Name", 0));
-        LoadResourceButton->setText(QApplication::translate("ActorCreationWindow", "Load From Resource", 0));
         ComponentsGroupBox->setTitle(QApplication::translate("ActorCreationWindow", "Components", 0));
         RenderComponent_checkbox->setText(QApplication::translate("ActorCreationWindow", "Render Component", 0));
         transformComponentCheckbox->setText(QApplication::translate("ActorCreationWindow", "Trasform Component", 0));
         checkBox_3->setText(QApplication::translate("ActorCreationWindow", "Other Components", 0));
+        _name_label->setText(QApplication::translate("ActorCreationWindow", "Object Name", 0));
+        _type_Label->setText(QApplication::translate("ActorCreationWindow", "Object Type", 0));
     } // retranslateUi
 
 };

@@ -1,12 +1,47 @@
 #include "stdafx.h"
 #include "ActorCreationWindow.h"
 #include "InfernalEditor.h"
+
+using namespace tinyxml2;
+
+#ifndef XMLCheckResult
+#define XMLCheckResult(a_eResult) if (a_eResult != XML_SUCCESS) { EDITOR_LOG("error saving file") }
+#endif
+
 void ActorCreationWindow::CreatObject()
 {
+	QList<QStandardItem *> NameAndType;
+	NameAndType << new QStandardItem(ui.NameText->text());
+	NameAndType << new QStandardItem(ui.typeBox->currentText());
+	
+	
+
+
+
+
+	QString Name =ui.NameText->text().remove(QString(""));
+	QString resourcePath = "..//XML/" + Name+ ".xml";
 	InfernalEditor* properOwnerPointer = dynamic_cast<InfernalEditor*>(Owner);
-	QStandardItem* item= new QStandardItem(ui.NameText->text());
-	QString resourcePath = ui.ResourceFileText->text().replace(QString("/"), QString("//"));
-	properOwnerPointer->AddObjectToScene(resourcePath.toStdString().c_str(),item);
+	
+
+	XMLDocument OutDoc;
+	XMLElement * pRoot = OutDoc.NewElement(ui.NameText->text().toStdString().c_str());
+	pRoot->SetAttribute("type", ui.typeBox->currentText().toStdString().c_str() );
+	pRoot->SetAttribute("resource", resourcePath.toStdString().c_str());
+	OutDoc.InsertFirstChild(pRoot);
+
+	XMLElement* pRenderComponent = OutDoc.NewElement(GetRenderCompnentType());
+	XMLElement* pPaths = OutDoc.NewElement("Paths");
+	pPaths->SetAttribute("shaderV", ui.VshaderText->text().toStdString().c_str());
+	pPaths->SetAttribute("shaderF", ui.FshaderText->text().toStdString().c_str());
+	pPaths->SetAttribute("mesh", ui.assetFileText->text().toStdString().c_str());
+	pRenderComponent->InsertEndChild(pPaths);
+	pRoot->InsertEndChild(pRenderComponent);
+	XMLError eResult = OutDoc.SaveFile(resourcePath.toStdString().c_str());
+	XMLCheckResult(eResult);
+	
+	
+	properOwnerPointer->AddObjectToScene(resourcePath.toStdString().c_str(), NameAndType);
 	hide();
 }
 
@@ -14,23 +49,57 @@ ActorCreationWindow::ActorCreationWindow(QWidget *parent)
 	: QWidget(parent)
 {
 	ui.setupUi(this);
-	
+	ui.typeBox->addItem(tr("Mesh"));
+	ui.typeBox->addItem(tr("CubeMap"));
+	ui.typeBox->addItem(tr("Terrain"));
 	
 	connect(ui.Creation_Button, &QPushButton::clicked, this, &ActorCreationWindow::CreatObject);
-	connect(ui.LoadResourceButton, &QPushButton::clicked, this, &ActorCreationWindow::open);
+	
+	connect(ui._assetFile_button, &QPushButton::clicked, this, &ActorCreationWindow::SetMeshAsset);
+	connect(ui._VertexShaderButton, &QPushButton::clicked, this, &ActorCreationWindow::SetVertexShader);
+	connect(ui._FragmentShaderButton, &QPushButton::clicked, this, &ActorCreationWindow::SetFragShader);
 }
 
 ActorCreationWindow::~ActorCreationWindow()
 {
 }
-void ActorCreationWindow::open()
+
+
+
+
+void ActorCreationWindow::SetFragShader()
+{
+	QString fName = QFileDialog::getOpenFileName(this, tr("Fragment Shader"), QString("..//shaders//"),
+		tr("Shader (*.glsl);;"));
+	QFileInfo fileInfo(fName.toStdString().c_str());
+	QString fileName(fileInfo.fileName());
+
+	if (!fileName.isEmpty())
+		ui.FshaderText->setText("..//shaders/" + fileName);
+}
+
+void ActorCreationWindow::SetVertexShader()
+{
+	QString fName = QFileDialog::getOpenFileName(this, tr("Vertex Shader"), QString("..//shaders//"),
+		tr("Shader (*.glsl);;"));
+	QFileInfo fileInfo(fName.toStdString().c_str());
+	QString fileName(fileInfo.fileName());
+	
+	if (!fileName.isEmpty())
+		ui.VshaderText->setText("..//shaders/" + fileName);
+}
+
+void ActorCreationWindow::SetMeshAsset()
 {
 
-	QString fileName = QFileDialog::getOpenFileName(this);
+	QString fName = QFileDialog::getOpenFileName(this, tr("Mesh Asset"), QString("..//assets//"),
+		tr("FBX (*.fbx);;"));
+	QFileInfo fileInfo(fName.toStdString().c_str());
+	QString fileName(fileInfo.fileName());
 	if (!fileName.isEmpty())
-		ui.ResourceFileText->setText(fileName);
-
+		ui.assetFileText->setText("..//assets/"+fileName);
 }
+
 void ActorCreationWindow::loadfile(const QString &fileName)
 {
 	QFile file(fileName);
@@ -41,4 +110,17 @@ void ActorCreationWindow::loadfile(const QString &fileName)
 		return;
 	}
 
+}
+
+const char* ActorCreationWindow::GetRenderCompnentType()
+{
+	switch (ui.typeBox->currentIndex()) 
+	{
+	case (0) :
+		return "MeshRenderComponent";
+	case (1) :
+		return "CubeMapRenderComponent";
+	case (2) :
+		return "TerrainRenderComponent";
+	}
 }

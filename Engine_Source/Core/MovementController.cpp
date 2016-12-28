@@ -28,7 +28,7 @@ void MovementController::UpdateControls()
 	GLfloat currentFrame = glfwGetTime();
 	g_DeltaTime = currentFrame - lastFrame;
 	lastFrame = currentFrame;
-	rate = g_DeltaTime * 4000;
+	rate = g_DeltaTime * 200;
 	
 	if (glfwGetKey(m_pWindowController, GLFW_KEY_D))
 	{

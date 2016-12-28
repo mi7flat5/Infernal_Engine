@@ -13,7 +13,7 @@ class InfernalEditor : public QMainWindow
 public:
     InfernalEditor(QWidget *parent = Q_NULLPTR);
 
-	void AddObjectToScene(const char* resourcePath, QStandardItem* inItem);
+	void AddObjectToScene(const char* resourcePath, QList<QStandardItem*> inItems);
 	void registerDelegate();
 protected:
 #ifndef QT_NO_CONTEXTMENU
@@ -37,9 +37,7 @@ void newFile();
 	void about();
 	void aboutQt();
 protected:
-	void mousePressEvent(QMouseEvent *event) Q_DECL_OVERRIDE;
-	void mouseReleaseEvent(QMouseEvent *event) Q_DECL_OVERRIDE;
-	void mouseMoveEvent(QMouseEvent *event) Q_DECL_OVERRIDE;
+
 
 private:
     Ui::InfernalEditorClass ui;
@@ -57,6 +55,7 @@ private:
 
 	QActionGroup *alignmentGroup;
 	QAction *createObject;
+	QAction *addObject;
 	QAction *newAct;
 	QAction *openAct;
 	QAction *saveAct;

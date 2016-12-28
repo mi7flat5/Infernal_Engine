@@ -185,7 +185,7 @@ std::vector<Texture> LoadUtility::loadMaterialTextures(aiMaterial* mat, aiTextur
 			texture.type = typeName;
 			texture.texPath = tmpTexPath;
 			textures.push_back(texture);
-			texRecord.push_back(texture);  // Store it as texture loaded for entire model, to ensure we won't unnecesery load duplicate textures.
+			texRecord.push_back(texture);  // Store it as texture loaded for entire model, to ensure we won't unnecessarily load duplicate textures.
 		}
 	}
 	return textures;

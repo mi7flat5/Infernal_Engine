@@ -12,7 +12,8 @@ Kernel::Kernel()
 void Kernel::runApp()
 {
 	ObjectFactory maker;
-	maker.CreateActor(INVALID_OBJECT_ID);
+	maker.CreateActor(INVALID_OBJECT_ID,"..//XML//box.xml");
+	maker.CreateActor(INVALID_OBJECT_ID, "..//XML//cubemap.xml");
 	
 	
 	

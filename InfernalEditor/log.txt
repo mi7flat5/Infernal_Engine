@@ -2816,3 +2816,1107 @@
 12-27-2016 23-06-20: Attempting to queue event: EvtData_Log_Data
 12-27-2016 23-06-20: Succesfully queued event: EvtData_Log_Data
 12-27-2016 23-06-20: Processing Event Queue 0; 1 events to process
+12-27-2016 23-15-35: Successfully added delegate for event type: af4aff75
+12-27-2016 23-15-35: Successfully added delegate for event type: e6e55fe4
+12-27-2016 23-15-35: Attempting to queue event: EvtData_Log_Data
+12-27-2016 23-15-35: Succesfully queued event: EvtData_Log_Data
+12-27-2016 23-15-35: Attempting to queue event: EvtData_Log_Data
+12-27-2016 23-15-35: Succesfully queued event: EvtData_Log_Data
+12-27-2016 23-15-35: Processing Event Queue 0; 2 events to process
+12-27-2016 23-15-35: Processing Event Queue 1; 0 events to process
+12-27-2016 23-15-35: Attempting to queue event: EvtData_Log_Data
+12-27-2016 23-15-35: Succesfully queued event: EvtData_Log_Data
+12-27-2016 23-15-35: Processing Event Queue 0; 1 events to process
+12-27-2016 23-20-29: Successfully added delegate for event type: af4aff75
+12-27-2016 23-20-29: Successfully added delegate for event type: e6e55fe4
+12-27-2016 23-20-29: Attempting to queue event: EvtData_Log_Data
+12-27-2016 23-20-29: Succesfully queued event: EvtData_Log_Data
+12-27-2016 23-20-29: Attempting to queue event: EvtData_Log_Data
+12-27-2016 23-20-29: Succesfully queued event: EvtData_Log_Data
+12-27-2016 23-20-29: Processing Event Queue 0; 2 events to process
+12-27-2016 23-20-29: Processing Event Queue 1; 1 events to process
+12-27-2016 23-20-29: Attempting to queue event: EvtData_Log_Data
+12-27-2016 23-20-29: Succesfully queued event: EvtData_Log_Data
+12-27-2016 23-20-29: Processing Event Queue 0; 1 events to process
+12-27-2016 23-23-31: Successfully added delegate for event type: af4aff75
+12-27-2016 23-23-31: Successfully added delegate for event type: e6e55fe4
+12-27-2016 23-23-31: Attempting to queue event: EvtData_Log_Data
+12-27-2016 23-23-31: Succesfully queued event: EvtData_Log_Data
+12-27-2016 23-23-32: Attempting to queue event: EvtData_Log_Data
+12-27-2016 23-23-32: Succesfully queued event: EvtData_Log_Data
+12-27-2016 23-23-32: Processing Event Queue 0; 2 events to process
+12-27-2016 23-23-32: Processing Event Queue 1; 1 events to process
+12-27-2016 23-23-32: Attempting to queue event: EvtData_Log_Data
+12-27-2016 23-23-32: Succesfully queued event: EvtData_Log_Data
+12-27-2016 23-23-32: Processing Event Queue 0; 1 events to process
+12-27-2016 23-23-41: Processing Event Queue 1; 0 events to process
+12-27-2016 23-23-42: Processing Event Queue 0; 0 events to process
+12-27-2016 23-23-44: Processing Event Queue 1; 0 events to process
+12-27-2016 23-25-28: Successfully added delegate for event type: af4aff75
+12-27-2016 23-25-28: Successfully added delegate for event type: e6e55fe4
+12-27-2016 23-25-28: Attempting to queue event: EvtData_Log_Data
+12-27-2016 23-25-28: Succesfully queued event: EvtData_Log_Data
+12-27-2016 23-25-28: Attempting to queue event: EvtData_Log_Data
+12-27-2016 23-25-28: Succesfully queued event: EvtData_Log_Data
+12-27-2016 23-25-28: Processing Event Queue 0; 2 events to process
+12-27-2016 23-25-28: Processing Event Queue 1; 1 events to process
+12-27-2016 23-25-28: Attempting to queue event: EvtData_Log_Data
+12-27-2016 23-25-28: Succesfully queued event: EvtData_Log_Data
+12-27-2016 23-25-28: Processing Event Queue 0; 1 events to process
+12-27-2016 23-25-58: Successfully added delegate for event type: af4aff75
+12-27-2016 23-25-58: Successfully added delegate for event type: e6e55fe4
+12-27-2016 23-25-58: Attempting to queue event: EvtData_Log_Data
+12-27-2016 23-25-58: Succesfully queued event: EvtData_Log_Data
+12-27-2016 23-25-58: Attempting to queue event: EvtData_Log_Data
+12-27-2016 23-25-59: Succesfully queued event: EvtData_Log_Data
+12-27-2016 23-25-59: Processing Event Queue 0; 2 events to process
+12-27-2016 23-25-59: Processing Event Queue 1; 1 events to process
+12-27-2016 23-25-59: Attempting to queue event: EvtData_Log_Data
+12-27-2016 23-25-59: Succesfully queued event: EvtData_Log_Data
+12-27-2016 23-25-59: Processing Event Queue 0; 1 events to process
+12-27-2016 23-29-10: Successfully added delegate for event type: af4aff75
+12-27-2016 23-29-10: Successfully added delegate for event type: e6e55fe4
+12-27-2016 23-29-10: Attempting to queue event: EvtData_Log_Data
+12-27-2016 23-29-10: Succesfully queued event: EvtData_Log_Data
+12-27-2016 23-29-10: Attempting to queue event: EvtData_Log_Data
+12-27-2016 23-29-10: Succesfully queued event: EvtData_Log_Data
+12-27-2016 23-29-10: Processing Event Queue 0; 2 events to process
+12-27-2016 23-29-10: Processing Event Queue 1; 0 events to process
+12-27-2016 23-29-10: Attempting to queue event: EvtData_Log_Data
+12-27-2016 23-29-10: Succesfully queued event: EvtData_Log_Data
+12-27-2016 23-29-10: Processing Event Queue 0; 1 events to process
+12-27-2016 23-30-01: Successfully added delegate for event type: af4aff75
+12-27-2016 23-30-01: Successfully added delegate for event type: e6e55fe4
+12-27-2016 23-30-01: Attempting to queue event: EvtData_Log_Data
+12-27-2016 23-30-01: Succesfully queued event: EvtData_Log_Data
+12-27-2016 23-30-01: Attempting to queue event: EvtData_Log_Data
+12-27-2016 23-30-01: Succesfully queued event: EvtData_Log_Data
+12-27-2016 23-30-01: Processing Event Queue 0; 2 events to process
+12-27-2016 23-30-01: Processing Event Queue 1; 0 events to process
+12-27-2016 23-30-02: Attempting to queue event: EvtData_Log_Data
+12-27-2016 23-30-02: Succesfully queued event: EvtData_Log_Data
+12-27-2016 23-30-02: Processing Event Queue 0; 1 events to process
+12-27-2016 23-30-11: Successfully added delegate for event type: af4aff75
+12-27-2016 23-30-11: Successfully added delegate for event type: e6e55fe4
+12-27-2016 23-30-11: Attempting to queue event: EvtData_Log_Data
+12-27-2016 23-30-11: Succesfully queued event: EvtData_Log_Data
+12-27-2016 23-30-11: Attempting to queue event: EvtData_Log_Data
+12-27-2016 23-30-11: Succesfully queued event: EvtData_Log_Data
+12-27-2016 23-30-11: Processing Event Queue 0; 2 events to process
+12-27-2016 23-30-11: Processing Event Queue 1; 1 events to process
+12-27-2016 23-30-11: Attempting to queue event: EvtData_Log_Data
+12-27-2016 23-30-11: Succesfully queued event: EvtData_Log_Data
+12-27-2016 23-30-11: Processing Event Queue 0; 1 events to process
+12-27-2016 23-30-24: Processing Event Queue 1; 0 events to process
+12-27-2016 23-30-31: Attempting to queue event: EvtData_Log_Data
+12-27-2016 23-30-31: Succesfully queued event: EvtData_Log_Data
+12-27-2016 23-30-31: Attempting to queue event: EvtData_Log_Data
+12-27-2016 23-30-31: Succesfully queued event: EvtData_Log_Data
+12-27-2016 23-30-31: Attempting to queue event: EvtData_Log_Data
+12-27-2016 23-30-31: Succesfully queued event: EvtData_Log_Data
+12-27-2016 23-30-31: Processing Event Queue 0; 3 events to process
+12-27-2016 23-30-37: Processing Event Queue 1; 0 events to process
+12-27-2016 23-30-45: Attempting to queue event: EvtData_Log_Data
+12-27-2016 23-30-45: Succesfully queued event: EvtData_Log_Data
+12-27-2016 23-30-45: Attempting to queue event: EvtData_Log_Data
+12-27-2016 23-30-45: Succesfully queued event: EvtData_Log_Data
+12-27-2016 23-30-45: Processing Event Queue 0; 2 events to process
+12-28-2016 16-31-43: Successfully added delegate for event type: af4aff75
+12-28-2016 16-31-43: Successfully added delegate for event type: e6e55fe4
+12-28-2016 16-31-43: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-31-43: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-31-43: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-31-43: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-31-43: Processing Event Queue 0; 2 events to process
+12-28-2016 16-31-43: Processing Event Queue 1; 0 events to process
+12-28-2016 16-31-43: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-31-43: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-31-43: Processing Event Queue 0; 1 events to process
+12-28-2016 16-31-46: Processing Event Queue 1; 0 events to process
+12-28-2016 16-32-36: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-32-36: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-32-36: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-32-36: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-32-36: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-32-36: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-32-36: Processing Event Queue 0; 3 events to process
+12-28-2016 16-34-32: Successfully added delegate for event type: af4aff75
+12-28-2016 16-34-32: Successfully added delegate for event type: e6e55fe4
+12-28-2016 16-34-32: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-34-32: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-34-32: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-34-32: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-34-32: Processing Event Queue 0; 2 events to process
+12-28-2016 16-34-32: Processing Event Queue 1; 0 events to process
+12-28-2016 16-34-32: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-34-32: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-34-32: Processing Event Queue 0; 1 events to process
+12-28-2016 16-35-17: Successfully added delegate for event type: af4aff75
+12-28-2016 16-35-17: Successfully added delegate for event type: e6e55fe4
+12-28-2016 16-35-17: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-35-17: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-35-17: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-35-17: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-35-17: Processing Event Queue 0; 2 events to process
+12-28-2016 16-35-17: Processing Event Queue 1; 1 events to process
+12-28-2016 16-35-18: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-35-18: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-35-18: Processing Event Queue 0; 1 events to process
+12-28-2016 16-35-35: Successfully added delegate for event type: af4aff75
+12-28-2016 16-35-35: Successfully added delegate for event type: e6e55fe4
+12-28-2016 16-35-35: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-35-35: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-35-35: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-35-35: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-35-35: Processing Event Queue 0; 2 events to process
+12-28-2016 16-35-35: Processing Event Queue 1; 1 events to process
+12-28-2016 16-35-36: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-35-36: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-35-36: Processing Event Queue 0; 1 events to process
+12-28-2016 16-35-48: Processing Event Queue 1; 0 events to process
+12-28-2016 16-35-59: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-35-59: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-35-59: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-35-59: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-35-59: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-35-59: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-35-59: Processing Event Queue 0; 3 events to process
+12-28-2016 16-36-30: Successfully added delegate for event type: af4aff75
+12-28-2016 16-36-30: Successfully added delegate for event type: e6e55fe4
+12-28-2016 16-36-30: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-36-30: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-36-30: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-36-30: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-36-30: Processing Event Queue 0; 2 events to process
+12-28-2016 16-36-30: Processing Event Queue 1; 0 events to process
+12-28-2016 16-36-30: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-36-30: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-36-30: Processing Event Queue 0; 1 events to process
+12-28-2016 16-36-40: Processing Event Queue 1; 0 events to process
+12-28-2016 16-36-50: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-36-50: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-36-50: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-36-50: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-36-50: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-36-50: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-36-50: Processing Event Queue 0; 3 events to process
+12-28-2016 16-36-56: Processing Event Queue 1; 0 events to process
+12-28-2016 16-37-06: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-37-06: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-37-06: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-37-06: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-37-06: Processing Event Queue 0; 2 events to process
+12-28-2016 16-38-36: Successfully added delegate for event type: af4aff75
+12-28-2016 16-38-36: Successfully added delegate for event type: e6e55fe4
+12-28-2016 16-38-36: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-38-36: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-38-36: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-38-36: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-38-36: Processing Event Queue 0; 2 events to process
+12-28-2016 16-38-36: Processing Event Queue 1; 0 events to process
+12-28-2016 16-38-36: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-38-36: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-38-36: Processing Event Queue 0; 1 events to process
+12-28-2016 16-38-47: Processing Event Queue 1; 0 events to process
+12-28-2016 16-38-56: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-38-56: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-38-56: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-38-56: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-38-56: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-38-56: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-38-56: Processing Event Queue 0; 3 events to process
+12-28-2016 16-39-07: Processing Event Queue 1; 2 events to process
+12-28-2016 16-39-17: Processing Event Queue 0; 0 events to process
+12-28-2016 16-39-30: Processing Event Queue 1; 0 events to process
+12-28-2016 16-41-49: Successfully added delegate for event type: af4aff75
+12-28-2016 16-41-49: Successfully added delegate for event type: e6e55fe4
+12-28-2016 16-41-49: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-41-49: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-41-49: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-41-49: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-41-49: Processing Event Queue 0; 2 events to process
+12-28-2016 16-41-49: Processing Event Queue 1; 0 events to process
+12-28-2016 16-41-49: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-41-49: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-41-49: Processing Event Queue 0; 1 events to process
+12-28-2016 16-53-38: Successfully added delegate for event type: af4aff75
+12-28-2016 16-53-38: Successfully added delegate for event type: e6e55fe4
+12-28-2016 16-53-38: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-53-38: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-53-38: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-53-38: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-53-38: Processing Event Queue 0; 2 events to process
+12-28-2016 16-53-38: Processing Event Queue 1; 0 events to process
+12-28-2016 16-53-38: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-53-38: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-53-38: Processing Event Queue 0; 1 events to process
+12-28-2016 16-53-56: Successfully added delegate for event type: af4aff75
+12-28-2016 16-53-56: Successfully added delegate for event type: e6e55fe4
+12-28-2016 16-53-56: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-53-56: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-53-56: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-53-56: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-53-56: Processing Event Queue 0; 2 events to process
+12-28-2016 16-53-56: Processing Event Queue 1; 0 events to process
+12-28-2016 16-53-56: Attempting to queue event: EvtData_Log_Data
+12-28-2016 16-53-57: Succesfully queued event: EvtData_Log_Data
+12-28-2016 16-53-57: Processing Event Queue 0; 1 events to process
+12-28-2016 17-04-39: Successfully added delegate for event type: af4aff75
+12-28-2016 17-04-39: Successfully added delegate for event type: e6e55fe4
+12-28-2016 17-04-39: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-04-39: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-04-39: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-04-39: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-04-39: Processing Event Queue 0; 2 events to process
+12-28-2016 17-04-39: Processing Event Queue 1; 0 events to process
+12-28-2016 17-04-39: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-04-39: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-04-39: Processing Event Queue 0; 1 events to process
+12-28-2016 17-04-43: Processing Event Queue 1; 0 events to process
+12-28-2016 17-04-47: Processing Event Queue 0; 0 events to process
+12-28-2016 17-04-51: Processing Event Queue 1; 0 events to process
+12-28-2016 17-06-09: Successfully added delegate for event type: af4aff75
+12-28-2016 17-06-09: Successfully added delegate for event type: e6e55fe4
+12-28-2016 17-06-09: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-06-09: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-06-09: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-06-09: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-06-09: Processing Event Queue 0; 2 events to process
+12-28-2016 17-06-09: Processing Event Queue 1; 0 events to process
+12-28-2016 17-06-09: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-06-09: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-06-09: Processing Event Queue 0; 1 events to process
+12-28-2016 17-06-11: Processing Event Queue 1; 0 events to process
+12-28-2016 17-12-11: Successfully added delegate for event type: af4aff75
+12-28-2016 17-12-11: Successfully added delegate for event type: e6e55fe4
+12-28-2016 17-12-11: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-12-11: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-12-11: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-12-11: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-12-12: Processing Event Queue 0; 2 events to process
+12-28-2016 17-12-12: Processing Event Queue 1; 1 events to process
+12-28-2016 17-12-12: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-12-12: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-12-12: Processing Event Queue 0; 1 events to process
+12-28-2016 17-16-00: Successfully added delegate for event type: af4aff75
+12-28-2016 17-16-00: Successfully added delegate for event type: e6e55fe4
+12-28-2016 17-16-00: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-16-00: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-16-00: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-16-00: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-16-00: Processing Event Queue 0; 2 events to process
+12-28-2016 17-16-00: Processing Event Queue 1; 1 events to process
+12-28-2016 17-16-00: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-16-00: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-16-00: Processing Event Queue 0; 1 events to process
+12-28-2016 17-16-08: Processing Event Queue 1; 0 events to process
+12-28-2016 17-16-19: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-16-19: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-16-19: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-16-19: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-16-19: Processing Event Queue 0; 2 events to process
+12-28-2016 17-16-59: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-16-59: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-16-59: Processing Event Queue 1; 2 events to process
+12-28-2016 17-30-07: Successfully added delegate for event type: af4aff75
+12-28-2016 17-30-07: Successfully added delegate for event type: e6e55fe4
+12-28-2016 17-30-07: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-30-07: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-30-07: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-30-07: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-30-07: Processing Event Queue 0; 2 events to process
+12-28-2016 17-30-07: Processing Event Queue 1; 0 events to process
+12-28-2016 17-30-07: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-30-07: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-30-07: Processing Event Queue 0; 1 events to process
+12-28-2016 17-30-13: Processing Event Queue 1; 0 events to process
+12-28-2016 17-31-23: Processing Event Queue 0; 0 events to process
+12-28-2016 17-36-29: Successfully added delegate for event type: af4aff75
+12-28-2016 17-36-29: Successfully added delegate for event type: e6e55fe4
+12-28-2016 17-36-29: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-36-29: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-36-30: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-36-30: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-36-30: Processing Event Queue 0; 2 events to process
+12-28-2016 17-36-30: Processing Event Queue 1; 0 events to process
+12-28-2016 17-36-30: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-36-30: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-36-30: Processing Event Queue 0; 1 events to process
+12-28-2016 17-36-31: Processing Event Queue 1; 0 events to process
+12-28-2016 17-36-58: Processing Event Queue 0; 0 events to process
+12-28-2016 17-37-24: Successfully added delegate for event type: af4aff75
+12-28-2016 17-37-24: Successfully added delegate for event type: e6e55fe4
+12-28-2016 17-37-24: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-37-24: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-37-24: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-37-24: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-37-24: Processing Event Queue 0; 2 events to process
+12-28-2016 17-37-24: Processing Event Queue 1; 1 events to process
+12-28-2016 17-37-24: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-37-24: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-37-24: Processing Event Queue 0; 1 events to process
+12-28-2016 17-37-26: Processing Event Queue 1; 0 events to process
+12-28-2016 17-37-49: Successfully added delegate for event type: af4aff75
+12-28-2016 17-37-49: Successfully added delegate for event type: e6e55fe4
+12-28-2016 17-37-49: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-37-49: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-37-49: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-37-49: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-37-49: Processing Event Queue 0; 2 events to process
+12-28-2016 17-37-49: Processing Event Queue 1; 1 events to process
+12-28-2016 17-37-49: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-37-49: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-37-49: Processing Event Queue 0; 1 events to process
+12-28-2016 17-37-51: Processing Event Queue 1; 0 events to process
+12-28-2016 17-38-02: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-38-02: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-38-02: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-38-02: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-38-02: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-38-02: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-38-02: Processing Event Queue 0; 3 events to process
+12-28-2016 17-48-33: Successfully added delegate for event type: af4aff75
+12-28-2016 17-48-33: Successfully added delegate for event type: e6e55fe4
+12-28-2016 17-48-33: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-48-33: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-48-33: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-48-33: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-48-33: Processing Event Queue 0; 2 events to process
+12-28-2016 17-48-33: Processing Event Queue 1; 0 events to process
+12-28-2016 17-48-33: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-48-33: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-48-33: Processing Event Queue 0; 1 events to process
+12-28-2016 17-48-35: Processing Event Queue 1; 0 events to process
+12-28-2016 17-48-50: Processing Event Queue 0; 0 events to process
+12-28-2016 17-48-53: Processing Event Queue 1; 0 events to process
+12-28-2016 17-51-07: Successfully added delegate for event type: af4aff75
+12-28-2016 17-51-07: Successfully added delegate for event type: e6e55fe4
+12-28-2016 17-51-07: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-51-07: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-51-07: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-51-07: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-51-07: Processing Event Queue 0; 2 events to process
+12-28-2016 17-51-07: Processing Event Queue 1; 0 events to process
+12-28-2016 17-51-07: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-51-07: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-51-07: Processing Event Queue 0; 1 events to process
+12-28-2016 17-51-09: Processing Event Queue 1; 0 events to process
+12-28-2016 17-52-23: Successfully added delegate for event type: af4aff75
+12-28-2016 17-52-23: Successfully added delegate for event type: e6e55fe4
+12-28-2016 17-52-23: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-52-23: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-52-23: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-52-23: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-52-23: Processing Event Queue 0; 2 events to process
+12-28-2016 17-52-23: Processing Event Queue 1; 0 events to process
+12-28-2016 17-52-23: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-52-23: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-52-23: Processing Event Queue 0; 1 events to process
+12-28-2016 17-52-25: Processing Event Queue 1; 0 events to process
+12-28-2016 17-55-01: Successfully added delegate for event type: af4aff75
+12-28-2016 17-55-01: Successfully added delegate for event type: e6e55fe4
+12-28-2016 17-55-01: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-55-01: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-55-01: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-55-01: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-55-01: Processing Event Queue 0; 2 events to process
+12-28-2016 17-55-01: Processing Event Queue 1; 0 events to process
+12-28-2016 17-55-01: Attempting to queue event: EvtData_Log_Data
+12-28-2016 17-55-01: Succesfully queued event: EvtData_Log_Data
+12-28-2016 17-55-01: Processing Event Queue 0; 1 events to process
+12-28-2016 17-55-03: Processing Event Queue 1; 0 events to process
+12-28-2016 17-55-42: Processing Event Queue 0; 0 events to process
+12-28-2016 18-07-44: Processing Event Queue 1; 0 events to process
+12-28-2016 18-09-53: Processing Event Queue 0; 0 events to process
+12-28-2016 18-09-57: Processing Event Queue 1; 0 events to process
+12-28-2016 18-12-07: Processing Event Queue 0; 0 events to process
+12-28-2016 18-12-10: Processing Event Queue 1; 0 events to process
+12-28-2016 18-12-45: Processing Event Queue 0; 0 events to process
+12-28-2016 18-12-55: Processing Event Queue 1; 0 events to process
+12-28-2016 18-13-14: Successfully added delegate for event type: af4aff75
+12-28-2016 18-13-14: Successfully added delegate for event type: e6e55fe4
+12-28-2016 18-13-14: Attempting to queue event: EvtData_Log_Data
+12-28-2016 18-13-14: Succesfully queued event: EvtData_Log_Data
+12-28-2016 18-13-14: Attempting to queue event: EvtData_Log_Data
+12-28-2016 18-13-14: Succesfully queued event: EvtData_Log_Data
+12-28-2016 18-13-14: Processing Event Queue 0; 2 events to process
+12-28-2016 18-13-14: Processing Event Queue 1; 0 events to process
+12-28-2016 18-13-14: Attempting to queue event: EvtData_Log_Data
+12-28-2016 18-13-14: Succesfully queued event: EvtData_Log_Data
+12-28-2016 18-13-14: Processing Event Queue 0; 1 events to process
+12-28-2016 18-13-16: Processing Event Queue 1; 0 events to process
+12-28-2016 18-13-25: Processing Event Queue 0; 0 events to process
+12-28-2016 19-07-39: Successfully added delegate for event type: af4aff75
+12-28-2016 19-07-39: Successfully added delegate for event type: e6e55fe4
+12-28-2016 19-07-39: Attempting to queue event: EvtData_Log_Data
+12-28-2016 19-07-39: Succesfully queued event: EvtData_Log_Data
+12-28-2016 19-07-39: Attempting to queue event: EvtData_Log_Data
+12-28-2016 19-07-39: Succesfully queued event: EvtData_Log_Data
+12-28-2016 19-07-39: Processing Event Queue 0; 2 events to process
+12-28-2016 19-07-39: Processing Event Queue 1; 1 events to process
+12-28-2016 19-07-39: Attempting to queue event: EvtData_Log_Data
+12-28-2016 19-07-39: Succesfully queued event: EvtData_Log_Data
+12-28-2016 19-07-39: Processing Event Queue 0; 1 events to process
+12-28-2016 19-07-44: Processing Event Queue 1; 0 events to process
+12-28-2016 19-08-23: Attempting to queue event: EvtData_Log_Data
+12-28-2016 19-08-23: Succesfully queued event: EvtData_Log_Data
+12-28-2016 19-08-23: Attempting to queue event: EvtData_Log_Data
+12-28-2016 19-08-23: Succesfully queued event: EvtData_Log_Data
+12-28-2016 19-08-23: Attempting to queue event: EvtData_Log_Data
+12-28-2016 19-08-23: Succesfully queued event: EvtData_Log_Data
+12-28-2016 19-08-23: Processing Event Queue 0; 3 events to process
+12-28-2016 19-08-29: Processing Event Queue 1; 2 events to process
+12-28-2016 19-09-43: Processing Event Queue 0; 1 events to process
+12-28-2016 19-24-08: Successfully added delegate for event type: af4aff75
+12-28-2016 19-24-08: Successfully added delegate for event type: e6e55fe4
+12-28-2016 19-24-08: Attempting to queue event: EvtData_Log_Data
+12-28-2016 19-24-08: Succesfully queued event: EvtData_Log_Data
+12-28-2016 19-24-08: Attempting to queue event: EvtData_Log_Data
+12-28-2016 19-24-08: Succesfully queued event: EvtData_Log_Data
+12-28-2016 19-24-08: Processing Event Queue 0; 2 events to process
+12-28-2016 19-24-08: Processing Event Queue 1; 1 events to process
+12-28-2016 19-24-08: Attempting to queue event: EvtData_Log_Data
+12-28-2016 19-24-08: Succesfully queued event: EvtData_Log_Data
+12-28-2016 19-24-08: Processing Event Queue 0; 1 events to process
+12-28-2016 19-31-25: Successfully added delegate for event type: af4aff75
+12-28-2016 19-31-25: Successfully added delegate for event type: e6e55fe4
+12-28-2016 19-31-25: Attempting to queue event: EvtData_Log_Data
+12-28-2016 19-31-25: Succesfully queued event: EvtData_Log_Data
+12-28-2016 19-31-25: Attempting to queue event: EvtData_Log_Data
+12-28-2016 19-31-25: Succesfully queued event: EvtData_Log_Data
+12-28-2016 19-31-25: Processing Event Queue 0; 2 events to process
+12-28-2016 19-31-25: Processing Event Queue 1; 1 events to process
+12-28-2016 19-31-25: Attempting to queue event: EvtData_Log_Data
+12-28-2016 19-31-25: Succesfully queued event: EvtData_Log_Data
+12-28-2016 19-31-25: Processing Event Queue 0; 1 events to process
+12-28-2016 19-31-27: Processing Event Queue 1; 0 events to process
+12-28-2016 19-31-39: Processing Event Queue 0; 0 events to process
+12-28-2016 19-40-00: Successfully added delegate for event type: af4aff75
+12-28-2016 19-40-00: Successfully added delegate for event type: e6e55fe4
+12-28-2016 19-40-00: Attempting to queue event: EvtData_Log_Data
+12-28-2016 19-40-00: Succesfully queued event: EvtData_Log_Data
+12-28-2016 19-40-00: Attempting to queue event: EvtData_Log_Data
+12-28-2016 19-40-00: Succesfully queued event: EvtData_Log_Data
+12-28-2016 19-40-00: Processing Event Queue 0; 2 events to process
+12-28-2016 19-40-00: Processing Event Queue 1; 0 events to process
+12-28-2016 19-40-00: Attempting to queue event: EvtData_Log_Data
+12-28-2016 19-40-01: Succesfully queued event: EvtData_Log_Data
+12-28-2016 19-40-01: Processing Event Queue 0; 1 events to process
+12-28-2016 19-40-04: Processing Event Queue 1; 0 events to process
+12-28-2016 19-51-18: Successfully added delegate for event type: af4aff75
+12-28-2016 19-51-18: Successfully added delegate for event type: e6e55fe4
+12-28-2016 19-51-18: Attempting to queue event: EvtData_Log_Data
+12-28-2016 19-51-18: Succesfully queued event: EvtData_Log_Data
+12-28-2016 19-51-18: Attempting to queue event: EvtData_Log_Data
+12-28-2016 19-51-18: Succesfully queued event: EvtData_Log_Data
+12-28-2016 19-51-18: Processing Event Queue 0; 2 events to process
+12-28-2016 19-51-18: Processing Event Queue 1; 0 events to process
+12-28-2016 19-51-18: Attempting to queue event: EvtData_Log_Data
+12-28-2016 19-51-18: Succesfully queued event: EvtData_Log_Data
+12-28-2016 19-51-18: Processing Event Queue 0; 1 events to process
+12-28-2016 19-51-26: Successfully added delegate for event type: af4aff75
+12-28-2016 19-51-26: Successfully added delegate for event type: e6e55fe4
+12-28-2016 19-51-26: Attempting to queue event: EvtData_Log_Data
+12-28-2016 19-51-26: Succesfully queued event: EvtData_Log_Data
+12-28-2016 19-51-26: Attempting to queue event: EvtData_Log_Data
+12-28-2016 19-51-26: Succesfully queued event: EvtData_Log_Data
+12-28-2016 19-51-26: Processing Event Queue 0; 2 events to process
+12-28-2016 19-51-26: Processing Event Queue 1; 0 events to process
+12-28-2016 19-51-26: Attempting to queue event: EvtData_Log_Data
+12-28-2016 19-51-26: Succesfully queued event: EvtData_Log_Data
+12-28-2016 19-51-26: Processing Event Queue 0; 1 events to process
+12-28-2016 19-51-28: Processing Event Queue 1; 0 events to process
+12-28-2016 19-51-33: Processing Event Queue 0; 0 events to process
+12-28-2016 19-52-08: Successfully added delegate for event type: af4aff75
+12-28-2016 19-52-08: Successfully added delegate for event type: e6e55fe4
+12-28-2016 19-52-08: Attempting to queue event: EvtData_Log_Data
+12-28-2016 19-52-08: Succesfully queued event: EvtData_Log_Data
+12-28-2016 19-52-08: Attempting to queue event: EvtData_Log_Data
+12-28-2016 19-52-08: Succesfully queued event: EvtData_Log_Data
+12-28-2016 19-52-08: Processing Event Queue 0; 2 events to process
+12-28-2016 19-52-08: Processing Event Queue 1; 0 events to process
+12-28-2016 19-52-09: Attempting to queue event: EvtData_Log_Data
+12-28-2016 19-52-09: Succesfully queued event: EvtData_Log_Data
+12-28-2016 19-52-09: Processing Event Queue 0; 1 events to process
+12-28-2016 19-52-11: Processing Event Queue 1; 0 events to process
+12-28-2016 19-52-55: Processing Event Queue 0; 0 events to process
+12-28-2016 19-54-00: Successfully added delegate for event type: af4aff75
+12-28-2016 19-54-00: Successfully added delegate for event type: e6e55fe4
+12-28-2016 19-54-00: Attempting to queue event: EvtData_Log_Data
+12-28-2016 19-54-00: Succesfully queued event: EvtData_Log_Data
+12-28-2016 19-54-00: Attempting to queue event: EvtData_Log_Data
+12-28-2016 19-54-00: Succesfully queued event: EvtData_Log_Data
+12-28-2016 19-54-00: Processing Event Queue 0; 2 events to process
+12-28-2016 19-54-00: Processing Event Queue 1; 0 events to process
+12-28-2016 19-54-00: Attempting to queue event: EvtData_Log_Data
+12-28-2016 19-54-00: Succesfully queued event: EvtData_Log_Data
+12-28-2016 19-54-00: Processing Event Queue 0; 1 events to process
+12-28-2016 19-54-02: Processing Event Queue 1; 0 events to process
+12-28-2016 19-55-01: Successfully added delegate for event type: af4aff75
+12-28-2016 19-55-01: Successfully added delegate for event type: e6e55fe4
+12-28-2016 19-55-01: Attempting to queue event: EvtData_Log_Data
+12-28-2016 19-55-01: Succesfully queued event: EvtData_Log_Data
+12-28-2016 19-55-01: Attempting to queue event: EvtData_Log_Data
+12-28-2016 19-55-01: Succesfully queued event: EvtData_Log_Data
+12-28-2016 19-55-01: Processing Event Queue 0; 2 events to process
+12-28-2016 19-55-01: Processing Event Queue 1; 0 events to process
+12-28-2016 19-55-01: Attempting to queue event: EvtData_Log_Data
+12-28-2016 19-55-01: Succesfully queued event: EvtData_Log_Data
+12-28-2016 19-55-01: Processing Event Queue 0; 1 events to process
+12-28-2016 19-55-03: Processing Event Queue 1; 0 events to process
+12-28-2016 19-56-02: Successfully added delegate for event type: af4aff75
+12-28-2016 19-56-02: Successfully added delegate for event type: e6e55fe4
+12-28-2016 19-56-02: Attempting to queue event: EvtData_Log_Data
+12-28-2016 19-56-02: Succesfully queued event: EvtData_Log_Data
+12-28-2016 19-56-02: Attempting to queue event: EvtData_Log_Data
+12-28-2016 19-56-02: Succesfully queued event: EvtData_Log_Data
+12-28-2016 19-56-02: Processing Event Queue 0; 2 events to process
+12-28-2016 19-56-02: Processing Event Queue 1; 1 events to process
+12-28-2016 19-56-02: Attempting to queue event: EvtData_Log_Data
+12-28-2016 19-56-02: Succesfully queued event: EvtData_Log_Data
+12-28-2016 19-56-02: Processing Event Queue 0; 1 events to process
+12-28-2016 19-56-04: Processing Event Queue 1; 0 events to process
+12-28-2016 19-57-06: Processing Event Queue 0; 0 events to process
+12-28-2016 20-05-52: Successfully added delegate for event type: af4aff75
+12-28-2016 20-05-52: Successfully added delegate for event type: e6e55fe4
+12-28-2016 20-05-52: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-05-52: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-05-52: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-05-52: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-05-52: Processing Event Queue 0; 2 events to process
+12-28-2016 20-05-52: Processing Event Queue 1; 0 events to process
+12-28-2016 20-05-52: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-05-52: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-05-52: Processing Event Queue 0; 1 events to process
+12-28-2016 20-12-27: Successfully added delegate for event type: af4aff75
+12-28-2016 20-12-27: Successfully added delegate for event type: e6e55fe4
+12-28-2016 20-12-27: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-12-27: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-12-27: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-12-27: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-12-27: Processing Event Queue 0; 2 events to process
+12-28-2016 20-12-27: Processing Event Queue 1; 0 events to process
+12-28-2016 20-12-27: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-12-27: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-12-27: Processing Event Queue 0; 1 events to process
+12-28-2016 20-12-30: Processing Event Queue 1; 0 events to process
+12-28-2016 20-13-04: Processing Event Queue 0; 0 events to process
+12-28-2016 20-13-51: Successfully added delegate for event type: af4aff75
+12-28-2016 20-13-51: Successfully added delegate for event type: e6e55fe4
+12-28-2016 20-13-51: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-13-51: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-13-51: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-13-51: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-13-51: Processing Event Queue 0; 2 events to process
+12-28-2016 20-13-51: Processing Event Queue 1; 0 events to process
+12-28-2016 20-13-51: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-13-51: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-13-51: Processing Event Queue 0; 1 events to process
+12-28-2016 20-13-55: Processing Event Queue 1; 0 events to process
+12-28-2016 20-13-57: Processing Event Queue 0; 0 events to process
+12-28-2016 20-13-58: Processing Event Queue 1; 0 events to process
+12-28-2016 20-14-59: Processing Event Queue 0; 0 events to process
+12-28-2016 20-15-25: Successfully added delegate for event type: af4aff75
+12-28-2016 20-15-25: Successfully added delegate for event type: e6e55fe4
+12-28-2016 20-15-25: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-15-25: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-15-25: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-15-25: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-15-25: Processing Event Queue 0; 2 events to process
+12-28-2016 20-15-25: Processing Event Queue 1; 0 events to process
+12-28-2016 20-15-25: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-15-25: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-15-25: Processing Event Queue 0; 1 events to process
+12-28-2016 20-15-28: Processing Event Queue 1; 0 events to process
+12-28-2016 20-15-41: Processing Event Queue 0; 0 events to process
+12-28-2016 20-16-33: Successfully added delegate for event type: af4aff75
+12-28-2016 20-16-33: Successfully added delegate for event type: e6e55fe4
+12-28-2016 20-16-33: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-16-33: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-16-33: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-16-33: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-16-33: Processing Event Queue 0; 2 events to process
+12-28-2016 20-16-33: Processing Event Queue 1; 0 events to process
+12-28-2016 20-16-33: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-16-33: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-16-33: Processing Event Queue 0; 1 events to process
+12-28-2016 20-16-36: Processing Event Queue 1; 0 events to process
+12-28-2016 20-17-30: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-17-30: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-17-30: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-17-30: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-17-30: Processing Event Queue 0; 2 events to process
+12-28-2016 20-20-29: Successfully added delegate for event type: af4aff75
+12-28-2016 20-20-29: Successfully added delegate for event type: e6e55fe4
+12-28-2016 20-20-29: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-20-29: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-20-29: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-20-29: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-20-29: Processing Event Queue 0; 2 events to process
+12-28-2016 20-20-29: Processing Event Queue 1; 0 events to process
+12-28-2016 20-20-29: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-20-29: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-20-29: Processing Event Queue 0; 1 events to process
+12-28-2016 20-20-34: Processing Event Queue 1; 0 events to process
+12-28-2016 20-22-02: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-22-02: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-22-02: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-22-02: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-22-02: Processing Event Queue 0; 2 events to process
+12-28-2016 20-22-09: Processing Event Queue 1; 0 events to process
+12-28-2016 20-23-27: Successfully added delegate for event type: af4aff75
+12-28-2016 20-23-27: Successfully added delegate for event type: e6e55fe4
+12-28-2016 20-23-27: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-23-27: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-23-27: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-23-27: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-23-27: Processing Event Queue 0; 2 events to process
+12-28-2016 20-23-27: Processing Event Queue 1; 0 events to process
+12-28-2016 20-23-27: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-23-27: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-23-27: Processing Event Queue 0; 1 events to process
+12-28-2016 20-23-29: Processing Event Queue 1; 0 events to process
+12-28-2016 20-24-19: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-24-19: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-24-19: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-24-19: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-24-19: Processing Event Queue 0; 2 events to process
+12-28-2016 20-24-26: Processing Event Queue 1; 0 events to process
+12-28-2016 20-25-22: Successfully added delegate for event type: af4aff75
+12-28-2016 20-25-22: Successfully added delegate for event type: e6e55fe4
+12-28-2016 20-25-22: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-25-22: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-25-22: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-25-22: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-25-22: Processing Event Queue 0; 2 events to process
+12-28-2016 20-25-22: Processing Event Queue 1; 0 events to process
+12-28-2016 20-25-22: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-25-22: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-25-22: Processing Event Queue 0; 1 events to process
+12-28-2016 20-25-25: Processing Event Queue 1; 0 events to process
+12-28-2016 20-26-20: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-26-20: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-26-20: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-26-20: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-26-20: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-26-20: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-26-20: Processing Event Queue 0; 3 events to process
+12-28-2016 20-26-29: Processing Event Queue 1; 2 events to process
+12-28-2016 20-26-54: Processing Event Queue 0; 1 events to process
+12-28-2016 20-26-56: Processing Event Queue 1; 0 events to process
+12-28-2016 20-34-46: Successfully added delegate for event type: af4aff75
+12-28-2016 20-34-46: Successfully added delegate for event type: e6e55fe4
+12-28-2016 20-34-46: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-34-46: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-34-46: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-34-46: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-34-46: Processing Event Queue 0; 2 events to process
+12-28-2016 20-34-46: Processing Event Queue 1; 1 events to process
+12-28-2016 20-34-46: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-34-46: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-34-46: Processing Event Queue 0; 1 events to process
+12-28-2016 20-34-48: Processing Event Queue 1; 0 events to process
+12-28-2016 20-35-27: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-35-27: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-35-27: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-35-27: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-35-27: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-35-27: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-35-27: Processing Event Queue 0; 3 events to process
+12-28-2016 20-35-35: Processing Event Queue 1; 2 events to process
+12-28-2016 20-41-08: Successfully added delegate for event type: af4aff75
+12-28-2016 20-41-08: Successfully added delegate for event type: e6e55fe4
+12-28-2016 20-41-08: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-41-08: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-41-08: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-41-08: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-41-08: Processing Event Queue 0; 2 events to process
+12-28-2016 20-41-08: Processing Event Queue 1; 1 events to process
+12-28-2016 20-41-09: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-41-09: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-41-09: Processing Event Queue 0; 1 events to process
+12-28-2016 20-41-11: Processing Event Queue 1; 0 events to process
+12-28-2016 20-41-55: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-41-55: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-41-55: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-41-55: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-41-55: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-41-55: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-41-55: Processing Event Queue 0; 3 events to process
+12-28-2016 20-42-00: Processing Event Queue 1; 0 events to process
+12-28-2016 20-42-16: Processing Event Queue 0; 0 events to process
+12-28-2016 20-42-17: Processing Event Queue 1; 0 events to process
+12-28-2016 20-42-26: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-42-26: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-42-26: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-42-26: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-42-26: Processing Event Queue 0; 2 events to process
+12-28-2016 20-43-58: Processing Event Queue 1; 1 events to process
+12-28-2016 20-44-39: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-44-39: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-44-39: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-44-39: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-44-39: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-44-39: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-44-39: Processing Event Queue 0; 3 events to process
+12-28-2016 20-44-42: Processing Event Queue 1; 2 events to process
+12-28-2016 20-44-51: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-44-51: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-44-51: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-44-51: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-44-51: Processing Event Queue 0; 2 events to process
+12-28-2016 20-55-37: Successfully added delegate for event type: af4aff75
+12-28-2016 20-55-37: Successfully added delegate for event type: e6e55fe4
+12-28-2016 20-55-37: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-55-37: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-55-37: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-55-37: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-55-37: Processing Event Queue 0; 2 events to process
+12-28-2016 20-55-37: Processing Event Queue 1; 1 events to process
+12-28-2016 20-55-37: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-55-37: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-55-37: Processing Event Queue 0; 1 events to process
+12-28-2016 20-55-39: Processing Event Queue 1; 0 events to process
+12-28-2016 20-56-45: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-56-45: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-56-45: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-56-45: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-56-45: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-56-45: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-56-45: Processing Event Queue 0; 3 events to process
+12-28-2016 20-56-49: Processing Event Queue 1; 0 events to process
+12-28-2016 20-57-03: Processing Event Queue 0; 0 events to process
+12-28-2016 20-57-06: Processing Event Queue 1; 0 events to process
+12-28-2016 20-57-17: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-57-17: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-57-17: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-57-17: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-57-17: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-57-17: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-57-17: Processing Event Queue 0; 3 events to process
+12-28-2016 20-57-20: Processing Event Queue 1; 0 events to process
+12-28-2016 20-57-28: Processing Event Queue 0; 0 events to process
+12-28-2016 20-57-29: Processing Event Queue 1; 0 events to process
+12-28-2016 20-57-39: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-57-39: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-57-39: Attempting to queue event: EvtData_Log_Data
+12-28-2016 20-57-39: Succesfully queued event: EvtData_Log_Data
+12-28-2016 20-57-39: Processing Event Queue 0; 2 events to process
+12-28-2016 21-08-02: Successfully added delegate for event type: af4aff75
+12-28-2016 21-08-02: Successfully added delegate for event type: e6e55fe4
+12-28-2016 21-08-02: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-08-02: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-08-02: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-08-02: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-08-02: Processing Event Queue 0; 2 events to process
+12-28-2016 21-08-02: Processing Event Queue 1; 0 events to process
+12-28-2016 21-08-02: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-08-02: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-08-02: Processing Event Queue 0; 1 events to process
+12-28-2016 21-08-07: Processing Event Queue 1; 0 events to process
+12-28-2016 21-08-13: Processing Event Queue 0; 0 events to process
+12-28-2016 21-08-56: Successfully added delegate for event type: af4aff75
+12-28-2016 21-08-56: Successfully added delegate for event type: e6e55fe4
+12-28-2016 21-08-56: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-08-56: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-08-56: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-08-56: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-08-56: Processing Event Queue 0; 2 events to process
+12-28-2016 21-08-56: Processing Event Queue 1; 0 events to process
+12-28-2016 21-08-56: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-08-56: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-08-56: Processing Event Queue 0; 1 events to process
+12-28-2016 21-08-58: Processing Event Queue 1; 0 events to process
+12-28-2016 21-10-09: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-10-09: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-10-09: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-10-09: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-10-09: Processing Event Queue 0; 2 events to process
+12-28-2016 21-12-33: Successfully added delegate for event type: af4aff75
+12-28-2016 21-12-33: Successfully added delegate for event type: e6e55fe4
+12-28-2016 21-12-33: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-12-33: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-12-33: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-12-33: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-12-33: Processing Event Queue 0; 2 events to process
+12-28-2016 21-12-33: Processing Event Queue 1; 0 events to process
+12-28-2016 21-12-33: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-12-33: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-12-33: Processing Event Queue 0; 1 events to process
+12-28-2016 21-12-36: Processing Event Queue 1; 0 events to process
+12-28-2016 21-13-15: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-13-15: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-13-15: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-13-15: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-13-15: Processing Event Queue 0; 2 events to process
+12-28-2016 21-13-31: Processing Event Queue 1; 0 events to process
+12-28-2016 21-13-35: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-13-35: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-13-35: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-13-35: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-13-35: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-13-35: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-13-35: Processing Event Queue 0; 3 events to process
+12-28-2016 21-13-46: Processing Event Queue 1; 0 events to process
+12-28-2016 21-14-43: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-14-43: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-14-43: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-14-43: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-14-43: Processing Event Queue 0; 2 events to process
+12-28-2016 21-14-58: Processing Event Queue 1; 1 events to process
+12-28-2016 21-15-14: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-15-14: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-15-14: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-15-14: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-15-14: Processing Event Queue 0; 2 events to process
+12-28-2016 21-16-06: Successfully added delegate for event type: af4aff75
+12-28-2016 21-16-06: Successfully added delegate for event type: e6e55fe4
+12-28-2016 21-16-06: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-16-06: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-16-06: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-16-06: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-16-06: Processing Event Queue 0; 2 events to process
+12-28-2016 21-16-06: Processing Event Queue 1; 1 events to process
+12-28-2016 21-16-06: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-16-06: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-16-06: Processing Event Queue 0; 1 events to process
+12-28-2016 21-16-10: Processing Event Queue 1; 0 events to process
+12-28-2016 21-17-09: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-17-09: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-17-09: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-17-09: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-17-09: Processing Event Queue 0; 2 events to process
+12-28-2016 21-17-42: Processing Event Queue 1; 1 events to process
+12-28-2016 21-18-26: Processing Event Queue 0; 0 events to process
+12-28-2016 21-19-00: Successfully added delegate for event type: af4aff75
+12-28-2016 21-19-00: Successfully added delegate for event type: e6e55fe4
+12-28-2016 21-19-00: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-19-00: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-19-00: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-19-00: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-19-00: Processing Event Queue 0; 2 events to process
+12-28-2016 21-19-00: Processing Event Queue 1; 0 events to process
+12-28-2016 21-19-00: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-19-00: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-19-00: Processing Event Queue 0; 1 events to process
+12-28-2016 21-19-03: Processing Event Queue 1; 0 events to process
+12-28-2016 21-19-39: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-19-39: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-19-39: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-19-39: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-19-39: Processing Event Queue 0; 2 events to process
+12-28-2016 21-19-43: Processing Event Queue 1; 0 events to process
+12-28-2016 21-20-01: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-20-01: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-20-01: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-20-01: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-20-01: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-20-01: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-20-01: Processing Event Queue 0; 3 events to process
+12-28-2016 21-20-25: Processing Event Queue 1; 1 events to process
+12-28-2016 21-20-31: Processing Event Queue 0; 0 events to process
+12-28-2016 21-24-20: Successfully added delegate for event type: af4aff75
+12-28-2016 21-24-20: Successfully added delegate for event type: e6e55fe4
+12-28-2016 21-24-20: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-24-20: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-24-20: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-24-20: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-24-20: Processing Event Queue 0; 2 events to process
+12-28-2016 21-24-20: Processing Event Queue 1; 0 events to process
+12-28-2016 21-24-20: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-24-20: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-24-20: Processing Event Queue 0; 1 events to process
+12-28-2016 21-24-22: Processing Event Queue 1; 0 events to process
+12-28-2016 21-24-54: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-24-54: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-24-54: Processing Event Queue 0; 1 events to process
+12-28-2016 21-42-55: Successfully added delegate for event type: af4aff75
+12-28-2016 21-42-55: Successfully added delegate for event type: e6e55fe4
+12-28-2016 21-42-55: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-42-55: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-42-55: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-42-55: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-42-55: Processing Event Queue 0; 2 events to process
+12-28-2016 21-42-55: Processing Event Queue 1; 1 events to process
+12-28-2016 21-42-55: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-42-55: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-42-55: Processing Event Queue 0; 1 events to process
+12-28-2016 21-42-58: Processing Event Queue 1; 0 events to process
+12-28-2016 21-43-16: Processing Event Queue 0; 0 events to process
+12-28-2016 21-44-13: Successfully added delegate for event type: af4aff75
+12-28-2016 21-44-13: Successfully added delegate for event type: e6e55fe4
+12-28-2016 21-44-13: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-44-13: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-44-13: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-44-13: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-44-13: Processing Event Queue 0; 2 events to process
+12-28-2016 21-44-13: Processing Event Queue 1; 0 events to process
+12-28-2016 21-44-13: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-44-13: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-44-13: Processing Event Queue 0; 1 events to process
+12-28-2016 21-44-15: Processing Event Queue 1; 0 events to process
+12-28-2016 21-44-29: Processing Event Queue 0; 0 events to process
+12-28-2016 21-45-37: Successfully added delegate for event type: af4aff75
+12-28-2016 21-45-37: Successfully added delegate for event type: e6e55fe4
+12-28-2016 21-45-37: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-45-37: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-45-37: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-45-37: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-45-37: Processing Event Queue 0; 2 events to process
+12-28-2016 21-45-37: Processing Event Queue 1; 1 events to process
+12-28-2016 21-45-37: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-45-37: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-45-37: Processing Event Queue 0; 1 events to process
+12-28-2016 21-45-40: Processing Event Queue 1; 0 events to process
+12-28-2016 21-46-10: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-46-10: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-46-10: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-46-10: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-47-37: Successfully added delegate for event type: af4aff75
+12-28-2016 21-47-37: Successfully added delegate for event type: e6e55fe4
+12-28-2016 21-47-37: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-47-37: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-47-37: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-47-37: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-47-37: Processing Event Queue 0; 2 events to process
+12-28-2016 21-47-37: Processing Event Queue 1; 0 events to process
+12-28-2016 21-47-37: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-47-37: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-47-37: Processing Event Queue 0; 1 events to process
+12-28-2016 21-47-40: Processing Event Queue 1; 0 events to process
+12-28-2016 21-48-11: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-48-11: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-48-11: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-48-11: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-49-23: Successfully added delegate for event type: af4aff75
+12-28-2016 21-49-23: Successfully added delegate for event type: e6e55fe4
+12-28-2016 21-49-23: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-49-23: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-49-23: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-49-23: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-49-23: Processing Event Queue 0; 2 events to process
+12-28-2016 21-49-23: Processing Event Queue 1; 1 events to process
+12-28-2016 21-49-23: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-49-23: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-49-23: Processing Event Queue 0; 1 events to process
+12-28-2016 21-49-25: Processing Event Queue 1; 0 events to process
+12-28-2016 21-49-53: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-49-53: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-49-53: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-49-53: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-49-53: Processing Event Queue 0; 2 events to process
+12-28-2016 21-50-07: Processing Event Queue 1; 0 events to process
+12-28-2016 21-50-13: Processing Event Queue 0; 0 events to process
+12-28-2016 21-50-15: Processing Event Queue 1; 0 events to process
+12-28-2016 21-51-01: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-51-01: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-51-01: Processing Event Queue 0; 1 events to process
+12-28-2016 21-51-07: Processing Event Queue 1; 0 events to process
+12-28-2016 21-51-13: Processing Event Queue 0; 0 events to process
+12-28-2016 21-51-22: Successfully added delegate for event type: af4aff75
+12-28-2016 21-51-22: Successfully added delegate for event type: e6e55fe4
+12-28-2016 21-51-22: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-51-22: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-51-22: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-51-22: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-51-22: Processing Event Queue 0; 2 events to process
+12-28-2016 21-51-22: Processing Event Queue 1; 0 events to process
+12-28-2016 21-51-22: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-51-22: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-51-22: Processing Event Queue 0; 1 events to process
+12-28-2016 21-51-25: Processing Event Queue 1; 0 events to process
+12-28-2016 21-51-27: Processing Event Queue 0; 0 events to process
+12-28-2016 21-51-29: Processing Event Queue 1; 0 events to process
+12-28-2016 21-52-19: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-52-19: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-52-19: Processing Event Queue 0; 1 events to process
+12-28-2016 21-52-49: Processing Event Queue 1; 0 events to process
+12-28-2016 21-54-23: Attempting to queue event: EvtData_Log_Data
+12-28-2016 21-54-23: Succesfully queued event: EvtData_Log_Data
+12-28-2016 21-55-09: Processing Event Queue 0; 1 events to process
+12-28-2016 22-02-16: Successfully added delegate for event type: af4aff75
+12-28-2016 22-02-16: Successfully added delegate for event type: e6e55fe4
+12-28-2016 22-02-16: Attempting to queue event: EvtData_Log_Data
+12-28-2016 22-02-16: Succesfully queued event: EvtData_Log_Data
+12-28-2016 22-02-16: Attempting to queue event: EvtData_Log_Data
+12-28-2016 22-02-16: Succesfully queued event: EvtData_Log_Data
+12-28-2016 22-02-16: Processing Event Queue 0; 2 events to process
+12-28-2016 22-02-16: Processing Event Queue 1; 0 events to process
+12-28-2016 22-02-16: Attempting to queue event: EvtData_Log_Data
+12-28-2016 22-02-16: Succesfully queued event: EvtData_Log_Data
+12-28-2016 22-02-16: Processing Event Queue 0; 1 events to process
+12-28-2016 22-02-19: Processing Event Queue 1; 0 events to process
+12-28-2016 22-02-26: Attempting to queue event: EvtData_Log_Data
+12-28-2016 22-02-27: Succesfully queued event: EvtData_Log_Data
+12-28-2016 22-02-27: Attempting to queue event: EvtData_Log_Data
+12-28-2016 22-02-27: Succesfully queued event: EvtData_Log_Data
+12-28-2016 22-02-27: Processing Event Queue 0; 2 events to process
+12-28-2016 22-02-53: Successfully added delegate for event type: af4aff75
+12-28-2016 22-02-53: Successfully added delegate for event type: e6e55fe4
+12-28-2016 22-02-53: Attempting to queue event: EvtData_Log_Data
+12-28-2016 22-02-53: Succesfully queued event: EvtData_Log_Data
+12-28-2016 22-02-53: Attempting to queue event: EvtData_Log_Data
+12-28-2016 22-02-53: Succesfully queued event: EvtData_Log_Data
+12-28-2016 22-02-53: Processing Event Queue 0; 2 events to process
+12-28-2016 22-02-53: Processing Event Queue 1; 1 events to process
+12-28-2016 22-02-53: Attempting to queue event: EvtData_Log_Data
+12-28-2016 22-02-53: Succesfully queued event: EvtData_Log_Data
+12-28-2016 22-02-53: Processing Event Queue 0; 1 events to process
+12-28-2016 22-02-55: Processing Event Queue 1; 0 events to process
+12-28-2016 22-03-02: Attempting to queue event: EvtData_Log_Data
+12-28-2016 22-03-02: Succesfully queued event: EvtData_Log_Data
+12-28-2016 22-03-02: Processing Event Queue 0; 1 events to process
+12-28-2016 22-03-07: Processing Event Queue 1; 0 events to process
+12-28-2016 22-03-08: Processing Event Queue 0; 0 events to process
+12-28-2016 22-03-10: Processing Event Queue 1; 0 events to process
+12-28-2016 22-03-12: Attempting to queue event: EvtData_Log_Data
+12-28-2016 22-03-12: Succesfully queued event: EvtData_Log_Data
+12-28-2016 22-03-12: Attempting to queue event: EvtData_Log_Data
+12-28-2016 22-03-12: Succesfully queued event: EvtData_Log_Data
+12-28-2016 22-03-12: Processing Event Queue 0; 2 events to process
+12-28-2016 22-03-15: Processing Event Queue 1; 1 events to process
+12-28-2016 22-03-19: Attempting to queue event: EvtData_Log_Data
+12-28-2016 22-03-19: Succesfully queued event: EvtData_Log_Data
+12-28-2016 22-03-19: Processing Event Queue 0; 1 events to process
+12-28-2016 22-04-23: Successfully added delegate for event type: af4aff75
+12-28-2016 22-04-23: Successfully added delegate for event type: e6e55fe4
+12-28-2016 22-04-23: Attempting to queue event: EvtData_Log_Data
+12-28-2016 22-04-23: Succesfully queued event: EvtData_Log_Data
+12-28-2016 22-04-23: Attempting to queue event: EvtData_Log_Data
+12-28-2016 22-04-23: Succesfully queued event: EvtData_Log_Data
+12-28-2016 22-04-23: Processing Event Queue 0; 2 events to process
+12-28-2016 22-04-23: Processing Event Queue 1; 0 events to process
+12-28-2016 22-04-23: Attempting to queue event: EvtData_Log_Data
+12-28-2016 22-04-23: Succesfully queued event: EvtData_Log_Data
+12-28-2016 22-04-23: Processing Event Queue 0; 1 events to process
+12-28-2016 22-04-43: Processing Event Queue 1; 0 events to process
+12-28-2016 22-04-46: Processing Event Queue 0; 0 events to process
+12-28-2016 22-04-59: Processing Event Queue 1; 0 events to process
+12-28-2016 22-10-25: Successfully added delegate for event type: af4aff75
+12-28-2016 22-10-25: Successfully added delegate for event type: e6e55fe4
+12-28-2016 22-10-25: Attempting to queue event: EvtData_Log_Data
+12-28-2016 22-10-25: Succesfully queued event: EvtData_Log_Data
+12-28-2016 22-10-25: Attempting to queue event: EvtData_Log_Data
+12-28-2016 22-10-25: Succesfully queued event: EvtData_Log_Data
+12-28-2016 22-10-25: Processing Event Queue 0; 2 events to process
+12-28-2016 22-10-25: Processing Event Queue 1; 0 events to process
+12-28-2016 22-10-25: Attempting to queue event: EvtData_Log_Data
+12-28-2016 22-10-25: Succesfully queued event: EvtData_Log_Data
+12-28-2016 22-10-25: Processing Event Queue 0; 1 events to process
+12-28-2016 22-10-28: Processing Event Queue 1; 0 events to process
+12-28-2016 22-10-37: Processing Event Queue 0; 0 events to process
+12-28-2016 22-10-39: Processing Event Queue 1; 0 events to process
+12-28-2016 22-10-45: Processing Event Queue 0; 0 events to process
+12-28-2016 22-11-45: Successfully added delegate for event type: af4aff75
+12-28-2016 22-11-45: Successfully added delegate for event type: e6e55fe4
+12-28-2016 22-11-45: Attempting to queue event: EvtData_Log_Data
+12-28-2016 22-11-45: Succesfully queued event: EvtData_Log_Data
+12-28-2016 22-11-45: Attempting to queue event: EvtData_Log_Data
+12-28-2016 22-11-45: Succesfully queued event: EvtData_Log_Data
+12-28-2016 22-11-45: Processing Event Queue 0; 2 events to process
+12-28-2016 22-11-45: Processing Event Queue 1; 0 events to process
+12-28-2016 22-11-45: Attempting to queue event: EvtData_Log_Data
+12-28-2016 22-11-45: Succesfully queued event: EvtData_Log_Data
+12-28-2016 22-11-45: Processing Event Queue 0; 1 events to process
+12-28-2016 22-11-47: Processing Event Queue 1; 0 events to process
+12-28-2016 22-12-35: Processing Event Queue 0; 0 events to process

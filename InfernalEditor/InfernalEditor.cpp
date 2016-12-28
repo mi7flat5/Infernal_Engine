@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include <QtWidgets>
-
+#include <QFileDialog>
+#include <QFile>
 #include "ActorCreationWindow.h"
 #include "InfernalEditor.h"
 
@@ -16,26 +17,32 @@ InfernalEditor::InfernalEditor(QWidget *parent)
 	
 
 	m_pSceneTreeModel = new QStandardItemModel();
-	m_pSceneTreeModel->insertColumn(1);
+	
 	m_pSceneViewRoot = new QStandardItem("Scene");
 	
-	m_pSceneTreeModel->setItem(0,m_pSceneViewRoot);
 	
+	QStandardItem* description = new QStandardItem("Scene is the container for all items currently in the world.");
+	m_pSceneTreeModel->setItem(0,m_pSceneViewRoot);
+
+	
+	ui.treeView->setModel(m_pSceneTreeModel);
 	QStringList labels;
 	labels.append("Object Name");
 	labels.append("Object Type");
-	
+
+
+
 	m_pSceneTreeModel->setHorizontalHeaderLabels(labels);
-	ui.treeView->setModel(m_pSceneTreeModel);
-	
+	/*int column = ui.treeView->selectionModel()->currentIndex().column();
+	m_pSceneTreeModel->insertColumn(column + 1);*/
+
 	m_pCreationwindow = new ActorCreationWindow();
-	m_pCreationwindow->hide();
 	m_pCreationwindow->SetOwner(this);
 	
 }
-void InfernalEditor::AddObjectToScene(const char* resourcePath, QStandardItem* inItem) 
+void InfernalEditor::AddObjectToScene(const char* resourcePath, QList<QStandardItem*> inItems) 
 {
-	m_pSceneViewRoot->setChild(m_pSceneViewRoot->rowCount(),inItem);
+	m_pSceneViewRoot->appendRow(inItems);
 	ui.textBrowser->append(resourcePath);
 	ui.openGLWidget->AddObjectToScene(resourcePath);
 
@@ -49,7 +56,9 @@ void InfernalEditor::createActions()
 	
 	createObject = new QAction(tr("&Create Object..."), this);
 	connect(createObject, &QAction::triggered, this, &InfernalEditor::OpenCreationWindow);
-
+	
+	addObject = new QAction(tr("&Add Object"), this);
+	connect(addObject, &QAction::triggered, this, &InfernalEditor::open);
 }
 void InfernalEditor::OpenCreationWindow() 
 {	
@@ -62,8 +71,10 @@ void InfernalEditor::createMenus()
 	fileMenu = menuBar()->addMenu(tr("&File"));
 	fileMenu->addAction(openAct);
 
-	ObjectMenu = menuBar()->addMenu(tr("&Object"));
+	ObjectMenu = menuBar()->addMenu(tr("&Scene"));
+	ObjectMenu->addAction(addObject);
 	ObjectMenu->addAction(createObject);
+	
 
 	/*fileMenu->addAction(newAct);
 	fileMenu->addAction(openAct);
@@ -106,21 +117,22 @@ void InfernalEditor::newFile()
 
 void InfernalEditor::open()
 {
+	QStringList filter;
+	filter.append(QString("*.xml"));
 	
-		QString fileName = QFileDialog::getOpenFileName(this);
+	
+	QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), QString("..//XML//"),
+		tr("XML (*.xml);;"));
 		if (!fileName.isEmpty())
 			loadfile(fileName);
 	
 }
 void InfernalEditor::loadfile(const QString &fileName)
 {
-	QFile file(fileName);
-	if (!file.open(QFile::ReadOnly | QFile::Text)) {
-		QMessageBox::warning(this, tr("Application"),
-			tr("Cannot read file %1:\n%2.")
-			.arg(QDir::toNativeSeparators(fileName), file.errorString()));
-		return;
-	}
+	QList<QStandardItem *> NameAndType;
+	NameAndType << new QStandardItem("filler");
+	NameAndType << new QStandardItem("more filler");
+	AddObjectToScene(fileName.toStdString().c_str(),NameAndType);
 
 
 
@@ -147,18 +159,5 @@ void InfernalEditor::aboutQt()
 	
 }
 
-void InfernalEditor::mousePressEvent(QMouseEvent *event) 
-{
 
-}
-
-void InfernalEditor::mouseReleaseEvent(QMouseEvent *event)
-{
-
-}
-
-void InfernalEditor::mouseMoveEvent(QMouseEvent *event)
-{
-
-}
 
