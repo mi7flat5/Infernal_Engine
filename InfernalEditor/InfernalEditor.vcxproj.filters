@@ -98,11 +98,11 @@
     <CustomBuild Include="InfernalEditor.h">
       <Filter>Source Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="ActorCreationWindow.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="ActorCreationWindow.ui">
       <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ActorCreationWindow.h">
+      <Filter>Source Files</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>

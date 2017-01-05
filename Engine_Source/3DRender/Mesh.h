@@ -1,7 +1,7 @@
 #ifndef MESH_H
 #define MESH_H
 
-#define VECCONSOLEOUT(X,STRING) std::cout<<'\n'<<STRING<<X.x<<", "<<X.y<<", "<<X.z;
+#define VECCONSOLEOUT(X,STRING) std::cout<<" "<<STRING<<X.x<<", "<<X.y<<", "<<X.z;
 //Shader selector for Model/Mesh
 //TEXTURE_2D_HIDDEN_REFLECT is for reflection of undisplayed skybox
 // NO_TEXTURE is for model without texture coorinates, extracts diffuse from mesh

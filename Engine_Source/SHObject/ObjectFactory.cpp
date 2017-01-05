@@ -9,6 +9,7 @@ ObjectFactory::ObjectFactory()
 	m_lastActorId = 0;
 	m_componentFactory.Register<CubeMapRenderComponent>(ObjectComponent::GetIdFromName(CubeMapRenderComponent::g_Name));
 	m_componentFactory.Register<MeshRenderComponent>(ObjectComponent::GetIdFromName(MeshRenderComponent::g_Name));
+	m_componentFactory.Register<TerrainRenderComponent>(ObjectComponent::GetIdFromName(TerrainRenderComponent::g_Name));
 }
 
 
@@ -52,8 +53,9 @@ StrongObjectPtr ObjectFactory::CreateActor(ObjectId serversActorId,const char* r
 		StrongObjectComponentPtr pComponent(VCreateComponent(pNode));
 		if (pComponent)
 		{
-			pObject->AddComponent(pComponent);
 			pComponent->SetOwner(pObject);
+			pObject->AddComponent(pComponent);
+			
 			pObject->PostInit();
 		}
 		else
@@ -81,6 +83,7 @@ StrongObjectComponentPtr ObjectFactory::VCreateComponent(tinyxml2::XMLElement * 
 			EDITOR_LOG(std::string("Component failed to initialize: " + std::string(name)).c_str());
 			return StrongObjectComponentPtr();
 		}
+		EDITOR_LOG(std::string("Component Loaded: " + std::string(name)).c_str());
 	}
 	else
 	{

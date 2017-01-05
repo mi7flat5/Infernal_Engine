@@ -151,6 +151,7 @@
   <ItemGroup>
     <ClInclude Include="..\Engine_Source\3DRender\CubeMap.h" />
     <ClInclude Include="..\Engine_Source\3DRender\Geometry.h" />
+    <ClInclude Include="..\Engine_Source\3DRender\GraphicsDebug.h" />
     <ClInclude Include="..\Engine_Source\3DRender\Mesh.h" />
     <ClInclude Include="..\Engine_Source\3DRender\Scene.h" />
     <ClInclude Include="..\Engine_Source\3DRender\SceneNode.h" />
@@ -176,9 +177,11 @@
   <ItemGroup>
     <ClCompile Include="..\Engine_Source\3DRender\CubeMap.cpp" />
     <ClCompile Include="..\Engine_Source\3DRender\Geometry.cpp" />
+    <ClCompile Include="..\Engine_Source\3DRender\GraphicsDebug.cpp" />
     <ClCompile Include="..\Engine_Source\3DRender\Mesh.cpp" />
     <ClCompile Include="..\Engine_Source\3DRender\Scene.cpp" />
     <ClCompile Include="..\Engine_Source\3DRender\SceneNode.cpp" />
+    <ClCompile Include="..\Engine_Source\3DRender\TerrainNode.cpp" />
     <ClCompile Include="..\Engine_Source\Core\MovementController.cpp" />
     <ClCompile Include="..\Engine_Source\EventSystem\Event.cpp" />
     <ClCompile Include="..\Engine_Source\EventSystem\EventManager.cpp" />

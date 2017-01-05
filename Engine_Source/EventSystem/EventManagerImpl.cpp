@@ -110,6 +110,7 @@ bool EventManager::VTriggerEvent(const IEventDataPtr& pEvent) const
 //---------------------------------------------------------------------------------------------------------------------
 bool EventManager::VQueueEvent(const IEventDataPtr& pEvent)
 {
+	
 	assert(m_activeQueue >= 0);
 	assert(m_activeQueue < EVENTMANAGER_NUM_QUEUES);
 
@@ -120,7 +121,7 @@ bool EventManager::VQueueEvent(const IEventDataPtr& pEvent)
 		return false;
 	}
 
-		LOG_TO_FILE(std::string("Attempting to queue event: " + std::string(pEvent->GetName())).c_str());//TODO
+		
 
 	auto findIt = m_eventListeners.find(pEvent->VGetEventType());
 	if (findIt != m_eventListeners.end())
@@ -212,7 +213,7 @@ bool EventManager::VUpdate(unsigned long maxMillis)
 	m_activeQueue = (m_activeQueue + 1) % EVENTMANAGER_NUM_QUEUES;
 	m_queues[m_activeQueue].clear();
 
-	LOG_TO_FILE(std::string("Processing Event Queue " + ToStr(queueToProcess) + "; " + ToStr((unsigned long)m_queues[queueToProcess].size()) + " events to process").c_str());//TODO
+	//LOG_TO_FILE(std::string("Processing Event Queue " + ToStr(queueToProcess) + "; " + ToStr((unsigned long)m_queues[queueToProcess].size()) + " events to process").c_str());//TODO
 
 	// Process the queue
 	while (!m_queues[queueToProcess].empty())
@@ -220,7 +221,7 @@ bool EventManager::VUpdate(unsigned long maxMillis)
 		// pop the front of the queue
 		IEventDataPtr pEvent = m_queues[queueToProcess].front();
 		m_queues[queueToProcess].pop_front();
-		std::cout<<"\t\tProcessing Event " + std::string(pEvent->GetName())<<'\n';
+		//std::cout<<"\t\tProcessing Event " + std::string(pEvent->GetName())<<'\n';
 
 		const EventType& eventType = pEvent->VGetEventType();
 
@@ -235,7 +236,7 @@ bool EventManager::VUpdate(unsigned long maxMillis)
 			for (auto it = eventListeners.begin(); it != eventListeners.end(); ++it)
 			{
 				EventListenerDelegate listener = (*it);
-				std::cout << "\t\tSending event " + std::string(pEvent->GetName()) + " to delegate"<<'\n';
+				LOG_TO_FILE(std::string( "Sending event " + std::string(pEvent->GetName()) + " to delegate").c_str());
 				listener(pEvent);
 			}
 		}

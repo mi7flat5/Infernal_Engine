@@ -6,10 +6,11 @@
 
 #include <QCoreApplication>
 #include"InfernalEditor.h"
-
+#include"..//Engine_Source/SHObject/Object3D.h"
 void EditWindow::resizeGL(int w, int h)
 {
-	m_pCamera->SetProjection(this->width(),this->height());
+	m_pCamera->SetProjection(w,h);
+	
 }
 
 EditWindow::EditWindow(QWidget *parent)
@@ -20,8 +21,12 @@ EditWindow::EditWindow(QWidget *parent)
 	m_pEventManager = nullptr;
 	maker = new ObjectFactory();
 	//MainWindow = parent;
+	QTimer *timer = new QTimer(this);
+	connect(timer, SIGNAL(timeout()), this, SLOT(update()));
 	
-	
+
+	timer->start();
+	lastX = lastY = 0;
 	
 }
 
@@ -38,13 +43,36 @@ EditWindow::~EditWindow()
 
 
 
-bool EditWindow::AddObjectToScene(const char* resource) 
+unsigned int EditWindow::AddObjectToScene(const char* resource) 
 {
 	makeCurrent();
-	maker->CreateActor(INVALID_OBJECT_ID,resource);
-	
-	return true;
+	StrongObjectPtr newObject(maker->CreateActor(INVALID_OBJECT_ID,resource));
+	m_ObjectTable.emplace(newObject->GetId(),newObject);
+	EDITOR_LOG("added object to scene!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+	return newObject->GetId();
+
 }
+
+void EditWindow::RemoveFromScene(int ObjectId)
+{
+
+	
+		
+	glClearColor(0.0f, 0.2f, 0.9f, 1.0f);
+	
+		m_ObjectTable.erase(ObjectId);
+		std::shared_ptr<EvtData_Destroy_Actor> pEvent(INFERNAL_NEW EvtData_Destroy_Actor(ObjectId));
+		
+		IEventManager::Get()->VQueueEvent(pEvent);
+
+}
+
+//void EditWindow::RemoveFromScene()
+//{
+//
+//	
+//	
+//}
 
 void EditWindow::init()
 {
@@ -118,7 +146,7 @@ void EditWindow::paintGL()
 	
 	m_pScene->OnUpdate(g_DeltaTime);//g_deltatime in Engine.h, will need to be managed somewhere in the editor
 
-
+	
 	m_pScene->OnRender();
 	m_pEventManager->VUpdate(1);
 	
@@ -127,6 +155,11 @@ void EditWindow::paintGL()
 
 
 
+void EditWindow::wheelEvent(QWheelEvent *event) 
+{
+	m_pCamera->SetCamRadius(event->delta());
+}
+
 void EditWindow::mousePressEvent(QMouseEvent *event)
 {
 	
@@ -134,12 +167,50 @@ void EditWindow::mousePressEvent(QMouseEvent *event)
 
 void EditWindow::mouseReleaseEvent(QMouseEvent *event) 
 {
-
+	
 }
 
 void EditWindow::mouseMoveEvent(QMouseEvent *event)
 {
-	
+	double xpos, ypos;
+	xpos = event->x();
+	ypos = event->y();
+
+	if (event->buttons() & Qt::LeftButton)
+	{
+
+		GLfloat xoffset = xpos - lastX;
+		GLfloat yoffset = ypos - lastY;
+		/*lastX = xpos;
+		lastY = ypos;*/
+
+		GLfloat sensitivity = 0.3;	// TODO make variable for sensitivity
+		xoffset *= sensitivity;
+		yoffset *= sensitivity;
+
+		m_pCamera->SetYaw(xoffset);
+		m_pCamera->SetPitch(yoffset);
+	}
+	if (event->buttons() & Qt::RightButton)
+	{
+
+		GLfloat xoffset = lastX - xpos;
+		GLfloat yoffset = ypos - lastY;
+		/*lastX = xpos;
+		lastY = ypos;*/
+
+		GLfloat sensitivity = 0.3;	// TODO make variable for sensitivity
+		xoffset *= sensitivity;
+		yoffset *= sensitivity;
+
+		m_pCamera->SetYaw(xoffset);
+		m_pCamera->SetPitch(yoffset);
+
+	}
+
+
+	lastX = xpos;
+	lastY = ypos;
 }
 
 

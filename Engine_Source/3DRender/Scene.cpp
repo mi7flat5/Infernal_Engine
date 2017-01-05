@@ -10,6 +10,7 @@ Scene::Scene()
 	m_Root.reset(INFERNAL_NEW RootNode());
 	IEventManager* pEventMgr = IEventManager::Get();
 	pEventMgr->VAddListener(fastdelegate::MakeDelegate(this, &Scene::NewRenderComponentDelegate), EvtData_New_Render_Component::sk_EventType);
+	pEventMgr->VAddListener(fastdelegate::MakeDelegate(this, &Scene::DestroyActorDelegate), EvtData_Destroy_Actor::sk_EventType);
 }
 
 
@@ -17,6 +18,7 @@ Scene::~Scene()
 {
 	IEventManager* pEventMgr = IEventManager::Get();
 	pEventMgr->VRemoveListener(fastdelegate::MakeDelegate(this, &Scene::NewRenderComponentDelegate), EvtData_New_Render_Component::sk_EventType);
+	pEventMgr->VRemoveListener(fastdelegate::MakeDelegate(this, &Scene::DestroyActorDelegate), EvtData_Destroy_Actor::sk_EventType);
 }
 
 void Scene::OnRender()
@@ -43,7 +45,11 @@ void Scene::OnUpdate(const int deltaMilliseconds)
 {
 	m_Root->VOnUpdate(this, deltaMilliseconds);
 }
-
+void Scene::DestroyActorDelegate(IEventDataPtr pEventData)
+{
+	std::shared_ptr<EvtData_Destroy_Actor> pCastEventData = std::static_pointer_cast<EvtData_Destroy_Actor>(pEventData);
+	RemoveChild(pCastEventData->GetId());
+}
 std::shared_ptr<ISceneNode> Scene::FindActor(ObjectId id)
 {
 	return std::shared_ptr<ISceneNode>();
@@ -62,7 +68,14 @@ bool Scene::AddChild(ObjectId id, std::shared_ptr<ISceneNode> kid)
 
 bool Scene::RemoveChild(ObjectId id)
 {
-	return false;
+	if (id == INVALID_OBJECT_ID)
+	{
+		
+		return false;
+	}
+	m_ObjectMap.erase(id);
+	
+	return m_Root->VRemoveChild(id);
 }
 void Scene::NewRenderComponentDelegate(IEventDataPtr pEventData)
 {

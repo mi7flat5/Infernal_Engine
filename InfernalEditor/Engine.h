@@ -36,6 +36,7 @@ void asdflogout(const char*);
 #    define LOG_TO_FILE(str) 
 #endif
 
+#define VECCONSOLEOUT(X,STRING) std::cout<<'\n'<<STRING<<X.x<<", "<<X.y<<", "<<X.z;
 
 #if defined(_DEBUG)
 #	define INFERNAL_NEW new(_NORMAL_BLOCK,__FILE__, __LINE__)

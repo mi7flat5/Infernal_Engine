@@ -12,7 +12,7 @@ class InfernalEditor : public QMainWindow
 		QStandardItem* m_pSceneViewRoot;
 public:
     InfernalEditor(QWidget *parent = Q_NULLPTR);
-
+	
 	void AddObjectToScene(const char* resourcePath, QList<QStandardItem*> inItems);
 	void registerDelegate();
 protected:
@@ -32,6 +32,7 @@ void newFile();
 	void open();
 	void loadfile(const QString & fileName);
 	void save();
+	void DeleteActor();
 
 
 	void about();
@@ -47,15 +48,20 @@ private:
 	void createActions();
 	void OpenCreationWindow();
 	void createMenus();
-
+	
 	QMenu *fileMenu;
 	QMenu *editMenu;
 	QMenu *ObjectMenu;
 	QMenu *helpMenu;
 
-	QActionGroup *alignmentGroup;
+	QMenu* contextMenu;
+
 	QAction *createObject;
 	QAction *addObject;
+	QAction* deletObject;
+
+	QActionGroup *alignmentGroup;
+	
 	QAction *newAct;
 	QAction *openAct;
 	QAction *saveAct;

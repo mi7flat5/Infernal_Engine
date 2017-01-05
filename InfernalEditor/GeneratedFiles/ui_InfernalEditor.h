@@ -13,12 +13,15 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QDockWidget>
+#include <QtWidgets/QFormLayout>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTextBrowser>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QTreeView>
@@ -35,26 +38,34 @@ public:
     QAction *action_Open_2;
     QWidget *centralWidget;
     QGridLayout *gridLayout;
-    QGridLayout *gridLayout_2;
-    EditWindow *openGLWidget;
     QTextBrowser *textBrowser;
-    QGroupBox *groupBox_2;
     QGroupBox *groupBox;
+    QGridLayout *gridLayout_2;
+    QTabWidget *tabWidget;
+    QWidget *tab;
+    QFormLayout *formLayout;
     QTreeView *treeView;
+    QWidget *tab_2;
+    EditWindow *openGLWidget;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
+    QDockWidget *dockWidget;
+    QWidget *dockWidgetContents;
+    QGridLayout *gridLayout_3;
 
     void setupUi(QMainWindow *InfernalEditorClass)
     {
         if (InfernalEditorClass->objectName().isEmpty())
             InfernalEditorClass->setObjectName(QStringLiteral("InfernalEditorClass"));
-        InfernalEditorClass->resize(1290, 904);
+        InfernalEditorClass->resize(855, 565);
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(InfernalEditorClass->sizePolicy().hasHeightForWidth());
         InfernalEditorClass->setSizePolicy(sizePolicy);
+        InfernalEditorClass->setMouseTracking(true);
+        InfernalEditorClass->setFocusPolicy(Qt::StrongFocus);
         InfernalEditorClass->setAutoFillBackground(true);
         action_Open = new QAction(InfernalEditorClass);
         action_Open->setObjectName(QStringLiteral("action_Open"));
@@ -70,40 +81,18 @@ public:
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        gridLayout_2 = new QGridLayout();
-        gridLayout_2->setSpacing(6);
-        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
-        openGLWidget = new EditWindow(centralWidget);
-        openGLWidget->setObjectName(QStringLiteral("openGLWidget"));
-        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::MinimumExpanding);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(openGLWidget->sizePolicy().hasHeightForWidth());
-        openGLWidget->setSizePolicy(sizePolicy1);
-        openGLWidget->setMinimumSize(QSize(16, 9));
-        openGLWidget->setSizeIncrement(QSize(16, 9));
-        openGLWidget->setBaseSize(QSize(0, 0));
-        openGLWidget->setMouseTracking(false);
-        openGLWidget->setFocusPolicy(Qt::NoFocus);
-        openGLWidget->setAutoFillBackground(true);
-
-        gridLayout_2->addWidget(openGLWidget, 0, 0, 1, 1);
-
         textBrowser = new QTextBrowser(centralWidget);
         textBrowser->setObjectName(QStringLiteral("textBrowser"));
-        QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Fixed);
-        sizePolicy2.setHorizontalStretch(0);
-        sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(textBrowser->sizePolicy().hasHeightForWidth());
-        textBrowser->setSizePolicy(sizePolicy2);
+        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Fixed);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(textBrowser->sizePolicy().hasHeightForWidth());
+        textBrowser->setSizePolicy(sizePolicy1);
+        textBrowser->setMinimumSize(QSize(0, 20));
+        textBrowser->setMaximumSize(QSize(16777215, 150));
         textBrowser->setReadOnly(false);
 
-        gridLayout_2->addWidget(textBrowser, 1, 0, 1, 1);
-
-        groupBox_2 = new QGroupBox(centralWidget);
-        groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
-
-        gridLayout_2->addWidget(groupBox_2, 1, 1, 1, 1);
+        gridLayout->addWidget(textBrowser, 1, 0, 1, 1);
 
         groupBox = new QGroupBox(centralWidget);
         groupBox->setObjectName(QStringLiteral("groupBox"));
@@ -112,19 +101,54 @@ public:
         groupBox->setMinimumSize(QSize(16, 9));
         groupBox->setSizeIncrement(QSize(16, 9));
         groupBox->setBaseSize(QSize(16, 9));
-        treeView = new QTreeView(groupBox);
+        gridLayout_2 = new QGridLayout(groupBox);
+        gridLayout_2->setSpacing(6);
+        gridLayout_2->setContentsMargins(11, 11, 11, 11);
+        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
+        tabWidget = new QTabWidget(groupBox);
+        tabWidget->setObjectName(QStringLiteral("tabWidget"));
+        tab = new QWidget();
+        tab->setObjectName(QStringLiteral("tab"));
+        formLayout = new QFormLayout(tab);
+        formLayout->setSpacing(6);
+        formLayout->setContentsMargins(11, 11, 11, 11);
+        formLayout->setObjectName(QStringLiteral("formLayout"));
+        treeView = new QTreeView(tab);
         treeView->setObjectName(QStringLiteral("treeView"));
-        treeView->setGeometry(QRect(20, 40, 256, 192));
 
-        gridLayout_2->addWidget(groupBox, 0, 1, 1, 1);
+        formLayout->setWidget(0, QFormLayout::LabelRole, treeView);
+
+        tabWidget->addTab(tab, QString());
+        tab_2 = new QWidget();
+        tab_2->setObjectName(QStringLiteral("tab_2"));
+        tabWidget->addTab(tab_2, QString());
+
+        gridLayout_2->addWidget(tabWidget, 0, 0, 1, 1);
 
 
-        gridLayout->addLayout(gridLayout_2, 0, 1, 2, 1);
+        gridLayout->addWidget(groupBox, 0, 1, 1, 1);
+
+        openGLWidget = new EditWindow(centralWidget);
+        openGLWidget->setObjectName(QStringLiteral("openGLWidget"));
+        QSizePolicy sizePolicy2(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(openGLWidget->sizePolicy().hasHeightForWidth());
+        openGLWidget->setSizePolicy(sizePolicy2);
+        openGLWidget->setMinimumSize(QSize(16, 9));
+        openGLWidget->setSizeIncrement(QSize(16, 10));
+        openGLWidget->setBaseSize(QSize(16, 10));
+        openGLWidget->setMouseTracking(true);
+        openGLWidget->setFocusPolicy(Qt::NoFocus);
+        openGLWidget->setContextMenuPolicy(Qt::PreventContextMenu);
+        openGLWidget->setAutoFillBackground(true);
+
+        gridLayout->addWidget(openGLWidget, 0, 0, 1, 1);
 
         InfernalEditorClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(InfernalEditorClass);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1290, 21));
+        menuBar->setGeometry(QRect(0, 0, 855, 21));
         InfernalEditorClass->setMenuBar(menuBar);
         mainToolBar = new QToolBar(InfernalEditorClass);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -132,8 +156,22 @@ public:
         statusBar = new QStatusBar(InfernalEditorClass);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         InfernalEditorClass->setStatusBar(statusBar);
+        dockWidget = new QDockWidget(InfernalEditorClass);
+        dockWidget->setObjectName(QStringLiteral("dockWidget"));
+        dockWidget->setContextMenuPolicy(Qt::PreventContextMenu);
+        dockWidgetContents = new QWidget();
+        dockWidgetContents->setObjectName(QStringLiteral("dockWidgetContents"));
+        gridLayout_3 = new QGridLayout(dockWidgetContents);
+        gridLayout_3->setSpacing(6);
+        gridLayout_3->setContentsMargins(11, 11, 11, 11);
+        gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
+        dockWidget->setWidget(dockWidgetContents);
+        InfernalEditorClass->addDockWidget(static_cast<Qt::DockWidgetArea>(8), dockWidget);
 
         retranslateUi(InfernalEditorClass);
+
+        tabWidget->setCurrentIndex(0);
+
 
         QMetaObject::connectSlotsByName(InfernalEditorClass);
     } // setupUi
@@ -144,8 +182,9 @@ public:
         action_Open->setText(QApplication::translate("InfernalEditorClass", "&Open", 0));
         actionOpen->setText(QApplication::translate("InfernalEditorClass", "Open", 0));
         action_Open_2->setText(QApplication::translate("InfernalEditorClass", "&Open", 0));
-        groupBox_2->setTitle(QApplication::translate("InfernalEditorClass", "GroupBox", 0));
         groupBox->setTitle(QApplication::translate("InfernalEditorClass", "GroupBox", 0));
+        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("InfernalEditorClass", "Tab 1", 0));
+        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("InfernalEditorClass", "Tab 2", 0));
     } // retranslateUi
 
 };

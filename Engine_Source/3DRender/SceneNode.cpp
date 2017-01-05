@@ -1,6 +1,7 @@
 #include"Engine.h"
 #include "SceneNode.h"
 #include"Scene.h"
+#include"..//3DRender/GraphicsDebug.h"
 
 //CameraNode::
 
@@ -95,6 +96,18 @@ bool SceneNode::VAddChild(std::shared_ptr<ISceneNode> ikid)
 
 bool SceneNode::VRemoveChild(ObjectId id)
 {
+	for (SceneNodeList::iterator i = m_Children.begin(); i != m_Children.end(); ++i)
+	{
+		const SceneNodeProperties* pProps = (*i)->VGet();
+
+		if (pProps->GetId() != INVALID_OBJECT_ID && id == pProps->GetId())
+		{
+
+			
+				i = m_Children.erase(i);	//this can be expensive for vectors
+			return true;
+		}
+	}
 	return false;
 }
 
@@ -158,7 +171,18 @@ void RootNode::VRenderChildren(Scene * pScene)
 
 bool RootNode::VRemoveChild(ObjectId id)
 {
-	return false;
+	
+		bool anythingRemoved = false;
+	for (int i = RenderPass_0; i < RenderPass_Last; ++i)
+	{
+		if (m_Children[i]->VRemoveChild(id))
+		{
+			anythingRemoved = true;
+		}
+	}
+	if(anythingRemoved)
+		EDITOR_LOG("Object Removed")
+	return anythingRemoved;
 }
 
 void RootNode::VOnUpdate(Scene *pScene, unsigned long const elapsedMs)
@@ -179,21 +203,22 @@ void CameraNode::UpdateOffsetsVectors()
 	if (pitch < -89)
 		pitch = -89;
 
-	theta = 90 - yaw;
-	phi = 90 - pitch;
+	theta = yaw-90;
+	phi = pitch-90;
 
-	front.x = radius * sin(glm::radians(phi))*cos(glm::radians(theta));
+	//front.x = radius * sin(glm::radians(phi))*cos(glm::radians(theta));
 	//if (campos.y > TerrainHeight)
-	front.y = radius * cos(glm::radians(pitch + 90));// +10; //TODO add parameter for adjusting y facing offset
-	front.z = radius * sin(glm::radians(phi))*sin(glm::radians(theta));
-	camfront = glm::normalize(front);
-
+	//front.y = radius * cos(glm::radians(pitch + 90));// +10; //TODO add parameter for adjusting y facing offset
+	//front.z = radius * cos(glm::radians(phi))*sin(glm::radians(theta));
+	
+	camfront = glm::normalize(campos-Target);
+	
 	vdist = radius*sin(glm::radians(pitch));
 	hdist = radius*cos(glm::radians(pitch));
-	Xoffset = hdist*sin(glm::radians(yaw));
-	Zoffset = hdist*cos(glm::radians(yaw));
-
-	Right = glm::normalize(glm::cross(camup, camfront));
+	Xoffset = hdist*cos(glm::radians(yaw));
+	Zoffset = hdist*sin(glm::radians(yaw));
+	vec3 CylinCamPos = glm::normalize(vec3(radius*cos(glm::radians(yaw)), 0, radius* sin(glm::radians(yaw))));
+	rightvec = glm::normalize(glm::cross(camup,CylinCamPos ));
 	
 }
 void CameraNode::VRender(Scene *pScene) 
@@ -203,23 +228,19 @@ void CameraNode::VRender(Scene *pScene)
 	glm::vec3 NewCampos;
 	NewCampos.y = vdist + Target.y;	//TODO add parameter for vertical distance offset
 
-	NewCampos.x = Target.x - Xoffset;
-	NewCampos.z = Target.z - Zoffset;
+	NewCampos.x = Target.x + Xoffset;
+	NewCampos.z = Target.z + Zoffset;
 	campos.x = NewCampos.x;
-	campos.y = Transform::Lerp(campos.y, NewCampos.y, .30)+15.0f;//TODO Create variable for camera y offset
+	campos.y = NewCampos.y;//Transform::Lerp(campos.y, NewCampos.y, .30);//TODO Create variable for camera y offset
 	campos.z = NewCampos.z;
 	
-	View = glm::lookAt(campos, Target, camup);
-	ExtractPlanesGL(true);
-	View = glm::lookAt(campos, campos + camfront, camup);
+	View = glm::lookAt(campos, Target, camup)*Transform::translate(0, -5, 0);
 	
-	
-
 }
-void CameraNode::VOnUpdate(Scene *, unsigned long const elapsedMs)
+void CameraNode::VOnUpdate(Scene *pScene, unsigned long const elapsedMs)
 {
-	
-
+	if(m_pTarget)
+	Target = m_pTarget->getPosition();
 }
 void CameraNode::ExtractPlanesGL(bool normalize)
 {
@@ -303,7 +324,7 @@ void CubemapNode::VPostRender(Scene * pScene)
 
 void OGLMeshNode::VRender(Scene * pScene)
 {
-	
+	NodeShader->Use();
 	for (int i = 0;i < m_Meshes.size();i++)
 	{
 		m_Meshes[i].DrawMesh(NodeShader->getProgram(), MeshType::NO_TEXTURE);
@@ -314,48 +335,108 @@ void OGLMeshNode::VRender(Scene * pScene)
 bool OGLMeshNode::VPreRender(Scene * pScene)
 {
 	NodeShader->Use();
-	mat4 ViewMat = pScene->GetCamera()->GetView();
-	mat4 ProjectionMat = pScene->GetCamera()->GetProjection();
+	ViewMat = pScene->GetCamera()->GetView();
+	ProjectionMat = pScene->GetCamera()->GetProjection();
 	vec3 campos = pScene->GetCamera()->GetCameraPosition();
-	vec3 lpos = vec3(1, 20, -200);
-
-	ModelMatrix = Transform::scale(10.0f,10.0f,10.0f);
-	ModelMatrix = ModelMatrix*Transform::translate(0.0f, 0.0f, 17.0f);
-	//SetSpherePosition(vec3(0.0f, 5.0f, 10.0f));
-	SetRadius(10);
-
+		
+	SetSpherePosition(vec3(ProjectionMat*ViewMat*ModelMatrix[3]));
+		
+	vec3 lpos = vec3(0,5, -5);
+		
 	glUniform3fv(LC, 1, &lightColor[0]);
 	glUniform3f(lightPosLoc, lpos.x, lpos.y, lpos.z);
 	glUniform3f(viewPosLoc, campos.x, campos.y, campos.z);
 	glUniformMatrix4fv(ProjectionMatrixID, 1, GL_FALSE, &ProjectionMat[0][0]);
 	glUniformMatrix4fv(ModelMatrixID, 1, GL_FALSE, &ModelMatrix[0][0]);
 	glUniformMatrix4fv(ViewMatrixID, 1, GL_FALSE, &ViewMat[0][0]);
-	
+		
 	return true;
 }
 
 void OGLMeshNode::VOnUpdate(Scene *pScene, unsigned long const elapsedMs)
-{
-	vec3 asdf = vec3(vec4(0.0f, 0.0f, 17.0f, 1.0f)*pScene->GetCamera()->GetProjection()*pScene->GetCamera()->GetView());
-	SetSpherePosition(asdf);
-	
+{	
 }
-
-
-
 bool OGLMeshNode::VIsVisible(Scene * pScene) const
 {
-	
 	Frustum* pCurrentFrustum = pScene->GetCamera()->GetFrustum();
+	
 	if (pCurrentFrustum)
 	{
 		if (pCurrentFrustum->Inside(GetBVSphere()))
 		{
-			
+			//std::cout << ".\n";
 			return true;
+			
 		}
 	}
-	
+	//std::cout << "NotVisible\n";
 	return false;
 
+}
+void TerrainNode::VOnUpdate(Scene *, unsigned long const elapsedMs)
+{
+
+}
+bool TerrainNode::VPreRender(Scene *pScene)
+{
+	NodeShader->Use();
+	ViewMat = pScene->GetCamera()->GetView();
+	ProjectionMat = pScene->GetCamera()->GetProjection();
+	glUniform1f(DispLevelID, DispLevel);
+	glUniformMatrix4fv(ProjectionMatrixID, 1, GL_FALSE, &ProjectionMat[0][0]);
+	glUniformMatrix4fv(ModelMatrixID, 1, GL_FALSE, &ModelMatrix[0][0]);
+	glUniformMatrix4fv(ViewMatrixID, 1, GL_FALSE, &ViewMat[0][0]);
+
+	return true;
+}
+
+void TerrainNode::VRender(Scene *pScene)
+{
+	for (int i = 0;i < m_Meshes.size();i++)
+	{
+		m_Meshes[i].DrawMesh(NodeShader->getProgram(), MeshType::TERRAIN);
+	}
+
+}
+
+void TerrainNode::VPostRender(Scene *pScene)
+{
+
+}
+//TerrainNode::~TerrainNode() {
+//
+//	if (HeightMapImage)
+//		SOIL_free_image_data(HeightMapImage);
+//}
+void TerrainNode::SetMinMaxBoundry()
+{
+	MaxZ = (32 * Scale * (64 + Height)) / Height;
+	MaxX = (32 * Scale * (64 + Width)) / Width;
+
+	MinX = -MaxX;
+	MinZ = -MaxZ;
+
+	MaxX = MaxX - Scale;
+	MaxZ = MaxZ - Scale;
+}
+void TerrainNode::SetScale(GLuint InScale) {
+	Scale = InScale;
+	
+	ModelMatrix = Transform::scale(Scale, 1.0, Scale);
+	ModelMatrix = ModelMatrix * Transform::translate(0, -20, 0);
+	SetMinMaxBoundry();
+}
+GLuint TerrainNode::GetHeight(glm::vec3 Position)
+{
+	GLuint XLow = floor(Position.x * (Width / 2) / (32 * Scale) + 32 + (Width / 2));
+	GLuint ZLow = floor(Position.z * (Height / 2) / (32 * Scale) + 32 + (Height / 2));
+
+	if (XLow < 1 || ZLow < 1)
+		return LastValidHeight;
+	//GLuint wraps at 0
+	if ((XLow > Width - 2) || (ZLow > Height - 2))
+		return LastValidHeight;
+
+	LastValidHeight = (GLuint)HeightMapImage[((ZLow*Width) + XLow) * 3];
+	return LastValidHeight;
 }

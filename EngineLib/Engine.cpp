@@ -12,7 +12,7 @@ vec4 g_Forward4(g_Forward.x, g_Forward.y, g_Forward.z, 0.0f);
 
 GLdouble g_DeltaTime = 0;
 
-GLuint HEIGHT = 600, WIDTH = 800;
+GLuint HEIGHT = 800, WIDTH = 800;
 
 void flogout(const char* str)
 {

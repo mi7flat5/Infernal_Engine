@@ -1,8 +1,8 @@
 #include"Engine.h"
 #include"Kernel.h"
-
-
-
+#include "..//SHObject/RenderComponent.h"
+#include"..//SHObject/Object3D.h"
+#include "../SHObject/ObjectComponent.h"
 
 Kernel::Kernel()
 {
@@ -12,15 +12,35 @@ Kernel::Kernel()
 void Kernel::runApp()
 {
 	ObjectFactory maker;
-	maker.CreateActor(INVALID_OBJECT_ID,"..//XML//box.xml");
+	StrongObjectPtr a = maker.CreateActor(INVALID_OBJECT_ID,"..//XML//ReflectiveTeapot.xml");
 	maker.CreateActor(INVALID_OBJECT_ID, "..//XML//cubemap.xml");
+	StrongObjectPtr d = maker.CreateActor(INVALID_OBJECT_ID, "..//XML//box.xml");
+	//(
+	std::shared_ptr<MeshRenderComponent>b( a->GetComponent<MeshRenderComponent>("MeshRenderComponent"));
+	std::shared_ptr<OGLMeshNode> c(std::static_pointer_cast<OGLMeshNode>(b->VGetSceneNode()));
 	
+	std::shared_ptr<MeshRenderComponent>e(d->GetComponent<MeshRenderComponent>("MeshRenderComponent"));
+	std::shared_ptr<OGLMeshNode> f(std::static_pointer_cast<OGLMeshNode>(e->VGetSceneNode()));
 	
+
+	m_pCamera->SetTarget(c);
+	vec3 tmpmover;
+	//tmpmover.x = 2*cos(glfwGetTime());
+	//c->setPosition(vec3(0,0,10));
+	//f->setScale(Transform::scale(30, 15, 15));
 	
+	maker.CreateActor(INVALID_OBJECT_ID, "..//XML//Terrain.xml");
 	
 	while (!glfwWindowShouldClose(pContext))
 	{
+		tmpmover.x = 25*cos(glfwGetTime());
+		tmpmover.y = 45 * sin(glfwGetTime()*2);
+		//tmpmover.z=10;
+		//f->setScale(Transform::scale(15, 15, 15));
+		
 		update();
+		//f->setPosition(tmpmover);
+		c->setPosition(tmpmover);
 	}
 	
 	
@@ -78,7 +98,7 @@ void Kernel::init()
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-		glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
+		glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
 		
 

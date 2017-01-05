@@ -75,7 +75,7 @@ void ActorCreationWindow::SetFragShader()
 	QString fileName(fileInfo.fileName());
 
 	if (!fileName.isEmpty())
-		ui.FshaderText->setText("..//shaders/" + fileName);
+		ui.FshaderText->setText("..//shaders//" + fileName);
 }
 
 void ActorCreationWindow::SetVertexShader()
@@ -86,7 +86,7 @@ void ActorCreationWindow::SetVertexShader()
 	QString fileName(fileInfo.fileName());
 	
 	if (!fileName.isEmpty())
-		ui.VshaderText->setText("..//shaders/" + fileName);
+		ui.VshaderText->setText("..//shaders//" + fileName);
 }
 
 void ActorCreationWindow::SetMeshAsset()
@@ -97,7 +97,7 @@ void ActorCreationWindow::SetMeshAsset()
 	QFileInfo fileInfo(fName.toStdString().c_str());
 	QString fileName(fileInfo.fileName());
 	if (!fileName.isEmpty())
-		ui.assetFileText->setText("..//assets/"+fileName);
+		ui.assetFileText->setText("..//assets//"+fileName);
 }
 
 void ActorCreationWindow::loadfile(const QString &fileName)
@@ -122,5 +122,6 @@ const char* ActorCreationWindow::GetRenderCompnentType()
 		return "CubeMapRenderComponent";
 	case (2) :
 		return "TerrainRenderComponent";
+	default: return "UNKNOWN OBJECT TYPE";
 	}
 }

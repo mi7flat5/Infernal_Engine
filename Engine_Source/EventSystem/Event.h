@@ -13,8 +13,8 @@
 class EvtData_Log_Data;
 void RegisterEngineScriptEvents(void);
 
-#define EDITOR_LOG(str) std::shared_ptr<EvtData_Log_Data> pEvent(INFERNAL_NEW EvtData_Log_Data(std::string(str)));\
-IEventManager::Get()->VQueueEvent(pEvent);\
+#define EDITOR_LOG(str) {std::shared_ptr<EvtData_Log_Data> SoMeThinGIdNeverNameANyTHInGElSe(INFERNAL_NEW EvtData_Log_Data(std::string(str)));\
+IEventManager::Get()->VQueueEvent(SoMeThinGIdNeverNameANyTHInGElSe);}\
 
 class EvtData_Log_Data : public BaseEventData
 {
@@ -37,13 +37,54 @@ public:
 	static const EventType sk_EventType;
 };
 
+class EvtData_Destroy_Actor : public BaseEventData
+{
+	ObjectId m_id;
+
+public:
+	static const EventType sk_EventType;
+
+	explicit EvtData_Destroy_Actor(ObjectId id = INVALID_OBJECT_ID)
+		: m_id(id)
+	{
+		
+		//EDITOR_LOG(std::to_string(id))
+	}
+
+	virtual const EventType& VGetEventType(void) const
+	{
+		return sk_EventType;
+	}
+
+	virtual IEventDataPtr VCopy(void) const
+	{
+		return IEventDataPtr(INFERNAL_NEW EvtData_Destroy_Actor(m_id));
+	}
+
+	virtual void VSerialize(std::ostrstream &out) const
+	{
+		out << m_id;
+	}
+
+	virtual void VDeserialize(std::istrstream& in)
+	{
+		in >> m_id;
+	}
+
+	virtual const char* GetName(void) const
+	{
+		return "EvtData_Destroy_Actor";
+	}
+
+	ObjectId GetId(void) const { return m_id; }
+};
 
 
 
 
 class EvtData_New_Render_Component : public BaseEventData
 {
-	ObjectId m_actorId;
+	ObjectId m_ObjectId;
 	std::shared_ptr<SceneNode> m_pSceneNode;
 
 public:
@@ -51,11 +92,11 @@ public:
 
 	EvtData_New_Render_Component(void)
 	{
-		m_actorId = INVALID_OBJECT_ID;
+		m_ObjectId = INVALID_OBJECT_ID;
 	}
 
 	explicit EvtData_New_Render_Component(ObjectId actorId, std::shared_ptr<SceneNode> pSceneNode)
-		: m_actorId(actorId),
+		: m_ObjectId(actorId),
 		m_pSceneNode(pSceneNode)
 	{
 	}
@@ -77,7 +118,7 @@ public:
 
 	virtual IEventDataPtr VCopy(void) const
 	{
-		return IEventDataPtr(new EvtData_New_Render_Component(m_actorId, m_pSceneNode));
+		return IEventDataPtr(INFERNAL_NEW EvtData_New_Render_Component(m_ObjectId, m_pSceneNode));
 	}
 
 	virtual const char* GetName(void) const
@@ -87,7 +128,7 @@ public:
 
 	const ObjectId GetActorId(void) const
 	{
-		return m_actorId;
+		return m_ObjectId;
 	}
 
 	std::shared_ptr<SceneNode> GetSceneNode(void) const
@@ -152,109 +193,72 @@ public:
 //---------------------------------------------------------------------------------------------------------------------
 // EvtData_New_Actor - This event is sent out when an actor is *actually* created.
 //---------------------------------------------------------------------------------------------------------------------
-//class EvtData_New_Actor : public BaseEventData
-//{
-//	ObjectId m_actorId;
-//	//GameViewId m_viewId;
-//
-//public:
-//	static const EventType sk_EventType;
-//
-//	EvtData_New_Actor(void)
-//	{
-//		m_actorId = INVALID_ACTOR_ID;
-//		m_viewId = gc_InvalidGameViewId;
-//	}
-//
-//	explicit EvtData_New_Actor(ActorId actorId, GameViewId viewId = gc_InvalidGameViewId)
-//		: m_actorId(actorId),
-//		m_viewId(viewId)
-//	{
-//	}
-//
-//	virtual void VDeserialize(std::istrstream& in)
-//	{
-//		in >> m_actorId;
-//		in >> m_viewId;
-//	}
-//
-//	virtual const EventType& VGetEventType(void) const
-//	{
-//		return sk_EventType;
-//	}
-//
-//	virtual IEventDataPtr VCopy(void) const
-//	{
-//		return IEventDataPtr(GCC_NEW EvtData_New_Actor(m_actorId, m_viewId));
-//	}
-//
-//	virtual void VSerialize(std::ostrstream& out) const
-//	{
-//		out << m_actorId << " ";
-//		out << m_viewId << " ";
-//	}
-//
-//
-//	virtual const char* GetName(void) const
-//	{
-//		return "EvtData_New_Actor";
-//	}
-//
-//	const ActorId GetActorId(void) const
-//	{
-//		return m_actorId;
-//	}
-//
-//	GameViewId GetViewId(void) const
-//	{
-//		return m_viewId;
-//	}
-//};
+class EvtData_New_Actor : public BaseEventData
+{
+	ObjectId m_ObjectId;
+	//GameViewId m_viewId;
 
+public:
+	static const EventType sk_EventType;
+
+	EvtData_New_Actor(void)
+	{
+		m_ObjectId = INVALID_OBJECT_ID;
+		//m_viewId = gc_InvalidGameViewId;
+	}
+
+	//explicit EvtData_New_Actor(ObjectId actorId, GameViewId viewId = gc_InvalidGameViewId)
+	//	: m_ObjectId(actorId)/*,
+	//	m_viewId(viewId)*/
+	//{
+	//}
+	explicit EvtData_New_Actor(ObjectId actorId)
+		: m_ObjectId(actorId)
+	{
+	}
+	virtual void VDeserialize(std::istrstream& in)
+	{
+		in >> m_ObjectId;
+		//in >> m_viewId;
+	}
+
+	virtual const EventType& VGetEventType(void) const
+	{
+		return sk_EventType;
+	}
+
+	//virtual IEventDataPtr VCopy(void) const
+	//{
+	//	return IEventDataPtr(INFERNAL_NEW EvtData_New_Actor(m_ObjectId, m_viewId));
+	//}
+
+	virtual void VSerialize(std::ostrstream& out) const
+	{
+		out << m_ObjectId << " ";
+		//out << m_viewId << " ";
+	}
+
+
+	virtual const char* GetName(void) const
+	{
+		return "EvtData_New_Actor";
+	}
+
+	const ObjectId GetActorId(void) const
+	{
+		return m_ObjectId;
+	}
+
+	/*GameViewId GetViewId(void) const
+	{
+		return m_viewId;
+	}*/
+};
 
 //---------------------------------------------------------------------------------------------------------------------
 // EvtData_Destroy_Actor - sent when actors are destroyed	
 //---------------------------------------------------------------------------------------------------------------------
-//class EvtData_Destroy_Actor : public BaseEventData
-//{
-//	ActorId m_id;
-//
-//public:
-//	static const EventType sk_EventType;
-//
-//	explicit EvtData_Destroy_Actor(ActorId id = INVALID_ACTOR_ID)
-//		: m_id(id)
-//	{
-//		//
-//	}
-//
-//	virtual const EventType& VGetEventType(void) const
-//	{
-//		return sk_EventType;
-//	}
-//
-//	virtual IEventDataPtr VCopy(void) const
-//	{
-//		return IEventDataPtr(GCC_NEW EvtData_Destroy_Actor(m_id));
-//	}
-//
-//	virtual void VSerialize(std::ostrstream &out) const
-//	{
-//		out << m_id;
-//	}
-//
-//	virtual void VDeserialize(std::istrstream& in)
-//	{
-//		in >> m_id;
-//	}
-//
-//	virtual const char* GetName(void) const
-//	{
-//		return "EvtData_Destroy_Actor";
-//	}
-//
-//	ActorId GetId(void) const { return m_id; }
-//};
+
 
 
 //---------------------------------------------------------------------------------------------------------------------

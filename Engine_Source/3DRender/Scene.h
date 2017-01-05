@@ -23,6 +23,7 @@ public:
 	void OnRestore();
 	void OnLostDevice();
 	void OnUpdate(const int deltaMilliseconds);
+	void DestroyActorDelegate(IEventDataPtr pEventData);
 	std::shared_ptr<ISceneNode> FindActor(ObjectId id);
 	bool AddChild(ObjectId id, std::shared_ptr<ISceneNode> kid);
 	bool RemoveChild(ObjectId id);
