@@ -24,20 +24,9 @@ public:
 	GLuint          program;
 	GLuint          vao,u_Pos,VBO, ProjectionMatrixID, ModelMatrixID,ViewMatrixID;
 	mat4 ProjectionMat, ModelMatrix, ViewMat;
-
 	
-
-
-	
-	
-		BVSphere() 
-		{
-		
-		}
-		~BVSphere() {
-			
-		}
-		 
+	BVSphere(){}
+	~BVSphere(){}		 
 };
 class Plane 
 {
@@ -60,7 +49,7 @@ public:
 	float ScalerNorm() const {
 		return sqrt(a*a + b*b + c*c);
 	}
-	void PlaneTransform(mat4 InvMVmat);
+	
 	GLfloat a, b, c, d;
 private:
 	bool TestSphereHalfSpace(BVSphere s) const;
@@ -113,7 +102,7 @@ class GraphicsDebug;
 class Frustum {
 public:
 	enum Side { Near, Far, Top, Right, Bottom, Left, NumPlanes };
-	//GraphicsDebug* dbg;
+	std::shared_ptr<GraphicsDebug> dbg;
 	Plane m_Planes[NumPlanes];	// planes of the frustum in camera space
 	vec3 m_NearClip[4];			// verts of the near clip plane in camera space
 	vec3 m_FarClip[4];			// verts of the far clip plane in camera space
@@ -133,9 +122,9 @@ public:
 	void SetNear(float nearClip) { m_Near = nearClip; Init(m_Fov, m_Aspect, m_Near, m_Far); }
 	void SetFar(float farClip) { m_Far = farClip; Init(m_Fov, m_Aspect, m_Near, m_Far); }*/
 	void Init(const float fov, const float aspect, const float near, const float far);
-	void Init(mat4);
-	void Init(const float fov, const float aspect, const float nearClip, const float farClip, CameraNode* cam, mat4 InMat);
-	void render();
+	
+	void RenderInit();
+	
 	void Render();
 
 };

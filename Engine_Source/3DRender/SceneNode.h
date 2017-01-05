@@ -69,14 +69,10 @@ public:
 	SceneNode();
 	SceneNode(ObjectId Id, WeakBaseRenderComponentPtr renderComponent, RenderPass renderPass)
 	{
-		
 		m_Props.m_RenderPass = renderPass;
 		m_Props.m_Id = Id;
-		
-
 	}
-	
-	void SetMeshList(std::vector<Mesh> inMesh);
+		void SetMeshList(std::vector<Mesh> inMesh);
 
 	virtual ~SceneNode();
 
@@ -98,12 +94,6 @@ public:
 	virtual void VOnLostDevice(Scene *pScene);
 	virtual ObjectId GetObjectId()const { return m_Props.m_Id; }
 	BVSphere GetBVSphere()const { return m_Props.m_BVsphere; }
-
-	
-
-
-	
-
 	virtual const vec3 GetWorldPosition() const {
 		vec4 Wposition = m_Props.m_ToWorld[3];
 		if (Wposition.w != 1)
@@ -111,16 +101,8 @@ public:
 
 		else return glm::vec3(m_Props.m_ToWorld[3]);
 	}					
-
-	
-
 	void SetRadius(const float radius) { m_Props.m_BVsphere.radius = radius; }
 	void SetSpherePosition(const vec3 InPos) { m_Props.m_BVsphere.position = InPos; }
-
-
-
-
-	
 	
 };
 
@@ -171,7 +153,8 @@ public:
 	virtual bool VPreRender(Scene* pScene) override;
 	virtual void VOnUpdate(Scene *, unsigned long const elapsedMs)override;
 	virtual bool VIsVisible(Scene * pScene) const;
-	vec3 getPosition() {
+	vec3 getPosition() 
+	{
 		return vec3(ModelMatrix[3]);
 	}
 	virtual const vec3 GetWorldPosition() const {
@@ -267,10 +250,9 @@ public:
 	CubemapNode(const ObjectId Id,
 		WeakBaseRenderComponentPtr renderComponent,
 		RenderPass renderPass, const char* shaderV, const char* shaderF, const char* meshPath)
-		: SceneNode(Id, renderComponent, renderPass) {
-		
-		
-			NodeShader.reset(new Shaders(shaderV,shaderF ) );
+		: SceneNode(Id, renderComponent, renderPass) 
+	{
+		NodeShader.reset(new Shaders(shaderV,shaderF ) );
 		LoadUtility::loadModel(m_Meshes, meshPath ,MeshType::SKYBOX);
 		SetUniforms();
 

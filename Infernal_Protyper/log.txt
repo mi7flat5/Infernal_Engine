@@ -13172,3 +13172,13 @@ failed to trigger
 01-05-2017 15-12-19: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
 01-05-2017 15-12-19: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
 01-05-2017 15-12-21: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-05-2017 15-31-49: Successfully added delegate for event type: af4aff75
+01-05-2017 15-31-49: Successfully added delegate for event type: 8d683bf7
+01-05-2017 15-31-49: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-05-2017 15-31-49: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-05-2017 15-31-49: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-05-2017 15-31-50: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-05-2017 15-31-50: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-05-2017 15-31-50: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-05-2017 15-31-50: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-05-2017 15-31-51: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
