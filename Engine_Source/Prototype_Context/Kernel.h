@@ -14,7 +14,7 @@ class Kernel
 	std::shared_ptr<MovementController> m_pController;
 	void init();
 	void update();
-
+	ObjectFactory maker;
 public:
 
 	

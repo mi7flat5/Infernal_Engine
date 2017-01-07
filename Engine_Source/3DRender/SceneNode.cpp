@@ -13,9 +13,7 @@ void SceneNode::SetMeshList(std::vector<Mesh> inMesh)
 }
 
 
-SceneNode::~SceneNode()
-{
-}
+
 
 void SceneNode::VSetTransform(const mat4 * toWorld, const mat4 * fromWorld)
 {
@@ -102,8 +100,12 @@ bool SceneNode::VRemoveChild(ObjectId id)
 
 		if (pProps->GetId() != INVALID_OBJECT_ID && id == pProps->GetId())
 		{
-
+			char a[5];
+			long b = (*i).use_count();
+			itoa(b, a, 10);
+			EDITOR_LOG(a)
 			
+				
 				i = m_Children.erase(i);	//this can be expensive for vectors
 			return true;
 		}
@@ -299,27 +301,20 @@ bool CubemapNode::VPreRender(Scene * pScene)
 	glm::mat4 CubeProjection = pScene->GetCamera()->GetProjection();
 	glUniformMatrix4fv(ProjectionMatrixID, 1, GL_FALSE, &CubeProjection[0][0]);
 	glUniformMatrix4fv(ViewMatrixID, 1, GL_FALSE, &CubeView[0][0]);
-	glBindVertexArray(m_Meshes[0].VAO);
-	glDepthMask(GL_FALSE);
-	glDepthFunc(GL_LEQUAL);
-	glDisable(GL_CULL_FACE);
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_CUBE_MAP, m_Meshes[0].textures[0].id);
+
 	return true;
 }
 
 void CubemapNode::VRender(Scene * pScene)
 {
-	glDrawElements(GL_TRIANGLES, m_Meshes[0].indices.size(), GL_UNSIGNED_INT, 0);
+	for (int i = 0;i < m_Meshes.size();++i)
+		m_Meshes[i].DrawMesh(MeshType::SKYBOX);
+	
 }
 
 void CubemapNode::VPostRender(Scene * pScene)
 {
-	glBindTexture(GL_TEXTURE_3D, 0);
-	glEnable(GL_CULL_FACE);
-	glDepthFunc(GL_LESS);
-	glDepthMask(GL_TRUE);
-	glBindVertexArray(0);
+
 }
 
 void OGLMeshNode::VRender(Scene * pScene)
@@ -327,7 +322,7 @@ void OGLMeshNode::VRender(Scene * pScene)
 	NodeShader->Use();
 	for (int i = 0;i < m_Meshes.size();i++)
 	{
-		m_Meshes[i].DrawMesh(NodeShader->getProgram(), MeshType::NO_TEXTURE);
+		m_Meshes[i].DrawMesh(MeshType::NO_TEXTURE);
 	}
 
 }
@@ -373,70 +368,4 @@ bool OGLMeshNode::VIsVisible(Scene * pScene) const
 	return false;
 
 }
-void TerrainNode::VOnUpdate(Scene *, unsigned long const elapsedMs)
-{
 
-}
-bool TerrainNode::VPreRender(Scene *pScene)
-{
-	NodeShader->Use();
-	ViewMat = pScene->GetCamera()->GetView();
-	ProjectionMat = pScene->GetCamera()->GetProjection();
-	glUniform1f(DispLevelID, DispLevel);
-	glUniformMatrix4fv(ProjectionMatrixID, 1, GL_FALSE, &ProjectionMat[0][0]);
-	glUniformMatrix4fv(ModelMatrixID, 1, GL_FALSE, &ModelMatrix[0][0]);
-	glUniformMatrix4fv(ViewMatrixID, 1, GL_FALSE, &ViewMat[0][0]);
-
-	return true;
-}
-
-void TerrainNode::VRender(Scene *pScene)
-{
-	for (int i = 0;i < m_Meshes.size();i++)
-	{
-		m_Meshes[i].DrawMesh(NodeShader->getProgram(), MeshType::TERRAIN);
-	}
-
-}
-
-void TerrainNode::VPostRender(Scene *pScene)
-{
-
-}
-//TerrainNode::~TerrainNode() {
-//
-//	if (HeightMapImage)
-//		SOIL_free_image_data(HeightMapImage);
-//}
-void TerrainNode::SetMinMaxBoundry()
-{
-	MaxZ = (32 * Scale * (64 + Height)) / Height;
-	MaxX = (32 * Scale * (64 + Width)) / Width;
-
-	MinX = -MaxX;
-	MinZ = -MaxZ;
-
-	MaxX = MaxX - Scale;
-	MaxZ = MaxZ - Scale;
-}
-void TerrainNode::SetScale(GLuint InScale) {
-	Scale = InScale;
-	
-	ModelMatrix = Transform::scale(Scale, 1.0, Scale);
-	ModelMatrix = ModelMatrix * Transform::translate(0, -20, 0);
-	SetMinMaxBoundry();
-}
-GLuint TerrainNode::GetHeight(glm::vec3 Position)
-{
-	GLuint XLow = floor(Position.x * (Width / 2) / (32 * Scale) + 32 + (Width / 2));
-	GLuint ZLow = floor(Position.z * (Height / 2) / (32 * Scale) + 32 + (Height / 2));
-
-	if (XLow < 1 || ZLow < 1)
-		return LastValidHeight;
-	//GLuint wraps at 0
-	if ((XLow > Width - 2) || (ZLow > Height - 2))
-		return LastValidHeight;
-
-	LastValidHeight = (GLuint)HeightMapImage[((ZLow*Width) + XLow) * 3];
-	return LastValidHeight;
-}

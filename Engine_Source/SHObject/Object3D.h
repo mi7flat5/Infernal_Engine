@@ -19,7 +19,7 @@ public:
 
 	bool Init(tinyxml2::XMLElement* pData);
 	void PostInit(void);
-	void Destroy(void);
+	void Destroy(void) { m_components.clear(); }
 	void Update(int deltaMs);
 
 	ObjectId GetId() const { return m_Id; }

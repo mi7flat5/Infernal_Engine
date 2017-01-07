@@ -19,17 +19,22 @@ in TCS_OUT
 {
     vec2 tc;
 	vec2 tc2;
+	vec4 tanLightPos;
 	vec4 norm;
+	vec4 tang;
+	vec4 bittang;
 } tes_in[];
 
 out TES_OUT
 {
     vec2 tc;
 	vec2 tc2;
+	vec3 tanLightPos;
     vec3 world_coord;
     vec3 eye_coord;
 	vec4 norm;
-
+	vec4 tang;
+	vec4 bittang;
 	
 } tes_out;
 
@@ -41,22 +46,48 @@ void main(void)
 	 tc1 = mix(tes_in[0].tc2, tes_in[1].tc2, gl_TessCoord.x);
      tc2 = mix(tes_in[2].tc2, tes_in[3].tc2, gl_TessCoord.x);
 	 tc2 = mix(tc2, tc1, gl_TessCoord.y);
-	 vec4 norm1 = mix(tes_in[0].norm, tes_in[1].norm, gl_TessCoord.x);
+	
+	vec4 norm1 = mix(tes_in[0].norm, tes_in[1].norm, gl_TessCoord.x);
     vec4 norm2 = mix(tes_in[2].norm, tes_in[3].norm, gl_TessCoord.x);
 	vec4  n = mix(norm2, norm1, gl_TessCoord.y);
-	n.y += texture(material.texture_displacement1, tc).r *200.0;
-    vec4 p1 = mix(gl_in[0].gl_Position, gl_in[1].gl_Position, gl_TessCoord.x);
+	//n.y += texture(material.texture_displacement1, tc).r *253.0;
+	
+	vec4 tang1 = mix(tes_in[0].tang, tes_in[1].tang, gl_TessCoord.x);
+    vec4 tang2 = mix(tes_in[2].tang, tes_in[3].tang, gl_TessCoord.x);
+	vec4  t = mix(tang2, tang1, gl_TessCoord.y);
+	//t.y += texture(material.texture_displacement1, tc).r *253.0;
+	
+	vec4 bittang1 = mix(tes_in[0].bittang, tes_in[1].bittang, gl_TessCoord.x);
+    vec4 bittang2 = mix(tes_in[2].bittang, tes_in[3].bittang, gl_TessCoord.x);
+	vec4  bt = mix(bittang2, bittang1, gl_TessCoord.y);
+	//bt.y += texture(material.texture_displacement1, tc).r *253.0;
+  
+  vec4 tlp1 = mix(tes_in[0].tanLightPos, tes_in[0].tanLightPos, gl_TessCoord.x);
+    vec4 tlp2 = mix(tes_in[0].tanLightPos, tes_in[0].tanLightPos, gl_TessCoord.x);
+	vec4  tlp = mix(tlp2, tlp1, gl_TessCoord.y);
+  
+	vec4 p1 = mix(gl_in[0].gl_Position, gl_in[1].gl_Position, gl_TessCoord.x);
     vec4 p2 = mix(gl_in[2].gl_Position, gl_in[3].gl_Position, gl_TessCoord.x);
     vec4 p = mix(p2, p1, gl_TessCoord.y);
-    p.y += texture(material.texture_displacement1, tc).r *253.555;
+    p.y += texture(material.texture_displacement1, tc).r *253.0;
 
     vec4 P_eye = View*Model * p;
 	vec4 N_eye = View*Model* n;
-
+	vec4 T_eye = View*Model* t;
+	vec4 BT_eye = View*Model* bt;
+	vec4 outTlp = View*Model*tlp;
+	
+	
     tes_out.tc = tc;
 	tes_out.tc2 = tc2;
+	
     tes_out.world_coord = p.xyz;
     tes_out.eye_coord = P_eye.xyz;
-	tes_out.norm = Projection * N_eye;
+	
+	tes_out.tanLightPos = tlp1.xyz;
+	tes_out.norm = n;
+	tes_out.tang = t;
+	tes_out.bittang = bt;
+	
     gl_Position = Projection *P_eye;
 }

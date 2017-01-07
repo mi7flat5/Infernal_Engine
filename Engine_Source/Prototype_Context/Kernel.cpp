@@ -11,9 +11,9 @@ Kernel::Kernel()
 
 void Kernel::runApp()
 {
-	ObjectFactory maker;
+	
 	StrongObjectPtr a = maker.CreateActor(INVALID_OBJECT_ID,"..//XML//ReflectiveTeapot.xml");
-	maker.CreateActor(INVALID_OBJECT_ID, "..//XML//cubemap.xml");
+	StrongObjectPtr z = maker.CreateActor(INVALID_OBJECT_ID, "..//XML//cubemap.xml");
 	StrongObjectPtr d = maker.CreateActor(INVALID_OBJECT_ID, "..//XML//box.xml");
 	//(
 	std::shared_ptr<MeshRenderComponent>b( a->GetComponent<MeshRenderComponent>("MeshRenderComponent"));
@@ -25,18 +25,18 @@ void Kernel::runApp()
 
 	m_pCamera->SetTarget(c);
 	vec3 tmpmover;
-	//tmpmover.x = 2*cos(glfwGetTime());
-	//c->setPosition(vec3(0,0,10));
+	tmpmover.x = 2*cos(glfwGetTime());
+	c->setPosition(vec3(0,0,10));
 	//f->setScale(Transform::scale(30, 15, 15));
 	
 	maker.CreateActor(INVALID_OBJECT_ID, "..//XML//Terrain.xml");
 	
 	while (!glfwWindowShouldClose(pContext))
 	{
-		tmpmover.x = 25*cos(glfwGetTime());
-		tmpmover.y = 45 * sin(glfwGetTime()*2);
-		//tmpmover.z=10;
-		//f->setScale(Transform::scale(15, 15, 15));
+		tmpmover.x = 25 * cos(glfwGetTime());
+		tmpmover.y = 45 * sin(glfwGetTime() * 2);
+		tmpmover.z=10;
+		f->setScale(Transform::scale(15, 15, 15));
 		
 		update();
 		//f->setPosition(tmpmover);

@@ -11,6 +11,7 @@ struct Material {
     float shininess;
 }; 
 uniform Material material;
+uniform vec3 light; 
 uniform bool enable_fog = true;
 uniform vec4 fog_color = vec4(0.1, 0.1, 0.1, 0.0);
 float density = 0.008;
@@ -21,11 +22,21 @@ in TES_OUT
 {
     vec2 tc;
 	vec2 tc2;
+	vec3 tanLightPos;
     vec3 world_coord;
     vec3 eye_coord;
 	vec4 norm;
+	vec4 tang;
+	vec4 bittang;
 } fs_in;
 uniform vec3 viewPos;
+
+
+vec3 Tangent_Normal()
+{
+	vec3 TangNorm = texture(material.texture_normal1,fs_in.tc2).rgb;
+	return normalize(TangNorm*2.0-1.0);
+}
 vec4 fog(vec4 c)
 {
     float z = length(viewPos);
@@ -42,7 +53,13 @@ vec4 fog(vec4 c)
 void main(void)
 {
 	
+		
+	
+	
     vec4 landscape = texture(material.texture_diffuse1, fs_in.tc2);
+	vec3 lightDir = normalize(fs_in.tanLightPos-vec3(fs_in.tang) );
+	float diff = max(dot(lightDir,Tangent_Normal()), 0.0);
+	landscape = diff * landscape;
 
     if (enable_fog)
     {

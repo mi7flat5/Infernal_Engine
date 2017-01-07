@@ -73,6 +73,7 @@ bool Scene::RemoveChild(ObjectId id)
 		
 		return false;
 	}
+	
 	m_ObjectMap.erase(id);
 	
 	return m_Root->VRemoveChild(id);

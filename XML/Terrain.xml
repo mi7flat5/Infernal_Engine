@@ -1,4 +1,4 @@
 <Terrain type="Terrain" resource="..//XML/Terrain.xml">
-    <TerrainRenderComponent>
-     </TerrainRenderComponent>
+	<TerrainRenderComponent>
+  	</TerrainRenderComponent>
 </Terrain>

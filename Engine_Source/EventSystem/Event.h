@@ -13,8 +13,18 @@
 class EvtData_Log_Data;
 void RegisterEngineScriptEvents(void);
 
-#define EDITOR_LOG(str) {std::shared_ptr<EvtData_Log_Data> SoMeThinGIdNeverNameANyTHInGElSe(INFERNAL_NEW EvtData_Log_Data(std::string(str)));\
-IEventManager::Get()->VQueueEvent(SoMeThinGIdNeverNameANyTHInGElSe);}\
+
+
+#ifndef PROTOTYPER
+	#define EDITOR_LOG(str) {std::shared_ptr<EvtData_Log_Data> SoMeThinGIdNeverNameANyTHInGElSe(INFERNAL_NEW EvtData_Log_Data(std::string(str)));\
+	IEventManager::Get()->VQueueEvent(SoMeThinGIdNeverNameANyTHInGElSe);}\
+
+#else
+	#define EDITOR_LOG(str) std::cout<<std::string(str)<<std::endl;
+#endif // !PROTOTYPER
+
+
+
 
 class EvtData_Log_Data : public BaseEventData
 {

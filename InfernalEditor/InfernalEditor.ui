@@ -142,17 +142,26 @@
         <height>10</height>
        </size>
       </property>
+      <property name="cursor">
+       <cursorShape>CrossCursor</cursorShape>
+      </property>
       <property name="mouseTracking">
        <bool>true</bool>
       </property>
       <property name="focusPolicy">
-       <enum>Qt::NoFocus</enum>
+       <enum>Qt::StrongFocus</enum>
       </property>
       <property name="contextMenuPolicy">
        <enum>Qt::PreventContextMenu</enum>
       </property>
+      <property name="acceptDrops">
+       <bool>true</bool>
+      </property>
       <property name="autoFillBackground">
        <bool>true</bool>
+      </property>
+      <property name="inputMethodHints">
+       <set>Qt::ImhHiddenText</set>
       </property>
      </widget>
     </item>

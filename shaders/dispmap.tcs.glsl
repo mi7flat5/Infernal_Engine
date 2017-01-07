@@ -6,7 +6,10 @@ in VS_OUT
 {
     vec2 tc;
 	vec2 tc2;
+	vec4 tanLightPos;
 	vec4 norm;
+	vec4 tang;
+	vec4 bittang;
 	
 } tcs_in[];
 
@@ -14,7 +17,10 @@ out TCS_OUT
 {
     vec2 tc;
 	vec2 tc2;
+	vec4 tanLightPos;
 	vec4 norm;
+	vec4 tang;
+	vec4 bittang;
 	
 } tcs_out[];
 
@@ -37,5 +43,8 @@ void main(void)
     tcs_out[gl_InvocationID].tc = tcs_in[gl_InvocationID].tc;
 	tcs_out[gl_InvocationID].tc2 = tcs_in[gl_InvocationID].tc2;
 	tcs_out[gl_InvocationID].norm = tcs_in[gl_InvocationID].norm;
+	tcs_out[gl_InvocationID].tang = tcs_in[gl_InvocationID].tang;
+	tcs_out[gl_InvocationID].bittang = tcs_in[gl_InvocationID].bittang;
+	tcs_out[gl_InvocationID].tanLightPos = tcs_in[gl_InvocationID].tanLightPos;
 	
 }

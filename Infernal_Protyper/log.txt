@@ -13182,3 +13182,183 @@ failed to trigger
 01-05-2017 15-31-50: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
 01-05-2017 15-31-50: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
 01-05-2017 15-31-51: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-06-2017 14-55-17: Successfully added delegate for event type: af4aff75
+01-06-2017 14-55-17: Successfully added delegate for event type: 8d683bf7
+01-06-2017 14-55-17: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-06-2017 14-55-17: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-06-2017 14-57-20: Successfully added delegate for event type: af4aff75
+01-06-2017 14-57-20: Successfully added delegate for event type: 8d683bf7
+01-06-2017 14-57-20: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-06-2017 14-57-20: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-06-2017 14-58-55: Successfully added delegate for event type: af4aff75
+01-06-2017 14-58-55: Successfully added delegate for event type: 8d683bf7
+01-06-2017 14-58-55: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-06-2017 14-58-55: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-06-2017 15-09-25: Successfully added delegate for event type: af4aff75
+01-06-2017 15-09-25: Successfully added delegate for event type: 8d683bf7
+01-06-2017 15-09-25: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-06-2017 15-09-25: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-06-2017 15-09-25: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-06-2017 15-09-25: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-06-2017 15-09-25: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-06-2017 15-09-25: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-06-2017 15-09-25: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-06-2017 15-09-27: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-06-2017 15-55-33: Successfully added delegate for event type: af4aff75
+01-06-2017 15-55-33: Successfully added delegate for event type: 8d683bf7
+01-06-2017 15-55-33: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-06-2017 15-55-33: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-06-2017 15-55-33: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-06-2017 15-55-33: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-06-2017 15-55-33: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-06-2017 15-55-33: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-06-2017 15-55-33: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-06-2017 15-55-34: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-06-2017 20-35-26: Successfully added delegate for event type: af4aff75
+01-06-2017 20-35-26: Successfully added delegate for event type: 8d683bf7
+01-06-2017 20-35-26: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-06-2017 20-35-26: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-06-2017 20-35-26: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-06-2017 20-35-26: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-06-2017 20-35-26: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-06-2017 20-35-26: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-06-2017 20-35-26: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-06-2017 20-35-27: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 17-18-12: Successfully added delegate for event type: af4aff75
+01-07-2017 17-18-12: Successfully added delegate for event type: 8d683bf7
+01-07-2017 17-18-12: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 17-18-12: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 17-18-12: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 17-18-12: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 17-18-12: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 17-18-12: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 17-18-12: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 17-18-12: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 17-18-14: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 19-29-12: Successfully added delegate for event type: af4aff75
+01-07-2017 19-29-12: Successfully added delegate for event type: 8d683bf7
+01-07-2017 19-29-12: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 19-29-12: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 19-31-35: Successfully added delegate for event type: af4aff75
+01-07-2017 19-31-35: Successfully added delegate for event type: 8d683bf7
+01-07-2017 19-31-35: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 19-31-35: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 19-36-23: Successfully added delegate for event type: af4aff75
+01-07-2017 19-36-23: Successfully added delegate for event type: 8d683bf7
+01-07-2017 19-37-47: Successfully added delegate for event type: af4aff75
+01-07-2017 19-37-47: Successfully added delegate for event type: 8d683bf7
+01-07-2017 19-39-33: Successfully added delegate for event type: af4aff75
+01-07-2017 19-39-33: Successfully added delegate for event type: 8d683bf7
+01-07-2017 20-03-41: Successfully added delegate for event type: af4aff75
+01-07-2017 20-03-41: Successfully added delegate for event type: 8d683bf7
+01-07-2017 20-06-44: Successfully added delegate for event type: af4aff75
+01-07-2017 20-06-44: Successfully added delegate for event type: 8d683bf7
+01-07-2017 20-06-44: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 20-06-44: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 20-07-29: Successfully added delegate for event type: af4aff75
+01-07-2017 20-07-29: Successfully added delegate for event type: 8d683bf7
+01-07-2017 20-07-29: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 20-07-29: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 20-08-24: Successfully added delegate for event type: af4aff75
+01-07-2017 20-08-24: Successfully added delegate for event type: 8d683bf7
+01-07-2017 20-08-24: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 20-08-24: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 20-08-50: Successfully added delegate for event type: af4aff75
+01-07-2017 20-08-50: Successfully added delegate for event type: 8d683bf7
+01-07-2017 20-08-50: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 20-08-50: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 20-11-55: Successfully added delegate for event type: af4aff75
+01-07-2017 20-11-55: Successfully added delegate for event type: 8d683bf7
+01-07-2017 20-11-55: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 20-11-56: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 20-12-16: Successfully added delegate for event type: af4aff75
+01-07-2017 20-12-16: Successfully added delegate for event type: 8d683bf7
+01-07-2017 20-12-16: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 20-12-16: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 20-16-42: Successfully added delegate for event type: af4aff75
+01-07-2017 20-16-42: Successfully added delegate for event type: 8d683bf7
+01-07-2017 20-16-42: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 20-16-42: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 20-47-29: Successfully added delegate for event type: af4aff75
+01-07-2017 20-47-29: Successfully added delegate for event type: 8d683bf7
+01-07-2017 20-47-29: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 20-47-29: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 20-48-07: Successfully added delegate for event type: af4aff75
+01-07-2017 20-48-07: Successfully added delegate for event type: 8d683bf7
+01-07-2017 20-48-07: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 20-48-07: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 20-48-15: Successfully added delegate for event type: af4aff75
+01-07-2017 20-48-15: Successfully added delegate for event type: 8d683bf7
+01-07-2017 20-48-15: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 20-48-15: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 20-53-38: Successfully added delegate for event type: af4aff75
+01-07-2017 20-53-38: Successfully added delegate for event type: 8d683bf7
+01-07-2017 20-53-38: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 20-53-38: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 20-55-15: Successfully added delegate for event type: af4aff75
+01-07-2017 20-55-15: Successfully added delegate for event type: 8d683bf7
+01-07-2017 20-55-15: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 20-55-15: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 20-57-39: Successfully added delegate for event type: af4aff75
+01-07-2017 20-57-39: Successfully added delegate for event type: 8d683bf7
+01-07-2017 20-57-39: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 20-57-40: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 20-59-41: Successfully added delegate for event type: af4aff75
+01-07-2017 20-59-41: Successfully added delegate for event type: 8d683bf7
+01-07-2017 20-59-42: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-00-18: Successfully added delegate for event type: af4aff75
+01-07-2017 21-00-18: Successfully added delegate for event type: 8d683bf7
+01-07-2017 21-00-18: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-00-18: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-00-18: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-00-18: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-00-20: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-00-45: Successfully added delegate for event type: af4aff75
+01-07-2017 21-00-45: Successfully added delegate for event type: 8d683bf7
+01-07-2017 21-00-45: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-00-45: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-00-45: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-00-45: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-00-47: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-06-29: Successfully added delegate for event type: af4aff75
+01-07-2017 21-06-29: Successfully added delegate for event type: 8d683bf7
+01-07-2017 21-07-14: Successfully added delegate for event type: af4aff75
+01-07-2017 21-07-14: Successfully added delegate for event type: 8d683bf7
+01-07-2017 21-21-38: Successfully added delegate for event type: af4aff75
+01-07-2017 21-21-38: Successfully added delegate for event type: 8d683bf7
+01-07-2017 21-21-38: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-21-38: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-21-38: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-21-38: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-21-38: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-21-38: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-21-38: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-21-38: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-21-38: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-21-38: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-21-38: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-21-38: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-21-40: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-27-18: Successfully added delegate for event type: af4aff75
+01-07-2017 21-27-18: Successfully added delegate for event type: 8d683bf7
+01-07-2017 21-27-18: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-27-18: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-27-19: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-27-19: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-27-19: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-27-19: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-27-19: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-27-19: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-27-19: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-27-19: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-27-19: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-27-19: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-27-20: Skipping event since there are no delegates registered to receive it: EvtData_Log_Data
+01-07-2017 21-38-58: Successfully added delegate for event type: af4aff75
+01-07-2017 21-38-58: Successfully added delegate for event type: 8d683bf7
+01-07-2017 21-39-35: Successfully added delegate for event type: af4aff75
+01-07-2017 21-39-35: Successfully added delegate for event type: 8d683bf7
+01-07-2017 21-43-51: Successfully added delegate for event type: af4aff75
+01-07-2017 21-43-51: Successfully added delegate for event type: 8d683bf7
+01-07-2017 21-54-49: Successfully added delegate for event type: af4aff75
+01-07-2017 21-54-49: Successfully added delegate for event type: 8d683bf7

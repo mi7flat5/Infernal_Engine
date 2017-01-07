@@ -15,7 +15,26 @@ Mesh::Mesh(const std::vector<Vertex> &inVerts, const std::vector<GLuint> &inIndi
 	ShaderMode = 0;
 	setupMesh();
 }
-Mesh::~Mesh() {  }
+Mesh::~Mesh() 
+{
+
+		
+}
+void Mesh::CleanUp()
+{
+	for (int i = 0;i < textures.size();++i)
+	{
+		glDeleteTextures(GLsizei(1), &textures[i].id);
+		char a[10];
+		int idnum = (int)textures[i].id;
+		itoa(idnum, a, 10);
+		EDITOR_LOG("Deleting texture: "+textures[i].type)
+	}
+
+	glDeleteBuffers(1, &VBO);
+	glDeleteVertexArrays(1, &VAO);
+	
+}
 void Mesh::setupMesh()
 {
 	glGenVertexArrays(1, &this->VAO);
@@ -92,7 +111,7 @@ void Mesh::setupMesh()
 	glBindVertexArray(0);
 }
 
-void Mesh::DrawMesh(GLuint ShaderID, MeshType TexType) const
+void Mesh::DrawMesh(MeshType TexType) const
 {
 
 	glBindVertexArray(this->VAO);

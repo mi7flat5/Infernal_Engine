@@ -74,7 +74,13 @@ public:
 	}
 		void SetMeshList(std::vector<Mesh> inMesh);
 
-	virtual ~SceneNode();
+		virtual ~SceneNode() 
+		{
+			for (int i = 0; i < m_Meshes.size();++i)
+			{
+				m_Meshes[i].CleanUp();
+			}
+		}
 
 	virtual const SceneNodeProperties* const VGet() const { return &m_Props; }
 
@@ -160,7 +166,7 @@ public:
 	virtual const vec3 GetWorldPosition() const {
 		return vec3(ModelMatrix[3]);
 
-	}
+	} 
 	void setPosition(vec3 inPos) {
 		this->ModelMatrix = Transform::translate(inPos.x, inPos.y, inPos.z);//*Transform::scale(3, 3, 3);
 		SetSpherePosition(inPos);
@@ -200,6 +206,8 @@ public:
 	mat4 GetProjection() { return Projection; }
 	mat4 GetView() { return View; }
 	vec3 GetFront() { return camfront; }
+	void MoveForward(float inVal) { Target += camfront*inVal; };
+	void MoveRight(float inVal) { Target += rightvec*inVal; };
 	virtual void VOnUpdate(Scene *, unsigned long const elapsedMs);
 	void ExtractPlanesGL(bool normalize);
 	void SetCamRadius(float inAdjustment) 
@@ -255,6 +263,8 @@ public:
 		NodeShader.reset(new Shaders(shaderV,shaderF ) );
 		LoadUtility::loadModel(m_Meshes, meshPath ,MeshType::SKYBOX);
 		SetUniforms();
+		for (GLuint i = 0; i < m_Meshes.size();i++)
+			m_Meshes[i].SetShader(NodeShader->getProgram());
 
 	}
 	void SetUniforms()
@@ -273,14 +283,14 @@ public:
 class TerrainNode : public SceneNode
 {
 	GLint Width, Height;
-	GLuint Scale, LastValidHeight, DispLevelID, SpecularShininessID, NormMappingID;
+	GLuint Scale, LastValidHeight, DispLevelID, SpecularShininessID, NormMappingID, lightPosLoc;
 
 	GLfloat MaxX, MaxZ, MinX, MinZ, DispLevel;
 	unsigned char * HeightMapImage;
 
 	void SetMinMaxBoundry();//move out of scene node
 	void SetScale(GLuint InScale);//move out of scene node
-	
+	vec3 lightPos;
 public:
 	TerrainNode(const ObjectId Id, WeakBaseRenderComponentPtr renderComponent, RenderPass renderPass)
 		: SceneNode(Id, renderComponent, renderPass) 
@@ -295,13 +305,14 @@ public:
 		ProjectionMatrixID = glGetUniformLocation(NodeShader->getProgram(), "Projection");
 		ViewMatrixID = glGetUniformLocation(NodeShader->getProgram(), "View");
 		ModelMatrixID = glGetUniformLocation(NodeShader->getProgram(), "Model");
-
+		lightPosLoc = glGetUniformLocation(NodeShader->getProgram(), "light");
 		for (GLuint i = 0; i < m_Meshes.size();i++)
 			m_Meshes[i].SetShader(NodeShader->getProgram());
-		
+		lightPos = vec3(0, 25, 25);
 		
 		SetScale(50);
 	}
+	virtual ~TerrainNode();
 	GLuint GetHeight(glm::vec3 Position);//move out of scene node
 	//TerrainNode(const std::string &InPath, MeshType shader);
 	virtual bool VPreRender(Scene *pScene) override;

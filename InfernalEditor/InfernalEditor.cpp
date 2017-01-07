@@ -60,17 +60,25 @@ void InfernalEditor::DeleteActor()
 void InfernalEditor::loadfile(const QString &fileName)
 {
 	tinyxml2::XMLDocument inDoc;
-	inDoc.LoadFile(fileName.toStdString().c_str());
+	std::string s(fileName.toStdString());
+	if (inDoc.LoadFile(s.c_str()))
+	{
+		EDITOR_LOG("File failed to load or is corrupt")
+			return;
+			
+	}
 	tinyxml2::XMLElement* pRoot = inDoc.FirstChildElement();
 
 	QStandardItem* Name = new QStandardItem(pRoot->Value());
 	QStandardItem* Type = new QStandardItem(pRoot->Attribute("type"));
 	
 	QList<QStandardItem *> NameAndType;
+	
 	NameAndType << Name;
 	NameAndType << Type;
 	
 	AddObjectToScene(fileName.toStdString().c_str(), NameAndType);
+	inDoc.Clear();
 
 }
 void InfernalEditor::AddObjectToScene(const char* resourcePath, QList<QStandardItem*> inItems) 

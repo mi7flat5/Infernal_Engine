@@ -93,6 +93,9 @@
     <ClInclude Include="..\Engine_Source\Utility\Logger.h">
       <Filter>Source Files\Utility</Filter>
     </ClInclude>
+    <ClInclude Include="..\Engine_Source\3DRender\GraphicsDebug.h">
+      <Filter>Source Files\3DRender</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -142,6 +145,12 @@
     </ClCompile>
     <ClCompile Include="..\Engine_Source\SHObject\RenderComponent.cpp">
       <Filter>Source Files\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\3DRender\GraphicsDebug.cpp">
+      <Filter>Source Files\3DRender</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\3DRender\TerrainNode.cpp">
+      <Filter>Source Files\3DRender</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

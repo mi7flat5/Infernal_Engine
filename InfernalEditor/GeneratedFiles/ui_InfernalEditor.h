@@ -138,10 +138,13 @@ public:
         openGLWidget->setMinimumSize(QSize(16, 9));
         openGLWidget->setSizeIncrement(QSize(16, 10));
         openGLWidget->setBaseSize(QSize(16, 10));
+        openGLWidget->setCursor(QCursor(Qt::CrossCursor));
         openGLWidget->setMouseTracking(true);
-        openGLWidget->setFocusPolicy(Qt::NoFocus);
+        openGLWidget->setFocusPolicy(Qt::StrongFocus);
         openGLWidget->setContextMenuPolicy(Qt::PreventContextMenu);
+        openGLWidget->setAcceptDrops(true);
         openGLWidget->setAutoFillBackground(true);
+        openGLWidget->setInputMethodHints(Qt::ImhHiddenText);
 
         gridLayout->addWidget(openGLWidget, 0, 0, 1, 1);
 

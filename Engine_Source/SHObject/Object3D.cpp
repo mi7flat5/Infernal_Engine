@@ -28,9 +28,7 @@ void Object3D::PostInit(void)
 	}
 }
 
-void Object3D::Destroy(void)
-{
-}
+
 
 void Object3D::Update(int deltaMs)
 {

@@ -14,7 +14,7 @@
 #undef _VS2005_
 #endif
 
-
+#define PROTOTYPER
 
 #include<map>
 #include<list>
@@ -52,7 +52,7 @@ void flogout(const char*);
 #include <iomanip>
 #include <ctime>
 
- 
+#define GLEW_STATIC
 #include"glm\glm.hpp"
 #include"glm\gtc\matrix_transform.hpp"
 #include"glm\gtc\type_ptr.hpp"

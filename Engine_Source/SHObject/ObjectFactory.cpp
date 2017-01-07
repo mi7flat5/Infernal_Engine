@@ -18,6 +18,14 @@ ObjectFactory::~ObjectFactory()
 }
 StrongObjectPtr ObjectFactory::CreateActor(ObjectId serversActorId,const char* resourcePath)
 {
+	
+	StrongObjectPtr pObject;
+	StrongObjectComponentPtr pComponent;
+	ObjectId nextObjectId = serversActorId;
+	if (nextObjectId == INVALID_OBJECT_ID)
+	{
+		nextObjectId = GetNextActorId();
+	}
 	XMLDocument doc;
 	if (doc.LoadFile(resourcePath))
 	{
@@ -31,16 +39,11 @@ StrongObjectPtr ObjectFactory::CreateActor(ObjectId serversActorId,const char* r
 		
 		return StrongObjectPtr();
 	}
-
+	pObject.reset(new Object3D(nextObjectId));
 	
-	ObjectId nextObjectId = serversActorId;
-	if (nextObjectId == INVALID_OBJECT_ID)
-	{
-		nextObjectId = GetNextActorId();
-	}
-	StrongObjectPtr pObject;
 	
-	pObject.reset(INFERNAL_NEW Object3D(nextObjectId));
+	
+	
 	if (!pObject->Init(pRoot))
 	{
 		EDITOR_LOG("Failed to initialize object returning nullptr")
@@ -50,7 +53,7 @@ StrongObjectPtr ObjectFactory::CreateActor(ObjectId serversActorId,const char* r
 	//StrongObjectComponentPtr a = VCreateComponent(std::string("CubeMapRenderComponent"));
 	for (XMLElement* pNode = pRoot->FirstChildElement(); pNode; pNode = pNode->NextSiblingElement())
 	{
-		StrongObjectComponentPtr pComponent(VCreateComponent(pNode));
+		 pComponent = std::shared_ptr<ObjectComponent>(VCreateComponent(pNode));
 		if (pComponent)
 		{
 			pComponent->SetOwner(pObject);
@@ -63,7 +66,7 @@ StrongObjectPtr ObjectFactory::CreateActor(ObjectId serversActorId,const char* r
 			return StrongObjectPtr();
 		}
 	}
-	
+	doc.Clear();
 	return pObject;
 }
 

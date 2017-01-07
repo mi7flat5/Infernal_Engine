@@ -80,6 +80,14 @@
     <OutDir>$(SolutionDir)Libraries\</OutDir>
     <TargetName>EngineLib</TargetName>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <TargetName>EngineLib64_d</TargetName>
+    <OutDir>$(SolutionDir)Libraries\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <TargetName>EngineLib64</TargetName>
+    <OutDir>$(SolutionDir)Libraries\</OutDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -107,12 +115,12 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>assimp.lib;glfw3.lib;SOIL.lib;glut32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Engine_Source\;$(ProjectDir);..\3rdPartyInclude\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>Engine.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -151,13 +159,13 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>assimp.lib;glfw3.lib;SOIL.lib;glut32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Engine_Source\;$(ProjectDir);..\3rdPartyInclude\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>Engine.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -172,6 +180,7 @@
   <ItemGroup>
     <ClInclude Include="..\Engine_Source\3DRender\CubeMap.h" />
     <ClInclude Include="..\Engine_Source\3DRender\Geometry.h" />
+    <ClInclude Include="..\Engine_Source\3DRender\GraphicsDebug.h" />
     <ClInclude Include="..\Engine_Source\3DRender\Mesh.h" />
     <ClInclude Include="..\Engine_Source\3DRender\Scene.h" />
     <ClInclude Include="..\Engine_Source\3DRender\SceneNode.h" />
@@ -195,9 +204,11 @@
   <ItemGroup>
     <ClCompile Include="..\Engine_Source\3DRender\CubeMap.cpp" />
     <ClCompile Include="..\Engine_Source\3DRender\Geometry.cpp" />
+    <ClCompile Include="..\Engine_Source\3DRender\GraphicsDebug.cpp" />
     <ClCompile Include="..\Engine_Source\3DRender\Mesh.cpp" />
     <ClCompile Include="..\Engine_Source\3DRender\Scene.cpp" />
     <ClCompile Include="..\Engine_Source\3DRender\SceneNode.cpp" />
+    <ClCompile Include="..\Engine_Source\3DRender\TerrainNode.cpp" />
     <ClCompile Include="..\Engine_Source\EventSystem\Event.cpp" />
     <ClCompile Include="..\Engine_Source\EventSystem\EventManager.cpp" />
     <ClCompile Include="..\Engine_Source\EventSystem\EventManagerImpl.cpp" />
@@ -211,6 +222,10 @@
     <ClCompile Include="Engine.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Engine.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Engine.h</PrecompiledHeaderFile>
     </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
