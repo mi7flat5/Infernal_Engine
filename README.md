@@ -33,7 +33,7 @@ An incomplete list of features that are planned for implementation soon:
 *  This project is for Visual Studio 2015
 *  You will need Qt to run the editor. You will only need Qt 5.7 for msvc2015_64 and/or msvc2015, I also recommend using the Qt add in for Visual Studio, which I've added to the zip in the current directory.
 *  Unzip UNZIP_FOR_FIRST_RUN.zip with extract here option, this should set up execution folders with needed DLL
-
+* Run project in visual studio. 
 
 
 
