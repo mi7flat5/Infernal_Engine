@@ -96,6 +96,9 @@
     <ClInclude Include="..\Engine_Source\3DRender\GraphicsDebug.h">
       <Filter>Source Files\3DRender</Filter>
     </ClInclude>
+    <ClInclude Include="..\Engine_Source\3DRender\RayPick.hpp">
+      <Filter>Source Files\3DRender</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -150,6 +153,9 @@
       <Filter>Source Files\3DRender</Filter>
     </ClCompile>
     <ClCompile Include="..\Engine_Source\3DRender\TerrainNode.cpp">
+      <Filter>Source Files\3DRender</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\3DRender\RayPick.cpp">
       <Filter>Source Files\3DRender</Filter>
     </ClCompile>
   </ItemGroup>

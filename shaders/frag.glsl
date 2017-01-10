@@ -25,7 +25,7 @@ void main()
     // Ambient
 	
 	vec3 lc = vec3(1,1,1);
-    float ambientStrength = 0.4;
+    float ambientStrength = 0.6;
     vec3 ambient = ambientStrength * lc;
   	
     // Diffuse 
@@ -36,11 +36,11 @@ void main()
     
     // Specular
 	vec3 specular;
-    float specularStrength = 0.7;
+    float specularStrength = 0.9;
 	
     vec3 viewDir =  normalize(viewPos-fragmentColor);
     vec3 reflectDir = reflect(-lightDir, norm);  
-    float spec = pow(max(dot(viewDir, reflectDir), 0.0), 32);
+    float spec = pow(max(dot(viewDir, reflectDir), 0.0), 8);
         specular = specularStrength * spec * lc;  
         
     vec3 result = (ambient + diffuse + specular)*fragmentColor;

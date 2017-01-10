@@ -33,8 +33,8 @@ void Kernel::runApp()
 	
 	while (!glfwWindowShouldClose(pContext))
 	{
-		tmpmover.x = 25 * cos(glfwGetTime());
-		tmpmover.y = 45 * sin(glfwGetTime() * 2);
+		tmpmover.x = 15 * cos(glfwGetTime());
+		tmpmover.y = 25 * sin(glfwGetTime() * 2);
 		tmpmover.z=10;
 		f->setScale(Transform::scale(15, 15, 15));
 		

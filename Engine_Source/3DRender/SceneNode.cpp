@@ -15,8 +15,9 @@ void SceneNode::SetMeshList(std::vector<Mesh> inMesh)
 
 
 
-void SceneNode::VSetTransform(const mat4 * toWorld, const mat4 * fromWorld)
+void SceneNode::VSetTransform(mat4 * toWorld, mat4 * fromWorld)
 {
+	ModelMatrix = *toWorld;
 }
 
 void SceneNode::VOnRestore(Scene * pScene)
@@ -213,7 +214,7 @@ void CameraNode::UpdateOffsetsVectors()
 	//front.y = radius * cos(glm::radians(pitch + 90));// +10; //TODO add parameter for adjusting y facing offset
 	//front.z = radius * cos(glm::radians(phi))*sin(glm::radians(theta));
 	
-	camfront = glm::normalize(campos-Target);
+	camfront = glm::normalize(Target-campos);
 	
 	vdist = radius*sin(glm::radians(pitch));
 	hdist = radius*cos(glm::radians(pitch));
@@ -236,7 +237,7 @@ void CameraNode::VRender(Scene *pScene)
 	campos.y = NewCampos.y;//Transform::Lerp(campos.y, NewCampos.y, .30);//TODO Create variable for camera y offset
 	campos.z = NewCampos.z;
 	
-	View = glm::lookAt(campos, Target, camup)*Transform::translate(0, -5, 0);
+	View = glm::lookAt(campos, Target, camup);//*Transform::translate(0, -5, 0);
 	
 }
 void CameraNode::VOnUpdate(Scene *pScene, unsigned long const elapsedMs)
@@ -335,7 +336,7 @@ bool OGLMeshNode::VPreRender(Scene * pScene)
 	vec3 campos = pScene->GetCamera()->GetCameraPosition();
 		
 	SetSpherePosition(vec3(ProjectionMat*ViewMat*ModelMatrix[3]));
-		
+	
 	vec3 lpos = vec3(0,5, -5);
 		
 	glUniform3fv(LC, 1, &lightColor[0]);

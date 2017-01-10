@@ -49,7 +49,9 @@ private:
 	void init();
 	QMainWindow* owner;
 	GLfloat rate;
-	
+	void SetSelectedDelegate(IEventDataPtr pEventData);
+	std::shared_ptr<SceneNode> m_pSelectedNode;
+	std::string m_SelectedObjectName;
 	
 };
 

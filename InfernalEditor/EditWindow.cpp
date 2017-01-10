@@ -1,9 +1,6 @@
 #include"stdafx.h"
-
 #include "EditWindow.h"
-
 #include <QMouseEvent>
-
 #include <QCoreApplication>
 #include"InfernalEditor.h"
 #include"..//Engine_Source/SHObject/Object3D.h"
@@ -12,12 +9,6 @@ void EditWindow::resizeGL(int w, int h)
 	m_pCamera->SetProjection(w,h);
 	
 }
-
-
-
-
-
-
 EditWindow::EditWindow(QWidget *parent)
 	: QOpenGLWidget(parent)
 {
@@ -27,6 +18,8 @@ EditWindow::EditWindow(QWidget *parent)
 	maker = new ObjectFactory();
 	//MainWindow = parent;
 	timer = new QTimer(this);
+
+	
 	connect(timer, SIGNAL(timeout()), this, SLOT(update()));
 	
 	AnotherTimerBecausQtIsntSoCute.start();
@@ -34,9 +27,9 @@ EditWindow::EditWindow(QWidget *parent)
 	lastX = lastY = 0;
 	Fmove=  Bmove = Lmove = Rmove= false;
 }
-
 EditWindow::~EditWindow()
 {
+	m_pEventManager->VRemoveListener(fastdelegate::MakeDelegate(this, &EditWindow::SetSelectedDelegate), EvtData_EvtRayHit::sk_EventType);
 	delete m_pCamera;
 	m_pCamera = nullptr;
 	delete m_pScene;
@@ -45,8 +38,6 @@ EditWindow::~EditWindow()
 	m_pEventManager = nullptr;
 	
 }
-
-
 
 unsigned int EditWindow::AddObjectToScene(const char* resource) 
 {
@@ -77,8 +68,10 @@ void EditWindow::init()
 {
 	makeCurrent();
 	//assert(m_pEventManager);
-	if(!m_pEventManager)
-	m_pEventManager = new EventManager("Infernal Event Mgr", true);
+	if (!m_pEventManager) {
+		m_pEventManager = new EventManager("Infernal Event Mgr", true);
+		m_pEventManager->VAddListener(fastdelegate::MakeDelegate(this, &EditWindow::SetSelectedDelegate), EvtData_EvtRayHit::sk_EventType);
+	}
 	if(!m_pScene)
 	m_pScene = new Scene();
 	if (!m_pCamera) {
@@ -95,9 +88,22 @@ void EditWindow::init()
 	}
 	
 	
-	glClearColor(0.7f, 0.2f, 0.2f, 1.0f);
+	glClearColor(0.2f, 0.2f, 0.4f, 1.0f);
 	
 }
+
+void EditWindow::SetSelectedDelegate(IEventDataPtr pEventData)
+{
+	std::shared_ptr<EvtData_EvtRayHit> pCastEventData = std::static_pointer_cast<EvtData_EvtRayHit>(pEventData);
+
+	ObjectId actorId = pCastEventData->GetActorId();
+	std::shared_ptr<ISceneNode> pSceneNode(pCastEventData->GetSceneNode());
+	if(pSceneNode)
+	m_pSelectedNode = std::static_pointer_cast<SceneNode>(pSceneNode);
+	m_SelectedObjectName = pSceneNode->VGet()->Name();
+	EDITOR_LOG(m_SelectedObjectName)
+}
+
 void EditWindow::cleanup()
 {
 	
@@ -140,12 +146,12 @@ void EditWindow::initializeGL()
 
 void EditWindow::paintGL()
 {
-	QTime a;
+	
 	GLfloat currentFrame = AnotherTimerBecausQtIsntSoCute.elapsed();
 
 	g_DeltaTime = currentFrame - lastFrame;
 	lastFrame = currentFrame;
-	rate = g_DeltaTime * 0.0200;
+	rate = g_DeltaTime * 0.00700;
 	
 	if (Rmove) {
 		MoveRight(rate);
@@ -154,26 +160,20 @@ void EditWindow::paintGL()
 		MoveRight(-rate);
 	}
 	if (Fmove) {
-		MoveForward(-rate);
+		MoveForward(rate);
 	}
 	if (Bmove)
-		MoveForward(rate);
-	
-	
+		MoveForward(-rate);
 
+	if (m_pSelectedNode)
+		m_pSelectedNode->VSetTransform(&Transform::translate(12*cos(currentFrame*.001),1,18*sin(currentFrame*.001)));
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
-	
-	m_pScene->OnUpdate(g_DeltaTime);//g_deltatime in Engine.h, will need to be managed somewhere in the editor
-
+	m_pScene->OnUpdate(g_DeltaTime);
 	
 	m_pScene->OnRender();
 	m_pEventManager->VUpdate(1);
-	
-	
 }
-
-
 
 void EditWindow::wheelEvent(QWheelEvent *event) 
 {
@@ -182,7 +182,10 @@ void EditWindow::wheelEvent(QWheelEvent *event)
 
 void EditWindow::mousePressEvent(QMouseEvent *event)
 {
+	std::shared_ptr<EvtData_RayCast> pEvent(INFERNAL_NEW EvtData_RayCast(width(),height(), event->x(), event->y()));
+	IEventManager::Get()->VQueueEvent(pEvent);
 	
+
 }
 
 void EditWindow::mouseReleaseEvent(QMouseEvent *event) 
@@ -195,26 +198,18 @@ void EditWindow::keyReleaseEvent(QKeyEvent *event)
 	if (!event->isAutoRepeat()) {
 		if (event->key() == Qt::Key_W)
 		{
-			
-
 			Fmove = false;
 		}
 		if (event->key() == Qt::Key_S)
 		{
-		
-
 			Bmove = false;
 		}
 		if (event->key() == Qt::Key_D)
 		{
-		
-
 			Rmove = false;
 		}
 		if (event->key() == Qt::Key_A)
 		{
-		
-
 			Lmove = false;
 		}
 	}
@@ -227,35 +222,27 @@ void EditWindow::keyPressEvent(QKeyEvent *event)
 	if (!event->isAutoRepeat()) {
 		if (event->key() == Qt::Key_W)
 		{
-			event->accept();
-			
 			Fmove = true;
 		}
 		if (event->key() == Qt::Key_S)
 		{
-			event->accept();
-
 			Bmove = true;
 		}
 
 		if (event->key() == Qt::Key_A)
 		{
-			event->accept();
-
 			Lmove = true;
 		}
 		if (event->key()== Qt::Key_D)
 		{
-			
-
-				Rmove = true;
+			Rmove = true;
 		}
 	}
 }
 void EditWindow::MoveForward(float rate) { m_pCamera->MoveForward(3.5f*rate); }
 
-
 void EditWindow::MoveRight(float rate) { m_pCamera->MoveRight(3.5f*rate); }
+
 void EditWindow::mouseMoveEvent(QMouseEvent *event)
 {
 	double xpos, ypos;
@@ -297,6 +284,7 @@ void EditWindow::mouseMoveEvent(QMouseEvent *event)
 
 	lastX = xpos;
 	lastY = ypos;
+	
 }
 
 

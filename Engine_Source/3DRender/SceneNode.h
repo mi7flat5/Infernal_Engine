@@ -19,14 +19,14 @@ class SceneNodeProperties
 {
 	friend class SceneNode;
 
-protected:
+public:
 	ObjectId                 m_Id;
 	std::string				m_Name;
 	mat4					m_ToWorld, m_FromWorld;
 	
 	RenderPass				m_RenderPass;
 
-public:
+
 	
 	SceneNodeProperties(void);
 	const ObjectId &GetId() const { return m_Id; }
@@ -84,7 +84,7 @@ public:
 
 	virtual const SceneNodeProperties* const VGet() const { return &m_Props; }
 
-	virtual void VSetTransform(const mat4 *toWorld, const mat4 *fromWorld = NULL);
+	virtual void VSetTransform( mat4 *toWorld,  mat4 *fromWorld = NULL);
 
 	virtual void VOnRestore(Scene *pScene);
 	virtual void VOnUpdate(Scene *, unsigned long const elapsedMs);
@@ -99,13 +99,11 @@ public:
 	virtual bool VRemoveChild(ObjectId id);
 	virtual void VOnLostDevice(Scene *pScene);
 	virtual ObjectId GetObjectId()const { return m_Props.m_Id; }
-	BVSphere GetBVSphere()const { return m_Props.m_BVsphere; }
-	virtual const vec3 GetWorldPosition() const {
-		vec4 Wposition = m_Props.m_ToWorld[3];
-		if (Wposition.w != 1)
-			return glm::vec3(Wposition) / Wposition.w;
-
-		else return glm::vec3(m_Props.m_ToWorld[3]);
+	BVSphere GetBVSphere() const{ return m_Props.m_BVsphere; }
+	BVSphere *GetBVSphereRefernce()  { return &m_Props.m_BVsphere; }
+	virtual const vec3 GetWorldPosition() const 
+	{
+		return glm::vec3(m_Props.m_ToWorld[3]);
 	}					
 	void SetRadius(const float radius) { m_Props.m_BVsphere.radius = radius; }
 	void SetSpherePosition(const vec3 InPos) { m_Props.m_BVsphere.position = InPos; }
@@ -134,7 +132,7 @@ public:
 		RenderPass renderPass, const char* shaderV, const char* shaderF, const char* meshPath)
 		: SceneNode(Id, renderComponent, renderPass)
 	{
-
+		m_Props.m_Name = "OGLMeshNode";
 		NodeShader.reset(new Shaders(shaderV, shaderF));
 		LoadUtility::loadModel(m_Meshes, meshPath, MeshType::NO_TEXTURE);
 		for (GLuint i = 0; i < m_Meshes.size();i++)
@@ -142,8 +140,9 @@ public:
 		SetUniforms();
 		ModelMatrix = mat4(1.0f);
 		vec3 lpos = vec3(0, 5, -5);
-		SetRadius(1);
+		SetRadius(3);
 		
+		SetSpherePosition(vec3(ModelMatrix[3]));
 
 	}
 	void SetUniforms()
@@ -201,13 +200,15 @@ public:
 		Projection = glm::perspective(110.0f, (float)WIDTH / HEIGHT, 0.1f, 1800.0f);
 		m_Frustum.Init(glm::radians(110.0), (float)WIDTH / HEIGHT, 0.01f, 1800.0f);
 		UpdateOffsetsVectors();
-
+		SetRadius(0);
+		m_Props.m_Name = "CameraNode";
 	}
 	mat4 GetProjection() { return Projection; }
 	mat4 GetView() { return View; }
 	vec3 GetFront() { return camfront; }
 	void MoveForward(float inVal) { Target += camfront*inVal; };
 	void MoveRight(float inVal) { Target += rightvec*inVal; };
+	void ReportPosition(){EDITOR_LOG("CamPos: "+ToStr(campos.x)+" "+ToStr(campos.y)+" "+ToStr(campos.z)) }
 	virtual void VOnUpdate(Scene *, unsigned long const elapsedMs);
 	void ExtractPlanesGL(bool normalize);
 	void SetCamRadius(float inAdjustment) 
@@ -243,7 +244,7 @@ public:
 	void SetProjection(GLuint width, GLuint height) 
 	{ 
 		Projection = glm::perspective(90.0f, (float)width / height, 0.1f, 1800.0f);
-		m_Frustum.Init(glm::radians(90.0), (float)WIDTH / HEIGHT, 0.01f, 1000.0f);
+		m_Frustum.Init(glm::radians(90.0), (float)WIDTH / HEIGHT, 0.1f, 1800.0f);
 		//glViewport(0, 0, width, height);
 		//EDITOR_LOG(std::string(std::string("Projection set ")+"Height: "+ ToStr(height) +" Width: " + ToStr(width)))
 	}
@@ -265,7 +266,8 @@ public:
 		SetUniforms();
 		for (GLuint i = 0; i < m_Meshes.size();i++)
 			m_Meshes[i].SetShader(NodeShader->getProgram());
-
+		SetRadius(0);
+		m_Props.m_Name = "CubemapNode";
 	}
 	void SetUniforms()
 	{
@@ -309,8 +311,9 @@ public:
 		for (GLuint i = 0; i < m_Meshes.size();i++)
 			m_Meshes[i].SetShader(NodeShader->getProgram());
 		lightPos = vec3(0, 25, 25);
-		
+		SetRadius(0);
 		SetScale(50);
+		m_Props.m_Name = "TerrainNode";
 	}
 	virtual ~TerrainNode();
 	GLuint GetHeight(glm::vec3 Position);//move out of scene node

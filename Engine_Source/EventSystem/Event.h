@@ -23,6 +23,22 @@ void RegisterEngineScriptEvents(void);
 	#define EDITOR_LOG(str) std::cout<<std::string(str)<<std::endl;
 #endif // !PROTOTYPER
 
+//class EvtData_EvtTemplate : public BaseEventData
+//{
+//
+//public:
+//	explicit EvtData_EvtTemplate() {}
+//	virtual const EventType& VGetEventType(void) const { return  sk_EventType; }
+//	virtual IEventDataPtr VCopy(void) const
+//	{
+//		return IEventDataPtr(new EvtData_EvtTemplate());
+//	}
+//	virtual const char* GetName(void) const
+//	{
+//		return "Event_Name_Here";
+//	}
+//	static const EventType sk_EventType;
+//};
 
 
 
@@ -47,6 +63,60 @@ public:
 	static const EventType sk_EventType;
 };
 
+class EvtData_RayCast : public BaseEventData
+{
+public:
+	unsigned int Width, Height;
+	float x, y;
+	explicit EvtData_RayCast(const unsigned int w, const unsigned int h, const float inX, const float inY)
+		:Width(w), Height(h), x(inX), y(inY) {
+		
+	}
+
+	virtual const EventType& VGetEventType(void) const { return  sk_EventType; }
+
+
+	virtual IEventDataPtr VCopy(void) const
+	{
+		return IEventDataPtr(new EvtData_RayCast(Width, Height, x, y));
+	}
+	virtual const char* GetName(void) const
+	{
+		return "EvtData_RayCast";
+	}
+	static const EventType sk_EventType;
+};
+class EvtData_EvtRayHit : public BaseEventData
+{
+	ObjectId m_ObjectId;
+	std::shared_ptr<ISceneNode> m_pSceneNode;
+public:
+	explicit EvtData_EvtRayHit(ObjectId actorId, std::shared_ptr<ISceneNode> pSceneNode)
+		: m_ObjectId(actorId),
+		m_pSceneNode(pSceneNode) {}
+	
+	virtual const EventType& VGetEventType(void) const { return  sk_EventType; }
+	virtual IEventDataPtr VCopy(void) const
+	{
+		return IEventDataPtr(new EvtData_EvtRayHit(m_ObjectId,m_pSceneNode));
+	}
+	virtual const char* GetName(void) const
+	{
+		return "EvtData_EvtRayHit";
+	}
+
+	const ObjectId GetActorId(void) const
+	{
+		return m_ObjectId;
+	}
+
+	std::shared_ptr<ISceneNode> GetSceneNode(void) const
+	{
+		return m_pSceneNode;
+	}
+
+	static const EventType sk_EventType;
+};
 class EvtData_Destroy_Actor : public BaseEventData
 {
 	ObjectId m_id;

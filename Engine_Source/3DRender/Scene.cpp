@@ -1,8 +1,8 @@
 #include"Engine.h"
 #include"..\EventSystem\EventManager.h"
-#include "..\3DRender\Scene.h"
+#include "Scene.h"
 #include"..\EventSystem\Event.h"
-
+#include"RayPick.hpp"
 
 
 Scene::Scene()
@@ -11,6 +11,7 @@ Scene::Scene()
 	IEventManager* pEventMgr = IEventManager::Get();
 	pEventMgr->VAddListener(fastdelegate::MakeDelegate(this, &Scene::NewRenderComponentDelegate), EvtData_New_Render_Component::sk_EventType);
 	pEventMgr->VAddListener(fastdelegate::MakeDelegate(this, &Scene::DestroyActorDelegate), EvtData_Destroy_Actor::sk_EventType);
+	pEventMgr->VAddListener(fastdelegate::MakeDelegate(this, &Scene::TestRayCollisonDelegate), EvtData_RayCast::sk_EventType);
 }
 
 
@@ -19,6 +20,7 @@ Scene::~Scene()
 	IEventManager* pEventMgr = IEventManager::Get();
 	pEventMgr->VRemoveListener(fastdelegate::MakeDelegate(this, &Scene::NewRenderComponentDelegate), EvtData_New_Render_Component::sk_EventType);
 	pEventMgr->VRemoveListener(fastdelegate::MakeDelegate(this, &Scene::DestroyActorDelegate), EvtData_Destroy_Actor::sk_EventType);
+	pEventMgr->VRemoveListener(fastdelegate::MakeDelegate(this, &Scene::TestRayCollisonDelegate), EvtData_RayCast::sk_EventType);
 }
 
 void Scene::OnRender()
@@ -61,6 +63,11 @@ bool Scene::AddChild(ObjectId id, std::shared_ptr<ISceneNode> kid)
 	{
 		// This allows us to search for this later based on actor id
 		m_ObjectMap[id] = kid;
+		if (std::static_pointer_cast<SceneNode>(kid)->GetBVSphere().radius > 0) {
+			m_BVMap[id] = std::dynamic_pointer_cast<SceneNode>(kid)->GetBVSphereRefernce();
+		}
+	
+		
 	}
 
 	return m_Root->VAddChild(kid); ;
@@ -75,7 +82,7 @@ bool Scene::RemoveChild(ObjectId id)
 	}
 	
 	m_ObjectMap.erase(id);
-	
+	m_BVMap.erase(id);
 	return m_Root->VRemoveChild(id);
 }
 void Scene::NewRenderComponentDelegate(IEventDataPtr pEventData)
@@ -92,7 +99,24 @@ void Scene::NewRenderComponentDelegate(IEventDataPtr pEventData)
 		EDITOR_LOG(error)
 		return;
 	}
-	EDITOR_LOG("Added from scengraph delegate")
+	
 	AddChild(actorId, pSceneNode);
 	
+}
+
+void Scene::TestRayCollisonDelegate(IEventDataPtr pEventData)
+{
+
+	std::shared_ptr<EvtData_RayCast> pCastEventData = std::static_pointer_cast<EvtData_RayCast>(pEventData);
+	RayPick ray(pCastEventData->x,pCastEventData->y,pCastEventData->Width,pCastEventData->Height,this);
+	for (auto&i : m_BVMap) {
+		if (ray.RayTest(i.second))
+		{
+			std::shared_ptr<EvtData_EvtRayHit> pEvent(INFERNAL_NEW EvtData_EvtRayHit(i.first, m_ObjectMap[i.first]));
+			IEventManager::Get()->VTriggerEvent(pEvent);
+		}
+	}
+
+	
+
 }

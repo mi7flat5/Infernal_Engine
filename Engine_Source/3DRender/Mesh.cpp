@@ -25,9 +25,7 @@ void Mesh::CleanUp()
 	for (int i = 0;i < textures.size();++i)
 	{
 		glDeleteTextures(GLsizei(1), &textures[i].id);
-		char a[10];
-		int idnum = (int)textures[i].id;
-		itoa(idnum, a, 10);
+		
 		EDITOR_LOG("Deleting texture: "+textures[i].type)
 	}
 

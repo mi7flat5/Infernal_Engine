@@ -173,6 +173,7 @@
     <ClInclude Include="..\Engine_Source\3DRender\Geometry.h" />
     <ClInclude Include="..\Engine_Source\3DRender\GraphicsDebug.h" />
     <ClInclude Include="..\Engine_Source\3DRender\Mesh.h" />
+    <ClInclude Include="..\Engine_Source\3DRender\RayPick.hpp" />
     <ClInclude Include="..\Engine_Source\3DRender\Scene.h" />
     <ClInclude Include="..\Engine_Source\3DRender\SceneNode.h" />
     <ClInclude Include="..\Engine_Source\Core\MovementController.hpp" />
@@ -199,6 +200,7 @@
     <ClCompile Include="..\Engine_Source\3DRender\Geometry.cpp" />
     <ClCompile Include="..\Engine_Source\3DRender\GraphicsDebug.cpp" />
     <ClCompile Include="..\Engine_Source\3DRender\Mesh.cpp" />
+    <ClCompile Include="..\Engine_Source\3DRender\RayPick.cpp" />
     <ClCompile Include="..\Engine_Source\3DRender\Scene.cpp" />
     <ClCompile Include="..\Engine_Source\3DRender\SceneNode.cpp" />
     <ClCompile Include="..\Engine_Source\3DRender\TerrainNode.cpp" />

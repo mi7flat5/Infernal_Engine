@@ -16,17 +16,9 @@ public:
 	~Geometry();
 };
 
-class BVSphere {
-public:
-	Shaders * dbgShader;
+struct BVSphere {
 	vec3 position;
 	GLfloat radius;
-	GLuint          program;
-	GLuint          vao,u_Pos,VBO, ProjectionMatrixID, ModelMatrixID,ViewMatrixID;
-	mat4 ProjectionMat, ModelMatrix, ViewMat;
-	
-	BVSphere(){}
-	~BVSphere(){}		 
 };
 class Plane 
 {

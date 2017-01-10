@@ -5,6 +5,7 @@
 //class SkyNode;
 
 typedef std::map<ObjectId, std::shared_ptr<ISceneNode> > SceneObjectMap;
+typedef std::map<ObjectId, BVSphere*> CollisionVolumeMap;//BVsphere is only current bounding volume, this will be generalized later
 class Scene
 {
 	std::shared_ptr<SceneNode>  	m_Root;
@@ -14,6 +15,7 @@ class Scene
 	/*MatrixStack 		*m_MatrixStack;
 	AlphaSceneNodes 		m_AlphaSceneNodes;*/
 	SceneObjectMap 			m_ObjectMap;
+	CollisionVolumeMap m_BVMap;
 
 public:
 	Scene();
@@ -31,6 +33,7 @@ public:
 	void NewRenderComponentDelegate(IEventDataPtr pEventData);
 	void ModifiedRenderComponentDelegate(IEventDataPtr pEventData);
 
+	void TestRayCollisonDelegate(IEventDataPtr pEventData);
 
 	void SetCamera(std::shared_ptr<CameraNode> camera) { m_Camera = camera; }
 	void SetControlledObject(ObjectId pawn) { m_ControlledObject = m_ObjectMap[pawn]; }
