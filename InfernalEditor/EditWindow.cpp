@@ -101,7 +101,7 @@ void EditWindow::SetSelectedDelegate(IEventDataPtr pEventData)
 	if(pSceneNode)
 	m_pSelectedNode = std::static_pointer_cast<SceneNode>(pSceneNode);
 	m_SelectedObjectName = pSceneNode->VGet()->Name();
-	EDITOR_LOG(m_SelectedObjectName)
+	
 }
 
 void EditWindow::cleanup()
@@ -184,8 +184,6 @@ void EditWindow::mousePressEvent(QMouseEvent *event)
 {
 	std::shared_ptr<EvtData_RayCast> pEvent(INFERNAL_NEW EvtData_RayCast(width(),height(), event->x(), event->y()));
 	IEventManager::Get()->VQueueEvent(pEvent);
-	
-
 }
 
 void EditWindow::mouseReleaseEvent(QMouseEvent *event) 

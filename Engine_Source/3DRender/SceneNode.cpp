@@ -12,9 +12,6 @@ void SceneNode::SetMeshList(std::vector<Mesh> inMesh)
 	m_Meshes = inMesh;
 }
 
-
-
-
 void SceneNode::VSetTransform(mat4 * toWorld, mat4 * fromWorld)
 {
 	ModelMatrix = *toWorld;
@@ -37,13 +34,10 @@ void SceneNode::VOnUpdate(Scene *pScene, unsigned long const elapsedMs)
 	}
 }
 
-
-
 bool SceneNode::VPreRender(Scene * pScene)
 {
 	return true;
 }
-
 bool SceneNode::VIsVisible(Scene * pScene) const
 {
 	return true;
@@ -77,11 +71,9 @@ void SceneNode::VRenderChildren(Scene * pScene)
 		++i;
 	}
 }
-
 void SceneNode::VPostRender(Scene * pScene)
 {
 }
-
 bool SceneNode::VAddChild(std::shared_ptr<ISceneNode> ikid)
 {
 	
@@ -92,7 +84,6 @@ bool SceneNode::VAddChild(std::shared_ptr<ISceneNode> ikid)
 	kid->m_pParent = this;
 	return true;
 }
-
 bool SceneNode::VRemoveChild(ObjectId id)
 {
 	for (SceneNodeList::iterator i = m_Children.begin(); i != m_Children.end(); ++i)
@@ -198,175 +189,5 @@ void RootNode::VOnUpdate(Scene *pScene, unsigned long const elapsedMs)
 
 
 
-void CameraNode::UpdateOffsetsVectors()
-{
-	// Make sure that when pitch is out of bounds, screen doesn't get flipped
-	if (pitch > 89.0f)
-		pitch = 89.0f;
-	if (pitch < -89)
-		pitch = -89;
 
-	theta = yaw-90;
-	phi = pitch-90;
-
-	//front.x = radius * sin(glm::radians(phi))*cos(glm::radians(theta));
-	//if (campos.y > TerrainHeight)
-	//front.y = radius * cos(glm::radians(pitch + 90));// +10; //TODO add parameter for adjusting y facing offset
-	//front.z = radius * cos(glm::radians(phi))*sin(glm::radians(theta));
-	
-	camfront = glm::normalize(Target-campos);
-	
-	vdist = radius*sin(glm::radians(pitch));
-	hdist = radius*cos(glm::radians(pitch));
-	Xoffset = hdist*cos(glm::radians(yaw));
-	Zoffset = hdist*sin(glm::radians(yaw));
-	vec3 CylinCamPos = glm::normalize(vec3(radius*cos(glm::radians(yaw)), 0, radius* sin(glm::radians(yaw))));
-	rightvec = glm::normalize(glm::cross(camup,CylinCamPos ));
-	
-}
-void CameraNode::VRender(Scene *pScene) 
-{
-	UpdateOffsetsVectors();
-	
-	glm::vec3 NewCampos;
-	NewCampos.y = vdist + Target.y;	//TODO add parameter for vertical distance offset
-
-	NewCampos.x = Target.x + Xoffset;
-	NewCampos.z = Target.z + Zoffset;
-	campos.x = NewCampos.x;
-	campos.y = NewCampos.y;//Transform::Lerp(campos.y, NewCampos.y, .30);//TODO Create variable for camera y offset
-	campos.z = NewCampos.z;
-	
-	View = glm::lookAt(campos, Target, camup);//*Transform::translate(0, -5, 0);
-	
-}
-void CameraNode::VOnUpdate(Scene *pScene, unsigned long const elapsedMs)
-{
-	if(m_pTarget)
-	Target = m_pTarget->getPosition();
-}
-void CameraNode::ExtractPlanesGL(bool normalize)
-{
-	
-	Plane* p_planes;
-	p_planes = m_Frustum.m_Planes;
-
-	/*const GLfloat *ToWorldMatrix = (const GLfloat*)glm::value_ptr(Projection * View);*/
-	mat4 ToWorldMatrix = Projection*View;
-	// Left clipping plane
-	m_Frustum.m_Planes[Frustum::Side::Left].a = ToWorldMatrix[3][0] + ToWorldMatrix[0][0];
-	m_Frustum.m_Planes[Frustum::Side::Left].b = ToWorldMatrix[3][1] + ToWorldMatrix[0][1];
-	m_Frustum.m_Planes[Frustum::Side::Left].c = ToWorldMatrix[3][2] + ToWorldMatrix[0][2];
-	m_Frustum.m_Planes[Frustum::Side::Left].d = ToWorldMatrix[3][3] + ToWorldMatrix[0][3];
-	// Right clipping plane
-	m_Frustum.m_Planes[Frustum::Side::Right].a = ToWorldMatrix[3][0] - ToWorldMatrix[0][0];
-	m_Frustum.m_Planes[Frustum::Side::Right].b = ToWorldMatrix[3][1]  - ToWorldMatrix[0][1];
-	m_Frustum.m_Planes[Frustum::Side::Right].c = ToWorldMatrix[3][2] - ToWorldMatrix[0][2];
-	m_Frustum.m_Planes[Frustum::Side::Right].d = ToWorldMatrix[3][3] - ToWorldMatrix[0][3];
-	// Top clipping plane
-	m_Frustum.m_Planes[Frustum::Side::Top].a = ToWorldMatrix[3][0] - ToWorldMatrix[1][0];
-	m_Frustum.m_Planes[Frustum::Side::Top].b = ToWorldMatrix[3][1] - ToWorldMatrix[1][1];
-	m_Frustum.m_Planes[Frustum::Side::Top].c = ToWorldMatrix[3][2] - ToWorldMatrix[1][2];
-	m_Frustum.m_Planes[Frustum::Side::Top].d = ToWorldMatrix[3][3] - ToWorldMatrix[1][3];
-	// Bottom clipping plane
-	m_Frustum.m_Planes[Frustum::Side::Bottom].a = ToWorldMatrix[3][0] + ToWorldMatrix[1][0];
-	m_Frustum.m_Planes[Frustum::Side::Bottom].b = ToWorldMatrix[3][1] + ToWorldMatrix[1][1];
-	m_Frustum.m_Planes[Frustum::Side::Bottom].c = ToWorldMatrix[3][2] + ToWorldMatrix[1][2];
-	m_Frustum.m_Planes[Frustum::Side::Bottom].d = ToWorldMatrix[3][3] + ToWorldMatrix[1][3];
-	// Near clipping plane
-	m_Frustum.m_Planes[Frustum::Side::Near].a = ToWorldMatrix[3][0] + ToWorldMatrix[2][0];
-	m_Frustum.m_Planes[Frustum::Side::Near].b = ToWorldMatrix[3][1] + ToWorldMatrix[2][1];
-	m_Frustum.m_Planes[Frustum::Side::Near].c = ToWorldMatrix[3][2] + ToWorldMatrix[2][2];
-	m_Frustum.m_Planes[Frustum::Side::Near].d = ToWorldMatrix[3][3] + ToWorldMatrix[2][3];
-	// Far clipping plane
-	m_Frustum.m_Planes[Frustum::Side::Far].a = ToWorldMatrix[3][0] - ToWorldMatrix[2][0];
-	m_Frustum.m_Planes[Frustum::Side::Far].b = ToWorldMatrix[3][1] - ToWorldMatrix[2][1];
-	m_Frustum.m_Planes[Frustum::Side::Far].c = ToWorldMatrix[3][2] - ToWorldMatrix[2][2];
-	m_Frustum.m_Planes[Frustum::Side::Far].d = ToWorldMatrix[3][3] - ToWorldMatrix[2][3];
-	// Normalize the plane equations, if requested
-	if (normalize == true)
-	{
-		m_Frustum.m_Planes[Frustum::Side::Left].Normalize();
-		m_Frustum.m_Planes[Frustum::Side::Right].Normalize();
-		m_Frustum.m_Planes[Frustum::Side::Top].Normalize();
-		m_Frustum.m_Planes[Frustum::Side::Bottom].Normalize();
-		m_Frustum.m_Planes[Frustum::Side::Near].Normalize();
-		m_Frustum.m_Planes[Frustum::Side::Far].Normalize();
-	}
-}
-bool CubemapNode::VPreRender(Scene * pScene)
-{
-	NodeShader->Use();
-
-	glm::mat4 CubeView = glm::mat4(glm::mat3(pScene->GetCamera()->GetView()));// remove translations
-	glm::mat4 CubeProjection = pScene->GetCamera()->GetProjection();
-	glUniformMatrix4fv(ProjectionMatrixID, 1, GL_FALSE, &CubeProjection[0][0]);
-	glUniformMatrix4fv(ViewMatrixID, 1, GL_FALSE, &CubeView[0][0]);
-
-	return true;
-}
-
-void CubemapNode::VRender(Scene * pScene)
-{
-	for (int i = 0;i < m_Meshes.size();++i)
-		m_Meshes[i].DrawMesh(MeshType::SKYBOX);
-	
-}
-
-void CubemapNode::VPostRender(Scene * pScene)
-{
-
-}
-
-void OGLMeshNode::VRender(Scene * pScene)
-{
-	NodeShader->Use();
-	for (int i = 0;i < m_Meshes.size();i++)
-	{
-		m_Meshes[i].DrawMesh(MeshType::NO_TEXTURE);
-	}
-
-}
-
-bool OGLMeshNode::VPreRender(Scene * pScene)
-{
-	NodeShader->Use();
-	ViewMat = pScene->GetCamera()->GetView();
-	ProjectionMat = pScene->GetCamera()->GetProjection();
-	vec3 campos = pScene->GetCamera()->GetCameraPosition();
-		
-	SetSpherePosition(vec3(ProjectionMat*ViewMat*ModelMatrix[3]));
-	
-	vec3 lpos = vec3(0,5, -5);
-		
-	glUniform3fv(LC, 1, &lightColor[0]);
-	glUniform3f(lightPosLoc, lpos.x, lpos.y, lpos.z);
-	glUniform3f(viewPosLoc, campos.x, campos.y, campos.z);
-	glUniformMatrix4fv(ProjectionMatrixID, 1, GL_FALSE, &ProjectionMat[0][0]);
-	glUniformMatrix4fv(ModelMatrixID, 1, GL_FALSE, &ModelMatrix[0][0]);
-	glUniformMatrix4fv(ViewMatrixID, 1, GL_FALSE, &ViewMat[0][0]);
-		
-	return true;
-}
-
-void OGLMeshNode::VOnUpdate(Scene *pScene, unsigned long const elapsedMs)
-{	
-}
-bool OGLMeshNode::VIsVisible(Scene * pScene) const
-{
-	Frustum* pCurrentFrustum = pScene->GetCamera()->GetFrustum();
-	
-	if (pCurrentFrustum)
-	{
-		if (pCurrentFrustum->Inside(GetBVSphere()))
-		{
-			//std::cout << ".\n";
-			return true;
-			
-		}
-	}
-	//std::cout << "NotVisible\n";
-	return false;
-
-}
 

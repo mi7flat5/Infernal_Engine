@@ -36,9 +36,6 @@
     <ClInclude Include="Engine.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Engine_Source\3DRender\CubeMap.h">
-      <Filter>Source Files\3DRender</Filter>
-    </ClInclude>
     <ClInclude Include="..\Engine_Source\3DRender\Geometry.h">
       <Filter>Source Files\3DRender</Filter>
     </ClInclude>
@@ -171,6 +168,12 @@
       <Filter>Source Files\3DRender</Filter>
     </ClCompile>
     <ClCompile Include="..\Engine_Source\3DRender\RayPick.cpp">
+      <Filter>Source Files\3DRender</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\3DRender\CameraNode.cpp">
+      <Filter>Source Files\3DRender</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\3DRender\OGLNodes.cpp">
       <Filter>Source Files\3DRender</Filter>
     </ClCompile>
   </ItemGroup>

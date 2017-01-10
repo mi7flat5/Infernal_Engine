@@ -27,7 +27,7 @@ void Kernel::runApp()
 	vec3 tmpmover;
 	tmpmover.x = 2*cos(glfwGetTime());
 	c->setPosition(vec3(0,0,10));
-	//f->setScale(Transform::scale(30, 15, 15));
+	f->setScale(Transform::scale(30, 15, 15));
 	
 	maker.CreateActor(INVALID_OBJECT_ID, "..//XML//Terrain.xml");
 	
@@ -39,7 +39,7 @@ void Kernel::runApp()
 		f->setScale(Transform::scale(15, 15, 15));
 		
 		update();
-		//f->setPosition(tmpmover);
+		f->setPosition(tmpmover);
 		c->setPosition(tmpmover);
 	}
 	

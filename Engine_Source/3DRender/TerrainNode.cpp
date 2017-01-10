@@ -1,5 +1,29 @@
 #include "Engine.h"
-#include "..//3DRender//SceneNode.h"
+#include "SceneNode.h"
+
+
+TerrainNode::TerrainNode(const ObjectId Id, WeakBaseRenderComponentPtr renderComponent, RenderPass renderPass)
+	: SceneNode(Id, renderComponent, renderPass)
+{
+	LoadUtility::loadModel(m_Meshes, "..//assets//ParisTerrain.fbx", MeshType::TERRAIN);
+	HeightMapImage = LoadUtility::loadHeightMap("..//media//hm_d.jpg", Width, Height);
+	NodeShader.reset(INFERNAL_NEW Shaders("..//shaders//dispmap.vs.glsl",
+		"..//shaders//dispmap.tcs.glsl",
+		"..//shaders//dispmap.tes.glsl",
+		"..//shaders//dispmap.fs.glsl"));
+
+	ProjectionMatrixID = glGetUniformLocation(NodeShader->getProgram(), "Projection");
+	ViewMatrixID = glGetUniformLocation(NodeShader->getProgram(), "View");
+	ModelMatrixID = glGetUniformLocation(NodeShader->getProgram(), "Model");
+	lightPosLoc = glGetUniformLocation(NodeShader->getProgram(), "light");
+	for (GLuint i = 0; i < m_Meshes.size();i++)
+		m_Meshes[i].SetShader(NodeShader->getProgram());
+	lightPos = vec3(0, 25, 25);
+	SetRadius(0);
+	SetScale(50);
+	m_Props.m_Name = "TerrainNode";
+}
+
 void TerrainNode::VOnUpdate(Scene *, unsigned long const elapsedMs)
 {
 

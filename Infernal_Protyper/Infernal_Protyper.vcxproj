@@ -169,7 +169,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\Engine_Source\3DRender\CubeMap.h" />
     <ClInclude Include="..\Engine_Source\3DRender\Geometry.h" />
     <ClInclude Include="..\Engine_Source\3DRender\GraphicsDebug.h" />
     <ClInclude Include="..\Engine_Source\3DRender\Mesh.h" />
@@ -196,10 +195,12 @@
     <ClInclude Include="Engine.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Engine_Source\3DRender\CameraNode.cpp" />
     <ClCompile Include="..\Engine_Source\3DRender\CubeMap.cpp" />
     <ClCompile Include="..\Engine_Source\3DRender\Geometry.cpp" />
     <ClCompile Include="..\Engine_Source\3DRender\GraphicsDebug.cpp" />
     <ClCompile Include="..\Engine_Source\3DRender\Mesh.cpp" />
+    <ClCompile Include="..\Engine_Source\3DRender\OGLNodes.cpp" />
     <ClCompile Include="..\Engine_Source\3DRender\RayPick.cpp" />
     <ClCompile Include="..\Engine_Source\3DRender\Scene.cpp" />
     <ClCompile Include="..\Engine_Source\3DRender\SceneNode.cpp" />

@@ -5,8 +5,8 @@ is based on the design of the game engine designed in Game Coding Complete by Mi
 This implementation, however; uses modern openGL therefore a lot of the code abstracted in 
 the GCC4 engine that uses DirectX will be or has been implemented by me.  An example of this 
 would be frustum culling. The DirectX used in GCC4 provides math functionality for plane sphere 
-Intersection testing, but had to be implemented here. The engine will eventually be a library which does not provide an openGL context on its own
-The application that uses it will provide its own context. This solution has a prototyper project that uses the GLFW library for creating a context. I've also begun work on an editor GUI using Qt which provides it's own context.
+Intersection testing, but had to be implemented here. The engine will eventually be a library which does not provide an openGL context on its own.
+The application that uses it will provide one. This solution has a prototyper project that uses the GLFW library for creating a context, and the editor provides a context via Qt.
 The library shares most of the source with the prototyper and is built for and utilized by the editor.
 ## Implemented
 An incomplete list of features currently implemented at least in a simple form:
@@ -31,9 +31,9 @@ An incomplete list of features that are planned for implementation soon:
 
 # Running Project
 *  This project is for Visual Studio 2015
-*  You will need Qt 5.7 installed(for the editor, protyper and library build will work without), I also recommend using the Qt add in for Visual Studio 2015
-*  Project will only build under x86 Debug and Release configurations.
-*  Unzip DLL_FOR_EXECUTABLE_FOLDER.rar into the Debug and Release folders that are in this directory. You may have to attempt to build under each configuration or the folders wont be there. 
-*  Open the solution in Visual Studio and run either configuration for any of the projects.
+*  You will need Qt to run the editor. You will only need Qt 5.7 for msvc2015_64 and/or msvc2015, I also recommend using the Qt add in for Visual Studio, which I've added to the zip in the current directory.
+*  Unzip UNZIP_FOR_FIRST_RUN.zip with extract here option, this should set up execution folders with needed DLL
+
+
 
 

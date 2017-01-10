@@ -25,8 +25,6 @@ public:
 	mat4					m_ToWorld, m_FromWorld;
 	
 	RenderPass				m_RenderPass;
-
-
 	
 	SceneNodeProperties(void);
 	const ObjectId &GetId() const { return m_Id; }
@@ -129,43 +127,16 @@ class OGLMeshNode : public SceneNode
 public:
 	OGLMeshNode(const ObjectId Id,
 		WeakBaseRenderComponentPtr renderComponent,
-		RenderPass renderPass, const char* shaderV, const char* shaderF, const char* meshPath)
-		: SceneNode(Id, renderComponent, renderPass)
-	{
-		m_Props.m_Name = "OGLMeshNode";
-		NodeShader.reset(new Shaders(shaderV, shaderF));
-		LoadUtility::loadModel(m_Meshes, meshPath, MeshType::NO_TEXTURE);
-		for (GLuint i = 0; i < m_Meshes.size();i++)
-			m_Meshes[i].SetShader(NodeShader->getProgram());
-		SetUniforms();
-		ModelMatrix = mat4(1.0f);
-		vec3 lpos = vec3(0, 5, -5);
-		SetRadius(3);
-		
-		SetSpherePosition(vec3(ModelMatrix[3]));
-
-	}
-	void SetUniforms()
-	{
-		lightColor = glm::vec3(1, 1, 1);
-		ProjectionMatrixID = glGetUniformLocation(NodeShader->getProgram(), "Projection");
-		ViewMatrixID = glGetUniformLocation(NodeShader->getProgram(), "View");
-		ModelMatrixID = glGetUniformLocation(NodeShader->getProgram(), "Model");
-		lightPosLoc = glGetUniformLocation(NodeShader->getProgram(), "lightPos");
-	}
-
+		RenderPass renderPass, const char* shaderV, const char* shaderF, const char* meshPath);
+	
 	virtual void VRender(Scene *pScene) override;
 	virtual bool VPreRender(Scene* pScene) override;
 	virtual void VOnUpdate(Scene *, unsigned long const elapsedMs)override;
 	virtual bool VIsVisible(Scene * pScene) const;
-	vec3 getPosition() 
-	{
-		return vec3(ModelMatrix[3]);
-	}
-	virtual const vec3 GetWorldPosition() const {
-		return vec3(ModelMatrix[3]);
-
-	} 
+	
+	//Currently used in prototype, remove after controllers set up. 
+	vec3 getPosition() {return vec3(ModelMatrix[3]);}
+	virtual const vec3 GetWorldPosition() const {return vec3(ModelMatrix[3]);	} 
 	void setPosition(vec3 inPos) {
 		this->ModelMatrix = Transform::translate(inPos.x, inPos.y, inPos.z);//*Transform::scale(3, 3, 3);
 		SetSpherePosition(inPos);
@@ -179,31 +150,17 @@ class CameraNode : public SceneNode {
 	GLfloat TerrainHeight;
 	GLfloat FieldOfView;
 	glm::vec3 front, campos, camfront, camup, rightvec, Target, Home;
-	void UpdateOffsetsVectors();
+	
 	GLfloat radius;
 	mat4 Projection, View;
 	
-	std::shared_ptr<OGLMeshNode> m_pTarget;
+	std::shared_ptr<SceneNode> m_pTarget;
 	Frustum m_Frustum;
+	void UpdateOffsetsVectors();
 public:
-	CameraNode(const ObjectId Id,
-		WeakBaseRenderComponentPtr renderComponent,
-		RenderPass renderPass)
-		: SceneNode(Id, renderComponent, renderPass), 
-		pitch(0),
-		campos(glm::vec3(0, 0, 0)),
-		camfront(glm::vec3(0, 0, -1)),
-		camup(glm::vec3(0, 1, 0)),
-		yaw(90),
-		FieldOfView(90.0f),Target(vec3(0,0,0)), radius(20) {
-
-		Projection = glm::perspective(110.0f, (float)WIDTH / HEIGHT, 0.1f, 1800.0f);
-		m_Frustum.Init(glm::radians(110.0), (float)WIDTH / HEIGHT, 0.01f, 1800.0f);
-		UpdateOffsetsVectors();
-		SetRadius(0);
-		m_Props.m_Name = "CameraNode";
-	}
-	mat4 GetProjection() { return Projection; }
+	
+	CameraNode(const ObjectId Id,WeakBaseRenderComponentPtr renderComponent,RenderPass renderPass);
+		mat4 GetProjection() { return Projection; }
 	mat4 GetView() { return View; }
 	vec3 GetFront() { return camfront; }
 	void MoveForward(float inVal) { Target += camfront*inVal; };
@@ -211,17 +168,8 @@ public:
 	void ReportPosition(){EDITOR_LOG("CamPos: "+ToStr(campos.x)+" "+ToStr(campos.y)+" "+ToStr(campos.z)) }
 	virtual void VOnUpdate(Scene *, unsigned long const elapsedMs);
 	void ExtractPlanesGL(bool normalize);
-	void SetCamRadius(float inAdjustment) 
-	{ 
-		if(inAdjustment >0)
-			radius += 1.0;
-		else radius -= 1;
-			
-		if (radius >= 60.0)
-		radius = 59.0;
-		if (radius <= 5.0)
-		radius = 5.0;
-	}
+	void SetCamRadius(float inAdjustment);
+	
 	
 	virtual void VRender(Scene *pScene)override;
 	void SetTarget(vec3 InTarget)
@@ -241,45 +189,23 @@ public:
 	vec3 GetCameraPosition()const { return campos; }
 	Frustum* GetFrustum() { return &m_Frustum; }
 	void SetVectorTarget(vec3 inTarget) { Target = inTarget; }
-	void SetProjection(GLuint width, GLuint height) 
-	{ 
-		Projection = glm::perspective(90.0f, (float)width / height, 0.1f, 1800.0f);
-		m_Frustum.Init(glm::radians(90.0), (float)WIDTH / HEIGHT, 0.1f, 1800.0f);
-		//glViewport(0, 0, width, height);
-		//EDITOR_LOG(std::string(std::string("Projection set ")+"Height: "+ ToStr(height) +" Width: " + ToStr(width)))
-	}
+	void SetProjection(GLuint width, GLuint height);
+	
 	
 };
-
 
 class CubemapNode : public SceneNode
 {
 	GLuint SkyBox;
 public:
-	CubemapNode(const ObjectId Id,
-		WeakBaseRenderComponentPtr renderComponent,
-		RenderPass renderPass, const char* shaderV, const char* shaderF, const char* meshPath)
-		: SceneNode(Id, renderComponent, renderPass) 
-	{
-		NodeShader.reset(new Shaders(shaderV,shaderF ) );
-		LoadUtility::loadModel(m_Meshes, meshPath ,MeshType::SKYBOX);
-		SetUniforms();
-		for (GLuint i = 0; i < m_Meshes.size();i++)
-			m_Meshes[i].SetShader(NodeShader->getProgram());
-		SetRadius(0);
-		m_Props.m_Name = "CubemapNode";
-	}
-	void SetUniforms()
-	{
-		SkyBox = glGetUniformLocation(NodeShader->getProgram(), "SkyBox");
-		ProjectionMatrixID = glGetUniformLocation(NodeShader->getProgram(), "Projection");
-		ViewMatrixID = glGetUniformLocation(NodeShader->getProgram(), "View");
-	}
+	CubemapNode(const ObjectId Id,	WeakBaseRenderComponentPtr renderComponent,
+		RenderPass renderPass, const char* shaderV, const char* shaderF, const char* meshPath);
+		
 	virtual bool VPreRender(Scene *pScene) override;
-
 	virtual void VRender(Scene *pScene) override;
-	
 	virtual void VPostRender(Scene *pScene) override;
+	
+	void SetUniforms();
 
 };
 class TerrainNode : public SceneNode
@@ -294,27 +220,8 @@ class TerrainNode : public SceneNode
 	void SetScale(GLuint InScale);//move out of scene node
 	vec3 lightPos;
 public:
-	TerrainNode(const ObjectId Id, WeakBaseRenderComponentPtr renderComponent, RenderPass renderPass)
-		: SceneNode(Id, renderComponent, renderPass) 
-	{
-		LoadUtility::loadModel(m_Meshes, "..//assets//ParisTerrain.fbx", MeshType::TERRAIN);
-		HeightMapImage = LoadUtility::loadHeightMap("..//media//hm_d.jpg", Width, Height);
-		NodeShader.reset( INFERNAL_NEW Shaders("..//shaders//dispmap.vs.glsl",
-			"..//shaders//dispmap.tcs.glsl",
-			"..//shaders//dispmap.tes.glsl",
-			"..//shaders//dispmap.fs.glsl"));
-		
-		ProjectionMatrixID = glGetUniformLocation(NodeShader->getProgram(), "Projection");
-		ViewMatrixID = glGetUniformLocation(NodeShader->getProgram(), "View");
-		ModelMatrixID = glGetUniformLocation(NodeShader->getProgram(), "Model");
-		lightPosLoc = glGetUniformLocation(NodeShader->getProgram(), "light");
-		for (GLuint i = 0; i < m_Meshes.size();i++)
-			m_Meshes[i].SetShader(NodeShader->getProgram());
-		lightPos = vec3(0, 25, 25);
-		SetRadius(0);
-		SetScale(50);
-		m_Props.m_Name = "TerrainNode";
-	}
+	TerrainNode(const ObjectId Id, WeakBaseRenderComponentPtr renderComponent, RenderPass renderPass);
+
 	virtual ~TerrainNode();
 	GLuint GetHeight(glm::vec3 Position);//move out of scene node
 	//TerrainNode(const std::string &InPath, MeshType shader);
