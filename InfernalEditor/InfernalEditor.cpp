@@ -5,6 +5,7 @@
 #include "ActorCreationWindow.h"
 #include "InfernalEditor.h"
 #include <QContextMenuEvent>
+#include <QSpinBox>
 
 InfernalEditor::InfernalEditor(QWidget *parent)
 	: QMainWindow(parent)
@@ -38,8 +39,15 @@ InfernalEditor::InfernalEditor(QWidget *parent)
 	m_pCreationwindow = new ActorCreationWindow();
 	m_pCreationwindow->SetOwner(this);
 	
+	connect(ui.xlpos, static_cast<void(QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), this, &InfernalEditor::SetLightPos);
+	
 }
-
+//a hack for debugging a shader adding runtime light position changes
+void InfernalEditor::SetLightPos(int junk)
+{
+	if (m_pSelectedNode)
+		m_pSelectedNode->setLightPos(vec3(ui.xlpos->value(),ui.ylpos->value(),ui.zlpos->value()));
+}
 
 void InfernalEditor::DeleteActor()
 {

@@ -215,7 +215,7 @@ GLint LoadUtility::TextureFromFile(std::string texpath) //TODO Add exception for
 	
 	glBindTexture(GL_TEXTURE_2D, 0);
 	
-	//std::cout << "\nTexture Loaded: " + FileName; add to event logging
+	EDITOR_LOG( "Texture Loaded: " + FileName) 
 	SOIL_free_image_data(image);
 	
 	return TexID;

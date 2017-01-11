@@ -1,0 +1,5 @@
+<MasterCheif type="Mesh" resource="..//XML/MasterCheif.xml">
+    <MeshRenderComponent>
+        <Paths shaderV="..//shaders//texVert.glsl" shaderF="..//shaders//texFrag.glsl" mesh="..//assets//halo_4_cheif.fbx"/>
+    </MeshRenderComponent>
+</MasterCheif>

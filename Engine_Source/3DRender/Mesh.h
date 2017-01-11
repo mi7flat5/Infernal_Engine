@@ -1,8 +1,5 @@
 #pragma once
 
-#define VECCONSOLEOUT(X,STRING) std::cout<<" "<<STRING<<X.x<<", "<<X.y<<", "<<X.z;
-//Shader selector for Model/Mesh
-
 enum class MeshType {
 	NO_TEXTURE,
 	TEXTURE_2D,
@@ -34,12 +31,11 @@ class Mesh
 	std::vector<Vertex>verts;
 	std::vector<GLuint>indices;
 	std::vector<Texture>textures;
-	mat4 Model;
+
 	GLint ShaderMode;
 	GLuint VAO, VBO, EBO, ModelLoc, ShaderModeLocation, ShaderID;
 	void setupMesh();
-	void SetupCubemap();
-
+	
 	void DrawCubeMap()const;
 	void DrawTessellated()const;
 	void DrawTerrain()const;
@@ -64,6 +60,6 @@ public:
 	void SetShader(GLuint);
 	void CleanUp();
 	void DrawMesh(MeshType) const;
-
+	
 };
 

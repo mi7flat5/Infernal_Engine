@@ -110,7 +110,7 @@ void Scene::TestRayCollisonDelegate(IEventDataPtr pEventData)
 	std::shared_ptr<EvtData_RayCast> pCastEventData = std::static_pointer_cast<EvtData_RayCast>(pEventData);
 	RayPick ray(pCastEventData->x,pCastEventData->y,pCastEventData->Width,pCastEventData->Height,this);
 	for (auto&i : m_BVMap) {
-		if (ray.RayTest(i.second))
+		if (ray.RayTest(i.second))//TODO chose item closest to camera to send in event. 
 		{
 			std::shared_ptr<EvtData_EvtRayHit> pEvent(INFERNAL_NEW EvtData_EvtRayHit(i.first, m_ObjectMap[i.first]));
 			IEventManager::Get()->VTriggerEvent(pEvent);

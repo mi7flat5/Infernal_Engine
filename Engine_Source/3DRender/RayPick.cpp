@@ -1,8 +1,7 @@
 #include"Engine.h"
 #include"RayPick.hpp"
-#include "SceneNode.h"
 #include"Scene.h"
-#include <math.h>
+
 
 #define sqr(x) x*x
 //Use with editor

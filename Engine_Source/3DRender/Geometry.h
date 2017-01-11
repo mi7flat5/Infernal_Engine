@@ -7,7 +7,7 @@ extern vec4 g_Up4;
 extern vec4 g_Right4;
 extern vec4 g_Forward4;
 
-class CameraNode;
+
 
 class Geometry
 {
@@ -15,10 +15,101 @@ public:
 	Geometry();
 	~Geometry();
 };
+class AABB {
+	vec3 min;
+	vec3 max;
+	std::vector<vec3> axis;
+public:
+	AABB(const std::vector<vec3>& Verts) {
+		axis.push_back(vec3(-1, 0, 0));
+		axis.push_back(vec3(1, 0, 0));
+		axis.push_back(vec3(0, -1, 0));
+		axis.push_back(vec3(0, 1, 0));
+		axis.push_back(vec3(0, 0, -1));
+		axis.push_back(vec3(0, 0, 1));
+		CalcAABB(Verts);
+	}
+	void CalcAABB(const std::vector<vec3>& Verts)
+	{
+		for (auto& dir : axis) {
+			CalcExtremePoints(Verts, dir);
+		}
+	}
+	void CalcExtremePoints(const std::vector<vec3>& Verts,vec3 Direction)
+	{
+		float minProj = FLT_MAX, maxProj = -FLT_MAX;
+		for (auto& point : Verts)
+		{
+			float proj = glm::dot(point,Direction);
+			if (proj < minProj) 
+			{
+				minProj = proj;
+				min = point;
+			}
+			if (proj > maxProj) 
+			{
+				maxProj = proj;
+				max = point;
+			}
+		}
+	}
+	
+};
+class BVSphere {
+	
 
-struct BVSphere {
+	
+	void MostSeperatedPoints(const std::vector<vec3>& Verts, vec3& MinExtent, vec3& MAxExtent)
+	{
+		int minx = 0, miny = 0, minz = 0, maxx = 0, maxy = 0, maxz = 0;
+		for (int i = 1;i < Verts.size(); ++i)
+		{
+			if (Verts[i].x < Verts[minx].x) minx = i;
+			if (Verts[i].x > Verts[maxx].x) maxx = i;
+
+			if (Verts[i].y < Verts[miny].y) miny = i;
+			if (Verts[i].y > Verts[maxy].y) maxy = i;
+
+			if (Verts[i].z < Verts[minz].z) minz = i;
+			if (Verts[i].z > Verts[maxz].z) maxz = i;
+
+		}
+
+		float DistXSqr = glm::dot(Verts[maxx] - Verts[minx], Verts[maxx] - Verts[minx]);
+		float DistYSqr = glm::dot(Verts[maxy] - Verts[miny], Verts[maxy] - Verts[miny]);
+		float DistZSqr = glm::dot(Verts[maxz] - Verts[minz], Verts[maxz] - Verts[minz]);
+
+		MinExtent = Verts[minx];
+		MAxExtent = Verts[maxx];
+
+		if (DistYSqr > DistXSqr && DistYSqr > DistZSqr)
+		{
+			MinExtent = Verts[miny];
+			MAxExtent = Verts[maxy];
+		}
+		if (DistZSqr > DistXSqr && DistZSqr > DistYSqr)
+		{
+			MinExtent = Verts[minz];
+			MAxExtent = Verts[maxz];
+		}
+
+	}
+public:
+	BVSphere() {}
 	vec3 position;
 	GLfloat radius;
+	void SphereFromDistantPoints(const std::vector<vec3>& Verts)
+	{
+		vec3 minEx, maxEx;
+		MostSeperatedPoints(Verts, minEx, maxEx);
+		position = (minEx + maxEx)*0.5f;
+		radius = glm::dot(maxEx-position, maxEx - position);
+		radius = sqrt(radius);
+	
+	}
+	
+
+	
 };
 class Plane 
 {
@@ -107,7 +198,7 @@ public:
 
 	//bool Inside(const vec3 &point) const;
 	bool Inside(const BVSphere &sphere) const;
-	void ApplyTransform(mat4 InvMVmat);
+	
 	const Plane &Get(Side side) { return m_Planes[side]; }
 	/*void SetFOV(float fov) { m_Fov = fov; Init(m_Fov, m_Aspect, m_Near, m_Far); }
 	void SetAspect(float aspect) { m_Aspect = aspect; Init(m_Fov, m_Aspect, m_Near, m_Far); }

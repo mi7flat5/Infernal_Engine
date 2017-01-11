@@ -36,21 +36,22 @@ out VS_OUT {
 
 void main(){	
 	
-	
+	 vec3 norm = texture(material.texture_normal1, texCoords).rgb;
 	// Output position of the vertex, in clip space : MVP * position
 	
 	gl_Position =  Projection *View*Model* vec4(Position,1.0f);
 	vs_out.FragPos = vec3(Model * vec4(Position, 1.0));
-	vs_out.Normal = normalize(normal*mat3(View*Model));
+	vs_out.Normal = normalize(transpose(inverse(mat3(Model)))*normal);
     vs_out.TexCoords = texCoords;
        
-    vec3 T = normalize(mat3(View*Model) * tangent);
-    vec3 B = normalize(mat3(View*Model) * bitangent);
-    vec3 N = normalize(mat3(View*Model) * normal);
+    vec3 T = normalize(mat3(Model) * tangent);
+    vec3 B = normalize(mat3(Model) * bitangent);
+    vec3 N = normalize(mat3(Model) * normal);
     mat3 TBN = transpose(mat3(T, B, N));
 
-	vs_out.TanlightPos = TBN * lightPos;
-	vs_out.TanViewPos = TBN * viewPos;
+	vs_out.TanlightPos = normalize(TBN * lightPos);
+	vs_out.TanViewPos = normalize(TBN * viewPos);
 	vs_out.TanFragPos = TBN * vs_out.FragPos;
-
+	norm = normalize(normal *2.0-1.0);
+	//vs_out.Normal = norm; //normalize(TBN*norm);
 }

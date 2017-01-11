@@ -10,7 +10,7 @@
 
 //-- new object notification
 
-class EvtData_Log_Data;
+
 void RegisterEngineScriptEvents(void);
 
 
@@ -86,6 +86,7 @@ public:
 	}
 	static const EventType sk_EventType;
 };
+
 class EvtData_EvtRayHit : public BaseEventData
 {
 	ObjectId m_ObjectId;
@@ -117,6 +118,7 @@ public:
 
 	static const EventType sk_EventType;
 };
+
 class EvtData_Destroy_Actor : public BaseEventData
 {
 	ObjectId m_id;
@@ -158,9 +160,6 @@ public:
 
 	ObjectId GetId(void) const { return m_id; }
 };
-
-
-
 
 class EvtData_New_Render_Component : public BaseEventData
 {

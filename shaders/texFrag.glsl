@@ -24,7 +24,7 @@ uniform vec3 viewPos;
 uniform Material material;
 uniform mat4 View;
 uniform samplerCube SkyBox;
-uniform int Mode;
+//uniform int Mode;
 out vec4 FragColor;
 
 //Main functions returning fragment color
@@ -48,14 +48,14 @@ vec2 TEXCOORDS;
 void main()//texture fragment shader
 {
 	//TODO Add logic to chose shader outcome from mode uniform 
-	
+	int Mode = 2;
         TEXCOORDS = fs_in.TexCoords;
     if (Mode ==7)
         TEXCOORDS = ParallaxMapping(TEXCOORDS,  ViewDirection());
         
      //discards a fragment when sampling outside default texture region (fixes border artifacts)
-    //if(texCoords.x > 1.0 || texCoords.y > 1.0 || texCoords.x < 0.0 || texCoords.y < 0.0)
-    //    discard;
+   // if(texCoords.x > 1.0 || texCoords.y > 1.0 || texCoords.x < 0.0 || texCoords.y < 0.0)
+     //   discard;
 	
 	switch (Mode)
 		{
@@ -86,7 +86,7 @@ vec4 Diffuse_SpecularMap_NormalMap()
 }
 vec4 Diffuse_With_NormalMap()
 {
-	return vec4(Ambient()+Diffuse_NormalMap()+Specular(),0.0f);
+	return vec4(Ambient()+Specular(),0.0f);
 }
 vec4 Diffuse_SpecularMap()
 {
@@ -103,7 +103,7 @@ vec4 Diffuse_Only_Texture()
  vec3 Diffuse_NormalMap()
  {
 	vec3 color = texture(material.texture_diffuse1,TEXCOORDS).rgb;
-	vec3 lightDir = normalize(fs_in.TanlightPos - fs_in.TanFragPos);
+	vec3 lightDir = normalize(lightPos - fs_in.FragPos);
 	float diff = max(dot(lightDir,Tangent_Normal()), 0.0);
 	return diff * color;
  }
@@ -115,7 +115,7 @@ vec4 Diffuse_Only_Texture()
 	
 	vec3 lightDir = normalize(fs_in.TanlightPos - fs_in.TanFragPos);
 	// ATTENTION 
-	vec3 reflectDir = reflect(-lightDir, Tangent_Normal());  
+	vec3 reflectDir = reflect(lightDir, Tangent_Normal());  
    
 	vec3 halfwayDir = normalize(lightDir + ViewDirection());  
  	float spec = pow(max(dot(Tangent_Normal(),halfwayDir ), 0.0), 32);
@@ -125,7 +125,7 @@ vec4 Diffuse_Only_Texture()
 
  vec3 Ambient()
  {
-	float ambientStrength = 0.2;
+	float ambientStrength = 0.7;
 	return ambientStrength* Diffuse_NormalMap();
  }
 
@@ -139,11 +139,12 @@ vec3 Diffuse()
 
 vec3 Specular()
 {
-	float specularStrength = 0.3;
-	vec3 viewDir = normalize(viewPos- fs_in.FragPos);
-	vec3 lightDir = normalize(lightPos-fs_in.FragPos);
-	vec3 reflectDir = reflect(-lightDir, normalize(fs_in.Normal));  
-   	float spec = pow(max(dot(viewDir, reflectDir ), 0.0), 16);
+	float specularStrength = 0.9;
+	vec3 viewDir = normalize(fs_in.TanViewPos- fs_in.TanFragPos);
+	vec3 lightDir = normalize(fs_in.TanlightPos-fs_in.TanFragPos);
+	vec3 reflectDir = reflect(-lightDir, Tangent_Normal());  
+	 vec3 halfwayDir = normalize(lightDir + viewDir); 
+   	float spec = pow(max(dot(Tangent_Normal(),reflectDir ), 0.0), 16);
 	return specularStrength * spec*vec3(1,1,1);	
 }
 

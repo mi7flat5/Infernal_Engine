@@ -66,7 +66,7 @@ Shaders::Shaders(const GLchar* vertexPath, const GLchar* fragmentPath)
 		{
 			glGetShaderInfoLog(fragment, 512, NULL, infoLog);
 			std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;//TODO Add to logging
-			EDITOR_LOG("FRAGMENT::COMPILATION_FAILED" + (char)infoLog)
+			EDITOR_LOG("FRAGMENT::COMPILATION_FAILED" + std::string(infoLog))
 		}
 		// Shader Program
 		this->Program = glCreateProgram();

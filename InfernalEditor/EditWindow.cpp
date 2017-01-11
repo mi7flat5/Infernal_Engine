@@ -101,6 +101,8 @@ void EditWindow::SetSelectedDelegate(IEventDataPtr pEventData)
 	if(pSceneNode)
 	m_pSelectedNode = std::static_pointer_cast<SceneNode>(pSceneNode);
 	m_SelectedObjectName = pSceneNode->VGet()->Name();
+	InfernalEditor* properOwnerPointer = dynamic_cast<InfernalEditor*>(owner);
+	properOwnerPointer->SetSelectedNode(m_pSelectedNode);
 	
 }
 
@@ -166,7 +168,7 @@ void EditWindow::paintGL()
 		MoveForward(-rate);
 
 	if (m_pSelectedNode)
-		m_pSelectedNode->VSetTransform(&Transform::translate(12*cos(currentFrame*.001),1,18*sin(currentFrame*.001)));
+		//m_pSelectedNode->VSetTransform(&Transform::translate(12*cos(currentFrame*.001),1,-wl18*cos(currentFrame*.001)));
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
 	m_pScene->OnUpdate(g_DeltaTime);

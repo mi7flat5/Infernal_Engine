@@ -4,5 +4,4 @@ void main()
 {
 	Kernel App;
 	App.runApp();
-	system("pause");
 }

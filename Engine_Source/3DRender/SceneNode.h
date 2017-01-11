@@ -63,12 +63,16 @@ protected:
 	WeakBaseRenderComponentPtr	m_RenderComponent;
 	MeshList m_Meshes;
 	std::shared_ptr<Shaders> NodeShader;
+	vec3 lightPos;
+	GLuint lightPosLoc;
 public:
 	SceneNode();
 	SceneNode(ObjectId Id, WeakBaseRenderComponentPtr renderComponent, RenderPass renderPass)
 	{
 		m_Props.m_RenderPass = renderPass;
 		m_Props.m_Id = Id;
+		
+		//m_Props.m_BVsphere.SphereFromDistantPoints(m_Meshes)
 	}
 		void SetMeshList(std::vector<Mesh> inMesh);
 
@@ -105,7 +109,9 @@ public:
 	}					
 	void SetRadius(const float radius) { m_Props.m_BVsphere.radius = radius; }
 	void SetSpherePosition(const vec3 InPos) { m_Props.m_BVsphere.position = InPos; }
-	
+	void setLightPos(vec3 inPos) { lightPos = inPos;
+	EDITOR_LOG("LPos change: " + ToStr((float)lightPos.x))
+	}
 };
 
 class RootNode : public SceneNode
@@ -119,10 +125,10 @@ public:
 };
 class OGLMeshNode : public SceneNode
 {
-	GLuint lightPosLoc, viewPosLoc, LC;
+	GLuint viewPosLoc, LC;
 	
 	vec3 lightColor;
-	vec3 lightPos;
+	
 	
 public:
 	OGLMeshNode(const ObjectId Id,
@@ -142,7 +148,7 @@ public:
 		SetSpherePosition(inPos);
 	}
 	void setScale(mat4 m) { ModelMatrix = ModelMatrix*m; }
-
+	
 };
 class CameraNode : public SceneNode {
 	GLfloat Xoffset, Zoffset, vdist, hdist;

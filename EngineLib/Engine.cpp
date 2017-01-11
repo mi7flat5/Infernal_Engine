@@ -1,6 +1,7 @@
 #include"Engine.h"
 
 
+
 vec3 g_Right(1.0f, 0.0f, 0.0f);
 vec3 g_Up(0.0f, 1.0f, 0.0f);
 vec3 g_Forward(0.0f, 0.0f, -1.0f);

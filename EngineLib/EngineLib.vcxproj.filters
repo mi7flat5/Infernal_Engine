@@ -25,6 +25,9 @@
     <Filter Include="Source Files\Utility">
       <UniqueIdentifier>{f261498e-b5c3-4361-a863-0a7b1f2251e6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Math">
+      <UniqueIdentifier>{2054ade6-9082-469e-85bc-7197da23bbc8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -35,9 +38,6 @@
     </ClInclude>
     <ClInclude Include="Engine.h">
       <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Engine_Source\3DRender\Geometry.h">
-      <Filter>Source Files\3DRender</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine_Source\3DRender\Mesh.h">
       <Filter>Source Files\3DRender</Filter>
@@ -64,9 +64,6 @@
       <Filter>Source Files\Utility</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine_Source\Utility\Template.h">
-      <Filter>Source Files\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Engine_Source\Utility\Transform.h">
       <Filter>Source Files\Utility</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine_Source\Utility\Utility.h">
@@ -96,15 +93,18 @@
     <ClInclude Include="..\Engine_Source\3DRender\RayPick.hpp">
       <Filter>Source Files\3DRender</Filter>
     </ClInclude>
+    <ClInclude Include="..\Engine_Source\3DRender\Geometry.h">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\Utility\Transform.h">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\Engine_Source\3DRender\CubeMap.cpp">
-      <Filter>Source Files\3DRender</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Engine_Source\3DRender\Geometry.cpp">
       <Filter>Source Files\3DRender</Filter>
     </ClCompile>
     <ClCompile Include="..\Engine_Source\3DRender\Mesh.cpp">
@@ -129,9 +129,6 @@
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
     <ClCompile Include="..\Engine_Source\Utility\Shaders.cpp">
-      <Filter>Source Files\Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Engine_Source\Utility\Transform.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
     <ClCompile Include="..\Engine_Source\Utility\Utility.cpp">
@@ -160,6 +157,12 @@
     </ClCompile>
     <ClCompile Include="..\Engine_Source\3DRender\OGLNodes.cpp">
       <Filter>Source Files\3DRender</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\Utility\Transform.cpp">
+      <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\3DRender\Geometry.cpp">
+      <Filter>Source Files\Math</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

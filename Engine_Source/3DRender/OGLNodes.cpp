@@ -8,7 +8,7 @@ OGLMeshNode::OGLMeshNode(const ObjectId Id,
 {
 	m_Props.m_Name = "OGLMeshNode";
 	NodeShader.reset(new Shaders(shaderV, shaderF));
-	LoadUtility::loadModel(m_Meshes, meshPath, MeshType::NO_TEXTURE);
+	LoadUtility::loadModel(m_Meshes, meshPath, MeshType::TEXTURE_2D);
 	for (GLuint i = 0; i < m_Meshes.size();i++)
 		m_Meshes[i].SetShader(NodeShader->getProgram());
 	
@@ -17,12 +17,18 @@ OGLMeshNode::OGLMeshNode(const ObjectId Id,
 	ViewMatrixID = glGetUniformLocation(NodeShader->getProgram(), "View");
 	ModelMatrixID = glGetUniformLocation(NodeShader->getProgram(), "Model");
 	lightPosLoc = glGetUniformLocation(NodeShader->getProgram(), "lightPos");
+	viewPosLoc = glGetUniformLocation(NodeShader->getProgram(), "viewPos");
 	
-	ModelMatrix = mat4(1.0f);
-	vec3 lpos = vec3(0, 5, -5);
-	SetRadius(3);
+	vec3 lpos = vec3(50, -50, -50);
+	
 
-	SetSpherePosition(vec3(ModelMatrix[3]));
+
+	std::vector<vec3> sphereCalc;
+	LoadUtility::LoadCollider(meshPath, sphereCalc, std::vector<GLuint>(), std::vector<vec3>());
+	m_Props.m_BVsphere.SphereFromDistantPoints(sphereCalc);
+	EDITOR_LOG("Sphere Radius: " + ToStr((int)m_Meshes.size()))
+	//EDITOR_LOG("Sphere Radius: "+ ToStr(m_Props.m_BVsphere.radius))
+		//EDITOR_LOG("Sphere Position: x " + ToStr(m_Props.m_BVsphere.position.x)+" y "+ToStr(m_Props.m_BVsphere.position.y)+" z "+ToStr(m_Props.m_BVsphere.position.z))
 
 }
 void OGLMeshNode::VRender(Scene * pScene)
@@ -30,7 +36,7 @@ void OGLMeshNode::VRender(Scene * pScene)
 	NodeShader->Use();
 	for (int i = 0;i < m_Meshes.size();i++)
 	{
-		m_Meshes[i].DrawMesh(MeshType::NO_TEXTURE);
+		m_Meshes[i].DrawMesh(MeshType::TEXTURE_2D);
 	}
 
 }
@@ -44,10 +50,10 @@ bool OGLMeshNode::VPreRender(Scene * pScene)
 
 	SetSpherePosition(vec3(ProjectionMat*ViewMat*ModelMatrix[3]));
 
-	vec3 lpos = vec3(0, 5, -5);
-
+	
+	ModelMatrix = Transform::RotateMat4(90, vec3(1, 0, 0))*Transform::scale(0.2,0.2,0.2);
 	glUniform3fv(LC, 1, &lightColor[0]);
-	glUniform3f(lightPosLoc, lpos.x, lpos.y, lpos.z);
+	glUniform3f(lightPosLoc, lightPos.x, lightPos.y, lightPos.z);
 	glUniform3f(viewPosLoc, campos.x, campos.y, campos.z);
 	glUniformMatrix4fv(ProjectionMatrixID, 1, GL_FALSE, &ProjectionMat[0][0]);
 	glUniformMatrix4fv(ModelMatrixID, 1, GL_FALSE, &ModelMatrix[0][0]);
