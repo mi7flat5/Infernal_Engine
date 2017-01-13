@@ -73,7 +73,7 @@ class ISceneNode
 public:
 	virtual const SceneNodeProperties * const VGet() const = 0;
 
-	virtual void VSetTransform( mat4 *toWorld,  mat4 *fromWorld = NULL) = 0;
+	virtual void VSetTransform( const mat4 *toWorld, const mat4 *fromWorld = NULL) = 0;
 
 	virtual void VOnUpdate(Scene *pScene, unsigned long const elapsedMs) = 0;
 	virtual void VOnRestore(Scene *pScene) = 0;

@@ -25,8 +25,7 @@ Scene::~Scene()
 
 void Scene::OnRender()
 {
-	/*if (m_Camera && m_ControlledObject)
-		m_Camera->SetTarget(m_ControlledObject);*/
+
 	if (m_Root->VPreRender(this))
 	{
 		m_Root->VRender(this);
@@ -54,7 +53,7 @@ void Scene::DestroyActorDelegate(IEventDataPtr pEventData)
 }
 std::shared_ptr<ISceneNode> Scene::FindActor(ObjectId id)
 {
-	return std::shared_ptr<ISceneNode>();
+	return m_ObjectMap[id];
 }
 
 bool Scene::AddChild(ObjectId id, std::shared_ptr<ISceneNode> kid)
@@ -64,12 +63,9 @@ bool Scene::AddChild(ObjectId id, std::shared_ptr<ISceneNode> kid)
 		// This allows us to search for this later based on actor id
 		m_ObjectMap[id] = kid;
 		if (std::static_pointer_cast<SceneNode>(kid)->GetBVSphere().radius > 0) {
-			m_BVMap[id] = std::dynamic_pointer_cast<SceneNode>(kid)->GetBVSphereRefernce();
+			m_BVMap[id] = std::static_pointer_cast<SceneNode>(kid)->GetBVSphereRefernce();
 		}
-	
-		
 	}
-
 	return m_Root->VAddChild(kid); ;
 }
 
@@ -106,17 +102,29 @@ void Scene::NewRenderComponentDelegate(IEventDataPtr pEventData)
 
 void Scene::TestRayCollisonDelegate(IEventDataPtr pEventData)
 {
-
 	std::shared_ptr<EvtData_RayCast> pCastEventData = std::static_pointer_cast<EvtData_RayCast>(pEventData);
-	RayPick ray(pCastEventData->x,pCastEventData->y,pCastEventData->Width,pCastEventData->Height,this);
-	for (auto&i : m_BVMap) {
-		if (ray.RayTest(i.second))//TODO chose item closest to camera to send in event. 
+	RayPick ray(pCastEventData->x,pCastEventData->y,this,pCastEventData->Width,pCastEventData->Height);
+	
+	ObjectId hitId = INVALID_OBJECT_ID;
+	float nx = -1 + (2.0f * pCastEventData->x) / pCastEventData->Width;
+	float ny = 1.0f - (2.0f * pCastEventData->y) / pCastEventData->Height;
+	glm::vec2 ClickPoint(nx, ny);
+	float minDist = FLT_MAX;
+	
+	for (auto& i : m_BVMap) {	
+		if (ray.RayTest(i.second))
 		{
-			std::shared_ptr<EvtData_EvtRayHit> pEvent(INFERNAL_NEW EvtData_EvtRayHit(i.first, m_ObjectMap[i.first]));
-			IEventManager::Get()->VTriggerEvent(pEvent);
+			glm::vec2 CollsionPos(i.second->position.x/ i.second->position.z , i.second->position.y / i.second->position.z) ;
+			//sort out need for abs(), macro problem?
+			if (abs((sqr((ClickPoint.x - CollsionPos.x)) + sqr((ClickPoint.y - CollsionPos.y)))) < minDist)
+			{
+				minDist = abs(sqr((ClickPoint.x-CollsionPos.x))+sqr((ClickPoint.y - CollsionPos.y)));
+				hitId = i.first;
+			}
 		}
 	}
-
-	
-
+	if (hitId != INVALID_OBJECT_ID) {
+		std::shared_ptr<EvtData_EvtRayHit> pEvent(INFERNAL_NEW EvtData_EvtRayHit(hitId, m_ObjectMap[hitId]));
+		IEventManager::Get()->VTriggerEvent(pEvent);
+	}
 }

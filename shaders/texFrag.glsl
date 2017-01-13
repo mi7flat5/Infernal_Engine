@@ -103,7 +103,7 @@ vec4 Diffuse_Only_Texture()
  vec3 Diffuse_NormalMap()
  {
 	vec3 color = texture(material.texture_diffuse1,TEXCOORDS).rgb;
-	vec3 lightDir = normalize(lightPos - fs_in.FragPos);
+	vec3 lightDir = normalize(fs_in.TanlightPos - fs_in.TanFragPos);
 	float diff = max(dot(lightDir,Tangent_Normal()), 0.0);
 	return diff * color;
  }
@@ -111,14 +111,14 @@ vec4 Diffuse_Only_Texture()
  vec3 Specular_Map()
  {
    
-	float specularStrength = 0.4;
+	float specularStrength = 0.2;
 	
 	vec3 lightDir = normalize(fs_in.TanlightPos - fs_in.TanFragPos);
 	// ATTENTION 
-	vec3 reflectDir = reflect(lightDir, Tangent_Normal());  
+	vec3 reflectDir = reflect(-lightDir, Tangent_Normal());  
    
 	vec3 halfwayDir = normalize(lightDir + ViewDirection());  
- 	float spec = pow(max(dot(Tangent_Normal(),halfwayDir ), 0.0), 32);
+ 	float spec = pow(max(dot(Tangent_Normal(),halfwayDir ), 0.0), 128);
 	return specularStrength * spec*vec3(texture(material.texture_specular1,TEXCOORDS))*lightColor;  
  
  }
@@ -139,12 +139,12 @@ vec3 Diffuse()
 
 vec3 Specular()
 {
-	float specularStrength = 0.9;
+	float specularStrength = 0.4;
 	vec3 viewDir = normalize(fs_in.TanViewPos- fs_in.TanFragPos);
 	vec3 lightDir = normalize(fs_in.TanlightPos-fs_in.TanFragPos);
 	vec3 reflectDir = reflect(-lightDir, Tangent_Normal());  
 	 vec3 halfwayDir = normalize(lightDir + viewDir); 
-   	float spec = pow(max(dot(Tangent_Normal(),reflectDir ), 0.0), 16);
+   	float spec = pow(max(dot(Tangent_Normal(),halfwayDir  ), 0.0), 256);
 	return specularStrength * spec*vec3(1,1,1);	
 }
 

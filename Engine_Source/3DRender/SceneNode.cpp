@@ -12,11 +12,37 @@ void SceneNode::SetMeshList(std::vector<Mesh> inMesh)
 	m_Meshes = inMesh;
 }
 
-void SceneNode::VSetTransform(mat4 * toWorld, mat4 * fromWorld)
+void SceneNode::VSetTransform(const mat4 * toWorld, const mat4 * fromWorld)
 {
-	ModelMatrix = *toWorld;
+	m_Props.m_ToWorld = *toWorld;
+	if(!fromWorld)
+	m_Props.m_FromWorld = glm::inverse(*toWorld);
 }
+void SceneNode::SetVectorTransform(const vec3& position,const vec3& rotation,const vec3& scale)
+{
+	m_Props.m_Wpos = position;
+	m_Props.m_WrotPYR = rotation;
+	m_Props.m_Wscale = scale;
 
+	float maxScale = scale.x;
+
+	if (scale.y > scale.x)
+		maxScale = scale.y;
+	if (scale.z > scale.x && scale.z > scale.y)
+		maxScale = scale.z;
+	
+		
+	m_Props.RadiusScale = maxScale;
+	m_Props.m_BVsphere.radius = m_Props.ModelRadius*m_Props.RadiusScale;
+	EDITOR_LOG("radius: " + ToStr(m_Props.m_BVsphere.radius))
+
+}
+void SceneNode::GetVectorTransform(vec3& position, vec3& rotation, vec3& scale) 
+{
+	position = m_Props.m_Wpos;
+	rotation = m_Props.m_WrotPYR;
+	scale = m_Props.m_Wscale;
+}
 void SceneNode::VOnRestore(Scene * pScene)
 {
 }
@@ -92,10 +118,8 @@ bool SceneNode::VRemoveChild(ObjectId id)
 
 		if (pProps->GetId() != INVALID_OBJECT_ID && id == pProps->GetId())
 		{
-			char a[5];
-			long b = (*i).use_count();
-			itoa(b, a, 10);
-			EDITOR_LOG(a)
+		
+			EDITOR_LOG("Remaining shared pointers: "+ToStr((*i).use_count()-1))
 			
 				
 				i = m_Children.erase(i);	//this can be expensive for vectors
@@ -108,6 +132,8 @@ bool SceneNode::VRemoveChild(ObjectId id)
 void SceneNode::VOnLostDevice(Scene * pScene)
 {
 }
+
+
 
 SceneNodeProperties::SceneNodeProperties(void)
 {

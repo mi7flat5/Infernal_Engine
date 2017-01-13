@@ -36,7 +36,7 @@ bool TerrainNode::VPreRender(Scene *pScene)
 	glUniform1f(DispLevelID, DispLevel);
 	glUniform3fv(lightPosLoc,1, &lightPos[0]);
 	glUniformMatrix4fv(ProjectionMatrixID, 1, GL_FALSE, &ProjectionMat[0][0]);
-	glUniformMatrix4fv(ModelMatrixID, 1, GL_FALSE, &ModelMatrix[0][0]);
+	glUniformMatrix4fv(ModelMatrixID, 1, GL_FALSE, &m_Props.ToWorld()[0][0]);
 	glUniformMatrix4fv(ViewMatrixID, 1, GL_FALSE, &ViewMat[0][0]);
 
 	return true;
@@ -75,8 +75,8 @@ void TerrainNode::SetMinMaxBoundry()
 void TerrainNode::SetScale(GLuint InScale) {
 	Scale = InScale;
 
-	ModelMatrix = Transform::scale(Scale, 1.0, Scale);
-	ModelMatrix = ModelMatrix * Transform::translate(0, -20, 0);
+	m_Props.m_ToWorld = Transform::scale(Scale, 1.0, Scale);
+	m_Props.m_ToWorld = m_Props.m_ToWorld * Transform::translate(0, -20, 0);
 	SetMinMaxBoundry();
 }
 GLuint TerrainNode::GetHeight(glm::vec3 Position)

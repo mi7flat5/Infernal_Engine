@@ -57,7 +57,7 @@ void CameraNode::UpdateOffsetsVectors()
 	Xoffset = hdist*cos(glm::radians(yaw));
 	Zoffset = hdist*sin(glm::radians(yaw));
 	vec3 CylinCamPos = glm::normalize(vec3(radius*cos(glm::radians(yaw)), 0, radius* sin(glm::radians(yaw))));
-	rightvec = glm::normalize(glm::cross(camup, CylinCamPos));
+	rightvec = glm::normalize(glm::cross(-glm::normalize( CylinCamPos),g_Up));
 
 }
 void CameraNode::VRender(Scene *pScene)

@@ -28,7 +28,7 @@
 #include <ctime>
 
 void flogout(const char*);
-
+#define sqr(x) x*x
 
 
 #if defined(_DEBUG)

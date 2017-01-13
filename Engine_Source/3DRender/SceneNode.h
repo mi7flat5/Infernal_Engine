@@ -23,7 +23,8 @@ public:
 	ObjectId                 m_Id;
 	std::string				m_Name;
 	mat4					m_ToWorld, m_FromWorld;
-	
+	//Transform stored in vectors, rotation is Pitch-Yaw-Roll X-Y-Z
+	glm::vec3					m_Wpos, m_WrotPYR, m_Wscale;
 	RenderPass				m_RenderPass;
 	
 	SceneNodeProperties(void);
@@ -45,6 +46,10 @@ public:
 
 
 	BVSphere					m_BVsphere;
+	
+	float RadiusScale = 1.0f;
+	 float ModelRadius;
+	 vec3 ModelSpherePosition;
 };
 
 typedef std::vector<std::shared_ptr<ISceneNode> > SceneNodeList;
@@ -55,7 +60,7 @@ class SceneNode : public ISceneNode
 {
 	friend class Scene;
 protected:
-	mat4 ModelMatrix, ViewMat, ProjectionMat;
+	mat4 ViewMat, ProjectionMat;
 	GLuint ProjectionMatrixID, ViewMatrixID, ModelMatrixID;
 	SceneNodeList			m_Children;
 	SceneNode				*m_pParent;
@@ -72,7 +77,8 @@ public:
 		m_Props.m_RenderPass = renderPass;
 		m_Props.m_Id = Id;
 		
-		//m_Props.m_BVsphere.SphereFromDistantPoints(m_Meshes)
+		
+		
 	}
 		void SetMeshList(std::vector<Mesh> inMesh);
 
@@ -86,7 +92,7 @@ public:
 
 	virtual const SceneNodeProperties* const VGet() const { return &m_Props; }
 
-	virtual void VSetTransform( mat4 *toWorld,  mat4 *fromWorld = NULL);
+	virtual void VSetTransform( const mat4 *toWorld,  const mat4 *fromWorld = NULL);
 
 	virtual void VOnRestore(Scene *pScene);
 	virtual void VOnUpdate(Scene *, unsigned long const elapsedMs);
@@ -109,9 +115,10 @@ public:
 	}					
 	void SetRadius(const float radius) { m_Props.m_BVsphere.radius = radius; }
 	void SetSpherePosition(const vec3 InPos) { m_Props.m_BVsphere.position = InPos; }
-	void setLightPos(vec3 inPos) { lightPos = inPos;
-	EDITOR_LOG("LPos change: " + ToStr((float)lightPos.x))
-	}
+	void setLightPos(vec3 inPos) { lightPos = inPos;}
+	//Stores current transform in vector container
+	void SetVectorTransform(const vec3& position, const vec3& rotation, const vec3& scale);
+	void GetVectorTransform(vec3& position, vec3& rotation, vec3& scale);
 };
 
 class RootNode : public SceneNode
@@ -141,13 +148,8 @@ public:
 	virtual bool VIsVisible(Scene * pScene) const;
 	
 	//Currently used in prototype, remove after controllers set up. 
-	vec3 getPosition() {return vec3(ModelMatrix[3]);}
-	virtual const vec3 GetWorldPosition() const {return vec3(ModelMatrix[3]);	} 
-	void setPosition(vec3 inPos) {
-		this->ModelMatrix = Transform::translate(inPos.x, inPos.y, inPos.z);//*Transform::scale(3, 3, 3);
-		SetSpherePosition(inPos);
-	}
-	void setScale(mat4 m) { ModelMatrix = ModelMatrix*m; }
+
+
 	
 };
 class CameraNode : public SceneNode {
@@ -188,7 +190,7 @@ public:
 	}
 	GLfloat GetYaw() { return yaw; }
 	GLfloat GetPitch() { return pitch; }
-	vec3 GetRight() { return rightvec; }
+	vec3 GetRight() { return glm::normalize(rightvec); }
 	vec3 GetTargetPos() { return Target; }
 	void SetYaw(GLfloat InYaw) { yaw += InYaw; }
 	void SetPitch(GLfloat InPitch) { pitch += InPitch; }

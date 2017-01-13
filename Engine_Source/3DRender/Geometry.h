@@ -7,7 +7,7 @@ extern vec4 g_Up4;
 extern vec4 g_Right4;
 extern vec4 g_Forward4;
 
-
+#include"../EventSystem/Event.h"
 
 class Geometry
 {
@@ -29,6 +29,7 @@ public:
 		axis.push_back(vec3(0, 0, 1));
 		CalcAABB(Verts);
 	}
+	void GetMinMax(vec3 &mi, vec3&ma) { mi = min; ma = max; }
 	void CalcAABB(const std::vector<vec3>& Verts)
 	{
 		for (auto& dir : axis) {
@@ -93,6 +94,21 @@ class BVSphere {
 			MAxExtent = Verts[maxz];
 		}
 
+
+	}
+	void AddPointsToSphere(const vec3& PontToAdd) 
+	{
+		vec3 dist = PontToAdd - position;
+		float distSQR = glm::dot(dist,dist);
+		if (distSQR > radius*radius)
+		{
+			float realdist = sqrt(distSQR);
+			float newRadius = (radius + realdist)*0.5f;
+			float change = (newRadius - radius) / realdist;
+			radius = newRadius;
+			position += dist*change;
+		}
+	
 	}
 public:
 	BVSphere() {}
@@ -105,7 +121,10 @@ public:
 		position = (minEx + maxEx)*0.5f;
 		radius = glm::dot(maxEx-position, maxEx - position);
 		radius = sqrt(radius);
-	
+		for (auto& point : Verts)
+		{
+			AddPointsToSphere(point);
+		}
 	}
 	
 

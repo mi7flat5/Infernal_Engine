@@ -39,14 +39,42 @@ InfernalEditor::InfernalEditor(QWidget *parent)
 	m_pCreationwindow = new ActorCreationWindow();
 	m_pCreationwindow->SetOwner(this);
 	
-	connect(ui.xlpos, static_cast<void(QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), this, &InfernalEditor::SetLightPos);
+	connect(ui.pX, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),
+		this, &InfernalEditor::UpdateTransform);
+	connect(ui.pY, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),
+		this, &InfernalEditor::UpdateTransform);
+	connect(ui.pZ, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),
+		this, &InfernalEditor::UpdateTransform);
+	connect(ui.rX, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),
+		this, &InfernalEditor::UpdateTransform);
+	connect(ui.rY, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),
+		this, &InfernalEditor::UpdateTransform);
+	connect(ui.rZ, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),
+		this, &InfernalEditor::UpdateTransform);
+	connect(ui.sX, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),
+		this, &InfernalEditor::UpdateTransform);
+	connect(ui.sY, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),
+		this, &InfernalEditor::UpdateTransform);
+	connect(ui.sZ, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),
+		this, &InfernalEditor::UpdateTransform);
 	
+	
+
+
 }
-//a hack for debugging a shader adding runtime light position changes
-void InfernalEditor::SetLightPos(int junk)
-{
+void InfernalEditor::UpdateTransform() {
 	if (m_pSelectedNode)
-		m_pSelectedNode->setLightPos(vec3(ui.xlpos->value(),ui.ylpos->value(),ui.zlpos->value()));
+	{
+		mat4 translate = Transform::translate(ui.pX->value(),ui.pY->value(),ui.pZ->value());
+		mat4 Rotate = Transform::RotateMat4(ui.rX->value(), vec3(1, 0, 0))*Transform::RotateMat4(ui.rY->value(), vec3(0, 1, 0))*Transform::RotateMat4(ui.rZ->value(), vec3(0, 0, 1));
+		mat4 Matscale = Transform::scale(ui.sX->value(), ui.sY->value(), ui.sZ->value());
+		mat4 transform = translate*Rotate*Matscale;
+		m_pSelectedNode->SetVectorTransform(vec3(ui.pX->value(), ui.pY->value(), ui.pZ->value()),
+			vec3(ui.rX->value(), ui.rY->value(), ui.rZ->value()),
+			vec3(ui.sX->value(), ui.sY->value(), ui.sZ->value()));
+		m_pSelectedNode->VSetTransform(&transform);
+	}
+
 }
 
 void InfernalEditor::DeleteActor()
@@ -55,15 +83,10 @@ void InfernalEditor::DeleteActor()
 	QModelIndex index = ui.treeView->selectionModel()->currentIndex();
 	QAbstractItemModel *model = ui.treeView->model();
 	QVariant ID = model->index(index.row(),2, index.parent()).data();
-	
-	
-	
+		
 	if (model->removeRow(index.row(), index.parent()))
 		ui.openGLWidget->RemoveFromScene(ID.toUInt());
-		
-		
-
-		
+			
 }
 void InfernalEditor::loadfile(const QString &fileName)
 {
@@ -89,6 +112,30 @@ void InfernalEditor::loadfile(const QString &fileName)
 	inDoc.Clear();
 
 }
+
+void InfernalEditor::SetSelectedNode(std::shared_ptr<SceneNode> inNode)
+{
+	m_pSelectedNode = inNode;
+
+
+	vec3 pos, rot, scale;
+	if(m_pSelectedNode)
+	m_pSelectedNode->GetVectorTransform(pos, rot, scale);
+	
+	ui.pX->setValue(pos.x);
+	ui.pY->setValue(pos.y);
+	ui.pZ->setValue(pos.z);
+
+	ui.rX->setValue(rot.x);
+	ui.rY->setValue(rot.y);
+	ui.rZ->setValue(rot.z);
+
+	ui.sX->setValue(scale.x);
+	ui.sY->setValue(scale.y);
+	ui.sZ->setValue(scale.z);
+
+}
+
 void InfernalEditor::AddObjectToScene(const char* resourcePath, QList<QStandardItem*> inItems) 
 {
 	unsigned int id = ui.openGLWidget->AddObjectToScene(resourcePath);
@@ -164,7 +211,10 @@ void InfernalEditor::contextMenuEvent(QContextMenuEvent *event)
 
 void InfernalEditor::registerDelegate()
 {
+	ui.gridLayout->setColumnStretch(0, 3);
+	int b = ui.gridLayout->columnCount();
 
+	
 	IEventManager* evman = IEventManager::Get();
 
 	evman->VAddListener(fastdelegate::MakeDelegate(this, &InfernalEditor::Log_event), EvtData_Log_Data::sk_EventType);
@@ -175,6 +225,7 @@ void InfernalEditor::Log_event(IEventDataPtr pEventData)
 	std::shared_ptr<EvtData_Log_Data> pCastEventData = std::static_pointer_cast<EvtData_Log_Data>(pEventData);
 
 	ui.textBrowser->append(QString(pCastEventData->getLog()));
+	
 
 }
 void InfernalEditor::newFile()

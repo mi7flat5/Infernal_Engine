@@ -12,8 +12,9 @@ class InfernalEditor : public QMainWindow
 		QStandardItem* m_pSceneViewRoot;
 public:
     InfernalEditor(QWidget *parent = Q_NULLPTR);
+	void UpdateTransform();
 	void SetLightPos(int);
-	void SetSelectedNode(std::shared_ptr<SceneNode> inNode) { m_pSelectedNode = inNode; }
+	void SetSelectedNode(std::shared_ptr<SceneNode> inNode);
 	void AddObjectToScene(const char* resourcePath, QList<QStandardItem*> inItems);
 	void registerDelegate();
 protected:

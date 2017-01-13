@@ -29,7 +29,7 @@ void LoadUtility::loadModel( std::vector<Mesh> &InMeshVec,const std::string &pat
 		
 	for (GLuint i = 0;i <scene->mNumMeshes;++i)
 	{
-		aiMesh* tmpMesh = scene->mMeshes[(scene->mNumMeshes - 1) - i];
+		aiMesh* tmpMesh = scene->mMeshes[ i];
 		for (int j = 0;j < tmpMesh->mNumVertices;++j)
 		{
 			Vertex tmpVert;
@@ -308,40 +308,43 @@ void LoadUtility::LoadCollider(const std::string &path, std::vector<glm::vec3> &
 		return;
 	}
 	std::map<aiVector3D, int>VertMap;
-	aiMesh* tmpMesh = scene->mMeshes[0];
-	
-	for (int j = 0;j < tmpMesh->mNumVertices;++j)
-	{
-		glm::vec3 tmpPos;
-		tmpPos.x = tmpMesh->mVertices[j].x;
-		tmpPos.y = tmpMesh->mVertices[j].y;
-		tmpPos.z = tmpMesh->mVertices[j].z;
-			InRenderVerts.push_back(tmpPos);
-	}
-	aiFace  tmpFace;
-	for (int j = 0; j < tmpMesh->mNumFaces;++j)
-	{
-		tmpFace = tmpMesh->mFaces[j];
-		for (int k = 0;k < tmpFace.mNumIndices;++k)
+	for (int i = 0; i < scene->mNumMeshes;++i) {
+		aiMesh* tmpMesh = scene->mMeshes[i];
+
+		for (int j = 0;j < tmpMesh->mNumVertices;++j)
 		{
-			InIndices.push_back(tmpFace.mIndices[k]);
+			glm::vec3 tmpPos;
+			tmpPos.x = tmpMesh->mVertices[j].x;
+			tmpPos.y = tmpMesh->mVertices[j].y;
+			tmpPos.z = tmpMesh->mVertices[j].z;
+			InRenderVerts.push_back(tmpPos);
+		}
+		aiFace  tmpFace;
+		for (int j = 0; j < tmpMesh->mNumFaces;++j)
+		{
+			tmpFace = tmpMesh->mFaces[j];
+			for (int k = 0;k < tmpFace.mNumIndices;++k)
+			{
+				InIndices.push_back(tmpFace.mIndices[k]);
+			}
+		}
+		// using map to weed out duplicates
+		for (int j = 0;j < tmpMesh->mNumVertices;++j)
+		{
+			VertMap[tmpMesh->mVertices[j]] = j;
+		}
+		typedef std::map<aiVector3D, int>::iterator it_type;
+
+		for (it_type iterator = VertMap.begin(); iterator != VertMap.end(); iterator++)
+		{
+			//std::map cannot sort glm::vec3, leave it in assimp's vector3D and convert here
+			glm::vec3 tmpPos;
+			tmpPos.x = iterator->first.x;
+			tmpPos.y = iterator->first.y;
+			tmpPos.z = iterator->first.z;
+			InVerts.push_back(tmpPos);
 		}
 	}
-	// using map to weed out duplicates
-	for (int j = 0;j < tmpMesh->mNumVertices;++j)
-	{
-		VertMap[tmpMesh->mVertices[j]] = j;
-	}
-	typedef std::map<aiVector3D, int>::iterator it_type;
+	EDITOR_LOG("inverts size: " +ToStr((int)InVerts.size()))
 
-	for (it_type iterator = VertMap.begin(); iterator != VertMap.end(); iterator++)
-	{
-		//std::map cannot sort glm::vec3, leave it in assimp's vector3D and convert here
-		glm::vec3 tmpPos;
-		tmpPos.x = iterator->first.x;
-		tmpPos.y = iterator->first.y;
-		tmpPos.z = iterator->first.z;
-		InVerts.push_back(tmpPos);
-	}
-	//std::cout << "\inverts size: " << InVerts.size();//TODO Add to logging
 }
