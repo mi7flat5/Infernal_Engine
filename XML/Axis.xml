@@ -1,0 +1,5 @@
+<Axis type="Mesh" resource="..//XML/Axis.xml">
+    <MeshRenderComponent>
+        <Paths shaderV="..//shaders//vert.glsl" shaderF="..//shaders//frag.glsl" mesh="..//assets//Axis.fbx"/>
+    </MeshRenderComponent>
+</Axis>

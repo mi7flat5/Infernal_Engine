@@ -6,7 +6,9 @@ in VS_OUT
 {
     vec2 tc;
 	vec2 tc2;
+	vec4 tanFragPos;
 	vec4 tanLightPos;
+	vec4 tanViewPos;
 	vec4 norm;
 	vec4 tang;
 	vec4 bittang;
@@ -17,7 +19,9 @@ out TCS_OUT
 {
     vec2 tc;
 	vec2 tc2;
+	vec4 tanFragPos;
 	vec4 tanLightPos;
+	vec4 tanViewPos;
 	vec4 norm;
 	vec4 tang;
 	vec4 bittang;
@@ -46,5 +50,7 @@ void main(void)
 	tcs_out[gl_InvocationID].tang = tcs_in[gl_InvocationID].tang;
 	tcs_out[gl_InvocationID].bittang = tcs_in[gl_InvocationID].bittang;
 	tcs_out[gl_InvocationID].tanLightPos = tcs_in[gl_InvocationID].tanLightPos;
+	tcs_out[gl_InvocationID].tanViewPos = tcs_in[gl_InvocationID].tanViewPos;
+	tcs_out[gl_InvocationID].tanFragPos = tcs_in[gl_InvocationID].tanFragPos;
 	
 }

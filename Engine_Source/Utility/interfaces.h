@@ -111,3 +111,18 @@ public:
 	 virtual ~IScreenElement() { };
 	 virtual bool const operator <(IScreenElement const &other) { return VGetZOrder() < other.VGetZOrder(); }
  };
+
+ //class IGamePhysics;
+ class IGameLogic
+ {
+ public:
+	 virtual WeakObjectPtr VGetActor(const ObjectId id) = 0;
+	 virtual StrongObjectPtr VCreateActor(const std::string &actorResource, tinyxml2::XMLElement* overrides, const mat4 *initialTransform = NULL, const ObjectId serversActorId = INVALID_OBJECT_ID) = 0;
+	 virtual void VDestroyActor(const ObjectId actorId) = 0;
+	 virtual bool VLoadGame(const char* levelResource) = 0;
+	 virtual void VSetProxy() = 0;
+	 virtual void VOnUpdate(float time, float elapsedTime) = 0;
+	 virtual void VChangeState(enum BaseGameState newState) = 0;
+	 virtual void VMoveActor(const ObjectId	 id, mat4 const &mat) = 0;
+	// virtual shared_ptr<IGamePhysics> VGetGamePhysics(void) = 0;
+ };

@@ -144,7 +144,7 @@ vec3 Specular()
 	vec3 lightDir = normalize(fs_in.TanlightPos-fs_in.TanFragPos);
 	vec3 reflectDir = reflect(-lightDir, Tangent_Normal());  
 	 vec3 halfwayDir = normalize(lightDir + viewDir); 
-   	float spec = pow(max(dot(Tangent_Normal(),halfwayDir  ), 0.0), 256);
+   	float spec = pow(max(dot(halfwayDir,Tangent_Normal()  ), 0.0), 256);
 	return specularStrength * spec*vec3(1,1,1);	
 }
 

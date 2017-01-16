@@ -143,7 +143,7 @@ public:
 		RenderPass renderPass, const char* shaderV, const char* shaderF, const char* meshPath);
 	
 	virtual void VRender(Scene *pScene) override;
-	virtual bool VPreRender(Scene* pScene) override;
+
 	virtual void VOnUpdate(Scene *, unsigned long const elapsedMs)override;
 	virtual bool VIsVisible(Scene * pScene) const;
 	
@@ -173,6 +173,7 @@ public:
 	vec3 GetFront() { return camfront; }
 	void MoveForward(float inVal) { Target += camfront*inVal; };
 	void MoveRight(float inVal) { Target += rightvec*inVal; };
+	void MoveUp(float inVal) { Target += g_Up*inVal; }
 	void ReportPosition(){EDITOR_LOG("CamPos: "+ToStr(campos.x)+" "+ToStr(campos.y)+" "+ToStr(campos.z)) }
 	virtual void VOnUpdate(Scene *, unsigned long const elapsedMs);
 	void ExtractPlanesGL(bool normalize);
@@ -209,9 +210,9 @@ public:
 	CubemapNode(const ObjectId Id,	WeakBaseRenderComponentPtr renderComponent,
 		RenderPass renderPass, const char* shaderV, const char* shaderF, const char* meshPath);
 		
-	virtual bool VPreRender(Scene *pScene) override;
+
 	virtual void VRender(Scene *pScene) override;
-	virtual void VPostRender(Scene *pScene) override;
+
 	
 	void SetUniforms();
 
@@ -219,7 +220,7 @@ public:
 class TerrainNode : public SceneNode
 {
 	GLint Width, Height;
-	GLuint Scale, LastValidHeight, DispLevelID, SpecularShininessID, NormMappingID, lightPosLoc;
+	GLuint Scale, LastValidHeight, DispLevelID, SpecularShininessID, NormMappingID, viewPosLoc,lightPosLoc;
 
 	GLfloat MaxX, MaxZ, MinX, MinZ, DispLevel;
 	unsigned char * HeightMapImage;
@@ -233,9 +234,9 @@ public:
 	virtual ~TerrainNode();
 	GLuint GetHeight(glm::vec3 Position);//move out of scene node
 	//TerrainNode(const std::string &InPath, MeshType shader);
-	virtual bool VPreRender(Scene *pScene) override;
+
 	virtual void VOnUpdate(Scene *, unsigned long const elapsedMs);
 	virtual void VRender(Scene *pScene) override;
 
-	virtual void VPostRender(Scene *pScene) override;
+	
 };

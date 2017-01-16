@@ -25,7 +25,7 @@ EditWindow::EditWindow(QWidget *parent)
 	AnotherTimerBecausQtIsntSoCute.start();
 	timer->start();
 	lastX = lastY = 0;
-	Fmove=  Bmove = Lmove = Rmove= false;
+	Fmove=  Bmove = Lmove = Rmove= UpMove = DownMove = false;
 }
 EditWindow::~EditWindow()
 {
@@ -164,11 +164,16 @@ void EditWindow::paintGL()
 	if (Fmove) {
 		MoveForward(rate);
 	}
-	if (Bmove)
+	if (Bmove) {
 		MoveForward(-rate);
+	}
+	if (UpMove) {
+		MoveUp(rate);
+	}
+	if (DownMove) {
+		MoveUp(-rate);
+	}
 
-	if (m_pSelectedNode)
-		//m_pSelectedNode->VSetTransform(&Transform::translate(12*cos(currentFrame*.001),1,-wl18*cos(currentFrame*.001)));
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
 	m_pScene->OnUpdate(g_DeltaTime);
@@ -212,6 +217,14 @@ void EditWindow::keyReleaseEvent(QKeyEvent *event)
 		{
 			Lmove = false;
 		}
+		if (!(event->modifiers()& Qt::ShiftModifier) && event->key() == Qt::Key_Space)
+		{
+			UpMove = false;
+		}
+		if (event->modifiers()& Qt::ShiftModifier && event->key() == Qt::Key_Space)
+		{
+			DownMove = false;
+		}
 	}
 }
 
@@ -237,12 +250,20 @@ void EditWindow::keyPressEvent(QKeyEvent *event)
 		{
 			Rmove = true;
 		}
+		if (!(event->modifiers()& Qt::ShiftModifier) && event->key() == Qt::Key_Space)
+		{
+			UpMove = true;
+		}
+		if ((event->modifiers()& Qt::ShiftModifier) && (event->key() == Qt::Key_Space))
+		{
+			DownMove = true;
+		}
 	}
 }
 void EditWindow::MoveForward(float rate) { m_pCamera->MoveForward(3.5f*rate); }
 
 void EditWindow::MoveRight(float rate) { m_pCamera->MoveRight(3.5f*rate); }
-
+void EditWindow::MoveUp(float rate) { m_pCamera->MoveUp(3.5*rate); }
 void EditWindow::mouseMoveEvent(QMouseEvent *event)
 {
 	double xpos, ypos;

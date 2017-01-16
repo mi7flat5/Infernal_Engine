@@ -62,6 +62,21 @@ void SceneNode::VOnUpdate(Scene *pScene, unsigned long const elapsedMs)
 
 bool SceneNode::VPreRender(Scene * pScene)
 {
+
+	//StrongActorPtr pActor = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActor(m_Props.m_ActorId));
+	//if (pActor)
+	//{
+	//	shared_ptr<TransformComponent> pTc = MakeStrongPtr(pActor->GetComponent<TransformComponent>(TransformComponent::g_Name));
+	//	if (pTc)
+	//	{
+	//		m_Props.m_ToWorld = pTc->GetTransform();
+	//	}
+	//}
+
+	pScene->PushAndSetMatrix(m_Props.m_ToWorld);
+	
+
+
 	return true;
 }
 bool SceneNode::VIsVisible(Scene * pScene) const
@@ -99,6 +114,7 @@ void SceneNode::VRenderChildren(Scene * pScene)
 }
 void SceneNode::VPostRender(Scene * pScene)
 {
+	pScene->PopMatrix();
 }
 bool SceneNode::VAddChild(std::shared_ptr<ISceneNode> ikid)
 {

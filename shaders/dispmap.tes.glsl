@@ -19,7 +19,9 @@ in TCS_OUT
 {
     vec2 tc;
 	vec2 tc2;
+	vec4 tanFragPos;
 	vec4 tanLightPos;
+	vec4 tanViewPos;
 	vec4 norm;
 	vec4 tang;
 	vec4 bittang;
@@ -29,7 +31,9 @@ out TES_OUT
 {
     vec2 tc;
 	vec2 tc2;
+	vec3 tanFragPos;
 	vec3 tanLightPos;
+	vec3 tanViewPos;
     vec3 world_coord;
     vec3 eye_coord;
 	vec4 norm;
@@ -62,9 +66,18 @@ void main(void)
 	vec4  bt = mix(bittang2, bittang1, gl_TessCoord.y);
 	//bt.y += texture(material.texture_displacement1, tc).r *253.0;
   
-  vec4 tlp1 = mix(tes_in[0].tanLightPos, tes_in[0].tanLightPos, gl_TessCoord.x);
-    vec4 tlp2 = mix(tes_in[0].tanLightPos, tes_in[0].tanLightPos, gl_TessCoord.x);
+  vec4 tlp1 = mix(tes_in[0].tanLightPos, tes_in[1].tanLightPos, gl_TessCoord.x);
+    vec4 tlp2 = mix(tes_in[2].tanLightPos, tes_in[3].tanLightPos, gl_TessCoord.x);
 	vec4  tlp = mix(tlp2, tlp1, gl_TessCoord.y);
+	
+	 vec4 tvp1 = mix(tes_in[0].tanViewPos, tes_in[1].tanViewPos, gl_TessCoord.x);
+    vec4 tvp2 = mix(tes_in[2].tanViewPos, tes_in[3].tanViewPos, gl_TessCoord.x);
+	vec4  tvp = mix(tvp2, tvp1, gl_TessCoord.y);
+	
+	 vec4 tfp1 = mix(tes_in[0].tanFragPos, tes_in[1].tanFragPos, gl_TessCoord.x);
+    vec4 tfp2 = mix(tes_in[2].tanFragPos, tes_in[3].tanFragPos, gl_TessCoord.x);
+	vec4  tfp = mix(tfp2, tfp1, gl_TessCoord.y);
+	
   
 	vec4 p1 = mix(gl_in[0].gl_Position, gl_in[1].gl_Position, gl_TessCoord.x);
     vec4 p2 = mix(gl_in[2].gl_Position, gl_in[3].gl_Position, gl_TessCoord.x);
@@ -75,7 +88,29 @@ void main(void)
 	vec4 N_eye = View*Model* n;
 	vec4 T_eye = View*Model* t;
 	vec4 BT_eye = View*Model* bt;
-	vec4 outTlp = View*Model*tlp;
+	
+	vec3 normmap =vec3(texture(material.texture_normal1, tc2).r );
+	
+	vec3 c1 = cross(normmap, vec3(0.0, 0.0, 1.0)); 
+	vec3 c2 = cross(normmap, vec3(0.0, 1.0, 0.0)); 
+	vec3 tan;
+	vec3 bittan;
+	if( length(c1) > length(c2) )
+		{
+			tan = c1;	
+		}
+	else
+		{
+			tan = c2;	
+		}
+	
+	tan = normalize(tan);
+	bittan = cross(tan,normmap);
+	
+	vec3 T = normalize(mat3(inverse(View)) * vec3(tan));
+    vec3 B = normalize(mat3(inverse(View)) * vec3(bittan));
+    vec3 N = normalize(mat3(inverse(View)) * vec3(normmap));
+    mat3 TBN = transpose(mat3(T, B, N));
 	
 	
     tes_out.tc = tc;
@@ -84,7 +119,11 @@ void main(void)
     tes_out.world_coord = p.xyz;
     tes_out.eye_coord = P_eye.xyz;
 	
-	tes_out.tanLightPos = tlp1.xyz;
+	tes_out.tanFragPos = TBN*vec3(tfp);
+	tes_out.tanLightPos = TBN*vec3(tlp);//(tlp).xyz;
+	tes_out.tanViewPos = TBN*vec3(tvp);;
+	
+	
 	tes_out.norm = n;
 	tes_out.tang = t;
 	tes_out.bittang = bt;

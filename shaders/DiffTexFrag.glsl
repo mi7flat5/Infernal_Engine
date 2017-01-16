@@ -22,22 +22,23 @@ out vec3 color;
 
 void main()//texture fragment shader
 {
+	vec3 lc = vec3(1,1,1);
     // Ambient
     float ambientStrength = 0.2f;
-    vec3 ambient = ambientStrength* vec3(texture(material.texture_diffuse1,TexCoords))*lightColor;
+    vec3 ambient = ambientStrength* vec3(texture(material.texture_diffuse1,TexCoords))*lc;
   	
     // Diffuse 
     vec3 norm = normalize(Normal);
     vec3 lightDir = normalize(lightPos - FragPos);
     float diff = max(dot(norm, lightDir), 0.0);
-    vec3 diffuse = diff * vec3(texture(material.texture_diffuse1,TexCoords))*lightColor;
+    vec3 diffuse = diff * vec3(texture(material.texture_diffuse1,TexCoords))*lc;
     
     // Specular
     float specularStrength = 0.6;
     vec3 viewDir = normalize(viewPos - FragPos);
     vec3 reflectDir = reflect(-lightDir, norm);  
     float spec = pow(max(dot(viewDir, reflectDir), 0.0), 32);
-    vec3 specular = specularStrength * spec*vec3(texture(material.texture_specular1,TexCoords))*lightColor;  
+    vec3 specular = specularStrength * spec*vec3(texture(material.texture_specular1,TexCoords))*lc;  
         
     vec3 result = (ambient + diffuse + specular);
     color =  result; //output for this main is vec3

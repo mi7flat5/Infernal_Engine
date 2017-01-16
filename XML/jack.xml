@@ -1,0 +1,5 @@
+<jack type="Mesh" resource="..//XML/jack.xml">
+    <MeshRenderComponent>
+        <Paths shaderV="..//shaders//texVert.glsl" shaderF="..//shaders//texFrag.glsl" mesh="..//assets//jack.blend"/>
+    </MeshRenderComponent>
+</jack>

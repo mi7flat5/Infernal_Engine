@@ -19,6 +19,7 @@
 #include<map>
 #include<list>
 #include<vector>
+#include<stack>
 #include<fstream>
 #include<sstream>
 #include<iostream>
@@ -67,7 +68,7 @@ void asdflogout(const char*);
 
 
 
-#include"tinyxml2.h"
+#include"Utility\tinyxml2.h"
 #include"Utility\interfaces.h"
 #include"Utility\Template.h"
 #include"Utility\Utility.h"

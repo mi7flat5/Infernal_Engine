@@ -1,0 +1,5 @@
+<JackylSheild type="Mesh" resource="..//XML/JackylSheild.xml">
+    <MeshRenderComponent>
+        <Paths shaderV="..//shaders//texVert.glsl" shaderF="..//shaders//texFrag.glsl" mesh="..//assets//sheild.fbx"/>
+    </MeshRenderComponent>
+</JackylSheild>

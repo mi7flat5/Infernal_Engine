@@ -95,7 +95,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\Libraries\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>assimpd.lib;glew32s.lib;glfw3.lib;SOIL.lib;tinyxml2d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>assimpd.lib;glew32s.lib;glfw3.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -119,7 +119,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\Libraries\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SOIL64.lib;glew64s.lib;glfw364.lib;tinyxml264d.lib;assimp64d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SOIL64.lib;glew64s.lib;glfw364.lib;assimp64d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>
       </EnableCOMDATFolding>
@@ -144,7 +144,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>..\Libraries\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>assimp.lib;glew32s.lib;glfw3.lib;SOIL.lib;tinyxml2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>assimp.lib;glew32s.lib;glfw3.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -164,7 +164,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>assimp64.lib;SOIL64.lib;glew64s.lib;glfw364.lib;tinyxml264.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>assimp64.lib;SOIL64.lib;glew64s.lib;glfw364.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\Libraries\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -185,11 +185,13 @@
     <ClInclude Include="..\Engine_Source\SHObject\ObjectFactory.h" />
     <ClInclude Include="..\Engine_Source\SHObject\RenderComponent.h" />
     <ClInclude Include="..\Engine_Source\SHObject\RenderComponentInterface.h" />
+    <ClInclude Include="..\Engine_Source\SHObject\TransformComponent.h" />
     <ClInclude Include="..\Engine_Source\Utility\interfaces.h" />
     <ClInclude Include="..\Engine_Source\Utility\LoadUtility.h" />
     <ClInclude Include="..\Engine_Source\Utility\Logger.h" />
     <ClInclude Include="..\Engine_Source\Utility\Shaders.hpp" />
     <ClInclude Include="..\Engine_Source\Utility\Template.h" />
+    <ClInclude Include="..\Engine_Source\Utility\tinyxml2.h" />
     <ClInclude Include="..\Engine_Source\Utility\Transform.h" />
     <ClInclude Include="..\Engine_Source\Utility\Utility.h" />
     <ClInclude Include="Engine.h" />
@@ -214,8 +216,10 @@
     <ClCompile Include="..\Engine_Source\SHObject\Object3D.cpp" />
     <ClCompile Include="..\Engine_Source\SHObject\ObjectFactory.cpp" />
     <ClCompile Include="..\Engine_Source\SHObject\RenderComponent.cpp" />
+    <ClCompile Include="..\Engine_Source\SHObject\TransformComponent.cpp" />
     <ClCompile Include="..\Engine_Source\Utility\LoadUtility.cpp" />
     <ClCompile Include="..\Engine_Source\Utility\Shaders.cpp" />
+    <ClCompile Include="..\Engine_Source\Utility\tinyxml2.cpp" />
     <ClCompile Include="..\Engine_Source\Utility\Transform.cpp" />
     <ClCompile Include="..\Engine_Source\Utility\Utility.cpp" />
     <ClCompile Include="Engine.cpp">

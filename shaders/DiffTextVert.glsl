@@ -17,8 +17,8 @@ void main()
 {	
 	
 	gl_Position =  Projection * View * Model * vec4(Position,1.0f);
-	FragPos = vec3( View * Model * vec4(vertexPosition_modelspace, 1.0f));
-    Normal = normalize(normal*mat3(View*Model));
+	FragPos = vec3( View * Model * vec4(Position, 1.0f));
+    Normal = normalize(mat3(View*Model)*normal);
 	fragmentColor = cols;
 	TexCoords = texCoords;
 }

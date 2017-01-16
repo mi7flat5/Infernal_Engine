@@ -2,11 +2,11 @@
 //
 #include "qopenglwidget.h"
 #include"qopenglfunctions.h"
-
+//GameCodeApp *g_pApp = NULL;
 using ObjectMap  = std::map< unsigned int, StrongObjectPtr>;
 class EditWindow :	public QOpenGLWidget, protected QOpenGLFunctions
 {	
-	bool Fmove, Bmove, Lmove, Rmove;
+	bool Fmove, Bmove, Lmove, Rmove,UpMove,DownMove;
 public:
 	 EditWindow(QWidget *parent);
 	~EditWindow();
@@ -36,22 +36,35 @@ protected:
 	void MoveLeft(float);
 	void MoveRight(float);
 	
+	void MoveUp(float rate);
 private:
-	ObjectMap m_ObjectTable;
-	EventManager* m_pEventManager;
-	Scene* m_pScene;
-	CameraNode* m_pCamera;
-	ObjectFactory* maker;
+
+	
+	
+	
 	QTimer* timer;
 	QTime AnotherTimerBecausQtIsntSoCute;;
 	GLenum glewCheck;
+	
+	
 	GLfloat lastX, lastY, lastFrame;
 	void init();
 	QMainWindow* owner;
 	GLfloat rate;
+	
+
+	//move to main window
 	void SetSelectedDelegate(IEventDataPtr pEventData);
 	std::shared_ptr<SceneNode> m_pSelectedNode;
 	std::string m_SelectedObjectName;
+	ObjectMap m_ObjectTable;
+
+	//move to library side application layer
+	EventManager* m_pEventManager;
+	Scene* m_pScene;
+	CameraNode* m_pCamera;
+	ObjectFactory* maker;
 	
 };
 
+extern EditWindow *g_pApp;

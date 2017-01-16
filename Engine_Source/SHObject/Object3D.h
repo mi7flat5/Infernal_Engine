@@ -29,25 +29,25 @@ public:
 	void AddComponent(StrongObjectComponentPtr pComponent);
 
 	 //template function for retrieving components
-	//template <class ComponentType>
-	//std::weak_ptr<ComponentType> GetComponent(ComponentId id)
-	//{
-	//	ObjectComponents::iterator findIt = m_components.find(id);
-	//	if (findIt != m_components.end())
-	//	{
-	//		StrongObjectComponentPtr pBase(findIt->second);
-	//		std::shared_ptr<ComponentType> pSub(std::static_pointer_cast<ComponentType>(pBase));  // cast to subclass version of the pointer
-	//		std::weak_ptr<ComponentType> pWeakSub(pSub);  // convert strong pointer to weak pointer
-	//		return pWeakSub;  // return the weak pointer
-	//	}
-	//	else
-	//	{
-	//		return std::weak_ptr<ComponentType>();
-	//	}
-	//}
+	template <class ComponentType>
+	std::weak_ptr<ComponentType> GetComponent(ComponentId id)
+	{
+		ObjectComponents::iterator findIt = m_components.find(id);
+		if (findIt != m_components.end())
+		{
+			StrongObjectComponentPtr pBase(findIt->second);
+			std::shared_ptr<ComponentType> pSub(std::static_pointer_cast<ComponentType>(pBase));  // cast to subclass version of the pointer
+			std::weak_ptr<ComponentType> pWeakSub(pSub);  // convert strong pointer to weak pointer
+			return pWeakSub;  // return the weak pointer
+		}
+		else
+		{
+			return std::weak_ptr<ComponentType>();
+		}
+	}
 
 	template <class ComponentType>
-	std::shared_ptr<ComponentType> GetComponent(const char *name)
+	std::weak_ptr<ComponentType> GetComponent(const char *name)
 	{
 		ComponentId id = ObjectComponent::GetIdFromName(name);
 		ObjectComponents::iterator findIt = m_components.find(id);
@@ -56,11 +56,11 @@ public:
 			StrongObjectComponentPtr pBase(findIt->second);
 			std::shared_ptr<ComponentType> pSub(std::static_pointer_cast<ComponentType>(pBase));  // cast to subclass version of the pointer
 			std::weak_ptr<ComponentType> pWeakSub(pSub);  // convert strong pointer to weak pointer
-			return pSub;  // return the weak pointer
+			return pWeakSub;  // return the weak pointer
 		}
 		else
 		{
-			return std::shared_ptr<ComponentType>();
+			return std::weak_ptr<ComponentType>();
 		}
 	}
 

@@ -26,8 +26,8 @@ void Kernel::runApp()
 	m_pCamera->SetTarget(c);
 	vec3 tmpmover;
 	tmpmover.x = 2*cos(glfwGetTime());
-	c->setPosition(vec3(0,0,10));
-	f->setScale(Transform::scale(30, 15, 15));
+	//c->setPosition(vec3(0,0,10));
+	//f->setScale(Transform::scale(30, 15, 15));
 	
 	maker.CreateActor(INVALID_OBJECT_ID, "..//XML//Terrain.xml");
 	
@@ -36,11 +36,11 @@ void Kernel::runApp()
 		tmpmover.x = 15 * cos(glfwGetTime());
 		tmpmover.y = 25 * sin(glfwGetTime() * 2);
 		tmpmover.z=10;
-		f->setScale(Transform::scale(15, 15, 15));
+		//f->setScale(Transform::scale(15, 15, 15));
 		
 		update();
-		f->setPosition(tmpmover);
-		c->setPosition(tmpmover);
+		/*f->setPosition(tmpmover);
+		c->setPosition(tmpmover);*/
 	}
 	
 	

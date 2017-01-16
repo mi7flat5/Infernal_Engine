@@ -1,4 +1,14 @@
 #pragma once
+
+template <class Type>
+std::shared_ptr<Type> MakeStrongPtr(std::weak_ptr<Type> pWeakPtr)
+{
+	if (!pWeakPtr.expired())
+		return std::shared_ptr<Type>(pWeakPtr);
+	else
+		return std::hared_ptr<Type>();
+}
+
 template <class BaseType, class SubType>
 BaseType* GenericObjectCreationFunction(void) { return new SubType; }
 

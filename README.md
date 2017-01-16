@@ -26,13 +26,13 @@ An incomplete list of features that are planned for implementation soon:
 * Add geometry shader functionality to shader loading class
 * Load utility currently loads hierarchical models into one mesh, separate into parent/children
 * Add bounding sphere hierarchy to scenegraph parent/child objects, for frustum culling
-* Add matrix stack handling in scenegraph
+* Add matrix stack handling in scenegraph -Done
 * Add process manager class to handle multiple frame operations.
 
 # Running Project
 *  This project is for Visual Studio 2015
 *  You will need Qt to run the editor. You will only need Qt 5.7 for msvc2015_64 and/or msvc2015, I also recommend using the Qt add in for Visual Studio, which I've added to the zip in the current directory.
-*  Unzip UNZIP_FOR_FIRST_RUN.zip with extract here option, this should set up execution folders with needed DLL
+*  Unzip UNZIP_HERE_BEFORE_FIRST_RUN.zip with extract here option, this should set up execution folders with needed DLL
 * Run project in visual studio. 
 
 

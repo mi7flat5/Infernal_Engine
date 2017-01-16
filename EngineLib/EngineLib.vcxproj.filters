@@ -99,6 +99,12 @@
     <ClInclude Include="..\Engine_Source\Utility\Transform.h">
       <Filter>Source Files\Math</Filter>
     </ClInclude>
+    <ClInclude Include="..\Engine_Source\SHObject\TransformComponent.h">
+      <Filter>Source Files\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\Utility\tinyxml2.h">
+      <Filter>Source Files\Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -163,6 +169,12 @@
     </ClCompile>
     <ClCompile Include="..\Engine_Source\3DRender\Geometry.cpp">
       <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\SHObject\TransformComponent.cpp">
+      <Filter>Source Files\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\Utility\tinyxml2.cpp">
+      <Filter>Source Files\Utility</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

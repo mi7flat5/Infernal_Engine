@@ -192,11 +192,13 @@
     <ClInclude Include="..\Engine_Source\SHObject\ObjectFactory.h" />
     <ClInclude Include="..\Engine_Source\SHObject\RenderComponent.h" />
     <ClInclude Include="..\Engine_Source\SHObject\RenderComponentInterface.h" />
+    <ClInclude Include="..\Engine_Source\SHObject\TransformComponent.h" />
     <ClInclude Include="..\Engine_Source\Utility\interfaces.h" />
     <ClInclude Include="..\Engine_Source\Utility\LoadUtility.h" />
     <ClInclude Include="..\Engine_Source\Utility\Logger.h" />
     <ClInclude Include="..\Engine_Source\Utility\Shaders.hpp" />
     <ClInclude Include="..\Engine_Source\Utility\Template.h" />
+    <ClInclude Include="..\Engine_Source\Utility\tinyxml2.h" />
     <ClInclude Include="..\Engine_Source\Utility\Transform.h" />
     <ClInclude Include="..\Engine_Source\Utility\Utility.h" />
     <ClInclude Include="Engine.h" />
@@ -218,8 +220,10 @@
     <ClCompile Include="..\Engine_Source\SHObject\Object3D.cpp" />
     <ClCompile Include="..\Engine_Source\SHObject\ObjectFactory.cpp" />
     <ClCompile Include="..\Engine_Source\SHObject\RenderComponent.cpp" />
+    <ClCompile Include="..\Engine_Source\SHObject\TransformComponent.cpp" />
     <ClCompile Include="..\Engine_Source\Utility\LoadUtility.cpp" />
     <ClCompile Include="..\Engine_Source\Utility\Shaders.cpp" />
+    <ClCompile Include="..\Engine_Source\Utility\tinyxml2.cpp" />
     <ClCompile Include="..\Engine_Source\Utility\Transform.cpp" />
     <ClCompile Include="..\Engine_Source\Utility\Utility.cpp" />
     <ClCompile Include="Engine.cpp">

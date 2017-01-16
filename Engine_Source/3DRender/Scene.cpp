@@ -9,6 +9,8 @@ Scene::Scene()
 {
 	m_Root.reset(INFERNAL_NEW RootNode());
 	IEventManager* pEventMgr = IEventManager::Get();
+	m_MatrixStack.reset(INFERNAL_NEW std::stack<mat4>());
+	m_MatrixStack->emplace(mat4(1.0f));
 	pEventMgr->VAddListener(fastdelegate::MakeDelegate(this, &Scene::NewRenderComponentDelegate), EvtData_New_Render_Component::sk_EventType);
 	pEventMgr->VAddListener(fastdelegate::MakeDelegate(this, &Scene::DestroyActorDelegate), EvtData_Destroy_Actor::sk_EventType);
 	pEventMgr->VAddListener(fastdelegate::MakeDelegate(this, &Scene::TestRayCollisonDelegate), EvtData_RayCast::sk_EventType);
@@ -18,6 +20,8 @@ Scene::Scene()
 Scene::~Scene()
 {
 	IEventManager* pEventMgr = IEventManager::Get();
+	m_MatrixStack->pop();
+	m_MatrixStack.reset();
 	pEventMgr->VRemoveListener(fastdelegate::MakeDelegate(this, &Scene::NewRenderComponentDelegate), EvtData_New_Render_Component::sk_EventType);
 	pEventMgr->VRemoveListener(fastdelegate::MakeDelegate(this, &Scene::DestroyActorDelegate), EvtData_Destroy_Actor::sk_EventType);
 	pEventMgr->VRemoveListener(fastdelegate::MakeDelegate(this, &Scene::TestRayCollisonDelegate), EvtData_RayCast::sk_EventType);

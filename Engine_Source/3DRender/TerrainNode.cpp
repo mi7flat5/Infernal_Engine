@@ -16,9 +16,10 @@ TerrainNode::TerrainNode(const ObjectId Id, WeakBaseRenderComponentPtr renderCom
 	ViewMatrixID = glGetUniformLocation(NodeShader->getProgram(), "View");
 	ModelMatrixID = glGetUniformLocation(NodeShader->getProgram(), "Model");
 	lightPosLoc = glGetUniformLocation(NodeShader->getProgram(), "light");
+	viewPosLoc = glGetUniformLocation(NodeShader->getProgram(), "viewPos");
 	for (GLuint i = 0; i < m_Meshes.size();i++)
 		m_Meshes[i].SetShader(NodeShader->getProgram());
-	lightPos = vec3(0, 25, 25);
+	lightPos = vec3(0,900,0);
 	SetRadius(0);
 	SetScale(50);
 	m_Props.m_Name = "TerrainNode";
@@ -28,22 +29,21 @@ void TerrainNode::VOnUpdate(Scene *, unsigned long const elapsedMs)
 {
 
 }
-bool TerrainNode::VPreRender(Scene *pScene)
+
+
+void TerrainNode::VRender(Scene *pScene)
 {
+
 	NodeShader->Use();
 	ViewMat = pScene->GetCamera()->GetView();
 	ProjectionMat = pScene->GetCamera()->GetProjection();
 	glUniform1f(DispLevelID, DispLevel);
-	glUniform3fv(lightPosLoc,1, &lightPos[0]);
+	glUniform3fv(lightPosLoc, 1, &lightPos[0]);
+	glUniform3fv(viewPosLoc, 1, &pScene->GetCamera()->GetCameraPosition()[0]);
 	glUniformMatrix4fv(ProjectionMatrixID, 1, GL_FALSE, &ProjectionMat[0][0]);
-	glUniformMatrix4fv(ModelMatrixID, 1, GL_FALSE, &m_Props.ToWorld()[0][0]);
+	glUniformMatrix4fv(ModelMatrixID, 1, GL_FALSE, &pScene->GetTopMatrix()[0][0]);
 	glUniformMatrix4fv(ViewMatrixID, 1, GL_FALSE, &ViewMat[0][0]);
 
-	return true;
-}
-
-void TerrainNode::VRender(Scene *pScene)
-{
 	for (int i = 0;i < m_Meshes.size();i++)
 	{
 		m_Meshes[i].DrawMesh( MeshType::TERRAIN);
@@ -51,10 +51,7 @@ void TerrainNode::VRender(Scene *pScene)
 
 }
 
-void TerrainNode::VPostRender(Scene *pScene)
-{
 
-}
 TerrainNode::~TerrainNode() {
 
 	if (HeightMapImage)
@@ -76,7 +73,7 @@ void TerrainNode::SetScale(GLuint InScale) {
 	Scale = InScale;
 
 	m_Props.m_ToWorld = Transform::scale(Scale, 1.0, Scale);
-	m_Props.m_ToWorld = m_Props.m_ToWorld * Transform::translate(0, -20, 0);
+	m_Props.m_ToWorld = m_Props.m_ToWorld;;
 	SetMinMaxBoundry();
 }
 GLuint TerrainNode::GetHeight(glm::vec3 Position)

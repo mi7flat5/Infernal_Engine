@@ -2,11 +2,14 @@
 #include "ObjectFactory.h"
 #include"RenderComponent.h"
 #include"Object3D.h"
+#include"TransformComponent.h"
+         
 //#include"..\EventSystem\Event.h"
 using namespace tinyxml2;
 ObjectFactory::ObjectFactory()
 {
 	m_lastActorId = 0;
+	m_componentFactory.Register<TransformComponent>(ObjectComponent::GetIdFromName(TransformComponent::g_Name));
 	m_componentFactory.Register<CubeMapRenderComponent>(ObjectComponent::GetIdFromName(CubeMapRenderComponent::g_Name));
 	m_componentFactory.Register<MeshRenderComponent>(ObjectComponent::GetIdFromName(MeshRenderComponent::g_Name));
 	m_componentFactory.Register<TerrainRenderComponent>(ObjectComponent::GetIdFromName(TerrainRenderComponent::g_Name));

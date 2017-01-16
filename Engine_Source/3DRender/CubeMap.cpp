@@ -21,7 +21,9 @@ void CubemapNode::SetUniforms()
 	ProjectionMatrixID = glGetUniformLocation(NodeShader->getProgram(), "Projection");
 	ViewMatrixID = glGetUniformLocation(NodeShader->getProgram(), "View");
 }
-bool CubemapNode::VPreRender(Scene * pScene)
+
+
+void CubemapNode::VRender(Scene * pScene)
 {
 	NodeShader->Use();
 
@@ -29,18 +31,8 @@ bool CubemapNode::VPreRender(Scene * pScene)
 	glm::mat4 CubeProjection = pScene->GetCamera()->GetProjection();
 	glUniformMatrix4fv(ProjectionMatrixID, 1, GL_FALSE, &CubeProjection[0][0]);
 	glUniformMatrix4fv(ViewMatrixID, 1, GL_FALSE, &CubeView[0][0]);
-
-	return true;
-}
-
-void CubemapNode::VRender(Scene * pScene)
-{
 	for (int i = 0;i < m_Meshes.size();++i)
 		m_Meshes[i].DrawMesh(MeshType::SKYBOX);
 
 }
 
-void CubemapNode::VPostRender(Scene * pScene)
-{
-
-}
