@@ -1,5 +1,6 @@
 #include "Engine.h"
 #include "SceneNode.h"
+#include"SHObject/TransformComponent.h"
 
 OGLMeshNode::OGLMeshNode(const ObjectId Id,
 	WeakBaseRenderComponentPtr renderComponent,
@@ -27,7 +28,8 @@ OGLMeshNode::OGLMeshNode(const ObjectId Id,
 	m_Props.m_BVsphere.SphereFromDistantPoints(sphereCalc);
 	m_Props.ModelRadius = m_Props.m_BVsphere.radius;
 	m_Props.ModelSpherePosition = m_Props.m_BVsphere.position;
-	m_Props.m_Wscale = vec3(1, 1, 1);
+	EDITOR_LOG(ToStr(m_Props.m_BVsphere.radius))
+	//m_Props.m_Wscale = vec3(1, 1, 1);
 	
 
 }
@@ -74,5 +76,6 @@ bool OGLMeshNode::VIsVisible(Scene * pScene) const
 		}
 	}
 	//std::cout << "NotVisible\n";
-	return true; false;
+	return true;//false; /broken for the momment
 }
+

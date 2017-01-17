@@ -1,4 +1,9 @@
 <Jackyl type="Mesh" resource="..//XML/Jackyl.xml">
+    <TransformComponent>
+        <Position x="15.000000L" y="0.000000L" z="0.000000L"/>
+        <Rotation pitch="90.000000L" yaw="0.000000L" roll="0.000000L"/>
+        <Scale x="0.100000L" y="0.100000L" z="0.100000L"/>
+    </TransformComponent>
     <MeshRenderComponent>
         <Paths shaderV="..//shaders//texVert.glsl" shaderF="..//shaders//texFrag.glsl" mesh="..//assets//jackal.fbx"/>
     </MeshRenderComponent>

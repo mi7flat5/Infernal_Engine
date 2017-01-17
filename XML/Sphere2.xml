@@ -1,5 +1,0 @@
-<Sphere2 type="Mesh" resource="..//XML/Sphere2.xml">
-    <MeshRenderComponent>
-        <Paths shaderV="..//shaders//vert.glsl" shaderF="..//shaders//frag.glsl" mesh="..//assets//OrangeSphere.fbx"/>
-    </MeshRenderComponent>
-</Sphere2>

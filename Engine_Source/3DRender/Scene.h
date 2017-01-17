@@ -63,11 +63,11 @@ public:
 
 	const mat4 GetTopMatrix()
 	{
-		if (!m_MatrixStack->empty())
-		{
-			return static_cast<const mat4>(m_MatrixStack->top());
-		}
-		else return mat4(1.0f);
+		/*if (!m_MatrixStack->empty())
+		{*/
+			return m_MatrixStack->top();
+		/*}
+		else return mat4(1.0f);*/
 	}
 	
 

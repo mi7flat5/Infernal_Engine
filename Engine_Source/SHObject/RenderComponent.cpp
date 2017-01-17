@@ -15,6 +15,9 @@ void BaseRenderComponent::VPostInit(void)
 	std::shared_ptr<EvtData_New_Render_Component> pEvent(INFERNAL_NEW EvtData_New_Render_Component(m_pOwner->GetId(), pSceneNode));
 	
 	IEventManager::Get()->VTriggerEvent(pEvent);
+	m_pSceneNode = pSceneNode;
+	m_pSceneNode->PostInit();
+
 }
 void BaseRenderComponent::VOnChanged(void)
 {

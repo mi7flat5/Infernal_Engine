@@ -1,5 +1,0 @@
-<DiffuseCube type="Mesh" resource="..//XML/DiffuseCube.xml">
-    <MeshRenderComponent>
-        <Paths shaderV="..//shaders//vert.glsl" shaderF="..//shaders//frag.glsl" mesh="..//assets//box.fbx"/>
-    </MeshRenderComponent>
-</DiffuseCube>

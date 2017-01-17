@@ -30,6 +30,27 @@ void ActorCreationWindow::CreatObject()
 	pRoot->SetAttribute("resource", resourcePath.toStdString().c_str());
 	OutDoc.InsertFirstChild(pRoot);
 
+	
+	
+														 
+	XMLElement *pTransformComponent = OutDoc.NewElement("TransformComponent");
+	XMLElement *pPosition = OutDoc.NewElement("Position");
+	pPosition->SetAttribute("x", ToStr(ui.px->value()).c_str());
+	pPosition->SetAttribute("y", ToStr(ui.py->value()).c_str());
+	pPosition->SetAttribute("z", ToStr(ui.pz->value()).c_str());
+	XMLElement *pRotation = OutDoc.NewElement("Rotation");
+	pRotation->SetAttribute("pitch", ToStr(ui.rx->value()).c_str());
+	pRotation->SetAttribute("yaw", ToStr(ui.ry->value()).c_str());
+	pRotation->SetAttribute("roll", ToStr(ui.rz->value()).c_str());
+	XMLElement *pScale = OutDoc.NewElement("Scale");
+	pScale->SetAttribute("x", ToStr(ui.sx->value()).c_str());
+	pScale->SetAttribute("y", ToStr(ui.sy->value()).c_str());
+	pScale->SetAttribute("z", ToStr(ui.sz->value()).c_str());
+	pTransformComponent->InsertEndChild(pPosition);
+	pTransformComponent->InsertEndChild(pRotation);
+	pTransformComponent->InsertEndChild(pScale);
+	pRoot->InsertEndChild(pTransformComponent);
+
 	XMLElement* pRenderComponent = OutDoc.NewElement(GetRenderCompnentType());
 	XMLElement* pPaths = OutDoc.NewElement("Paths");
 	pPaths->SetAttribute("shaderV", ui.VshaderText->text().toStdString().c_str());
@@ -37,6 +58,7 @@ void ActorCreationWindow::CreatObject()
 	pPaths->SetAttribute("mesh", ui.assetFileText->text().toStdString().c_str());
 	pRenderComponent->InsertEndChild(pPaths);
 	pRoot->InsertEndChild(pRenderComponent);
+
 	XMLError eResult = OutDoc.SaveFile(resourcePath.toStdString().c_str());
 	XMLCheckResult(eResult);
 	

@@ -10,8 +10,7 @@ ObjectFactory::ObjectFactory()
 {
 	m_lastActorId = 0;
 
-	if (m_componentFactory.Register<CubeMapRenderComponent>(ObjectComponent::GetIdFromName(CubeMapRenderComponent::g_Name)));
-
+	m_componentFactory.Register<CubeMapRenderComponent>(ObjectComponent::GetIdFromName(CubeMapRenderComponent::g_Name));
 	m_componentFactory.Register<MeshRenderComponent>(ObjectComponent::GetIdFromName(MeshRenderComponent::g_Name));
 	m_componentFactory.Register<TerrainRenderComponent>(ObjectComponent::GetIdFromName(TerrainRenderComponent::g_Name));
 	m_componentFactory.Register<TransformComponent>(ObjectComponent::GetIdFromName(TransformComponent::g_Name));
@@ -55,14 +54,17 @@ StrongObjectPtr ObjectFactory::CreateActor(ObjectId serversActorId,const char* r
 	//
 	//
 	//
-	//
+	
 	if (!pObject->Init(pRoot))
 	{
 		EDITOR_LOG("Failed to initialize object returning nullptr")
 		return StrongObjectPtr();
 	}
-
-
+	
+	//Map in base game logic needs to be updated so components can reach each other during initialization
+	std::shared_ptr<EvtData_ObjectCreated> pEvent(INFERNAL_NEW EvtData_ObjectCreated(pObject));
+	IEventManager::Get()->VTriggerEvent(pEvent);
+	//transform component must be created first so that render component can update scenenode before creation of boundind sphere
 	for (XMLElement* pNode = pRoot->FirstChildElement(); pNode; pNode = pNode->NextSiblingElement())
 	{
 	

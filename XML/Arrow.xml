@@ -1,5 +1,0 @@
-<Arrow type="Mesh" resource="..//XML/Arrow.xml">
-    <MeshRenderComponent>
-        <Paths shaderV="..//shaders//vert.glsl" shaderF="..//shaders//frag.glsl" mesh="..//assets//arrow.fbx"/>
-    </MeshRenderComponent>
-</Arrow>

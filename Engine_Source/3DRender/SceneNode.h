@@ -119,6 +119,7 @@ public:
 	//Stores current transform in vector container
 	void SetVectorTransform(const vec3& position, const vec3& rotation, const vec3& scale);
 	void GetVectorTransform(vec3& position, vec3& rotation, vec3& scale);
+	void PostInit();
 };
 
 class RootNode : public SceneNode
@@ -146,7 +147,7 @@ public:
 
 	virtual void VOnUpdate(Scene *, unsigned long const elapsedMs) {}
 	virtual bool VIsVisible(Scene * pScene) const;
-	
+
 	//Currently used in prototype, remove after controllers set up. 
 
 

@@ -1,4 +1,9 @@
 <Axis type="Mesh" resource="..//XML/Axis.xml">
+    <TransformComponent>
+        <Position x="0.000000L" y="10.000000L" z="0.000000L"/>
+        <Rotation pitch="0.000000L" yaw="0.000000L" roll="0.000000L"/>
+        <Scale x="3.000000L" y="3.000000L" z="3.000000L"/>
+    </TransformComponent>
     <MeshRenderComponent>
         <Paths shaderV="..//shaders//vert.glsl" shaderF="..//shaders//frag.glsl" mesh="..//assets//Axis.fbx"/>
     </MeshRenderComponent>

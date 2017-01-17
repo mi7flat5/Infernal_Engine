@@ -532,10 +532,10 @@
        </property>
        <layout class="QGridLayout" name="gridLayout_5">
         <item row="10" column="0">
-         <widget class="QDoubleSpinBox" name="doubleSpinBox_9"/>
+         <widget class="QDoubleSpinBox" name="sx"/>
         </item>
         <item row="2" column="0">
-         <widget class="QDoubleSpinBox" name="doubleSpinBox_15"/>
+         <widget class="QDoubleSpinBox" name="px"/>
         </item>
         <item row="1" column="2">
          <widget class="QLabel" name="label_12">
@@ -551,7 +551,7 @@
          </widget>
         </item>
         <item row="2" column="2">
-         <widget class="QDoubleSpinBox" name="doubleSpinBox_14"/>
+         <widget class="QDoubleSpinBox" name="pz"/>
         </item>
         <item row="0" column="0">
          <widget class="QLabel" name="label_9">
@@ -593,7 +593,7 @@
          </widget>
         </item>
         <item row="5" column="1">
-         <widget class="QDoubleSpinBox" name="doubleSpinBox_16"/>
+         <widget class="QDoubleSpinBox" name="ry"/>
         </item>
         <item row="8" column="0">
          <widget class="QLabel" name="label">
@@ -648,10 +648,10 @@
          </widget>
         </item>
         <item row="5" column="0">
-         <widget class="QDoubleSpinBox" name="doubleSpinBox_18"/>
+         <widget class="QDoubleSpinBox" name="rx"/>
         </item>
         <item row="5" column="2">
-         <widget class="QDoubleSpinBox" name="doubleSpinBox_17"/>
+         <widget class="QDoubleSpinBox" name="rz"/>
         </item>
         <item row="1" column="1">
          <widget class="QLabel" name="label_11">
@@ -667,7 +667,7 @@
          </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QDoubleSpinBox" name="doubleSpinBox_13"/>
+         <widget class="QDoubleSpinBox" name="py"/>
         </item>
         <item row="4" column="0">
          <widget class="QLabel" name="label_14">
@@ -709,10 +709,10 @@
          </widget>
         </item>
         <item row="10" column="1">
-         <widget class="QDoubleSpinBox" name="doubleSpinBox_8"/>
+         <widget class="QDoubleSpinBox" name="sy"/>
         </item>
         <item row="10" column="2">
-         <widget class="QDoubleSpinBox" name="doubleSpinBox_7"/>
+         <widget class="QDoubleSpinBox" name="sz"/>
         </item>
        </layout>
       </widget>

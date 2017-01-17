@@ -5,6 +5,7 @@ class TransformComponent : public ObjectComponent
 {
 	mat4 m_Transform;
 	vec3 m_Scale, m_RotDegrees, m_Position;
+	void BuildTransform();
 public:
 	TransformComponent(void) : m_Transform(mat4(1.0f)) { }
 
@@ -17,9 +18,10 @@ public:
 		m_Transform = m_Transform * Transform::translate(pos.x,pos.y,pos.z);
 		m_Position = pos;
 	}
-
+	vec3 GetVecScale() { return m_Scale; }
 	static const char * g_Name;
-	virtual bool VInit(tinyxml2::XMLElement* pData)override { return true; }
+	virtual bool VInit(tinyxml2::XMLElement* pData)override;
+	
 	virtual const char *VGetName() const override { return g_Name; }
 	virtual tinyxml2::XMLElement* VGenerateXml(void)override { return nullptr; };
 };

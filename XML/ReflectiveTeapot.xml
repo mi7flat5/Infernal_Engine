@@ -1,5 +1,0 @@
-<ReflectiveTeapot type="Mesh" resource="..//XML/ReflectiveTeapot.xml">
-    <MeshRenderComponent>
-        <Paths shaderV="..//shaders//ReflectVert.glsl" shaderF="..//shaders//ReflectFrag.glsl" mesh="..//assets//teapot.fbx"/>
-    </MeshRenderComponent>
-</ReflectiveTeapot>

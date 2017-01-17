@@ -1,5 +1,0 @@
-<GrossFace type="Mesh" resource="..//XML/GrossFace.xml">
-    <MeshRenderComponent>
-        <Paths shaderV="..//shaders/ReflectVert.glsl" shaderF="..//shaders/ReflectFrag.glsl" mesh="..//assets/GrossFace.fbx"/>
-    </MeshRenderComponent>
-</GrossFace>

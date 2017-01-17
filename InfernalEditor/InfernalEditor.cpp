@@ -32,11 +32,7 @@ InfernalEditor::InfernalEditor(QWidget *parent)
 	labels.append("Object Name");
 	labels.append("Object Type");
 
-
-
-
 	m_pSceneTreeModel->setHorizontalHeaderLabels(labels);
-
 
 	m_pCreationwindow = new ActorCreationWindow();
 	m_pCreationwindow->SetOwner(this);
@@ -87,7 +83,7 @@ void InfernalEditor::DeleteActor()
 	QVariant ID = model->index(index.row(), 2, index.parent()).data();
 
 	if (model->removeRow(index.row(), index.parent()))
-		ui.openGLWidget->RemoveFromScene(ID.toUInt());
+		ui.openGLWidget->UpdateContext();
 	std::shared_ptr<EvtData_Destroy_Actor> pEvent(INFERNAL_NEW EvtData_Destroy_Actor(ID.toUInt()));
 
 	IEventManager::Get()->VTriggerEvent(pEvent);
@@ -220,11 +216,9 @@ void InfernalEditor::registerDelegate()
 {
 	ui.gridLayout->setColumnStretch(0, 3);
 	int b = ui.gridLayout->columnCount();
+		
 
-
-	IEventManager* evman = IEventManager::Get();
-
-	evman->VAddListener(fastdelegate::MakeDelegate(this, &InfernalEditor::Log_event), EvtData_Log_Data::sk_EventType);
+	IEventManager::Get()->VAddListener(fastdelegate::MakeDelegate(this, &InfernalEditor::Log_event), EvtData_Log_Data::sk_EventType);
 	ui.textBrowser->append(QString("delegate registered"));
 }
 void InfernalEditor::Log_event(IEventDataPtr pEventData)

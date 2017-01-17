@@ -43,17 +43,7 @@ void EditWindow::UpdateContext()
 	makeCurrent();
 }
 
-void EditWindow::RemoveFromScene(int ObjectId)
-{
 
-
-
-	glClearColor(0.0f, 0.2f, 0.9f, 1.0f);
-	
-
-	makeCurrent();
-
-}
 
 void EditWindow::init()
 {
@@ -172,7 +162,7 @@ void EditWindow::paintGL()
 	m_pScene->OnUpdate(g_DeltaTime);
 
 	m_pScene->OnRender();
-	IEventManager::Get()->VUpdate(1);
+	IEventManager::Get()->VUpdate();
 }
 
 void EditWindow::wheelEvent(QWheelEvent *event)

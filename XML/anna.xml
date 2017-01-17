@@ -1,0 +1,10 @@
+<anna type="Mesh" resource="..//XML/anna.xml">
+    <TransformComponent>
+        <Position x="0.000000L" y="0.000000L" z="0.000000L"/>
+        <Rotation pitch="0.000000L" yaw="0.000000L" roll="0.000000L"/>
+        <Scale x="0.010000L" y="0.010000L" z="0.010000L"/>
+    </TransformComponent>
+    <MeshRenderComponent>
+        <Paths shaderV="..//shaders//DiffTextVert.glsl" shaderF="..//shaders//DiffTexFrag.glsl" mesh="..//assets//AY.fbx"/>
+    </MeshRenderComponent>
+</anna>

@@ -72,7 +72,7 @@ void TerrainNode::SetMinMaxBoundry()
 void TerrainNode::SetScale(GLuint InScale) {
 	Scale = InScale;
 
-	m_Props.m_ToWorld = Transform::scale(Scale, 1.0, Scale);
+	m_Props.m_ToWorld = Transform::scale(Scale, 1.0, Scale)*Transform::translate(0,-20,0);
 	//m_Props.m_ToWorld = m_Props.m_ToWorld;;
 	SetMinMaxBoundry();
 }

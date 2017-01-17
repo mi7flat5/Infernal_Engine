@@ -2,7 +2,7 @@
 //
 #include "qopenglwidget.h"
 #include"qopenglfunctions.h"
-//GameCodeApp *g_pApp = NULL;
+
 using ObjectMap = std::map< unsigned int, StrongObjectPtr>;
 class EditWindow : public QOpenGLWidget, protected QOpenGLFunctions
 {
@@ -12,7 +12,7 @@ public:
 	~EditWindow();
 	void UpdateContext();
 	void setOwner(QMainWindow* inOwn) { owner = inOwn; }
-	void RemoveFromScene(int);
+
 	public slots:
 
 	void cleanup();

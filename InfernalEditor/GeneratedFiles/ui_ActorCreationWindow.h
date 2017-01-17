@@ -45,27 +45,27 @@ public:
     QPushButton *_assetFile_button;
     QGroupBox *transformComponent;
     QGridLayout *gridLayout_5;
-    QDoubleSpinBox *doubleSpinBox_9;
-    QDoubleSpinBox *doubleSpinBox_15;
+    QDoubleSpinBox *sx;
+    QDoubleSpinBox *px;
     QLabel *label_12;
-    QDoubleSpinBox *doubleSpinBox_14;
+    QDoubleSpinBox *pz;
     QLabel *label_9;
     QLabel *label_10;
     QLabel *label_15;
-    QDoubleSpinBox *doubleSpinBox_16;
+    QDoubleSpinBox *ry;
     QLabel *label;
     QLabel *label_3;
     QLabel *label_16;
     QLabel *label_13;
-    QDoubleSpinBox *doubleSpinBox_18;
-    QDoubleSpinBox *doubleSpinBox_17;
+    QDoubleSpinBox *rx;
+    QDoubleSpinBox *rz;
     QLabel *label_11;
-    QDoubleSpinBox *doubleSpinBox_13;
+    QDoubleSpinBox *py;
     QLabel *label_14;
     QLabel *label_2;
     QLabel *label_4;
-    QDoubleSpinBox *doubleSpinBox_8;
-    QDoubleSpinBox *doubleSpinBox_7;
+    QDoubleSpinBox *sy;
+    QDoubleSpinBox *sz;
     QGridLayout *gridLayout_4;
     QGridLayout *gridLayout_3;
     QGroupBox *ComponentsGroupBox;
@@ -232,15 +232,15 @@ public:
         gridLayout_5->setSpacing(6);
         gridLayout_5->setContentsMargins(11, 11, 11, 11);
         gridLayout_5->setObjectName(QStringLiteral("gridLayout_5"));
-        doubleSpinBox_9 = new QDoubleSpinBox(transformComponent);
-        doubleSpinBox_9->setObjectName(QStringLiteral("doubleSpinBox_9"));
+        sx = new QDoubleSpinBox(transformComponent);
+        sx->setObjectName(QStringLiteral("sx"));
 
-        gridLayout_5->addWidget(doubleSpinBox_9, 10, 0, 1, 1);
+        gridLayout_5->addWidget(sx, 10, 0, 1, 1);
 
-        doubleSpinBox_15 = new QDoubleSpinBox(transformComponent);
-        doubleSpinBox_15->setObjectName(QStringLiteral("doubleSpinBox_15"));
+        px = new QDoubleSpinBox(transformComponent);
+        px->setObjectName(QStringLiteral("px"));
 
-        gridLayout_5->addWidget(doubleSpinBox_15, 2, 0, 1, 1);
+        gridLayout_5->addWidget(px, 2, 0, 1, 1);
 
         label_12 = new QLabel(transformComponent);
         label_12->setObjectName(QStringLiteral("label_12"));
@@ -249,10 +249,10 @@ public:
 
         gridLayout_5->addWidget(label_12, 1, 2, 1, 1);
 
-        doubleSpinBox_14 = new QDoubleSpinBox(transformComponent);
-        doubleSpinBox_14->setObjectName(QStringLiteral("doubleSpinBox_14"));
+        pz = new QDoubleSpinBox(transformComponent);
+        pz->setObjectName(QStringLiteral("pz"));
 
-        gridLayout_5->addWidget(doubleSpinBox_14, 2, 2, 1, 1);
+        gridLayout_5->addWidget(pz, 2, 2, 1, 1);
 
         label_9 = new QLabel(transformComponent);
         label_9->setObjectName(QStringLiteral("label_9"));
@@ -278,10 +278,10 @@ public:
 
         gridLayout_5->addWidget(label_15, 4, 1, 1, 1);
 
-        doubleSpinBox_16 = new QDoubleSpinBox(transformComponent);
-        doubleSpinBox_16->setObjectName(QStringLiteral("doubleSpinBox_16"));
+        ry = new QDoubleSpinBox(transformComponent);
+        ry->setObjectName(QStringLiteral("ry"));
 
-        gridLayout_5->addWidget(doubleSpinBox_16, 5, 1, 1, 1);
+        gridLayout_5->addWidget(ry, 5, 1, 1, 1);
 
         label = new QLabel(transformComponent);
         label->setObjectName(QStringLiteral("label"));
@@ -311,15 +311,15 @@ public:
 
         gridLayout_5->addWidget(label_13, 3, 0, 1, 1);
 
-        doubleSpinBox_18 = new QDoubleSpinBox(transformComponent);
-        doubleSpinBox_18->setObjectName(QStringLiteral("doubleSpinBox_18"));
+        rx = new QDoubleSpinBox(transformComponent);
+        rx->setObjectName(QStringLiteral("rx"));
 
-        gridLayout_5->addWidget(doubleSpinBox_18, 5, 0, 1, 1);
+        gridLayout_5->addWidget(rx, 5, 0, 1, 1);
 
-        doubleSpinBox_17 = new QDoubleSpinBox(transformComponent);
-        doubleSpinBox_17->setObjectName(QStringLiteral("doubleSpinBox_17"));
+        rz = new QDoubleSpinBox(transformComponent);
+        rz->setObjectName(QStringLiteral("rz"));
 
-        gridLayout_5->addWidget(doubleSpinBox_17, 5, 2, 1, 1);
+        gridLayout_5->addWidget(rz, 5, 2, 1, 1);
 
         label_11 = new QLabel(transformComponent);
         label_11->setObjectName(QStringLiteral("label_11"));
@@ -328,10 +328,10 @@ public:
 
         gridLayout_5->addWidget(label_11, 1, 1, 1, 1);
 
-        doubleSpinBox_13 = new QDoubleSpinBox(transformComponent);
-        doubleSpinBox_13->setObjectName(QStringLiteral("doubleSpinBox_13"));
+        py = new QDoubleSpinBox(transformComponent);
+        py->setObjectName(QStringLiteral("py"));
 
-        gridLayout_5->addWidget(doubleSpinBox_13, 2, 1, 1, 1);
+        gridLayout_5->addWidget(py, 2, 1, 1, 1);
 
         label_14 = new QLabel(transformComponent);
         label_14->setObjectName(QStringLiteral("label_14"));
@@ -354,15 +354,15 @@ public:
 
         gridLayout_5->addWidget(label_4, 9, 2, 1, 1);
 
-        doubleSpinBox_8 = new QDoubleSpinBox(transformComponent);
-        doubleSpinBox_8->setObjectName(QStringLiteral("doubleSpinBox_8"));
+        sy = new QDoubleSpinBox(transformComponent);
+        sy->setObjectName(QStringLiteral("sy"));
 
-        gridLayout_5->addWidget(doubleSpinBox_8, 10, 1, 1, 1);
+        gridLayout_5->addWidget(sy, 10, 1, 1, 1);
 
-        doubleSpinBox_7 = new QDoubleSpinBox(transformComponent);
-        doubleSpinBox_7->setObjectName(QStringLiteral("doubleSpinBox_7"));
+        sz = new QDoubleSpinBox(transformComponent);
+        sz->setObjectName(QStringLiteral("sz"));
 
-        gridLayout_5->addWidget(doubleSpinBox_7, 10, 2, 1, 1);
+        gridLayout_5->addWidget(sz, 10, 2, 1, 1);
 
 
         gridLayout_6->addWidget(transformComponent, 1, 2, 1, 1);

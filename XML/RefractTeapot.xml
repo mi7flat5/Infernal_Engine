@@ -1,0 +1,10 @@
+<RefractTeapot type="Mesh" resource="..//XML/RefractTeapot.xml">
+    <TransformComponent>
+        <Position x="-15.000000L" y="10.000000L" z="0.000000L"/>
+        <Rotation pitch="0.000000L" yaw="30.000000L" roll="0.000000L"/>
+        <Scale x="3.000000L" y="3.000000L" z="3.000000L"/>
+    </TransformComponent>
+    <MeshRenderComponent>
+        <Paths shaderV="..//shaders//ReflectVert.glsl" shaderF="..//shaders//RefractFrag.glsl" mesh="..//assets//teapot.fbx"/>
+    </MeshRenderComponent>
+</RefractTeapot>

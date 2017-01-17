@@ -1,0 +1,5 @@
+<LavaTerrain type="Terrain" resource="..//XML/LavaTerrain.xml">
+     <TerrainRenderComponent>
+        <Paths shaderV="" shaderF="" mesh="..//assets//ParisTerrain.fbx"/>
+    </TerrainRenderComponent>
+</LavaTerrain>

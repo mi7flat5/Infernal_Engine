@@ -1,0 +1,10 @@
+<SkyBox type="CubeMap" resource="..//XML/SkyBox.xml">
+    <TransformComponent>
+        <Position x="0.000000L" y="10.000000L" z="0.000000L"/>
+        <Rotation pitch="0.000000L" yaw="15.000000L" roll="0.000000L"/>
+        <Scale x="10.000000L" y="0.000000L" z="0.000000L"/>
+    </TransformComponent>
+    <CubeMapRenderComponent>
+        <Paths shaderV="..//shaders//3Dvert.glsl" shaderF="..//shaders//3Dfrag.glsl" mesh="..//assets//box.fbx"/>
+    </CubeMapRenderComponent>
+</SkyBox>

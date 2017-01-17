@@ -8,7 +8,7 @@ class ObjectFactory;
 class BaseGameLogic : public IGameLogic
 {
 	friend class GameCodeApp;						// This is only to gain access to the view list
-
+	void UpdateObjectMapDelegate(IEventDataPtr);
 protected:
 	float m_Lifetime;								//indicates how long this game has been in session
 						// our RNG

@@ -1,5 +1,0 @@
-<City type="Mesh" resource="..//XML/City.xml">
-    <MeshRenderComponent>
-        <Paths shaderV="..//shaders//DiffTextVert.glsl" shaderF="..//shaders//DiffTexFrag.glsl" mesh="..//assets//Sci-fi Tropical city.obj"/>
-    </MeshRenderComponent>
-</City>

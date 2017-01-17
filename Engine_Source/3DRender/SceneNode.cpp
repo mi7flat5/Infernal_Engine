@@ -2,6 +2,7 @@
 #include "SceneNode.h"
 #include"Scene.h"
 #include"..//3DRender/GraphicsDebug.h"
+#include"SHObject/TransformComponent.h"
 
 //CameraNode::
 
@@ -11,7 +12,25 @@ void SceneNode::SetMeshList(std::vector<Mesh> inMesh)
 {
 	m_Meshes = inMesh;
 }
+void SceneNode::PostInit()
+{
+	StrongObjectPtr pObject = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActor(m_Props.m_Id));
+	std::shared_ptr<TransformComponent> pComponent = MakeStrongPtr(pObject->GetComponent<TransformComponent>(TransformComponent::g_Name));
+	if (pComponent) {
+		m_Props.m_ToWorld = pComponent->GetTransform();
+		vec3 scale = pComponent->GetVecScale();
+		float maxScale = scale.x;
 
+		if (scale.y > scale.x)
+			maxScale = scale.y;
+		if (scale.z > scale.x && scale.z > scale.y)
+			maxScale = scale.z;
+
+		m_Props.RadiusScale = maxScale;
+		m_Props.m_BVsphere.radius = m_Props.ModelRadius*m_Props.RadiusScale;
+		EDITOR_LOG("radius: " + ToStr(m_Props.m_BVsphere.radius))
+	}
+}
 void SceneNode::VSetTransform(const mat4 * toWorld, const mat4 * fromWorld)
 {
 	m_Props.m_ToWorld = *toWorld;
@@ -34,7 +53,7 @@ void SceneNode::SetVectorTransform(const vec3& position,const vec3& rotation,con
 		
 	m_Props.RadiusScale = maxScale;
 	m_Props.m_BVsphere.radius = m_Props.ModelRadius*m_Props.RadiusScale;
-	EDITOR_LOG("radius: " + ToStr(m_Props.m_BVsphere.radius))
+	
 
 }
 void SceneNode::GetVectorTransform(vec3& position, vec3& rotation, vec3& scale) 
@@ -63,15 +82,17 @@ void SceneNode::VOnUpdate(Scene *pScene, unsigned long const elapsedMs)
 bool SceneNode::VPreRender(Scene * pScene)
 {
 
-	//g_pApp->GetGameLogic()->VGetActor(m_Props.m_Id);
-	/*if (pActor)
+	StrongObjectPtr pObject = MakeStrongPtr( g_pApp->GetGameLogic()->VGetActor(m_Props.m_Id));
+	if (pObject)
 	{
-		shared_ptr<TransformComponent> pTc = MakeStrongPtr(pActor->GetComponent<TransformComponent>(TransformComponent::g_Name));
+		
+		std::shared_ptr<TransformComponent> pTc = MakeStrongPtr(pObject->GetComponent<TransformComponent>(TransformComponent::g_Name));
 		if (pTc)
 		{
+			
 			m_Props.m_ToWorld = pTc->GetTransform();
 		}
-	}*/
+	}
 	
 	pScene->PushAndSetMatrix(m_Props.m_ToWorld);
 	
@@ -228,6 +249,7 @@ void RootNode::VOnUpdate(Scene *pScene, unsigned long const elapsedMs)
 		m_Children[i]->VOnUpdate(pScene,elapsedMs);
 	
 }
+
 
 
 
