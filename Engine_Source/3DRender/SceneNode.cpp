@@ -63,16 +63,16 @@ void SceneNode::VOnUpdate(Scene *pScene, unsigned long const elapsedMs)
 bool SceneNode::VPreRender(Scene * pScene)
 {
 
-	//StrongActorPtr pActor = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActor(m_Props.m_ActorId));
-	//if (pActor)
-	//{
-	//	shared_ptr<TransformComponent> pTc = MakeStrongPtr(pActor->GetComponent<TransformComponent>(TransformComponent::g_Name));
-	//	if (pTc)
-	//	{
-	//		m_Props.m_ToWorld = pTc->GetTransform();
-	//	}
-	//}
-
+	//g_pApp->GetGameLogic()->VGetActor(m_Props.m_Id);
+	/*if (pActor)
+	{
+		shared_ptr<TransformComponent> pTc = MakeStrongPtr(pActor->GetComponent<TransformComponent>(TransformComponent::g_Name));
+		if (pTc)
+		{
+			m_Props.m_ToWorld = pTc->GetTransform();
+		}
+	}*/
+	
 	pScene->PushAndSetMatrix(m_Props.m_ToWorld);
 	
 
@@ -120,9 +120,9 @@ bool SceneNode::VAddChild(std::shared_ptr<ISceneNode> ikid)
 {
 	
 	m_Children.push_back(ikid);
-
+	
 	std::shared_ptr<SceneNode> kid = std::static_pointer_cast<SceneNode>(ikid);
-
+	
 	kid->m_pParent = this;
 	return true;
 }

@@ -3,18 +3,18 @@
 #include "qopenglwidget.h"
 #include"qopenglfunctions.h"
 //GameCodeApp *g_pApp = NULL;
-using ObjectMap  = std::map< unsigned int, StrongObjectPtr>;
-class EditWindow :	public QOpenGLWidget, protected QOpenGLFunctions
-{	
-	bool Fmove, Bmove, Lmove, Rmove,UpMove,DownMove;
+using ObjectMap = std::map< unsigned int, StrongObjectPtr>;
+class EditWindow : public QOpenGLWidget, protected QOpenGLFunctions
+{
+	bool Fmove, Bmove, Lmove, Rmove, UpMove, DownMove;
 public:
-	 EditWindow(QWidget *parent);
+	EditWindow(QWidget *parent);
 	~EditWindow();
-	unsigned int AddObjectToScene(const char* resource);
+	void UpdateContext();
 	void setOwner(QMainWindow* inOwn) { owner = inOwn; }
-	void RemoveFromScene(int );
-public slots:
-	
+	void RemoveFromScene(int);
+	public slots:
+
 	void cleanup();
 
 signals:
@@ -35,36 +35,36 @@ protected:
 	void MoveBackward(float);
 	void MoveLeft(float);
 	void MoveRight(float);
-	
+
 	void MoveUp(float rate);
 private:
 
-	
-	
-	
+
+
+
 	QTimer* timer;
 	QTime AnotherTimerBecausQtIsntSoCute;;
 	GLenum glewCheck;
-	
-	
+
+
 	GLfloat lastX, lastY, lastFrame;
 	void init();
 	QMainWindow* owner;
 	GLfloat rate;
-	
+
 
 	//move to main window
 	void SetSelectedDelegate(IEventDataPtr pEventData);
-	std::shared_ptr<SceneNode> m_pSelectedNode;
-	std::string m_SelectedObjectName;
-	ObjectMap m_ObjectTable;
+
+
 
 	//move to library side application layer
-	EventManager* m_pEventManager;
+
 	Scene* m_pScene;
 	CameraNode* m_pCamera;
-	ObjectFactory* maker;
-	
+
+
 };
 
-extern EditWindow *g_pApp;
+
+

@@ -75,6 +75,10 @@ void flogout(const char*);
 #include"Utility\interfaces.h"
 #include"Utility\Template.h"
 #include"Utility\Utility.h"
+
+#include"Core\InfernalKernel.h"
+#include "Core\BaseGameLogic.h"
+
 #include"3DRender\Scene.h"
 #include"3DRender\Mesh.h"
 #include"EventSystem\EventManagerImpl.h"

@@ -6,74 +6,64 @@
 #include"..//Engine_Source/SHObject/Object3D.h"
 void EditWindow::resizeGL(int w, int h)
 {
-	m_pCamera->SetProjection(w,h);
-	
+	m_pCamera->SetProjection(w, h);
+
 }
 EditWindow::EditWindow(QWidget *parent)
 	: QOpenGLWidget(parent)
 {
 	m_pCamera = nullptr;
 	m_pScene = nullptr;
-	m_pEventManager = nullptr;
-	maker = new ObjectFactory();
+	
+	
 	//MainWindow = parent;
 	timer = new QTimer(this);
 
-	
+
 	connect(timer, SIGNAL(timeout()), this, SLOT(update()));
-	
+
 	AnotherTimerBecausQtIsntSoCute.start();
 	timer->start();
 	lastX = lastY = 0;
-	Fmove=  Bmove = Lmove = Rmove= UpMove = DownMove = false;
+	Fmove = Bmove = Lmove = Rmove = UpMove = DownMove = false;
 }
 EditWindow::~EditWindow()
 {
-	m_pEventManager->VRemoveListener(fastdelegate::MakeDelegate(this, &EditWindow::SetSelectedDelegate), EvtData_EvtRayHit::sk_EventType);
+	IEventManager::Get()->VRemoveListener(fastdelegate::MakeDelegate(this, &EditWindow::SetSelectedDelegate), EvtData_EvtRayHit::sk_EventType);
 	delete m_pCamera;
 	m_pCamera = nullptr;
 	delete m_pScene;
 	m_pScene = nullptr;
-	delete m_pEventManager;
-	m_pEventManager = nullptr;
-	
+
+
 }
 
-unsigned int EditWindow::AddObjectToScene(const char* resource) 
+void EditWindow::UpdateContext()
 {
 	makeCurrent();
-	StrongObjectPtr newObject(maker->CreateActor(INVALID_OBJECT_ID,resource));
-	m_ObjectTable.emplace(newObject->GetId(),newObject);
-	EDITOR_LOG("added object to scene!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-	return newObject->GetId();
-
 }
 
 void EditWindow::RemoveFromScene(int ObjectId)
 {
 
-	
-		
+
+
 	glClearColor(0.0f, 0.2f, 0.9f, 1.0f);
-	m_ObjectTable.at(ObjectId)->Destroy();
-		m_ObjectTable.erase(ObjectId);
-		std::shared_ptr<EvtData_Destroy_Actor> pEvent(INFERNAL_NEW EvtData_Destroy_Actor(ObjectId));
-		
-		IEventManager::Get()->VQueueEvent(pEvent);
-		makeCurrent();
+	
+
+	makeCurrent();
 
 }
 
 void EditWindow::init()
 {
 	makeCurrent();
-	//assert(m_pEventManager);
-	if (!m_pEventManager) {
-		m_pEventManager = new EventManager("Infernal Event Mgr", true);
-		m_pEventManager->VAddListener(fastdelegate::MakeDelegate(this, &EditWindow::SetSelectedDelegate), EvtData_EvtRayHit::sk_EventType);
-	}
-	if(!m_pScene)
-	m_pScene = new Scene();
+	
+	
+	IEventManager::Get()->VAddListener(fastdelegate::MakeDelegate(this, &EditWindow::SetSelectedDelegate), EvtData_EvtRayHit::sk_EventType);
+	
+	if (!m_pScene)
+		m_pScene = new Scene();
 	if (!m_pCamera) {
 		InfernalEditor* properOwnerPointer = dynamic_cast<InfernalEditor*>(owner);
 		properOwnerPointer->registerDelegate();
@@ -82,14 +72,14 @@ void EditWindow::init()
 		std::shared_ptr<CameraNode> cam(m_pCamera);
 		m_pScene->AddChild(m_pCamera->GetObjectId(), cam);
 		m_pScene->SetCamera(cam);
-		
-		
-		
+
+
+
 	}
-	
-	
+
+
 	glClearColor(0.2f, 0.2f, 0.4f, 1.0f);
-	
+
 }
 
 void EditWindow::SetSelectedDelegate(IEventDataPtr pEventData)
@@ -98,27 +88,30 @@ void EditWindow::SetSelectedDelegate(IEventDataPtr pEventData)
 
 	ObjectId actorId = pCastEventData->GetActorId();
 	std::shared_ptr<ISceneNode> pSceneNode(pCastEventData->GetSceneNode());
-	if(pSceneNode)
-	m_pSelectedNode = std::static_pointer_cast<SceneNode>(pSceneNode);
-	m_SelectedObjectName = pSceneNode->VGet()->Name();
+	if (!pSceneNode) {
+		EDITOR_LOG("Failed to retrieve selection")
+		return;
+	}
+	std::shared_ptr<SceneNode>	pNode = std::static_pointer_cast<SceneNode>(pSceneNode);
+
 	InfernalEditor* properOwnerPointer = dynamic_cast<InfernalEditor*>(owner);
-	properOwnerPointer->SetSelectedNode(m_pSelectedNode);
-	
+	properOwnerPointer->SetSelectedNode(pNode);
+
 }
 
 void EditWindow::cleanup()
 {
-	
+
 	//makeCurrent();
 	//doneCurrent();
-	
+
 }
 void EditWindow::initializeGL()
 {
 	glewCheck = glewInit();
 	glewExperimental = GL_TRUE;
 	initializeOpenGLFunctions();
-	
+
 
 	QSurfaceFormat glFormat;
 	glFormat.setVersion(4, 3);
@@ -127,34 +120,34 @@ void EditWindow::initializeGL()
 	context()->setFormat(glFormat);
 
 	connect(context(), &QOpenGLContext::aboutToBeDestroyed, this, &EditWindow::cleanup);
-	
-	
-	
-	
-	glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
-	
 
-	
-	
-	
+
+
+
+	glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
+
+
+
+
+
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
-	
-	
+
+
 	init();
 }
 
 void EditWindow::paintGL()
 {
-	
+
 	GLfloat currentFrame = AnotherTimerBecausQtIsntSoCute.elapsed();
 
 	g_DeltaTime = currentFrame - lastFrame;
 	lastFrame = currentFrame;
 	rate = g_DeltaTime * 0.00700;
-	
+
 	if (Rmove) {
 		MoveRight(rate);
 	}
@@ -175,27 +168,27 @@ void EditWindow::paintGL()
 	}
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	
+
 	m_pScene->OnUpdate(g_DeltaTime);
-	
+
 	m_pScene->OnRender();
-	m_pEventManager->VUpdate(1);
+	IEventManager::Get()->VUpdate(1);
 }
 
-void EditWindow::wheelEvent(QWheelEvent *event) 
+void EditWindow::wheelEvent(QWheelEvent *event)
 {
 	m_pCamera->SetCamRadius(event->delta());
 }
 
 void EditWindow::mousePressEvent(QMouseEvent *event)
 {
-	std::shared_ptr<EvtData_RayCast> pEvent(INFERNAL_NEW EvtData_RayCast(width(),height(), event->x(), event->y()));
+	std::shared_ptr<EvtData_RayCast> pEvent(INFERNAL_NEW EvtData_RayCast(width(), height(), event->x(), event->y()));
 	IEventManager::Get()->VQueueEvent(pEvent);
 }
 
-void EditWindow::mouseReleaseEvent(QMouseEvent *event) 
+void EditWindow::mouseReleaseEvent(QMouseEvent *event)
 {
-	
+
 }
 
 void EditWindow::keyReleaseEvent(QKeyEvent *event)
@@ -228,9 +221,9 @@ void EditWindow::keyReleaseEvent(QKeyEvent *event)
 	}
 }
 
-void EditWindow::keyPressEvent(QKeyEvent *event) 
+void EditWindow::keyPressEvent(QKeyEvent *event)
 {
-	
+
 
 	if (!event->isAutoRepeat()) {
 		if (event->key() == Qt::Key_W)
@@ -246,7 +239,7 @@ void EditWindow::keyPressEvent(QKeyEvent *event)
 		{
 			Lmove = true;
 		}
-		if (event->key()== Qt::Key_D)
+		if (event->key() == Qt::Key_D)
 		{
 			Rmove = true;
 		}
@@ -305,7 +298,5 @@ void EditWindow::mouseMoveEvent(QMouseEvent *event)
 
 	lastX = xpos;
 	lastY = ypos;
-	
+
 }
-
-

@@ -78,6 +78,7 @@ void CameraNode::VRender(Scene *pScene)
 }
 void CameraNode::VOnUpdate(Scene *pScene, unsigned long const elapsedMs)
 {
+
 	if (m_pTarget)
 		Target = m_pTarget->GetWorldPosition();
 }

@@ -29,7 +29,7 @@ void LoadUtility::loadModel( std::vector<Mesh> &InMeshVec,const std::string &pat
 		
 	for (GLuint i = 0;i <scene->mNumMeshes;++i)
 	{
-		aiMesh* tmpMesh = scene->mMeshes[ i];
+		aiMesh* tmpMesh = scene->mMeshes[(scene->mNumMeshes - 1) - i];
 		for (int j = 0;j < tmpMesh->mNumVertices;++j)
 		{
 			Vertex tmpVert;

@@ -73,7 +73,7 @@ void TerrainNode::SetScale(GLuint InScale) {
 	Scale = InScale;
 
 	m_Props.m_ToWorld = Transform::scale(Scale, 1.0, Scale);
-	m_Props.m_ToWorld = m_Props.m_ToWorld;;
+	//m_Props.m_ToWorld = m_Props.m_ToWorld;;
 	SetMinMaxBoundry();
 }
 GLuint TerrainNode::GetHeight(glm::vec3 Position)

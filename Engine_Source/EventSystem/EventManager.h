@@ -81,6 +81,7 @@ public:
 // Simply tearing down the registry (e.g.: destroying it) will automatically clean up all pointed-to objects (so long 
 // as there are no other outstanding references, of course).
 //---------------------------------------------------------------------------------------------------------------------
+
 class IEventManager
 {
 public:

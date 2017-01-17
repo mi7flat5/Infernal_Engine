@@ -33,6 +33,6 @@ void CubemapNode::VRender(Scene * pScene)
 	glUniformMatrix4fv(ViewMatrixID, 1, GL_FALSE, &CubeView[0][0]);
 	for (int i = 0;i < m_Meshes.size();++i)
 		m_Meshes[i].DrawMesh(MeshType::SKYBOX);
-
+	
 }
 

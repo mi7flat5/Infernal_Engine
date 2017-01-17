@@ -3,15 +3,18 @@
 #include <QtWidgets/QMainWindow>
 #include "ui_InfernalEditor.h"
 #include"EventSystem\Event.h"
+#include"Core\InfernalKernel.h"
+#include"Core\BaseGameLogic.h"
 class ActorCreationWindow;
 
-class InfernalEditor : public QMainWindow
+class InfernalEditor : public QMainWindow, public InfernalKernel
 {
 	Q_OBJECT
 		QStandardItemModel *m_pSceneTreeModel;
-		QStandardItem* m_pSceneViewRoot;
+	QStandardItem* m_pSceneViewRoot;
 public:
-    InfernalEditor(QWidget *parent = Q_NULLPTR);
+	BaseGameLogic* VCreateGameAndView()override { m_pGame = new BaseGameLogic; m_pGame->Init(); return m_pGame; }
+	InfernalEditor(QWidget *parent = Q_NULLPTR);
 	void UpdateTransform();
 	void SetLightPos(int);
 	void SetSelectedNode(std::shared_ptr<SceneNode> inNode);
@@ -21,16 +24,16 @@ protected:
 #ifndef QT_NO_CONTEXTMENU
 	void contextMenuEvent(QContextMenuEvent *event) Q_DECL_OVERRIDE;
 #endif // QT_NO_CONTEXTMENU
-public slots:
+	public slots :
 
 
-private slots:
+		private slots :
 
-	
 
-void Log_event(IEventDataPtr pEventData);
 
-void newFile();
+		void Log_event(IEventDataPtr pEventData);
+
+	void newFile();
 	void open();
 	void loadfile(const QString & fileName);
 	void save();
@@ -43,14 +46,14 @@ protected:
 
 
 private:
-    Ui::InfernalEditorClass ui;
+	Ui::InfernalEditorClass ui;
 	std::shared_ptr<SceneNode> m_pSelectedNode;
 	ActorCreationWindow* m_pCreationwindow;
 
 	void createActions();
 	void OpenCreationWindow();
 	void createMenus();
-	
+
 	QMenu *fileMenu;
 	QMenu *editMenu;
 	QMenu *ObjectMenu;
@@ -63,7 +66,7 @@ private:
 	QAction* deletObject;
 
 	QActionGroup *alignmentGroup;
-	
+
 	QAction *newAct;
 	QAction *openAct;
 	QAction *saveAct;
@@ -84,11 +87,5 @@ private:
 	QAction *setParagraphSpacingAct;
 	QAction *aboutAct;
 	QAction *aboutQtAct;
-	
+
 };
-
-
-
-
-
-	

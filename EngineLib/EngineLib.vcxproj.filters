@@ -28,14 +28,14 @@
     <Filter Include="Source Files\Math">
       <UniqueIdentifier>{2054ade6-9082-469e-85bc-7197da23bbc8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Core">
+      <UniqueIdentifier>{0753cda0-d151-46c5-abb4-cd4170cc685f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Engine_Source\Utility\interfaces.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Engine.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -104,6 +104,15 @@
     </ClInclude>
     <ClInclude Include="..\Engine_Source\Utility\tinyxml2.h">
       <Filter>Source Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\Core\BaseGameLogic.h">
+      <Filter>Source Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\Core\InfernalKernel.h">
+      <Filter>Source Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine_Source\Utility\interfaces.h">
+      <Filter>Source Files\Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +184,12 @@
     </ClCompile>
     <ClCompile Include="..\Engine_Source\Utility\tinyxml2.cpp">
       <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\Core\BaseGameLogic.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine_Source\Core\InfernalKernel.cpp">
+      <Filter>Source Files\Core</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

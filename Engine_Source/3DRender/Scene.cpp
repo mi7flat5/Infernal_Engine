@@ -52,6 +52,7 @@ void Scene::OnUpdate(const int deltaMilliseconds)
 }
 void Scene::DestroyActorDelegate(IEventDataPtr pEventData)
 {
+
 	std::shared_ptr<EvtData_Destroy_Actor> pCastEventData = std::static_pointer_cast<EvtData_Destroy_Actor>(pEventData);
 	RemoveChild(pCastEventData->GetId());
 }
@@ -63,11 +64,12 @@ std::shared_ptr<ISceneNode> Scene::FindActor(ObjectId id)
 bool Scene::AddChild(ObjectId id, std::shared_ptr<ISceneNode> kid)
 {
 	if (id != INVALID_OBJECT_ID)
-	{
+	{	
 		// This allows us to search for this later based on actor id
 		m_ObjectMap[id] = kid;
 		if (std::static_pointer_cast<SceneNode>(kid)->GetBVSphere().radius > 0) {
 			m_BVMap[id] = std::static_pointer_cast<SceneNode>(kid)->GetBVSphereRefernce();
+		
 		}
 	}
 	return m_Root->VAddChild(kid); ;

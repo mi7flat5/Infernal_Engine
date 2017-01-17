@@ -15,6 +15,7 @@ Mesh::Mesh(const std::vector<Vertex> &inVerts, const std::vector<GLuint> &inIndi
 	ShaderMode = 0;
 	setupMesh();
 	
+	
 }
 Mesh::~Mesh() 
 {

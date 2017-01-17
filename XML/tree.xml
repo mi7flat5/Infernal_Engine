@@ -1,5 +1,0 @@
-<tree type="Mesh" resource="..//XML/tree.xml">
-    <MeshRenderComponent>
-        <Paths shaderV="..//shaders//DiffTextVert.glsl" shaderF="..//shaders//DiffTexFrag.glsl" mesh="..//assets//Tree1.obj"/>
-    </MeshRenderComponent>
-</tree>

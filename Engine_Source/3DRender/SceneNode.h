@@ -144,7 +144,7 @@ public:
 	
 	virtual void VRender(Scene *pScene) override;
 
-	virtual void VOnUpdate(Scene *, unsigned long const elapsedMs)override;
+	virtual void VOnUpdate(Scene *, unsigned long const elapsedMs) {}
 	virtual bool VIsVisible(Scene * pScene) const;
 	
 	//Currently used in prototype, remove after controllers set up. 

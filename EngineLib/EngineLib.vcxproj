@@ -184,6 +184,8 @@
     <ClInclude Include="..\Engine_Source\3DRender\RayPick.hpp" />
     <ClInclude Include="..\Engine_Source\3DRender\Scene.h" />
     <ClInclude Include="..\Engine_Source\3DRender\SceneNode.h" />
+    <ClInclude Include="..\Engine_Source\Core\BaseGameLogic.h" />
+    <ClInclude Include="..\Engine_Source\Core\InfernalKernel.h" />
     <ClInclude Include="..\Engine_Source\EventSystem\Event.h" />
     <ClInclude Include="..\Engine_Source\EventSystem\EventManager.h" />
     <ClInclude Include="..\Engine_Source\EventSystem\EventManagerImpl.h" />
@@ -214,6 +216,8 @@
     <ClCompile Include="..\Engine_Source\3DRender\Scene.cpp" />
     <ClCompile Include="..\Engine_Source\3DRender\SceneNode.cpp" />
     <ClCompile Include="..\Engine_Source\3DRender\TerrainNode.cpp" />
+    <ClCompile Include="..\Engine_Source\Core\BaseGameLogic.cpp" />
+    <ClCompile Include="..\Engine_Source\Core\InfernalKernel.cpp" />
     <ClCompile Include="..\Engine_Source\EventSystem\Event.cpp" />
     <ClCompile Include="..\Engine_Source\EventSystem\EventManager.cpp" />
     <ClCompile Include="..\Engine_Source\EventSystem\EventManagerImpl.cpp" />
