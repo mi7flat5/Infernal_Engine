@@ -114,12 +114,10 @@ public:
 		return glm::vec3(m_Props.m_ToWorld[3]);
 	}					
 	void SetRadius(const float radius) { m_Props.m_BVsphere.radius = radius; }
-	void SetSpherePosition(const vec3 InPos) { m_Props.m_BVsphere.position = InPos; }
+	void SetSpherePosition( vec3 InPos) { m_Props.m_BVsphere.position = InPos; }
 	void setLightPos(vec3 inPos) { lightPos = inPos;}
 	//Stores current transform in vector container
-	void SetVectorTransform(const vec3& position, const vec3& rotation, const vec3& scale);
-	void GetVectorTransform(vec3& position, vec3& rotation, vec3& scale);
-	void PostInit();
+	
 };
 
 class RootNode : public SceneNode
@@ -134,10 +132,8 @@ public:
 class OGLMeshNode : public SceneNode
 {
 	GLuint viewPosLoc, LC;
-	
 	vec3 lightColor;
-	
-	
+		
 public:
 	OGLMeshNode(const ObjectId Id,
 		WeakBaseRenderComponentPtr renderComponent,
@@ -145,13 +141,9 @@ public:
 	
 	virtual void VRender(Scene *pScene) override;
 
-	virtual void VOnUpdate(Scene *, unsigned long const elapsedMs) {}
-	virtual bool VIsVisible(Scene * pScene) const;
-
-	//Currently used in prototype, remove after controllers set up. 
-
-
-	
+	virtual void VOnUpdate(Scene *, unsigned long const elapsedMs){  }
+	virtual bool VIsVisible(Scene * pScene)const;
+		
 };
 class CameraNode : public SceneNode {
 	GLfloat Xoffset, Zoffset, vdist, hdist;

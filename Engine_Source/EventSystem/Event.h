@@ -119,24 +119,7 @@ public:
 	static const EventType sk_EventType;
 };
 
-class EvtData_ObjectCreated : public BaseEventData
-{
-	StrongObjectPtr m_pObject;
-public:
-	explicit EvtData_ObjectCreated(StrongObjectPtr inObject):m_pObject(inObject) {}
-	virtual const EventType& VGetEventType(void) const { return  sk_EventType; }
-	virtual IEventDataPtr VCopy(void) const
-	{
-		return IEventDataPtr(new EvtData_ObjectCreated(m_pObject));
-	}
-	virtual const char* GetName(void) const
-	{
-		return "EvtData_ObjectCreated";
-	}
-	static const EventType sk_EventType;
 
-	StrongObjectPtr GetObject()const { return m_pObject; }
-};
 
 class EvtData_Destroy_Actor : public BaseEventData
 {
@@ -149,7 +132,7 @@ public:
 		: m_id(id)
 	{
 		
-		//EDITOR_LOG(std::to_string(id))
+		
 	}
 
 	virtual const EventType& VGetEventType(void) const

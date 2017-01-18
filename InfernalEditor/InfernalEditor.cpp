@@ -7,6 +7,7 @@
 #include <QContextMenuEvent>
 #include <QSpinBox>
 #include"SHObject/Object3D.h"
+#include"SHObject/TransformComponent.h"
 InfernalEditor::InfernalEditor(QWidget *parent)
 	: QMainWindow(parent)
 {
@@ -56,28 +57,38 @@ InfernalEditor::InfernalEditor(QWidget *parent)
 	connect(ui.sZ, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),
 		this, &InfernalEditor::UpdateTransform);
 
+	ui.gridLayout->setColumnStretch(0, 3);
+	int b = ui.gridLayout->columnCount();
 
+	IEventManager::Get()->VAddListener(fastdelegate::MakeDelegate(this, &InfernalEditor::SetSelectedNode), EvtData_EvtRayHit::sk_EventType);
+	IEventManager::Get()->VAddListener(fastdelegate::MakeDelegate(this, &InfernalEditor::Log_event), EvtData_Log_Data::sk_EventType);
 
 
 }
+
+InfernalEditor::~InfernalEditor()
+{
+	m_pSelectedNode.reset();
+	IEventManager::Get()->VRemoveListener(fastdelegate::MakeDelegate(this, &InfernalEditor::SetSelectedNode), EvtData_EvtRayHit::sk_EventType);
+	IEventManager::Get()->VRemoveListener(fastdelegate::MakeDelegate(this, &InfernalEditor::Log_event), EvtData_Log_Data::sk_EventType);
+}
+
 void InfernalEditor::UpdateTransform() {
 	if (m_pSelectedNode)
 	{
-		mat4 translate = Transform::translate(ui.pX->value(), ui.pY->value(), ui.pZ->value());
-		mat4 Rotate = Transform::RotateMat4(ui.rX->value(), vec3(1, 0, 0))*Transform::RotateMat4(ui.rY->value(), vec3(0, 1, 0))*Transform::RotateMat4(ui.rZ->value(), vec3(0, 0, 1));
-		mat4 Matscale = Transform::scale(ui.sX->value(), ui.sY->value(), ui.sZ->value());
-		mat4 transform = translate*Rotate*Matscale;
-		m_pSelectedNode->SetVectorTransform(vec3(ui.pX->value(), ui.pY->value(), ui.pZ->value()),
-			vec3(ui.rX->value(), ui.rY->value(), ui.rZ->value()),
-			vec3(ui.sX->value(), ui.sY->value(), ui.sZ->value()));
-		m_pSelectedNode->VSetTransform(&transform);
+		StrongObjectPtr pObject =  MakeStrongPtr(g_pApp->GetGameLogic()->VGetActor(m_pSelectedNode->GetObjectId()));
+		std::shared_ptr<TransformComponent> pTransform = MakeStrongPtr(pObject->GetComponent<TransformComponent>(TransformComponent::g_Name));
+		pTransform->SetVecPosition(vec3(ui.pX->value(),ui.pY->value(),ui.pZ->value()));
+		pTransform->SetVecRotation(vec3(ui.rX->value(), ui.rY->value(), ui.rZ->value()));
+		pTransform->SetVecScaler(vec3(ui.sX->value(), ui.sY->value(), ui.sZ->value()));
+		pTransform->BuildTransform();
+		m_pSelectedNode->VSetTransform(&pTransform->GetTransform());
 	}
-
 }
 
 void InfernalEditor::DeleteActor()
 {
-
+	m_pSelectedNode.reset();
 	QModelIndex index = ui.treeView->selectionModel()->currentIndex();
 	QAbstractItemModel *model = ui.treeView->model();
 	QVariant ID = model->index(index.row(), 2, index.parent()).data();
@@ -89,7 +100,6 @@ void InfernalEditor::DeleteActor()
 	IEventManager::Get()->VTriggerEvent(pEvent);
 	//TODO set up delegate in Basegame logic to handle this
 	m_pGame->VDestroyActor(ID.toUInt());
-
 }
 void InfernalEditor::loadfile(const QString &fileName)
 {
@@ -116,26 +126,36 @@ void InfernalEditor::loadfile(const QString &fileName)
 
 }
 
-void InfernalEditor::SetSelectedNode(std::shared_ptr<SceneNode> inNode)
+void InfernalEditor::SetSelectedNode(IEventDataPtr pEventData)
 {
-	m_pSelectedNode = inNode;
+	std::shared_ptr<EvtData_EvtRayHit> pCastEventData = std::static_pointer_cast<EvtData_EvtRayHit>(pEventData);
 
+	ObjectId actorId = pCastEventData->GetActorId();
+	std::shared_ptr<ISceneNode> pSceneNode(pCastEventData->GetSceneNode());
+	std::shared_ptr<SceneNode>	pNode = std::static_pointer_cast<SceneNode>(pSceneNode);
+	m_pSelectedNode = pNode;
 
 	vec3 pos, rot, scale;
-	if (m_pSelectedNode)
-		m_pSelectedNode->GetVectorTransform(pos, rot, scale);
+	if (m_pSelectedNode) {
+		StrongObjectPtr pObject = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActor(m_pSelectedNode->GetObjectId()));
+		std::shared_ptr<TransformComponent> pTransform = MakeStrongPtr(pObject->GetComponent<TransformComponent>(TransformComponent::g_Name));
 
-	ui.pX->setValue(pos.x);
-	ui.pY->setValue(pos.y);
-	ui.pZ->setValue(pos.z);
+		pos = pTransform->GetPosition();
+		rot = pTransform->GetVecRotation();
+		scale = pTransform->GetVecScale();
 
-	ui.rX->setValue(rot.x);
-	ui.rY->setValue(rot.y);
-	ui.rZ->setValue(rot.z);
+		ui.pX->setValue(pos.x);
+		ui.pY->setValue(pos.y);
+		ui.pZ->setValue(pos.z);
 
-	ui.sX->setValue(scale.x);
-	ui.sY->setValue(scale.y);
-	ui.sZ->setValue(scale.z);
+		ui.rX->setValue(rot.x);
+		ui.rY->setValue(rot.y);
+		ui.rZ->setValue(rot.z);
+
+		ui.sX->setValue(scale.x);
+		ui.sY->setValue(scale.y);
+		ui.sZ->setValue(scale.z);
+	}
 
 }
 
@@ -168,14 +188,10 @@ void InfernalEditor::createActions()
 	deletObject = new QAction(tr("Delete Object"), this);
 	connect(deletObject, &QAction::triggered, this, &InfernalEditor::DeleteActor);
 
-
-
-
 }
 void InfernalEditor::OpenCreationWindow()
 {
 	m_pCreationwindow->show();
-
 }
 void InfernalEditor::createMenus()
 {
@@ -207,19 +223,14 @@ void InfernalEditor::contextMenuEvent(QContextMenuEvent *event)
 	menu.addAction(pasteAct);*/
 	contextMenu->exec(event->globalPos());
 
-
 }
 //#endif // QT_NO_CONTEXTMENU
 
 
 void InfernalEditor::registerDelegate()
 {
-	ui.gridLayout->setColumnStretch(0, 3);
-	int b = ui.gridLayout->columnCount();
-		
+	
 
-	IEventManager::Get()->VAddListener(fastdelegate::MakeDelegate(this, &InfernalEditor::Log_event), EvtData_Log_Data::sk_EventType);
-	ui.textBrowser->append(QString("delegate registered"));
 }
 void InfernalEditor::Log_event(IEventDataPtr pEventData)
 {
@@ -237,25 +248,18 @@ void InfernalEditor::newFile()
 void InfernalEditor::open()
 {
 
-
-
 	QString fName = QFileDialog::getOpenFileName(this, tr("Open File"), QString("..//XML//"),
 		tr("XML (*.xml);;"));
 	QFileInfo fileInfo(fName.toStdString().c_str());
 	QString fileName(fileInfo.fileName());
 	if (!fileName.isEmpty())
 		loadfile("..//XML//" + fileName);
-
 }
 
 void InfernalEditor::save()
 {
 
 }
-
-
-
-
 
 void InfernalEditor::about()
 {

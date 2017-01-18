@@ -5,20 +5,19 @@ class TransformComponent : public ObjectComponent
 {
 	mat4 m_Transform;
 	vec3 m_Scale, m_RotDegrees, m_Position;
-	void BuildTransform();
+	
 public:
 	TransformComponent(void) : m_Transform(mat4(1.0f)) { }
-
+	void BuildTransform();
 
 	mat4 GetTransform(void) const { return m_Transform; }
 	void SetTransform(const mat4& newTransform) { m_Transform = newTransform; }
+	void SetVecPosition(vec3 inPos) { m_Position = inPos; }
+	void SetVecRotation(vec3 inRot) { m_RotDegrees = inRot; }
+	void SetVecScaler(vec3 inScale) { m_Scale = inScale; }
 	vec3 GetPosition(void) const { return vec3(m_Transform[3]); }
-	void SetPosition(const vec3& pos) 
-	{
-		m_Transform = m_Transform * Transform::translate(pos.x,pos.y,pos.z);
-		m_Position = pos;
-	}
-	vec3 GetVecScale() { return m_Scale; }
+	vec3 GetVecScale() const{return m_Scale; }
+	vec3 GetVecRotation()const {return m_RotDegrees;}
 	static const char * g_Name;
 	virtual bool VInit(tinyxml2::XMLElement* pData)override;
 	

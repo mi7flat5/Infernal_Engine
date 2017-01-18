@@ -67,7 +67,7 @@ bool Scene::AddChild(ObjectId id, std::shared_ptr<ISceneNode> kid)
 	{	
 		// This allows us to search for this later based on actor id
 		m_ObjectMap[id] = kid;
-		if (std::static_pointer_cast<SceneNode>(kid)->GetBVSphere().radius > 0) {
+		if (std::static_pointer_cast<SceneNode>(kid)->GetBVSphere().radius>0) {
 			m_BVMap[id] = std::static_pointer_cast<SceneNode>(kid)->GetBVSphereRefernce();
 		
 		}
@@ -118,8 +118,10 @@ void Scene::TestRayCollisonDelegate(IEventDataPtr pEventData)
 	float minDist = FLT_MAX;
 	
 	for (auto& i : m_BVMap) {	
+	
 		if (ray.RayTest(i.second))
 		{
+						
 			glm::vec2 CollsionPos(i.second->position.x/ i.second->position.z , i.second->position.y / i.second->position.z) ;
 			//sort out need for abs(), macro problem?
 			if (abs((sqr((ClickPoint.x - CollsionPos.x)) + sqr((ClickPoint.y - CollsionPos.y)))) < minDist)

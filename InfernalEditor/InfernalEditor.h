@@ -15,9 +15,10 @@ class InfernalEditor : public QMainWindow, public InfernalKernel
 public:
 	BaseGameLogic* VCreateGameAndView()override { m_pGame = new BaseGameLogic; m_pGame->Init(); return m_pGame; }
 	InfernalEditor(QWidget *parent = Q_NULLPTR);
+	~InfernalEditor();
 	void UpdateTransform();
 	void SetLightPos(int);
-	void SetSelectedNode(std::shared_ptr<SceneNode> inNode);
+	void SetSelectedNode(IEventDataPtr pEventData);
 	void AddObjectToScene(const char* resourcePath, QList<QStandardItem*> inItems);
 	void registerDelegate();
 protected:

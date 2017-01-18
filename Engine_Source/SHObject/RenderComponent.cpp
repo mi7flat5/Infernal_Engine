@@ -16,7 +16,7 @@ void BaseRenderComponent::VPostInit(void)
 	
 	IEventManager::Get()->VTriggerEvent(pEvent);
 	m_pSceneNode = pSceneNode;
-	m_pSceneNode->PostInit();
+	
 
 }
 void BaseRenderComponent::VOnChanged(void)

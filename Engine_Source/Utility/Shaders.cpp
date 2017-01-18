@@ -32,7 +32,6 @@ Shaders::Shaders(const GLchar* vertexPath, const GLchar* fragmentPath)
 		}
 		catch (std::ifstream::failure e)
 		{
-			std::cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ" << std::endl;//TODO Add to logging
 			EDITOR_LOG("SHADER::FILE_NOT_SUCCESFULLY_READ")
 		}
 		const GLchar* vShaderCode = vertexCode.c_str();
@@ -53,7 +52,6 @@ Shaders::Shaders(const GLchar* vertexPath, const GLchar* fragmentPath)
 		if (!success)
 		{
 			glGetShaderInfoLog(vertex, 512, NULL, infoLog);
-			std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;//TODO Add to logging
 			EDITOR_LOG("VERTEX::COMPILATION_FAILED" + (char)infoLog)
 		}
 		// Fragment Shader
@@ -65,8 +63,7 @@ Shaders::Shaders(const GLchar* vertexPath, const GLchar* fragmentPath)
 		if (!success)
 		{
 			glGetShaderInfoLog(fragment, 512, NULL, infoLog);
-			std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;//TODO Add to logging
-			EDITOR_LOG("FRAGMENT::COMPILATION_FAILED" + std::string(infoLog))
+			EDITOR_LOG("FRAGMENT::COMPILATION_FAILED" + (char)infoLog)
 		}
 		// Shader Program
 		this->Program = glCreateProgram();
@@ -78,7 +75,6 @@ Shaders::Shaders(const GLchar* vertexPath, const GLchar* fragmentPath)
 		if (!success)
 		{
 			glGetProgramInfoLog(this->Program, 512, NULL, infoLog);
-			std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;//TODO Add to logging
 			EDITOR_LOG("PROGRAM::LINKING_FAILED" + (char)infoLog)
 		}
 		// Delete the shaders as they're linked into our program now and no longer necessery
@@ -129,7 +125,6 @@ Shaders::Shaders(const GLchar * vertexPath, const GLchar * tessControlPath, cons
 	}
 	catch (std::ifstream::failure e)
 	{
-		std::cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ" << std::endl;//TODO Add to logging
 		EDITOR_LOG("FILE_NOT_SUCCESFULLY_READ")
 	}
 	const GLchar* vShaderCode = vertexCode.c_str();
@@ -151,9 +146,7 @@ Shaders::Shaders(const GLchar * vertexPath, const GLchar * tessControlPath, cons
 	if (!success)
 	{
 		glGetShaderInfoLog(vertex, 512, NULL, infoLog);
-		std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;//TODO Add to logging
-		
-		EDITOR_LOG("COMPILATION_FAILED" + std::string(infoLog))
+		EDITOR_LOG("COMPILATION_FAILED" + (char)infoLog)
 	}
 	// Fragment Shader
 	fragment = glCreateShader(GL_FRAGMENT_SHADER);
@@ -164,8 +157,7 @@ Shaders::Shaders(const GLchar * vertexPath, const GLchar * tessControlPath, cons
 	if (!success)
 	{
 		glGetShaderInfoLog(fragment, 512, NULL, infoLog);
-		std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;//TODO Add to logging
-		EDITOR_LOG("FRAGMENT" + std::string(infoLog))
+		EDITOR_LOG("FRAGMENT" + (char)infoLog)
 	}
 	//Tesselation control shader
 	TCS = glCreateShader(GL_TESS_CONTROL_SHADER);
@@ -176,8 +168,7 @@ Shaders::Shaders(const GLchar * vertexPath, const GLchar * tessControlPath, cons
 	if (!success)
 	{
 		glGetShaderInfoLog(fragment, 512, NULL, infoLog);
-		std::cout << "TESSELEATION_CONTROL::COMPILATION_FAILED\n" << infoLog << std::endl;//TODO Add to logging
-		EDITOR_LOG("TESSELEATION_CONTROL" + std::string(infoLog))
+		EDITOR_LOG("TESSELEATION_CONTROL" + (char)infoLog)
 	}
 	//Tesselation evaluation shader
 	//Tesselation control shader
@@ -189,8 +180,7 @@ Shaders::Shaders(const GLchar * vertexPath, const GLchar * tessControlPath, cons
 	if (!success)
 	{
 		glGetShaderInfoLog(fragment, 512, NULL, infoLog);
-		std::cout << "ERROR::SHADER::TESSELEATION_EVALUATION::COMPILATION_FAILED\n" << infoLog << std::endl;//TODO Add to logging
-		EDITOR_LOG("TESSELEATION_EVALUATION" + std::string(infoLog))
+		EDITOR_LOG("TESSELEATION_EVALUATION" + (char)infoLog)
 	}
 
 	// Shader Program
@@ -205,9 +195,7 @@ Shaders::Shaders(const GLchar * vertexPath, const GLchar * tessControlPath, cons
 	if (!success)
 	{
 		glGetProgramInfoLog(this->Program, 512, NULL, infoLog);
-		std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;//TODO Add to logging
-
-		EDITOR_LOG(std::string("LINKING_FAILED"+std::string(infoLog)))
+		EDITOR_LOG("LINKING_FAILED"+(char)infoLog)
 	}
 	// Delete the shaders as they're linked into our program now and no longer necessery
 	glDeleteShader(vertex);

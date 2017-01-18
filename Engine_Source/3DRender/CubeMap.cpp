@@ -13,6 +13,8 @@ CubemapNode::CubemapNode(const ObjectId Id,
 	for (GLuint i = 0; i < m_Meshes.size();i++)
 		m_Meshes[i].SetShader(NodeShader->getProgram());
 	SetRadius(0);
+
+	
 	m_Props.m_Name = "CubemapNode";
 }
 void CubemapNode::SetUniforms()

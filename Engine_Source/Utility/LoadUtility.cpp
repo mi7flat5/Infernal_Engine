@@ -255,10 +255,8 @@ GLuint LoadUtility::loadCubemap()
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
-	char a[2];
-	int i = (int)TexID;
-	itoa(i, a, 10);
-	EDITOR_LOG("Adding Cubmap Texture ID: " +std::string(a))
+
+	EDITOR_LOG("Adding Cubmap Texture ID: " + ToStr(TexID))
 	return TexID;
 }
 //Returns height values in multi dimesional vector/array for application access to terrain height, slows load time
@@ -345,6 +343,6 @@ void LoadUtility::LoadCollider(const std::string &path, std::vector<glm::vec3> &
 			InVerts.push_back(tmpPos);
 		}
 	}
-	EDITOR_LOG("inverts size: " +ToStr((int)InVerts.size()))
+	
 
 }

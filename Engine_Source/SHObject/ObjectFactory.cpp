@@ -61,10 +61,7 @@ StrongObjectPtr ObjectFactory::CreateActor(ObjectId serversActorId,const char* r
 		return StrongObjectPtr();
 	}
 	
-	//Map in base game logic needs to be updated so components can reach each other during initialization
-	std::shared_ptr<EvtData_ObjectCreated> pEvent(INFERNAL_NEW EvtData_ObjectCreated(pObject));
-	IEventManager::Get()->VTriggerEvent(pEvent);
-	//transform component must be created first so that render component can update scenenode before creation of boundind sphere
+	
 	for (XMLElement* pNode = pRoot->FirstChildElement(); pNode; pNode = pNode->NextSiblingElement())
 	{
 	
@@ -112,23 +109,5 @@ StrongObjectComponentPtr ObjectFactory::VCreateComponent(tinyxml2::XMLElement * 
 
 
 
-	return pComponent;
-}
-StrongObjectComponentPtr ObjectFactory::VCreateComponent(StrongObjectPtr pObject)
-{
-	
-	
-	StrongObjectComponentPtr pComponent(m_componentFactory.Create(ObjectComponent::GetIdFromName("CubeMapRenderComponent")));
-		
-	
-	return pComponent;
-}
-StrongObjectComponentPtr ObjectFactory::VCreateComponent(std::string ComponentName)
-{
-
-
-	StrongObjectComponentPtr pComponent(m_componentFactory.Create(ObjectComponent::GetIdFromName(ComponentName.c_str())));
-
-	
 	return pComponent;
 }

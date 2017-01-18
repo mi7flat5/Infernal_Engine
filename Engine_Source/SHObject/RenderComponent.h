@@ -16,6 +16,7 @@ protected:
 	const char* shaderF;
 	const char* meshPath;
 public:
+	std::string GetAssetPath()const { return std::string(meshPath); }
 	virtual std::shared_ptr<SceneNode> VGetSceneNode(void) override;
 	virtual bool VInit(tinyxml2::XMLElement* pData) override;
 	virtual void VPostInit(void) override;

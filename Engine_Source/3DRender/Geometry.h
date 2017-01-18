@@ -126,7 +126,22 @@ public:
 			AddPointsToSphere(point);
 		}
 	}
-	
+	void SphereFromDistantPoints(std::vector<vec3>& Verts,mat4& InitTransform)
+	{
+		for (auto& point : Verts) {
+			point = vec3(vec4(point, 0) * mat4(mat3(InitTransform)));//remove translations 
+
+		}
+		vec3 minEx, maxEx;
+		MostSeperatedPoints(Verts, minEx, maxEx);
+		position = (minEx + maxEx)*0.5f;
+		radius = glm::dot(maxEx - position, maxEx - position);
+		radius = sqrt(radius);
+		for (auto& point : Verts)
+		{
+			AddPointsToSphere(point);
+		}
+	}
 
 	
 };

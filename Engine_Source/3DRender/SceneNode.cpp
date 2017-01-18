@@ -12,55 +12,24 @@ void SceneNode::SetMeshList(std::vector<Mesh> inMesh)
 {
 	m_Meshes = inMesh;
 }
-void SceneNode::PostInit()
-{
-	StrongObjectPtr pObject = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActor(m_Props.m_Id));
-	std::shared_ptr<TransformComponent> pComponent = MakeStrongPtr(pObject->GetComponent<TransformComponent>(TransformComponent::g_Name));
-	if (pComponent) {
-		m_Props.m_ToWorld = pComponent->GetTransform();
-		vec3 scale = pComponent->GetVecScale();
-		float maxScale = scale.x;
 
-		if (scale.y > scale.x)
-			maxScale = scale.y;
-		if (scale.z > scale.x && scale.z > scale.y)
-			maxScale = scale.z;
-
-		m_Props.RadiusScale = maxScale;
-		m_Props.m_BVsphere.radius = m_Props.ModelRadius*m_Props.RadiusScale;
-		EDITOR_LOG("radius: " + ToStr(m_Props.m_BVsphere.radius))
-	}
-}
 void SceneNode::VSetTransform(const mat4 * toWorld, const mat4 * fromWorld)
 {
 	m_Props.m_ToWorld = *toWorld;
 	if(!fromWorld)
 	m_Props.m_FromWorld = glm::inverse(*toWorld);
-}
-void SceneNode::SetVectorTransform(const vec3& position,const vec3& rotation,const vec3& scale)
-{
-	m_Props.m_Wpos = position;
-	m_Props.m_WrotPYR = rotation;
-	m_Props.m_Wscale = scale;
 
-	float maxScale = scale.x;
 
-	if (scale.y > scale.x)
-		maxScale = scale.y;
-	if (scale.z > scale.x && scale.z > scale.y)
-		maxScale = scale.z;
-	
-		
+	float maxScale = m_Props.ToWorld()[0][0];
+
+	if (m_Props.ToWorld()[1][1] > m_Props.ToWorld()[0][0])
+		maxScale = m_Props.ToWorld()[1][1];
+	if ((m_Props.ToWorld()[2][2] > m_Props.ToWorld()[0][0]) && (m_Props.ToWorld()[2][2] > m_Props.ToWorld()[1][1]))
+		maxScale = m_Props.ToWorld()[2][2];
+
+
 	m_Props.RadiusScale = maxScale;
 	m_Props.m_BVsphere.radius = m_Props.ModelRadius*m_Props.RadiusScale;
-	
-
-}
-void SceneNode::GetVectorTransform(vec3& position, vec3& rotation, vec3& scale) 
-{
-	position = m_Props.m_Wpos;
-	rotation = m_Props.m_WrotPYR;
-	scale = m_Props.m_Wscale;
 }
 void SceneNode::VOnRestore(Scene * pScene)
 {
@@ -91,6 +60,10 @@ bool SceneNode::VPreRender(Scene * pScene)
 		{
 			
 			m_Props.m_ToWorld = pTc->GetTransform();
+			ViewMat = pScene->GetCamera()->GetView();
+			ProjectionMat = pScene->GetCamera()->GetProjection();
+			SetSpherePosition(vec3(ProjectionMat*ViewMat*m_Props.ToWorld()* vec4(m_Props.ModelSpherePosition, 1)));
+		
 		}
 	}
 	

@@ -19,6 +19,10 @@ bool TransformComponent::VInit(tinyxml2::XMLElement* pData)
 		m_Position = vec3(x, y, z);
 		
 	}
+	else
+	{
+		return false;
+	}
 	tinyxml2::XMLElement* pRotationElement = pData->FirstChildElement("Rotation");
 	if (pRotationElement)
 	{
@@ -31,6 +35,10 @@ bool TransformComponent::VInit(tinyxml2::XMLElement* pData)
 		m_RotDegrees = vec3(x, y, z);
 
 	}
+	else
+	{
+		return false;
+	}
 	tinyxml2::XMLElement* pScaleElement = pData->FirstChildElement("Scale");
 	if (pScaleElement)
 	{
@@ -42,6 +50,10 @@ bool TransformComponent::VInit(tinyxml2::XMLElement* pData)
 		pScaleElement->QueryDoubleAttribute("z", &z);
 		m_Scale = vec3(x, y, z);
 
+	}
+	else
+	{
+		return false;
 	}
 	BuildTransform();
 	return true;

@@ -6,10 +6,8 @@ class ObjectComponent
 	
 protected:
 	StrongObjectPtr m_pOwner;
-
-public:
-	
-	
+	public:
+		
 	virtual ~ObjectComponent() { m_pOwner.reset(); }
 	virtual bool VInit(tinyxml2::XMLElement* pData) = 0;
 	virtual void VPostInit(void) { }
@@ -22,7 +20,6 @@ public:
 		void* rawId = HashedString::hash_name(componentStr);
 		return reinterpret_cast<ComponentId>(rawId);
 	}
-
 	virtual tinyxml2::XMLElement* VGenerateXml(void) = 0;
 	WeakObjectPtr GetOwner()const { return WeakObjectPtr(m_pOwner); }
 	ObjectId GetOwnerId()const {return	m_pOwner->GetId();	}

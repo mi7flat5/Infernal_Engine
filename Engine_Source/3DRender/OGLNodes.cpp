@@ -1,6 +1,7 @@
 #include "Engine.h"
 #include "SceneNode.h"
 #include"SHObject/TransformComponent.h"
+#include"SHObject/RenderComponent.h"
 
 OGLMeshNode::OGLMeshNode(const ObjectId Id,
 	WeakBaseRenderComponentPtr renderComponent,
@@ -21,28 +22,20 @@ OGLMeshNode::OGLMeshNode(const ObjectId Id,
 	lightPosLoc = glGetUniformLocation(NodeShader->getProgram(), "lightPos");
 	viewPosLoc = glGetUniformLocation(NodeShader->getProgram(), "viewPos");
 	
-
-	//move into XML creation process
 	std::vector<vec3> sphereCalc;
 	LoadUtility::LoadCollider(meshPath, sphereCalc, std::vector<GLuint>(), std::vector<vec3>());
 	m_Props.m_BVsphere.SphereFromDistantPoints(sphereCalc);
 	m_Props.ModelRadius = m_Props.m_BVsphere.radius;
 	m_Props.ModelSpherePosition = m_Props.m_BVsphere.position;
-	EDITOR_LOG(ToStr(m_Props.m_BVsphere.radius))
-	//m_Props.m_Wscale = vec3(1, 1, 1);
 	
-
 }
+
 void OGLMeshNode::VRender(Scene * pScene)
 {
 	NodeShader->Use();
-	ViewMat = pScene->GetCamera()->GetView();
-	ProjectionMat = pScene->GetCamera()->GetProjection();
+
 	vec3 campos = pScene->GetCamera()->GetCameraPosition();
-
-	SetSpherePosition(vec3(ProjectionMat*ViewMat*m_Props.ToWorld()*vec4(m_Props.ModelSpherePosition, 1)));
-
-
+	
 
 	lightPos = vec3(0, 900, 900);
 	glUniform3fv(LC, 1, &lightColor[0]);
@@ -66,6 +59,7 @@ bool OGLMeshNode::VIsVisible(Scene * pScene) const
 {
 	Frustum* pCurrentFrustum = pScene->GetCamera()->GetFrustum();
 
+
 	if (pCurrentFrustum)
 	{
 		if (pCurrentFrustum->Inside(GetBVSphere()))
@@ -75,7 +69,7 @@ bool OGLMeshNode::VIsVisible(Scene * pScene) const
 
 		}
 	}
-	//std::cout << "NotVisible\n";
-	return true;//false; /broken for the momment
+	
+	return false; //broken for the momment
 }
 

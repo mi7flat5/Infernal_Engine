@@ -4,17 +4,10 @@
 #include "EventSystem/Event.h"
 #include"SHObject/Object3D.h"
 
-void BaseGameLogic::UpdateObjectMapDelegate(IEventDataPtr pEventData)
-{
-	std::shared_ptr<EvtData_ObjectCreated> pData = std::static_pointer_cast<EvtData_ObjectCreated>(pEventData);
-	m_objects[pData->GetObject()->GetId()] = pData->GetObject();
-}
-
 BaseGameLogic::BaseGameLogic()
 {
 	m_LastActorId = 0;
 	m_Lifetime = 0;
-	IEventManager::Get()->VAddListener(fastdelegate::MakeDelegate(this, &BaseGameLogic::UpdateObjectMapDelegate), EvtData_ObjectCreated::sk_EventType);
 }
 
 BaseGameLogic::~BaseGameLogic()
@@ -22,7 +15,7 @@ BaseGameLogic::~BaseGameLogic()
 	for (auto it = m_objects.begin(); it != m_objects.end(); ++it)
 		it->second->Destroy();
 	m_objects.clear();
-	IEventManager::Get()->VRemoveListener(fastdelegate::MakeDelegate(this, &BaseGameLogic::UpdateObjectMapDelegate), EvtData_ObjectCreated::sk_EventType);
+	
 	delete m_pObjectFactory;
 }
 
@@ -39,7 +32,7 @@ StrongObjectPtr BaseGameLogic::VCreateActor(const std::string &actorResource, co
 
 		StrongObjectPtr pObject = m_pObjectFactory->CreateActor(serversActorId, actorResource.c_str());
 		if (pObject) {
-			//m_objects[pObject->GetId()] = pObject;
+			m_objects[pObject->GetId()] = pObject;
 			return pObject;
 		}
 	}

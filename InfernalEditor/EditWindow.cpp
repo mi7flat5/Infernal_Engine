@@ -29,7 +29,7 @@ EditWindow::EditWindow(QWidget *parent)
 }
 EditWindow::~EditWindow()
 {
-	IEventManager::Get()->VRemoveListener(fastdelegate::MakeDelegate(this, &EditWindow::SetSelectedDelegate), EvtData_EvtRayHit::sk_EventType);
+	
 	delete m_pCamera;
 	m_pCamera = nullptr;
 	delete m_pScene;
@@ -50,7 +50,7 @@ void EditWindow::init()
 	makeCurrent();
 	
 	
-	IEventManager::Get()->VAddListener(fastdelegate::MakeDelegate(this, &EditWindow::SetSelectedDelegate), EvtData_EvtRayHit::sk_EventType);
+	
 	
 	if (!m_pScene)
 		m_pScene = new Scene();
@@ -69,23 +69,6 @@ void EditWindow::init()
 
 
 	glClearColor(0.2f, 0.2f, 0.4f, 1.0f);
-
-}
-
-void EditWindow::SetSelectedDelegate(IEventDataPtr pEventData)
-{
-	std::shared_ptr<EvtData_EvtRayHit> pCastEventData = std::static_pointer_cast<EvtData_EvtRayHit>(pEventData);
-
-	ObjectId actorId = pCastEventData->GetActorId();
-	std::shared_ptr<ISceneNode> pSceneNode(pCastEventData->GetSceneNode());
-	if (!pSceneNode) {
-		EDITOR_LOG("Failed to retrieve selection")
-		return;
-	}
-	std::shared_ptr<SceneNode>	pNode = std::static_pointer_cast<SceneNode>(pSceneNode);
-
-	InfernalEditor* properOwnerPointer = dynamic_cast<InfernalEditor*>(owner);
-	properOwnerPointer->SetSelectedNode(pNode);
 
 }
 
@@ -174,6 +157,7 @@ void EditWindow::mousePressEvent(QMouseEvent *event)
 {
 	std::shared_ptr<EvtData_RayCast> pEvent(INFERNAL_NEW EvtData_RayCast(width(), height(), event->x(), event->y()));
 	IEventManager::Get()->VQueueEvent(pEvent);
+	
 }
 
 void EditWindow::mouseReleaseEvent(QMouseEvent *event)

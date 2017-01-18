@@ -23,6 +23,7 @@ TerrainNode::TerrainNode(const ObjectId Id, WeakBaseRenderComponentPtr renderCom
 	SetRadius(0);
 	SetScale(50);
 	m_Props.m_Name = "TerrainNode";
+	m_Props.m_BVsphere.radius = 0;
 }
 
 void TerrainNode::VOnUpdate(Scene *, unsigned long const elapsedMs)
