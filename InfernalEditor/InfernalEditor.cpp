@@ -8,6 +8,8 @@
 #include <QSpinBox>
 #include"SHObject/Object3D.h"
 #include"SHObject/TransformComponent.h"
+
+
 InfernalEditor::InfernalEditor(QWidget *parent)
 	: QMainWindow(parent)
 {
@@ -29,6 +31,7 @@ InfernalEditor::InfernalEditor(QWidget *parent)
 	m_pSceneTreeModel->setItem(0, m_pSceneViewRoot);
 
 	ui.treeView->setModel(m_pSceneTreeModel);
+	
 	QStringList labels;
 	labels.append("Object Name");
 	labels.append("Object Type");
@@ -85,7 +88,51 @@ void InfernalEditor::UpdateTransform() {
 		m_pSelectedNode->VSetTransform(&pTransform->GetTransform());
 	}
 }
+void InfernalEditor::SaveScene()
+{
+	tinyxml2::XMLDocument sceneDoc;
+	tinyxml2::XMLNode * pSceneRoot = sceneDoc.NewElement("Scene");
 
+	tinyxml2::XMLNode* pElements;
+
+	for (int i = 0;i < m_pSceneViewRoot->rowCount();++i)
+	{
+		
+		
+		std::string rscPath(m_pSceneViewRoot->child(i, 3)->data().toString().toStdString().c_str());
+		if (!sceneDoc.LoadFile(rscPath.c_str()))
+		{
+			EDITOR_LOG("FileLoaded "+ rscPath)
+		}
+		pElements = sceneDoc.RootElement();
+		pSceneRoot->InsertFirstChild(pElements->ShallowClone(&sceneDoc));
+		
+		
+		
+		pElements = nullptr;
+		sceneDoc.Clear();
+	}
+	
+	sceneDoc.InsertFirstChild(pSceneRoot);
+	tinyxml2::XMLError eResult = sceneDoc.SaveFile("..//XML/Scene.rsc");
+	XMLCheckResult(eResult);
+
+}
+void InfernalEditor::AddObjectToScene(const char* resourcePath, QList<QStandardItem*> inItems)
+{
+	ui.openGLWidget->UpdateContext();
+	StrongObjectPtr pObject = g_pApp->GetGameLogic()->VCreateActor(resourcePath, INVALID_OBJECT_ID);
+	std::string intStr = std::to_string((unsigned int)pObject->GetId());
+	QStandardItem* IdBlock = new QStandardItem(intStr.c_str());
+	IdBlock->setData(QVariant((unsigned int)pObject->GetId()));
+	QStandardItem* rscPath = new QStandardItem(resourcePath);
+	rscPath->setData(QVariant(resourcePath));
+	inItems.at(0)->setText(inItems.at(0)->text() + "_" + intStr.c_str());
+	inItems << IdBlock;
+	inItems << rscPath;
+	m_pSceneViewRoot->appendRow(inItems);
+
+}
 void InfernalEditor::DeleteActor()
 {
 	m_pSelectedNode.reset();
@@ -159,19 +206,7 @@ void InfernalEditor::SetSelectedNode(IEventDataPtr pEventData)
 
 }
 
-void InfernalEditor::AddObjectToScene(const char* resourcePath, QList<QStandardItem*> inItems)
-{
-	ui.openGLWidget->UpdateContext();
-	StrongObjectPtr pObject = g_pApp->GetGameLogic()->VCreateActor(resourcePath, INVALID_OBJECT_ID);
-	std::string intStr = std::to_string((unsigned int)pObject->GetId());
-	QStandardItem* IdBlock = new QStandardItem(intStr.c_str());
-	IdBlock->setData(QVariant((unsigned int)pObject->GetId()));
-	inItems.at(0)->setText(inItems.at(0)->text() + "_" + intStr.c_str());
-	inItems << IdBlock;
 
-	m_pSceneViewRoot->appendRow(inItems);
-
-}
 void InfernalEditor::createActions()
 {
 	openAct = new QAction(tr("&Open..."), this);
@@ -188,6 +223,11 @@ void InfernalEditor::createActions()
 	deletObject = new QAction(tr("Delete Object"), this);
 	connect(deletObject, &QAction::triggered, this, &InfernalEditor::DeleteActor);
 
+	saveScene = new QAction(tr("&Save Scene"), this);
+	saveScene->setShortcuts(QKeySequence::Save);
+	saveScene->setStatusTip(tr("Save Current Scene"));
+	connect(saveScene, &QAction::triggered, this, &InfernalEditor::SaveScene);
+
 }
 void InfernalEditor::OpenCreationWindow()
 {
@@ -198,7 +238,7 @@ void InfernalEditor::createMenus()
 	createActions();
 	fileMenu = menuBar()->addMenu(tr("&File"));
 	fileMenu->addAction(openAct);
-
+	fileMenu->addAction(saveScene);
 	ObjectMenu = menuBar()->addMenu(tr("&Scene"));
 	ObjectMenu->addAction(addObject);
 	ObjectMenu->addAction(createObject);
@@ -213,7 +253,7 @@ void InfernalEditor::createMenus()
 }
 
 
-//#ifndef QT_NO_CONTEXTMENU
+#ifndef QT_NO_CONTEXTMENU
 void InfernalEditor::contextMenuEvent(QContextMenuEvent *event)
 {
 	contextMenu = new QMenu(this);
@@ -224,7 +264,7 @@ void InfernalEditor::contextMenuEvent(QContextMenuEvent *event)
 	contextMenu->exec(event->globalPos());
 
 }
-//#endif // QT_NO_CONTEXTMENU
+#endif // QT_NO_CONTEXTMENU
 
 
 void InfernalEditor::registerDelegate()
@@ -249,17 +289,14 @@ void InfernalEditor::open()
 {
 
 	QString fName = QFileDialog::getOpenFileName(this, tr("Open File"), QString("..//XML//"),
-		tr("XML (*.xml);;"));
+		tr("XML (*.xml);"));
 	QFileInfo fileInfo(fName.toStdString().c_str());
 	QString fileName(fileInfo.fileName());
 	if (!fileName.isEmpty())
 		loadfile("..//XML//" + fileName);
 }
 
-void InfernalEditor::save()
-{
 
-}
 
 void InfernalEditor::about()
 {

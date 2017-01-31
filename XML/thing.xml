@@ -1,0 +1,10 @@
+<thing type="Mesh" resource="..//XML/thing.xml">
+    <TransformComponent>
+        <Position x="14.000000L" y="-10.000000L" z="-21.000000L"/>
+        <Rotation pitch="0.000000L" yaw="31.000000L" roll="0.000000L"/>
+        <Scale x="1.000000L" y="1.000000L" z="1.000000L"/>
+    </TransformComponent>
+    <MeshRenderComponent>
+        <Paths shaderV="..//shaders//ReflectVert.glsl" shaderF="..//shaders//ReflectFrag.glsl" mesh="..//assets//box.fbx"/>
+    </MeshRenderComponent>
+</thing>

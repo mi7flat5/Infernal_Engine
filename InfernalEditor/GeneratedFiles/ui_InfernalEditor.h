@@ -116,7 +116,7 @@ public:
         openGLWidget->setCursor(QCursor(Qt::CrossCursor));
         openGLWidget->setMouseTracking(true);
         openGLWidget->setFocusPolicy(Qt::StrongFocus);
-        openGLWidget->setContextMenuPolicy(Qt::PreventContextMenu);
+        openGLWidget->setContextMenuPolicy(Qt::NoContextMenu);
         openGLWidget->setAcceptDrops(true);
         openGLWidget->setAutoFillBackground(true);
         openGLWidget->setInputMethodHints(Qt::ImhHiddenText);
@@ -125,6 +125,7 @@ public:
 
         tabWidget = new QTabWidget(centralWidget);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
+        tabWidget->setContextMenuPolicy(Qt::NoContextMenu);
         tabWidget->setTabShape(QTabWidget::Triangular);
         tab = new QWidget();
         tab->setObjectName(QStringLiteral("tab"));
@@ -165,6 +166,7 @@ public:
         gridLayout_7->setObjectName(QStringLiteral("gridLayout_7"));
         toolBox = new QToolBox(tab_3);
         toolBox->setObjectName(QStringLiteral("toolBox"));
+        toolBox->setContextMenuPolicy(Qt::NoContextMenu);
         page = new QWidget();
         page->setObjectName(QStringLiteral("page"));
         page->setGeometry(QRect(0, 0, 372, 558));
@@ -323,6 +325,7 @@ public:
         InfernalEditorClass->setMenuBar(menuBar);
         mainToolBar = new QToolBar(InfernalEditorClass);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
+        mainToolBar->setContextMenuPolicy(Qt::NoContextMenu);
         InfernalEditorClass->addToolBar(Qt::TopToolBarArea, mainToolBar);
         statusBar = new QStatusBar(InfernalEditorClass);
         statusBar->setObjectName(QStringLiteral("statusBar"));
@@ -330,7 +333,7 @@ public:
 
         retranslateUi(InfernalEditorClass);
 
-        tabWidget->setCurrentIndex(2);
+        tabWidget->setCurrentIndex(0);
         toolBox->setCurrentIndex(0);
         toolBox->layout()->setSpacing(0);
 

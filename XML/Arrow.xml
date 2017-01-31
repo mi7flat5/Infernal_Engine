@@ -1,0 +1,10 @@
+<Arrow type="Mesh" resource="..//XML/Arrow.xml">
+    <TransformComponent>
+        <Position x="0.000000L" y="0.000000L" z="0.000000L"/>
+        <Rotation pitch="90.000000L" yaw="90.000000L" roll="0.000000L"/>
+        <Scale x="2.000000L" y="2.000000L" z="2.000000L"/>
+    </TransformComponent>
+    <MeshRenderComponent>
+        <Paths shaderV="..//shaders//vert.glsl" shaderF="..//shaders//frag.glsl" mesh="..//assets//arrow.fbx"/>
+    </MeshRenderComponent>
+</Arrow>

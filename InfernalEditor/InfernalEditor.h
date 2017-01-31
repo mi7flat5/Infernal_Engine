@@ -37,7 +37,7 @@ protected:
 	void newFile();
 	void open();
 	void loadfile(const QString & fileName);
-	void save();
+	void SaveScene();
 	void DeleteActor();
 
 
@@ -71,6 +71,8 @@ private:
 	QAction *newAct;
 	QAction *openAct;
 	QAction *saveAct;
+
+	QAction *saveScene;
 	QAction *printAct;
 	QAction *exitAct;
 	QAction *undoAct;

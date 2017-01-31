@@ -4,16 +4,13 @@
 
 using namespace tinyxml2;
 
-#ifndef XMLCheckResult
-#define XMLCheckResult(a_eResult) if (a_eResult != XML_SUCCESS) { EDITOR_LOG("error saving file") }
-#endif
+
 
 void ActorCreationWindow::CreatObject()
 {
 	QList<QStandardItem *> NameAndType;
 	NameAndType << new QStandardItem(ui.NameText->text());
 	NameAndType << new QStandardItem(ui.typeBox->currentText());
-	
 	
 
 

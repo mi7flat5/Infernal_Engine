@@ -68,16 +68,17 @@ public:
     QDoubleSpinBox *sz;
     QGridLayout *gridLayout_4;
     QGridLayout *gridLayout_3;
+    QComboBox *typeBox;
+    QLineEdit *NameText;
+    QLabel *_name_label;
+    QLabel *_type_Label;
     QGroupBox *ComponentsGroupBox;
     QWidget *layoutWidget;
     QGridLayout *gridLayout;
     QCheckBox *RenderComponent_checkbox;
     QCheckBox *transformComponentCheckbox;
     QCheckBox *checkBox_3;
-    QComboBox *typeBox;
-    QLineEdit *NameText;
-    QLabel *_name_label;
-    QLabel *_type_Label;
+    QCheckBox *checkBox;
 
     void setupUi(QWidget *ActorCreationWindow)
     {
@@ -234,11 +235,16 @@ public:
         gridLayout_5->setObjectName(QStringLiteral("gridLayout_5"));
         sx = new QDoubleSpinBox(transformComponent);
         sx->setObjectName(QStringLiteral("sx"));
+        sx->setMinimum(0.01);
+        sx->setSingleStep(0.1);
+        sx->setValue(1);
 
         gridLayout_5->addWidget(sx, 10, 0, 1, 1);
 
         px = new QDoubleSpinBox(transformComponent);
         px->setObjectName(QStringLiteral("px"));
+        px->setMinimum(-2048);
+        px->setMaximum(2048);
 
         gridLayout_5->addWidget(px, 2, 0, 1, 1);
 
@@ -251,6 +257,8 @@ public:
 
         pz = new QDoubleSpinBox(transformComponent);
         pz->setObjectName(QStringLiteral("pz"));
+        pz->setMinimum(-2048);
+        pz->setMaximum(2048);
 
         gridLayout_5->addWidget(pz, 2, 2, 1, 1);
 
@@ -280,6 +288,8 @@ public:
 
         ry = new QDoubleSpinBox(transformComponent);
         ry->setObjectName(QStringLiteral("ry"));
+        ry->setMinimum(-180);
+        ry->setMaximum(180);
 
         gridLayout_5->addWidget(ry, 5, 1, 1, 1);
 
@@ -313,11 +323,15 @@ public:
 
         rx = new QDoubleSpinBox(transformComponent);
         rx->setObjectName(QStringLiteral("rx"));
+        rx->setMinimum(-180);
+        rx->setMaximum(180);
 
         gridLayout_5->addWidget(rx, 5, 0, 1, 1);
 
         rz = new QDoubleSpinBox(transformComponent);
         rz->setObjectName(QStringLiteral("rz"));
+        rz->setMinimum(-180);
+        rz->setMaximum(180);
 
         gridLayout_5->addWidget(rz, 5, 2, 1, 1);
 
@@ -330,6 +344,8 @@ public:
 
         py = new QDoubleSpinBox(transformComponent);
         py->setObjectName(QStringLiteral("py"));
+        py->setMinimum(-2048);
+        py->setMaximum(2048);
 
         gridLayout_5->addWidget(py, 2, 1, 1, 1);
 
@@ -356,11 +372,17 @@ public:
 
         sy = new QDoubleSpinBox(transformComponent);
         sy->setObjectName(QStringLiteral("sy"));
+        sy->setMinimum(0.01);
+        sy->setSingleStep(0.01);
+        sy->setValue(1);
 
         gridLayout_5->addWidget(sy, 10, 1, 1, 1);
 
         sz = new QDoubleSpinBox(transformComponent);
         sz->setObjectName(QStringLiteral("sz"));
+        sz->setMinimum(0.01);
+        sz->setSingleStep(0.1);
+        sz->setValue(1);
 
         gridLayout_5->addWidget(sz, 10, 2, 1, 1);
 
@@ -373,6 +395,28 @@ public:
         gridLayout_3 = new QGridLayout();
         gridLayout_3->setSpacing(6);
         gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
+        typeBox = new QComboBox(ActorCreationWindow);
+        typeBox->setObjectName(QStringLiteral("typeBox"));
+
+        gridLayout_3->addWidget(typeBox, 2, 1, 1, 1);
+
+        NameText = new QLineEdit(ActorCreationWindow);
+        NameText->setObjectName(QStringLiteral("NameText"));
+
+        gridLayout_3->addWidget(NameText, 2, 0, 1, 1);
+
+        _name_label = new QLabel(ActorCreationWindow);
+        _name_label->setObjectName(QStringLiteral("_name_label"));
+        sizePolicy.setHeightForWidth(_name_label->sizePolicy().hasHeightForWidth());
+        _name_label->setSizePolicy(sizePolicy);
+
+        gridLayout_3->addWidget(_name_label, 1, 0, 1, 1);
+
+        _type_Label = new QLabel(ActorCreationWindow);
+        _type_Label->setObjectName(QStringLiteral("_type_Label"));
+
+        gridLayout_3->addWidget(_type_Label, 1, 1, 1, 1);
+
         ComponentsGroupBox = new QGroupBox(ActorCreationWindow);
         ComponentsGroupBox->setObjectName(QStringLiteral("ComponentsGroupBox"));
         layoutWidget = new QWidget(ComponentsGroupBox);
@@ -399,29 +443,12 @@ public:
         gridLayout->addWidget(checkBox_3, 2, 0, 1, 1);
 
 
-        gridLayout_3->addWidget(ComponentsGroupBox, 3, 0, 1, 2);
+        gridLayout_3->addWidget(ComponentsGroupBox, 4, 0, 1, 2);
 
-        typeBox = new QComboBox(ActorCreationWindow);
-        typeBox->setObjectName(QStringLiteral("typeBox"));
+        checkBox = new QCheckBox(ActorCreationWindow);
+        checkBox->setObjectName(QStringLiteral("checkBox"));
 
-        gridLayout_3->addWidget(typeBox, 2, 1, 1, 1);
-
-        NameText = new QLineEdit(ActorCreationWindow);
-        NameText->setObjectName(QStringLiteral("NameText"));
-
-        gridLayout_3->addWidget(NameText, 2, 0, 1, 1);
-
-        _name_label = new QLabel(ActorCreationWindow);
-        _name_label->setObjectName(QStringLiteral("_name_label"));
-        sizePolicy.setHeightForWidth(_name_label->sizePolicy().hasHeightForWidth());
-        _name_label->setSizePolicy(sizePolicy);
-
-        gridLayout_3->addWidget(_name_label, 1, 0, 1, 1);
-
-        _type_Label = new QLabel(ActorCreationWindow);
-        _type_Label->setObjectName(QStringLiteral("_type_Label"));
-
-        gridLayout_3->addWidget(_type_Label, 1, 1, 1, 1);
+        gridLayout_3->addWidget(checkBox, 3, 1, 1, 1);
 
 
         gridLayout_4->addLayout(gridLayout_3, 0, 0, 1, 1);
@@ -462,12 +489,13 @@ public:
         label_14->setText(QApplication::translate("ActorCreationWindow", "X", 0));
         label_2->setText(QApplication::translate("ActorCreationWindow", "X", 0));
         label_4->setText(QApplication::translate("ActorCreationWindow", "Z", 0));
+        _name_label->setText(QApplication::translate("ActorCreationWindow", "Object Name", 0));
+        _type_Label->setText(QApplication::translate("ActorCreationWindow", "Object Type", 0));
         ComponentsGroupBox->setTitle(QApplication::translate("ActorCreationWindow", "Components", 0));
         RenderComponent_checkbox->setText(QApplication::translate("ActorCreationWindow", "Render Component", 0));
         transformComponentCheckbox->setText(QApplication::translate("ActorCreationWindow", "Trasform Component", 0));
         checkBox_3->setText(QApplication::translate("ActorCreationWindow", "Other Components", 0));
-        _name_label->setText(QApplication::translate("ActorCreationWindow", "Object Name", 0));
-        _type_Label->setText(QApplication::translate("ActorCreationWindow", "Object Type", 0));
+        checkBox->setText(QApplication::translate("ActorCreationWindow", "Static", 0));
     } // retranslateUi
 
 };

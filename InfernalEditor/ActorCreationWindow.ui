@@ -532,10 +532,27 @@
        </property>
        <layout class="QGridLayout" name="gridLayout_5">
         <item row="10" column="0">
-         <widget class="QDoubleSpinBox" name="sx"/>
+         <widget class="QDoubleSpinBox" name="sx">
+          <property name="minimum">
+           <double>0.010000000000000</double>
+          </property>
+          <property name="singleStep">
+           <double>0.100000000000000</double>
+          </property>
+          <property name="value">
+           <double>1.000000000000000</double>
+          </property>
+         </widget>
         </item>
         <item row="2" column="0">
-         <widget class="QDoubleSpinBox" name="px"/>
+         <widget class="QDoubleSpinBox" name="px">
+          <property name="minimum">
+           <double>-2048.000000000000000</double>
+          </property>
+          <property name="maximum">
+           <double>2048.000000000000000</double>
+          </property>
+         </widget>
         </item>
         <item row="1" column="2">
          <widget class="QLabel" name="label_12">
@@ -551,7 +568,14 @@
          </widget>
         </item>
         <item row="2" column="2">
-         <widget class="QDoubleSpinBox" name="pz"/>
+         <widget class="QDoubleSpinBox" name="pz">
+          <property name="minimum">
+           <double>-2048.000000000000000</double>
+          </property>
+          <property name="maximum">
+           <double>2048.000000000000000</double>
+          </property>
+         </widget>
         </item>
         <item row="0" column="0">
          <widget class="QLabel" name="label_9">
@@ -593,7 +617,14 @@
          </widget>
         </item>
         <item row="5" column="1">
-         <widget class="QDoubleSpinBox" name="ry"/>
+         <widget class="QDoubleSpinBox" name="ry">
+          <property name="minimum">
+           <double>-180.000000000000000</double>
+          </property>
+          <property name="maximum">
+           <double>180.000000000000000</double>
+          </property>
+         </widget>
         </item>
         <item row="8" column="0">
          <widget class="QLabel" name="label">
@@ -648,10 +679,24 @@
          </widget>
         </item>
         <item row="5" column="0">
-         <widget class="QDoubleSpinBox" name="rx"/>
+         <widget class="QDoubleSpinBox" name="rx">
+          <property name="minimum">
+           <double>-180.000000000000000</double>
+          </property>
+          <property name="maximum">
+           <double>180.000000000000000</double>
+          </property>
+         </widget>
         </item>
         <item row="5" column="2">
-         <widget class="QDoubleSpinBox" name="rz"/>
+         <widget class="QDoubleSpinBox" name="rz">
+          <property name="minimum">
+           <double>-180.000000000000000</double>
+          </property>
+          <property name="maximum">
+           <double>180.000000000000000</double>
+          </property>
+         </widget>
         </item>
         <item row="1" column="1">
          <widget class="QLabel" name="label_11">
@@ -667,7 +712,14 @@
          </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QDoubleSpinBox" name="py"/>
+         <widget class="QDoubleSpinBox" name="py">
+          <property name="minimum">
+           <double>-2048.000000000000000</double>
+          </property>
+          <property name="maximum">
+           <double>2048.000000000000000</double>
+          </property>
+         </widget>
         </item>
         <item row="4" column="0">
          <widget class="QLabel" name="label_14">
@@ -709,10 +761,30 @@
          </widget>
         </item>
         <item row="10" column="1">
-         <widget class="QDoubleSpinBox" name="sy"/>
+         <widget class="QDoubleSpinBox" name="sy">
+          <property name="minimum">
+           <double>0.010000000000000</double>
+          </property>
+          <property name="singleStep">
+           <double>0.010000000000000</double>
+          </property>
+          <property name="value">
+           <double>1.000000000000000</double>
+          </property>
+         </widget>
         </item>
         <item row="10" column="2">
-         <widget class="QDoubleSpinBox" name="sz"/>
+         <widget class="QDoubleSpinBox" name="sz">
+          <property name="minimum">
+           <double>0.010000000000000</double>
+          </property>
+          <property name="singleStep">
+           <double>0.100000000000000</double>
+          </property>
+          <property name="value">
+           <double>1.000000000000000</double>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -721,7 +793,33 @@
       <layout class="QGridLayout" name="gridLayout_4">
        <item row="0" column="0">
         <layout class="QGridLayout" name="gridLayout_3">
-         <item row="3" column="0" colspan="2">
+         <item row="2" column="1">
+          <widget class="QComboBox" name="typeBox"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLineEdit" name="NameText"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="_name_label">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Object Name</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLabel" name="_type_Label">
+           <property name="text">
+            <string>Object Type</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0" colspan="2">
           <widget class="QGroupBox" name="ComponentsGroupBox">
            <property name="title">
             <string>Components</string>
@@ -761,29 +859,10 @@
            </widget>
           </widget>
          </item>
-         <item row="2" column="1">
-          <widget class="QComboBox" name="typeBox"/>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLineEdit" name="NameText"/>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="_name_label">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
+         <item row="3" column="1">
+          <widget class="QCheckBox" name="checkBox">
            <property name="text">
-            <string>Object Name</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QLabel" name="_type_Label">
-           <property name="text">
-            <string>Object Type</string>
+            <string>Static</string>
            </property>
           </widget>
          </item>
