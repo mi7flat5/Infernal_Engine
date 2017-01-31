@@ -75,6 +75,22 @@ std::string BaseGameLogic::GetActorXml(const ObjectId id)
 
 bool BaseGameLogic::VLoadGame(const char* levelResource)
 {
+	tinyxml2::XMLDocument inDoc;
+	if (inDoc.LoadFile(levelResource))
+	{
+		EDITOR_LOG("Failed to load scene file  " + std::string(levelResource))
+			return false;
+	}
+	if (!inDoc.LoadFile(levelResource))
+	{
+		EDITOR_LOG("FileLoaded " + std::string(levelResource))
+	}
+	tinyxml2::XMLElement* pRoot = inDoc.FirstChildElement();
+	for (tinyxml2::XMLElement* pNode = pRoot->FirstChildElement(); pNode; pNode = pNode->NextSiblingElement())
+	{
+		VCreateActor(pNode->Attribute("resource"), INVALID_OBJECT_ID);
+	}
+
 	return true;
 }
 

@@ -116,7 +116,7 @@ public:
         openGLWidget->setCursor(QCursor(Qt::CrossCursor));
         openGLWidget->setMouseTracking(true);
         openGLWidget->setFocusPolicy(Qt::StrongFocus);
-        openGLWidget->setContextMenuPolicy(Qt::NoContextMenu);
+        openGLWidget->setContextMenuPolicy(Qt::PreventContextMenu);
         openGLWidget->setAcceptDrops(true);
         openGLWidget->setAutoFillBackground(true);
         openGLWidget->setInputMethodHints(Qt::ImhHiddenText);
@@ -169,7 +169,7 @@ public:
         toolBox->setContextMenuPolicy(Qt::NoContextMenu);
         page = new QWidget();
         page->setObjectName(QStringLiteral("page"));
-        page->setGeometry(QRect(0, 0, 372, 558));
+        page->setGeometry(QRect(0, 0, 286, 117));
         gridLayout_8 = new QGridLayout(page);
         gridLayout_8->setSpacing(6);
         gridLayout_8->setContentsMargins(11, 11, 11, 11);

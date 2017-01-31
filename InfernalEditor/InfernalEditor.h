@@ -17,6 +17,7 @@ public:
 	InfernalEditor(QWidget *parent = Q_NULLPTR);
 	~InfernalEditor();
 	void UpdateTransform();
+	void LoadScene();
 	void SetLightPos(int);
 	void SetSelectedNode(IEventDataPtr pEventData);
 	void AddObjectToScene(const char* resourcePath, QList<QStandardItem*> inItems);
@@ -36,8 +37,11 @@ protected:
 
 	void newFile();
 	void open();
+	void openScene();
 	void loadfile(const QString & fileName);
 	void SaveScene();
+	void UpdateXML(const char * resourcePath, ObjectId id);
+	
 	void DeleteActor();
 
 
@@ -73,6 +77,8 @@ private:
 	QAction *saveAct;
 
 	QAction *saveScene;
+	QAction *loadScene;
+
 	QAction *printAct;
 	QAction *exitAct;
 	QAction *undoAct;

@@ -74,7 +74,7 @@
          <enum>Qt::StrongFocus</enum>
         </property>
         <property name="contextMenuPolicy">
-         <enum>Qt::NoContextMenu</enum>
+         <enum>Qt::PreventContextMenu</enum>
         </property>
         <property name="acceptDrops">
          <bool>true</bool>
@@ -168,8 +168,8 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>372</width>
-               <height>558</height>
+               <width>286</width>
+               <height>117</height>
               </rect>
              </property>
              <attribute name="label">

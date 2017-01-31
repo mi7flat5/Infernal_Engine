@@ -88,27 +88,57 @@ void InfernalEditor::UpdateTransform() {
 		m_pSelectedNode->VSetTransform(&pTransform->GetTransform());
 	}
 }
+void InfernalEditor::LoadScene()
+{
+	
+	QString fName = QFileDialog::getOpenFileName(this, tr("Open Scene File"), QString("..//XML//"),
+		tr("Scene (*.rsc);"));
+	QFileInfo fileInfo(fName.toStdString().c_str());
+	QString fileName(fileInfo.fileName());
+
+	tinyxml2::XMLDocument inDoc;
+	if (inDoc.LoadFile(std::string("..//XML//" + fileName.toStdString()).c_str()))
+	{
+		EDITOR_LOG("Failed to load scene file  " + std::string("..//XML//" + fileName.toStdString()))
+			return;
+	}
+	
+	tinyxml2::XMLElement* pRoot = inDoc.FirstChildElement();
+	ui.openGLWidget->makeCurrent();
+	for (tinyxml2::XMLElement* pNode = pRoot->FirstChildElement(); pNode; pNode = pNode->NextSiblingElement())
+	{
+	
+		
+		QList<QStandardItem *> NameAndType;
+		NameAndType << new QStandardItem(pNode->Value());
+		NameAndType << new QStandardItem(pNode->Attribute("type"));
+		
+		AddObjectToScene(pNode->Attribute("resource"),NameAndType);
+		ui.openGLWidget->makeCurrent();
+	}
+	
+		
+}
 void InfernalEditor::SaveScene()
 {
 	tinyxml2::XMLDocument sceneDoc;
 	tinyxml2::XMLNode * pSceneRoot = sceneDoc.NewElement("Scene");
-
 	tinyxml2::XMLNode* pElements;
 
 	for (int i = 0;i < m_pSceneViewRoot->rowCount();++i)
 	{
-		
-		
-		std::string rscPath(m_pSceneViewRoot->child(i, 3)->data().toString().toStdString().c_str());
-		if (!sceneDoc.LoadFile(rscPath.c_str()))
+		std::string rscPath(m_pSceneViewRoot->child(i, 3)->data().toString().toStdString());
+		if (sceneDoc.LoadFile(rscPath.c_str()))
 		{
-			EDITOR_LOG("FileLoaded "+ rscPath)
+			EDITOR_LOG("Failed to load " + rscPath)
+				return;
 		}
 		pElements = sceneDoc.RootElement();
+	
+		UpdateXML(rscPath.c_str(), m_pSceneViewRoot->child(i, 2)->data().toUInt());
+		
 		pSceneRoot->InsertFirstChild(pElements->ShallowClone(&sceneDoc));
-		
-		
-		
+				
 		pElements = nullptr;
 		sceneDoc.Clear();
 	}
@@ -116,6 +146,62 @@ void InfernalEditor::SaveScene()
 	sceneDoc.InsertFirstChild(pSceneRoot);
 	tinyxml2::XMLError eResult = sceneDoc.SaveFile("..//XML/Scene.rsc");
 	XMLCheckResult(eResult);
+
+}
+void InfernalEditor::UpdateXML(const char* resourcePath, ObjectId id) 
+{
+	tinyxml2::XMLDocument inDoc;
+	if (inDoc.LoadFile(resourcePath))
+	{
+		EDITOR_LOG("Failed to load " + std::string(resourcePath))
+			return;
+	}
+
+
+	StrongObjectPtr pObject = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActor(id));
+	std::shared_ptr<TransformComponent> pTransform = MakeStrongPtr(pObject->GetComponent<TransformComponent>(TransformComponent::g_Name));
+	
+	if(pTransform)
+	{
+	
+		tinyxml2::XMLElement* pRoot = inDoc.FirstChildElement();
+
+		for (tinyxml2::XMLElement* pNode = pRoot->FirstChildElement(); pNode; pNode = pNode->NextSiblingElement())
+		{
+
+			tinyxml2::XMLElement* pPositionElement = pNode->FirstChildElement("Position");
+			if (pPositionElement)
+			{
+				vec3 pos = pTransform->GetPosition();
+				pPositionElement->SetAttribute("x", ToStr(pos.x).c_str());
+				pPositionElement->SetAttribute("y", ToStr(pos.y).c_str());
+				pPositionElement->SetAttribute("z", ToStr(pos.z).c_str());
+
+			}
+			tinyxml2::XMLElement* pRotationElement = pNode->FirstChildElement("Rotation");
+			if (pRotationElement)
+			{
+				vec3 rot = pTransform->GetVecRotation();
+				pRotationElement->SetAttribute("pitch", ToStr(rot.x).c_str());
+				pRotationElement->SetAttribute("yaw", ToStr(rot.y).c_str());
+				pRotationElement->SetAttribute("roll", ToStr(rot.z).c_str());
+
+			}
+			tinyxml2::XMLElement* pScaleElement = pNode->FirstChildElement("Scale");
+			if (pScaleElement)
+			{
+				vec3 scale = pTransform->GetVecScale();
+				pScaleElement->SetAttribute("x", ToStr(scale.x).c_str());
+				pScaleElement->SetAttribute("y", ToStr(scale.y).c_str());
+				pScaleElement->SetAttribute("z", ToStr(scale.z).c_str());
+
+			}
+		}
+		
+	}
+	tinyxml2::XMLError eResult  = inDoc.SaveFile(resourcePath);
+	XMLCheckResult(eResult);
+	
 
 }
 void InfernalEditor::AddObjectToScene(const char* resourcePath, QList<QStandardItem*> inItems)
@@ -228,6 +314,11 @@ void InfernalEditor::createActions()
 	saveScene->setStatusTip(tr("Save Current Scene"));
 	connect(saveScene, &QAction::triggered, this, &InfernalEditor::SaveScene);
 
+	loadScene = new QAction(tr("&Load Scene"), this);
+	loadScene->setShortcuts(QKeySequence::Save);
+	loadScene->setStatusTip(tr("Load Scene From File"));
+	connect(loadScene, &QAction::triggered, this, &InfernalEditor::LoadScene);
+
 }
 void InfernalEditor::OpenCreationWindow()
 {
@@ -239,6 +330,7 @@ void InfernalEditor::createMenus()
 	fileMenu = menuBar()->addMenu(tr("&File"));
 	fileMenu->addAction(openAct);
 	fileMenu->addAction(saveScene);
+	fileMenu->addAction(loadScene);
 	ObjectMenu = menuBar()->addMenu(tr("&Scene"));
 	ObjectMenu->addAction(addObject);
 	ObjectMenu->addAction(createObject);
@@ -295,7 +387,11 @@ void InfernalEditor::open()
 	if (!fileName.isEmpty())
 		loadfile("..//XML//" + fileName);
 }
+void InfernalEditor::openScene()
+{
 
+
+}
 
 
 void InfernalEditor::about()
