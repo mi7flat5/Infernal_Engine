@@ -1,8 +1,8 @@
 <RefelctiveTeapot type="Mesh" resource="..//XML/RefelctiveTeapot.xml">
     <TransformComponent>
-        <Position x="15.000000L" y="10.000000L" z="0.000000L"/>
-        <Rotation pitch="0.000000L" yaw="30.000000L" roll="0.000000L"/>
-        <Scale x="3.000000L" y="3.000000L" z="3.000000L"/>
+        <Position x="8.000000" y="10.000000" z="-17.000000"/>
+        <Rotation pitch="0.000000" yaw="30.000000" roll="0.000000"/>
+        <Scale x="3.000000" y="3.000000" z="3.000000"/>
     </TransformComponent>
     <MeshRenderComponent>
         <Paths shaderV="..//shaders//ReflectVert.glsl" shaderF="..//shaders//ReflectFrag.glsl" mesh="..//assets//teapot.fbx"/>

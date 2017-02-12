@@ -165,7 +165,8 @@ RootNode::RootNode() : SceneNode(INVALID_OBJECT_ID, WeakBaseRenderComponentPtr()
 	std::shared_ptr<SceneNode> invisibleGroup(INFERNAL_NEW SceneNode(INVALID_OBJECT_ID, WeakBaseRenderComponentPtr(), RenderPass_NotRendered));
 	m_Children.push_back(invisibleGroup);	// RenderPass_NotRendered = 3
 
-	
+	std::shared_ptr<SceneNode> AlphaGroup(INFERNAL_NEW SceneNode(INVALID_OBJECT_ID, WeakBaseRenderComponentPtr(), RenderPass_Last));
+	m_Children.push_back(AlphaGroup);	// RenderPass_NotRendered = 3
 
 }
 
@@ -179,7 +180,7 @@ bool RootNode::VAddChild(std::shared_ptr<ISceneNode> kid)
 
 void RootNode::VRenderChildren(Scene * pScene)
 {
-	for (int pass = RenderPass_0; pass < RenderPass_Last; ++pass)
+	for (int pass = RenderPass_0; pass <= RenderPass_Last; ++pass)
 	{
 		switch (pass)
 		{
@@ -188,11 +189,21 @@ void RootNode::VRenderChildren(Scene * pScene)
 			m_Children[pass]->VRenderChildren(pScene);
 			
 			break;
-
+	
 		case RenderPass_Sky:
 		{
 
 			m_Children[pass]->VRenderChildren(pScene);
+			break;
+		}
+		case RenderPass_Last:// currently only used for editor axis selector
+		{					 //Will need to make special pass for this
+			glEnable(GL_BLEND);
+			glDisable(GL_DEPTH_TEST);
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+			m_Children[pass]->VRenderChildren(pScene);
+			glEnable(GL_DEPTH_TEST);
+			glDisable(GL_BLEND);
 			break;
 		}
 		}

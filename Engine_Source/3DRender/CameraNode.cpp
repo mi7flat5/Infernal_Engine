@@ -31,8 +31,10 @@ void CameraNode::SetCamRadius(float inAdjustment)
 }
 void CameraNode::SetProjection(GLuint width, GLuint height)
 {
-	Projection = glm::perspective(90.0f, (float)width / height, 0.1f, 1800.0f);
-	m_Frustum.Init(glm::radians(90.0), (float)width / height, 0.1f, 1800.0f);
+	WIDTH = width;
+	HEIGHT = height;
+	Projection = glm::perspective(90.0f, (float)WIDTH / HEIGHT, 0.1f, 1800.0f);
+	m_Frustum.Init(glm::radians(90.0), (float)WIDTH / HEIGHT, 0.1f, 1800.0f);
 }
 void CameraNode::UpdateOffsetsVectors()
 {

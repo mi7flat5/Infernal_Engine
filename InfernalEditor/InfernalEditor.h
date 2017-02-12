@@ -19,7 +19,7 @@ public:
 	void UpdateTransform();
 	void LoadScene();
 	void SetLightPos(int);
-	void SetSelectedNode(IEventDataPtr pEventData);
+	void SetSelectedNode(ObjectId);
 	void AddObjectToScene(const char* resourcePath, QList<QStandardItem*> inItems);
 	void registerDelegate();
 protected:
@@ -52,7 +52,10 @@ protected:
 
 private:
 	Ui::InfernalEditorClass ui;
+
 	std::shared_ptr<SceneNode> m_pSelectedNode;
+	ObjectId XselectAxis, YselectAxis, ZselectAxis;
+
 	ActorCreationWindow* m_pCreationwindow;
 
 	void createActions();

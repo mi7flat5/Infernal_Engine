@@ -69,6 +69,7 @@ ActorCreationWindow::ActorCreationWindow(QWidget *parent)
 {
 	ui.setupUi(this);
 	ui.typeBox->addItem(tr("Mesh"));
+	ui.typeBox->addItem(tr("AlphaMesh"));
 	ui.typeBox->addItem(tr("CubeMap"));
 	ui.typeBox->addItem(tr("Terrain"));
 	
@@ -138,8 +139,10 @@ const char* ActorCreationWindow::GetRenderCompnentType()
 	case (0) :
 		return "MeshRenderComponent";
 	case (1) :
-		return "CubeMapRenderComponent";
+		return "AlphaMeshRenderComponent";
 	case (2) :
+		return "CubeMapRenderComponent";
+	case (3) :
 		return "TerrainRenderComponent";
 	default: return "UNKNOWN OBJECT TYPE";
 	}

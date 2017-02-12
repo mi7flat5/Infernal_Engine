@@ -12,6 +12,7 @@ class Scene;
 class ObjectComponent;
 class BaseRenderComponent;
 typedef BaseRenderComponent* WeakBaseRenderComponentPtr;
+
 class OGLMeshNode;
 
 
@@ -61,13 +62,14 @@ class SceneNode : public ISceneNode
 	friend class Scene;
 protected:
 	mat4 ViewMat, ProjectionMat;
-	GLuint ProjectionMatrixID, ViewMatrixID, ModelMatrixID;
+	GLuint ProjectionMatrixID, ViewMatrixID, ModelMatrixID, PickingID;
 	SceneNodeList			m_Children;
 	SceneNode				*m_pParent;
 	SceneNodeProperties		m_Props;
 	WeakBaseRenderComponentPtr	m_RenderComponent;
 	MeshList m_Meshes;
-	std::shared_ptr<Shaders> NodeShader;
+	std::shared_ptr<Shaders> NodeShader,PickingShader;
+	
 	vec3 lightPos;
 	GLuint lightPosLoc;
 public:
@@ -76,8 +78,6 @@ public:
 	{
 		m_Props.m_RenderPass = renderPass;
 		m_Props.m_Id = Id;
-		
-		
 		
 	}
 		void SetMeshList(std::vector<Mesh> inMesh);

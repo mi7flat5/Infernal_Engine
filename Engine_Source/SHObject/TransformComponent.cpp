@@ -64,6 +64,6 @@ void TransformComponent::BuildTransform()
 	mat4 PosMat = Transform::translate(m_Position.x, m_Position.y, m_Position.z);
 	mat4 RotMAt = Transform::RotateMat4(m_RotDegrees.x, vec3(1, 0, 0))* Transform::RotateMat4(m_RotDegrees.y, vec3(0, 1, 0))* Transform::RotateMat4(m_RotDegrees.z, vec3(0, 0, 1));
 	mat4 ScaleMat = Transform::scale(m_Scale.x, m_Scale.y, m_Scale.z);
-	m_Transform = PosMat*ScaleMat*RotMAt;
+	m_Transform = PosMat*RotMAt*ScaleMat;
 
 }

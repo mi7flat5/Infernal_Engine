@@ -6,9 +6,7 @@
 
 class BaseRenderComponent:public RenderComponentInterface
 {
-
-	
-	
+		
 protected:
 	virtual bool VDelegateInit(tinyxml2::XMLElement* pData) { return true; }
 	std::shared_ptr<SceneNode> m_pSceneNode;
@@ -31,22 +29,17 @@ class CubeMapRenderComponent : public BaseRenderComponent
 	
 	std::string m_textureResource;
 public:
-	CubeMapRenderComponent();
+
 	static const char *g_Name;
 	virtual const char *VGetName() const { return g_Name; }
-	
-
-	
 	virtual std::shared_ptr<SceneNode> VCreateSceneNode(void) override;
 	virtual bool VInit(tinyxml2::XMLElement* pData) override;
+
 protected:
 	virtual bool VDelegateInit(tinyxml2::XMLElement* pData) override;
-
 	//hard coded cubemap
 	bool VDelegateInit();
-
-	  // factory method to create the appropriate scene node
-
+  // factory method to create the appropriate scene node
 	// editor stuff
 	virtual void VCreateInheritedXmlElements(tinyxml2::XMLElement* pBaseElement);
 };
@@ -54,9 +47,7 @@ protected:
 
 class MeshRenderComponent : public BaseRenderComponent
 {
-	
 public:
-	MeshRenderComponent();
 	virtual bool VInit(tinyxml2::XMLElement* pData) override;
 	static const char *g_Name;
 	virtual const char *VGetName() const { return g_Name; }
@@ -67,9 +58,16 @@ protected:
 	virtual void VCreateInheritedXmlElements(tinyxml2::XMLElement* pBaseElement);
 };
 
+class AlphaMeshRenderComponent : public MeshRenderComponent
+{
+public:
+	static const char *g_Name;
+	virtual const char *VGetName() const { return g_Name; }
+	virtual std::shared_ptr<SceneNode> VCreateSceneNode(void) override;
+};
+
 class TerrainRenderComponent : public BaseRenderComponent {
 	public:
-		TerrainRenderComponent();
 		static const char *g_Name;
 		virtual const char *VGetName() const { return g_Name; }
 		virtual std::shared_ptr<SceneNode> VGetSceneNode(void) override;

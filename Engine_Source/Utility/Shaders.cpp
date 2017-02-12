@@ -6,6 +6,7 @@
 	// Constructor generates the shader
 Shaders::Shaders(const GLchar* vertexPath, const GLchar* fragmentPath)
 	{
+		EDITOR_LOG("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 		// 1. Retrieve the vertex/fragment source code from filePath
 		std::string vertexCode;
 		std::string fragmentCode;
@@ -32,7 +33,7 @@ Shaders::Shaders(const GLchar* vertexPath, const GLchar* fragmentPath)
 		}
 		catch (std::ifstream::failure e)
 		{
-			EDITOR_LOG("SHADER::FILE_NOT_SUCCESFULLY_READ")
+			EDITOR_LOG("Shader File Not read")
 		}
 		const GLchar* vShaderCode = vertexCode.c_str();
 		const GLchar * fShaderCode = fragmentCode.c_str();
@@ -42,7 +43,7 @@ Shaders::Shaders(const GLchar* vertexPath, const GLchar* fragmentPath)
 		GLchar infoLog[512];
 		// Vertex Shader
 		
-			vertex = glCreateShader(GL_VERTEX_SHADER);
+			vertex = glCreateShader(GL_VERTEX_SHADER);//If crash here GL context is not finished initilaizing
 
 		
 		glShaderSource(vertex, 1, &vShaderCode, NULL);
@@ -52,7 +53,7 @@ Shaders::Shaders(const GLchar* vertexPath, const GLchar* fragmentPath)
 		if (!success)
 		{
 			glGetShaderInfoLog(vertex, 512, NULL, infoLog);
-			EDITOR_LOG("VERTEX::COMPILATION_FAILED" + (char)infoLog)
+			EDITOR_LOG(infoLog)
 		}
 		// Fragment Shader
 		fragment = glCreateShader(GL_FRAGMENT_SHADER);
@@ -63,7 +64,7 @@ Shaders::Shaders(const GLchar* vertexPath, const GLchar* fragmentPath)
 		if (!success)
 		{
 			glGetShaderInfoLog(fragment, 512, NULL, infoLog);
-			EDITOR_LOG("FRAGMENT::COMPILATION_FAILED" + (char)infoLog)
+			EDITOR_LOG(infoLog)
 		}
 		// Shader Program
 		this->Program = glCreateProgram();
@@ -75,15 +76,17 @@ Shaders::Shaders(const GLchar* vertexPath, const GLchar* fragmentPath)
 		if (!success)
 		{
 			glGetProgramInfoLog(this->Program, 512, NULL, infoLog);
-			EDITOR_LOG("PROGRAM::LINKING_FAILED" + (char)infoLog)
+			EDITOR_LOG(infoLog)
 		}
 		// Delete the shaders as they're linked into our program now and no longer necessery
 		glDeleteShader(vertex);
 		glDeleteShader(fragment);
+		EDITOR_LOG("End Of shader Load")
 	
 }
 Shaders::Shaders(const GLchar * vertexPath, const GLchar * tessControlPath, const GLchar * tessEvalPath, const GLchar * fragmentPath)
 {
+
 	// 1. Retrieve the vertex/fragment source code from filePath
 	std::string vertexCode;
 	std::string fragmentCode;

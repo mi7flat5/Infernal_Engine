@@ -17,11 +17,17 @@ class Scene
 //	AlphaSceneNodes 		m_AlphaSceneNodes;*/
 	SceneObjectMap 			m_ObjectMap;
 	CollisionVolumeMap m_BVMap;
+	
+	
+	
+	bool PickingPass = false;
+	float hackX, hackY;
 
 public:
 	Scene();
 	~Scene();
-
+	bool Picking() { return PickingPass; }
+	void SetPicking(bool pick) { PickingPass = pick; }
 	void OnRender();
 	void OnRestore();
 	void OnLostDevice();
@@ -32,7 +38,7 @@ public:
 	bool RemoveChild(ObjectId id);
 
 	void NewRenderComponentDelegate(IEventDataPtr pEventData);
-	void ModifiedRenderComponentDelegate(IEventDataPtr pEventData);
+	//void ModifiedRenderComponentDelegate(IEventDataPtr pEventData);
 
 	void TestRayCollisonDelegate(IEventDataPtr pEventData);
 

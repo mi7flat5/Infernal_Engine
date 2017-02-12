@@ -12,6 +12,7 @@ ObjectFactory::ObjectFactory()
 
 	m_componentFactory.Register<CubeMapRenderComponent>(ObjectComponent::GetIdFromName(CubeMapRenderComponent::g_Name));
 	m_componentFactory.Register<MeshRenderComponent>(ObjectComponent::GetIdFromName(MeshRenderComponent::g_Name));
+	m_componentFactory.Register<AlphaMeshRenderComponent>(ObjectComponent::GetIdFromName(AlphaMeshRenderComponent::g_Name));
 	m_componentFactory.Register<TerrainRenderComponent>(ObjectComponent::GetIdFromName(TerrainRenderComponent::g_Name));
 	m_componentFactory.Register<TransformComponent>(ObjectComponent::GetIdFromName(TransformComponent::g_Name));
 }

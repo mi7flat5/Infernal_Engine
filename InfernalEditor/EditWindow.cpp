@@ -4,10 +4,20 @@
 #include <QCoreApplication>
 #include"InfernalEditor.h"
 #include"..//Engine_Source/SHObject/Object3D.h"
+#include <QOffscreenSurface>
 void EditWindow::resizeGL(int w, int h)
 {
 	m_pCamera->SetProjection(w, h);
-
+	if (Fbo)
+	{
+		delete Fbo;
+		
+	}
+	
+	QSize s;
+	s.setHeight(height());
+	s.setWidth(width());
+	Fbo = new QOpenGLFramebufferObject(s);
 }
 EditWindow::EditWindow(QWidget *parent)
 	: QOpenGLWidget(parent)
@@ -62,14 +72,12 @@ void EditWindow::init()
 		std::shared_ptr<CameraNode> cam(m_pCamera);
 		m_pScene->AddChild(m_pCamera->GetObjectId(), cam);
 		m_pScene->SetCamera(cam);
-
-
-
+		
+		
+		
 	}
 
-
-	glClearColor(0.2f, 0.2f, 0.4f, 1.0f);
-
+	
 }
 
 void EditWindow::cleanup()
@@ -97,7 +105,7 @@ void EditWindow::initializeGL()
 
 
 
-	glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
 
 
@@ -139,12 +147,23 @@ void EditWindow::paintGL()
 	if (DownMove) {
 		MoveUp(-rate);
 	}
-
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	
 
 	m_pScene->OnUpdate(g_DeltaTime);
+	if (picking) {
 
-	m_pScene->OnRender();
+			picking = false;
+	}
+	 m_pScene->OnRender();
+	
+	
+	
+	
+	//makeCurrent();
+
+
+
+
 	IEventManager::Get()->VUpdate();
 }
 
@@ -155,8 +174,35 @@ void EditWindow::wheelEvent(QWheelEvent *event)
 
 void EditWindow::mousePressEvent(QMouseEvent *event)
 {
-	std::shared_ptr<EvtData_RayCast> pEvent(INFERNAL_NEW EvtData_RayCast(width(), height(), event->x(), event->y()));
-	IEventManager::Get()->VQueueEvent(pEvent);
+	//std::shared_ptr<EvtData_RayCast> pEvent(INFERNAL_NEW EvtData_RayCast(width(), height(), event->x(), event->y()));
+	//
+	//IEventManager::Get()->VQueueEvent(pEvent);
+		
+	makeCurrent();
+	Fbo->bind();
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	m_pScene->SetPicking(true);
+	m_pScene->OnRender();
+	m_pScene->SetPicking(false);
+	
+	Fbo->bindDefault();
+
+	float IdColor[4];
+		
+	QImage  fboimage( Fbo->toImage());
+	QImage image(fboimage.constBits(), fboimage.width(), fboimage.height(), QImage::Format_ARGB32);
+	QPoint pixel = event->pos();
+
+	
+	QColor  color = image.pixelColor(event->pos());
+
+	EDITOR_LOG(ToStr(color.red()))
+	
+			InfernalEditor*	pCastOwner = dynamic_cast<InfernalEditor *>(owner);
+			pCastOwner->SetSelectedNode(color.red());
+	
 	
 }
 

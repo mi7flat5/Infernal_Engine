@@ -5,6 +5,8 @@
 TerrainNode::TerrainNode(const ObjectId Id, WeakBaseRenderComponentPtr renderComponent, RenderPass renderPass)
 	: SceneNode(Id, renderComponent, renderPass)
 {
+
+
 	LoadUtility::loadModel(m_Meshes, "..//assets//ParisTerrain.fbx", MeshType::TERRAIN);
 	HeightMapImage = LoadUtility::loadHeightMap("..//media//hm_d.jpg", Width, Height);
 	NodeShader.reset(INFERNAL_NEW Shaders("..//shaders//dispmap.vs.glsl",
@@ -17,6 +19,9 @@ TerrainNode::TerrainNode(const ObjectId Id, WeakBaseRenderComponentPtr renderCom
 	ModelMatrixID = glGetUniformLocation(NodeShader->getProgram(), "Model");
 	lightPosLoc = glGetUniformLocation(NodeShader->getProgram(), "light");
 	viewPosLoc = glGetUniformLocation(NodeShader->getProgram(), "viewPos");
+
+	
+
 	for (GLuint i = 0; i < m_Meshes.size();i++)
 		m_Meshes[i].SetShader(NodeShader->getProgram());
 	lightPos = vec3(0,900,0);
@@ -34,22 +39,26 @@ void TerrainNode::VOnUpdate(Scene *, unsigned long const elapsedMs)
 
 void TerrainNode::VRender(Scene *pScene)
 {
+	if (!pScene->Picking()) {
+		NodeShader->Use();
 
-	NodeShader->Use();
-	ViewMat = pScene->GetCamera()->GetView();
-	ProjectionMat = pScene->GetCamera()->GetProjection();
-	glUniform1f(DispLevelID, DispLevel);
-	glUniform3fv(lightPosLoc, 1, &lightPos[0]);
-	glUniform3fv(viewPosLoc, 1, &pScene->GetCamera()->GetCameraPosition()[0]);
-	glUniformMatrix4fv(ProjectionMatrixID, 1, GL_FALSE, &ProjectionMat[0][0]);
-	glUniformMatrix4fv(ModelMatrixID, 1, GL_FALSE, &pScene->GetTopMatrix()[0][0]);
-	glUniformMatrix4fv(ViewMatrixID, 1, GL_FALSE, &ViewMat[0][0]);
+		glUniform1f(DispLevelID, DispLevel);
+		glUniform3fv(lightPosLoc, 1, &lightPos[0]);
+		glUniform3fv(viewPosLoc, 1, &pScene->GetCamera()->GetCameraPosition()[0]);
 
-	for (int i = 0;i < m_Meshes.size();i++)
-	{
-		m_Meshes[i].DrawMesh( MeshType::TERRAIN);
+
+		ViewMat = pScene->GetCamera()->GetView();
+		ProjectionMat = pScene->GetCamera()->GetProjection();
+		glUniformMatrix4fv(ProjectionMatrixID, 1, GL_FALSE, &ProjectionMat[0][0]);
+		glUniformMatrix4fv(ModelMatrixID, 1, GL_FALSE, &pScene->GetTopMatrix()[0][0]);
+		glUniformMatrix4fv(ViewMatrixID, 1, GL_FALSE, &ViewMat[0][0]);
+
+		for (int i = 0;i < m_Meshes.size();i++)
+		{
+			m_Meshes[i].DrawMesh(MeshType::TERRAIN);
+		}
 	}
-
+	
 }
 
 

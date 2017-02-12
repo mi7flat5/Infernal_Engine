@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'ActorCreationWindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.7.0
+** Created by: Qt User Interface Compiler version 5.7.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -467,35 +467,35 @@ public:
 
     void retranslateUi(QWidget *ActorCreationWindow)
     {
-        ActorCreationWindow->setWindowTitle(QApplication::translate("ActorCreationWindow", "ActorCreationWindow", 0));
-        Creation_Button->setText(QApplication::translate("ActorCreationWindow", "Create Object", 0));
-        renderComponent->setTitle(QApplication::translate("ActorCreationWindow", "Render Component", 0));
-        _vertexShader_label->setText(QApplication::translate("ActorCreationWindow", "Vertex Shader", 0));
-        _VertexShaderButton->setText(QApplication::translate("ActorCreationWindow", "Choose Vertex Shader", 0));
-        _assetPath_label->setText(QApplication::translate("ActorCreationWindow", "Asset File", 0));
-        _fragmentshader_label->setText(QApplication::translate("ActorCreationWindow", "Fragment Shader", 0));
-        _FragmentShaderButton->setText(QApplication::translate("ActorCreationWindow", "Choose Fragment Shader", 0));
-        _assetFile_button->setText(QApplication::translate("ActorCreationWindow", "Choose Asset File", 0));
-        transformComponent->setTitle(QApplication::translate("ActorCreationWindow", "Transform Component", 0));
-        label_12->setText(QApplication::translate("ActorCreationWindow", "Z", 0));
-        label_9->setText(QApplication::translate("ActorCreationWindow", "Position", 0));
-        label_10->setText(QApplication::translate("ActorCreationWindow", "X", 0));
-        label_15->setText(QApplication::translate("ActorCreationWindow", "Y", 0));
-        label->setText(QApplication::translate("ActorCreationWindow", "Scale", 0));
-        label_3->setText(QApplication::translate("ActorCreationWindow", "Y", 0));
-        label_16->setText(QApplication::translate("ActorCreationWindow", "Z", 0));
-        label_13->setText(QApplication::translate("ActorCreationWindow", "Rotation", 0));
-        label_11->setText(QApplication::translate("ActorCreationWindow", "Y", 0));
-        label_14->setText(QApplication::translate("ActorCreationWindow", "X", 0));
-        label_2->setText(QApplication::translate("ActorCreationWindow", "X", 0));
-        label_4->setText(QApplication::translate("ActorCreationWindow", "Z", 0));
-        _name_label->setText(QApplication::translate("ActorCreationWindow", "Object Name", 0));
-        _type_Label->setText(QApplication::translate("ActorCreationWindow", "Object Type", 0));
-        ComponentsGroupBox->setTitle(QApplication::translate("ActorCreationWindow", "Components", 0));
-        RenderComponent_checkbox->setText(QApplication::translate("ActorCreationWindow", "Render Component", 0));
-        transformComponentCheckbox->setText(QApplication::translate("ActorCreationWindow", "Trasform Component", 0));
-        checkBox_3->setText(QApplication::translate("ActorCreationWindow", "Other Components", 0));
-        checkBox->setText(QApplication::translate("ActorCreationWindow", "Static", 0));
+        ActorCreationWindow->setWindowTitle(QApplication::translate("ActorCreationWindow", "ActorCreationWindow", Q_NULLPTR));
+        Creation_Button->setText(QApplication::translate("ActorCreationWindow", "Create Object", Q_NULLPTR));
+        renderComponent->setTitle(QApplication::translate("ActorCreationWindow", "Render Component", Q_NULLPTR));
+        _vertexShader_label->setText(QApplication::translate("ActorCreationWindow", "Vertex Shader", Q_NULLPTR));
+        _VertexShaderButton->setText(QApplication::translate("ActorCreationWindow", "Choose Vertex Shader", Q_NULLPTR));
+        _assetPath_label->setText(QApplication::translate("ActorCreationWindow", "Asset File", Q_NULLPTR));
+        _fragmentshader_label->setText(QApplication::translate("ActorCreationWindow", "Fragment Shader", Q_NULLPTR));
+        _FragmentShaderButton->setText(QApplication::translate("ActorCreationWindow", "Choose Fragment Shader", Q_NULLPTR));
+        _assetFile_button->setText(QApplication::translate("ActorCreationWindow", "Choose Asset File", Q_NULLPTR));
+        transformComponent->setTitle(QApplication::translate("ActorCreationWindow", "Transform Component", Q_NULLPTR));
+        label_12->setText(QApplication::translate("ActorCreationWindow", "Z", Q_NULLPTR));
+        label_9->setText(QApplication::translate("ActorCreationWindow", "Position", Q_NULLPTR));
+        label_10->setText(QApplication::translate("ActorCreationWindow", "X", Q_NULLPTR));
+        label_15->setText(QApplication::translate("ActorCreationWindow", "Y", Q_NULLPTR));
+        label->setText(QApplication::translate("ActorCreationWindow", "Scale", Q_NULLPTR));
+        label_3->setText(QApplication::translate("ActorCreationWindow", "Y", Q_NULLPTR));
+        label_16->setText(QApplication::translate("ActorCreationWindow", "Z", Q_NULLPTR));
+        label_13->setText(QApplication::translate("ActorCreationWindow", "Rotation", Q_NULLPTR));
+        label_11->setText(QApplication::translate("ActorCreationWindow", "Y", Q_NULLPTR));
+        label_14->setText(QApplication::translate("ActorCreationWindow", "X", Q_NULLPTR));
+        label_2->setText(QApplication::translate("ActorCreationWindow", "X", Q_NULLPTR));
+        label_4->setText(QApplication::translate("ActorCreationWindow", "Z", Q_NULLPTR));
+        _name_label->setText(QApplication::translate("ActorCreationWindow", "Object Name", Q_NULLPTR));
+        _type_Label->setText(QApplication::translate("ActorCreationWindow", "Object Type", Q_NULLPTR));
+        ComponentsGroupBox->setTitle(QApplication::translate("ActorCreationWindow", "Components", Q_NULLPTR));
+        RenderComponent_checkbox->setText(QApplication::translate("ActorCreationWindow", "Render Component", Q_NULLPTR));
+        transformComponentCheckbox->setText(QApplication::translate("ActorCreationWindow", "Trasform Component", Q_NULLPTR));
+        checkBox_3->setText(QApplication::translate("ActorCreationWindow", "Other Components", Q_NULLPTR));
+        checkBox->setText(QApplication::translate("ActorCreationWindow", "Static", Q_NULLPTR));
     } // retranslateUi
 
 };

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'InfernalEditor.ui'
 **
-** Created by: Qt User Interface Compiler version 5.7.0
+** Created by: Qt User Interface Compiler version 5.7.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -333,7 +333,7 @@ public:
 
         retranslateUi(InfernalEditorClass);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
         toolBox->setCurrentIndex(0);
         toolBox->layout()->setSpacing(0);
 
@@ -343,21 +343,21 @@ public:
 
     void retranslateUi(QMainWindow *InfernalEditorClass)
     {
-        InfernalEditorClass->setWindowTitle(QApplication::translate("InfernalEditorClass", "InfernalEditor", 0));
-        action_Open->setText(QApplication::translate("InfernalEditorClass", "&Open", 0));
-        actionOpen->setText(QApplication::translate("InfernalEditorClass", "Open", 0));
-        action_Open_2->setText(QApplication::translate("InfernalEditorClass", "&Open", 0));
-        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("InfernalEditorClass", "Scene", 0));
-        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("InfernalEditorClass", "Log", 0));
-        label_4->setText(QApplication::translate("InfernalEditorClass", "X", 0));
-        label_5->setText(QApplication::translate("InfernalEditorClass", "Y", 0));
-        label_6->setText(QApplication::translate("InfernalEditorClass", "Z", 0));
-        label->setText(QApplication::translate("InfernalEditorClass", "Position", 0));
-        label_2->setText(QApplication::translate("InfernalEditorClass", "Rotation", 0));
-        label_3->setText(QApplication::translate("InfernalEditorClass", "Scale", 0));
-        toolBox->setItemText(toolBox->indexOf(page), QApplication::translate("InfernalEditorClass", "Transform", 0));
-        toolBox->setItemText(toolBox->indexOf(page_2), QApplication::translate("InfernalEditorClass", "Page 2", 0));
-        tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("InfernalEditorClass", "Page", 0));
+        InfernalEditorClass->setWindowTitle(QApplication::translate("InfernalEditorClass", "InfernalEditor", Q_NULLPTR));
+        action_Open->setText(QApplication::translate("InfernalEditorClass", "&Open", Q_NULLPTR));
+        actionOpen->setText(QApplication::translate("InfernalEditorClass", "Open", Q_NULLPTR));
+        action_Open_2->setText(QApplication::translate("InfernalEditorClass", "&Open", Q_NULLPTR));
+        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("InfernalEditorClass", "Scene", Q_NULLPTR));
+        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("InfernalEditorClass", "Log", Q_NULLPTR));
+        label_4->setText(QApplication::translate("InfernalEditorClass", "X", Q_NULLPTR));
+        label_5->setText(QApplication::translate("InfernalEditorClass", "Y", Q_NULLPTR));
+        label_6->setText(QApplication::translate("InfernalEditorClass", "Z", Q_NULLPTR));
+        label->setText(QApplication::translate("InfernalEditorClass", "Position", Q_NULLPTR));
+        label_2->setText(QApplication::translate("InfernalEditorClass", "Rotation", Q_NULLPTR));
+        label_3->setText(QApplication::translate("InfernalEditorClass", "Scale", Q_NULLPTR));
+        toolBox->setItemText(toolBox->indexOf(page), QApplication::translate("InfernalEditorClass", "Transform", Q_NULLPTR));
+        toolBox->setItemText(toolBox->indexOf(page_2), QApplication::translate("InfernalEditorClass", "Page 2", Q_NULLPTR));
+        tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("InfernalEditorClass", "Page", Q_NULLPTR));
     } // retranslateUi
 
 };

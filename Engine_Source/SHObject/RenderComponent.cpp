@@ -6,6 +6,7 @@
 #include"..\Utility\Shaders.hpp"
 
 const char* MeshRenderComponent::g_Name = "MeshRenderComponent";
+const char* AlphaMeshRenderComponent::g_Name = "AlphaMeshRenderComponent";
 const char* CubeMapRenderComponent::g_Name = "CubeMapRenderComponent";
 const char* TerrainRenderComponent::g_Name = "TerrainRenderComponent";
 
@@ -38,7 +39,7 @@ bool BaseRenderComponent::VInit(tinyxml2::XMLElement* pData)
 	return true;
 }
 
-TerrainRenderComponent::TerrainRenderComponent(){}
+
 std::shared_ptr<SceneNode> TerrainRenderComponent::VGetSceneNode(void)
 {
 	if (!m_pSceneNode)
@@ -54,7 +55,9 @@ std::shared_ptr<SceneNode> TerrainRenderComponent::VCreateSceneNode(void)
 
 	return mesh;
 }
-MeshRenderComponent::MeshRenderComponent(void){}
+
+
+
 bool MeshRenderComponent::VInit(tinyxml2::XMLElement * pData)
 {
 	tinyxml2::XMLElement* pPaths = pData->FirstChildElement();
@@ -69,12 +72,14 @@ bool MeshRenderComponent::VInit(tinyxml2::XMLElement * pData)
 	}
 	return true;
 }
+
 std::shared_ptr<SceneNode> MeshRenderComponent::VGetSceneNode(void)
 {
 	if (!m_pSceneNode)
 		m_pSceneNode = VCreateSceneNode();
 	return m_pSceneNode;
 }
+
 std::shared_ptr<SceneNode> MeshRenderComponent::VCreateSceneNode(void)
 {
 	WeakBaseRenderComponentPtr weak(this);
@@ -84,10 +89,25 @@ std::shared_ptr<SceneNode> MeshRenderComponent::VCreateSceneNode(void)
 
 	return mesh;
 }
+
+std::shared_ptr<SceneNode> AlphaMeshRenderComponent::VCreateSceneNode(void)
+{
+	WeakBaseRenderComponentPtr weak(this);
+
+	std::shared_ptr<OGLMeshNode> mesh;
+	mesh = std::shared_ptr<OGLMeshNode>(INFERNAL_NEW OGLMeshNode(m_pOwner->GetId(), weak, RenderPass_Last, shaderV, shaderF, meshPath));
+
+	return mesh;
+}
+
+
+
 void MeshRenderComponent::VCreateInheritedXmlElements(tinyxml2::XMLElement * pBaseElement)
 {
 }
-CubeMapRenderComponent::CubeMapRenderComponent(void){}
+
+
+
 bool CubeMapRenderComponent::VDelegateInit(tinyxml2::XMLElement * pData)
 {
 	return false;

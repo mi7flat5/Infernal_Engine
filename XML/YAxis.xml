@@ -1,0 +1,10 @@
+<YAxis type="Mesh" resource="..//XML/YAxis.xml">
+    <TransformComponent>
+        <Position x="0.000000L" y="0.000000L" z="0.000000L"/>
+        <Rotation pitch="0.000000L" yaw="0.000000L" roll="0.000000L"/>
+        <Scale x="1.000000L" y="1.000000L" z="1.000000L"/>
+    </TransformComponent>
+    <AlphaMeshRenderComponent>
+        <Paths shaderV="..//shaders//vert.glsl" shaderF="..//shaders//alphafrag.glsl" mesh="..//assets//YAxis.fbx"/>
+    </AlphaMeshRenderComponent>
+</YAxis>

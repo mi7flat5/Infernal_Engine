@@ -8,6 +8,7 @@
 #include <QSpinBox>
 #include"SHObject/Object3D.h"
 #include"SHObject/TransformComponent.h"
+#include"SHObject/RenderComponent.h"
 
 
 InfernalEditor::InfernalEditor(QWidget *parent)
@@ -63,16 +64,19 @@ InfernalEditor::InfernalEditor(QWidget *parent)
 	ui.gridLayout->setColumnStretch(0, 3);
 	int b = ui.gridLayout->columnCount();
 
-	IEventManager::Get()->VAddListener(fastdelegate::MakeDelegate(this, &InfernalEditor::SetSelectedNode), EvtData_EvtRayHit::sk_EventType);
+	//IEventManager::Get()->VAddListener(fastdelegate::MakeDelegate(this, &InfernalEditor::SetSelectedNode), EvtData_EvtRayHit::sk_EventType);
 	IEventManager::Get()->VAddListener(fastdelegate::MakeDelegate(this, &InfernalEditor::Log_event), EvtData_Log_Data::sk_EventType);
 
+	XselectAxis = INVALID_OBJECT_ID;
+	YselectAxis = INVALID_OBJECT_ID;
+	ZselectAxis = INVALID_OBJECT_ID;
 
 }
 
 InfernalEditor::~InfernalEditor()
 {
 	m_pSelectedNode.reset();
-	IEventManager::Get()->VRemoveListener(fastdelegate::MakeDelegate(this, &InfernalEditor::SetSelectedNode), EvtData_EvtRayHit::sk_EventType);
+	//IEventManager::Get()->VRemoveListener(fastdelegate::MakeDelegate(this, &InfernalEditor::SetSelectedNode), EvtData_EvtRayHit::sk_EventType);
 	IEventManager::Get()->VRemoveListener(fastdelegate::MakeDelegate(this, &InfernalEditor::Log_event), EvtData_Log_Data::sk_EventType);
 }
 
@@ -85,7 +89,24 @@ void InfernalEditor::UpdateTransform() {
 		pTransform->SetVecRotation(vec3(ui.rX->value(), ui.rY->value(), ui.rZ->value()));
 		pTransform->SetVecScaler(vec3(ui.sX->value(), ui.sY->value(), ui.sZ->value()));
 		pTransform->BuildTransform();
-		m_pSelectedNode->VSetTransform(&pTransform->GetTransform());
+		//m_pSelectedNode->VSetTransform(&pTransform->GetTransform());
+		if (XselectAxis)
+		{
+			pObject = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActor(XselectAxis));
+			pTransform = MakeStrongPtr(pObject->GetComponent<TransformComponent>(TransformComponent::g_Name));
+			pTransform->SetVecPosition(vec3(ui.pX->value(), ui.pY->value(), ui.pZ->value()));
+			pTransform->BuildTransform();
+
+			pObject = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActor(YselectAxis));
+			pTransform = MakeStrongPtr(pObject->GetComponent<TransformComponent>(TransformComponent::g_Name));
+			pTransform->SetVecPosition(vec3(ui.pX->value(), ui.pY->value(), ui.pZ->value()));
+			pTransform->BuildTransform();
+
+			pObject = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActor(ZselectAxis));
+			pTransform = MakeStrongPtr(pObject->GetComponent<TransformComponent>(TransformComponent::g_Name));
+			pTransform->SetVecPosition(vec3(ui.pX->value(), ui.pY->value(), ui.pZ->value()));
+			pTransform->BuildTransform();
+		}
 	}
 }
 void InfernalEditor::LoadScene()
@@ -176,8 +197,8 @@ void InfernalEditor::UpdateXML(const char* resourcePath, ObjectId id)
 				pPositionElement->SetAttribute("x", ToStr(pos.x).c_str());
 				pPositionElement->SetAttribute("y", ToStr(pos.y).c_str());
 				pPositionElement->SetAttribute("z", ToStr(pos.z).c_str());
-
 			}
+			
 			tinyxml2::XMLElement* pRotationElement = pNode->FirstChildElement("Rotation");
 			if (pRotationElement)
 			{
@@ -185,8 +206,8 @@ void InfernalEditor::UpdateXML(const char* resourcePath, ObjectId id)
 				pRotationElement->SetAttribute("pitch", ToStr(rot.x).c_str());
 				pRotationElement->SetAttribute("yaw", ToStr(rot.y).c_str());
 				pRotationElement->SetAttribute("roll", ToStr(rot.z).c_str());
-
 			}
+			
 			tinyxml2::XMLElement* pScaleElement = pNode->FirstChildElement("Scale");
 			if (pScaleElement)
 			{
@@ -194,8 +215,8 @@ void InfernalEditor::UpdateXML(const char* resourcePath, ObjectId id)
 				pScaleElement->SetAttribute("x", ToStr(scale.x).c_str());
 				pScaleElement->SetAttribute("y", ToStr(scale.y).c_str());
 				pScaleElement->SetAttribute("z", ToStr(scale.z).c_str());
-
 			}
+		
 		}
 		
 	}
@@ -259,37 +280,81 @@ void InfernalEditor::loadfile(const QString &fileName)
 
 }
 
-void InfernalEditor::SetSelectedNode(IEventDataPtr pEventData)
+void InfernalEditor::SetSelectedNode(ObjectId id)
 {
-	std::shared_ptr<EvtData_EvtRayHit> pCastEventData = std::static_pointer_cast<EvtData_EvtRayHit>(pEventData);
-
-	ObjectId actorId = pCastEventData->GetActorId();
-	std::shared_ptr<ISceneNode> pSceneNode(pCastEventData->GetSceneNode());
-	std::shared_ptr<SceneNode>	pNode = std::static_pointer_cast<SceneNode>(pSceneNode);
-	m_pSelectedNode = pNode;
-
-	vec3 pos, rot, scale;
-	if (m_pSelectedNode) {
-		StrongObjectPtr pObject = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActor(m_pSelectedNode->GetObjectId()));
-		std::shared_ptr<TransformComponent> pTransform = MakeStrongPtr(pObject->GetComponent<TransformComponent>(TransformComponent::g_Name));
-
-		pos = pTransform->GetPosition();
-		rot = pTransform->GetVecRotation();
-		scale = pTransform->GetVecScale();
-
-		ui.pX->setValue(pos.x);
-		ui.pY->setValue(pos.y);
-		ui.pZ->setValue(pos.z);
-
-		ui.rX->setValue(rot.x);
-		ui.rY->setValue(rot.y);
-		ui.rZ->setValue(rot.z);
-
-		ui.sX->setValue(scale.x);
-		ui.sY->setValue(scale.y);
-		ui.sZ->setValue(scale.z);
+	
+	if(!XselectAxis)
+	{
+		StrongObjectPtr pObject = g_pApp->GetGameLogic()->VCreateActor("..//XML//XAxis.xml", INVALID_OBJECT_ID);
+		XselectAxis = pObject->GetId();
+		
+		pObject = g_pApp->GetGameLogic()->VCreateActor("..//XML//YAxis.xml", INVALID_OBJECT_ID);
+		YselectAxis = pObject->GetId();
+		pObject = g_pApp->GetGameLogic()->VCreateActor("..//XML//ZAxis.xml", INVALID_OBJECT_ID);
+		ZselectAxis = pObject->GetId();
 	}
+	
+	if (id != INVALID_OBJECT_ID&& id != XselectAxis)
+	{
+		ObjectId actorId = id;
+		StrongObjectPtr pObject = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActor(id));
+	
+		std::shared_ptr<MeshRenderComponent> pRenderComponent= MakeStrongPtr(pObject->GetComponent<MeshRenderComponent>(MeshRenderComponent::g_Name));
+		
+	
 
+		if (pRenderComponent)
+		{
+			std::shared_ptr<ISceneNode> pSceneNode(pRenderComponent->VGetSceneNode());
+
+
+			std::shared_ptr<SceneNode>	pNode = std::static_pointer_cast<SceneNode>(pSceneNode);
+			m_pSelectedNode = pNode;
+		}
+
+		vec3 pos, rot, scale;
+		if (m_pSelectedNode) {
+
+			std::shared_ptr<TransformComponent> pTransform = MakeStrongPtr(pObject->GetComponent<TransformComponent>(TransformComponent::g_Name));
+
+			pos = pTransform->GetPosition();
+			rot = pTransform->GetVecRotation();
+			scale = pTransform->GetVecScale();
+
+			ui.pX->setValue(pos.x);
+			ui.pY->setValue(pos.y);
+			ui.pZ->setValue(pos.z);
+
+			ui.rX->setValue(rot.x);
+			ui.rY->setValue(rot.y);
+			ui.rZ->setValue(rot.z);
+
+			ui.sX->setValue(scale.x);
+			ui.sY->setValue(scale.y);
+			ui.sZ->setValue(scale.z);
+
+			if (XselectAxis) 
+			{
+				 pObject = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActor(XselectAxis));
+				 pTransform = MakeStrongPtr(pObject->GetComponent<TransformComponent>(TransformComponent::g_Name));
+				 pTransform->SetVecPosition(vec3(ui.pX->value(),ui.pY->value(),ui.pZ->value()));
+				
+				 pTransform->BuildTransform();
+
+				 pObject = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActor(YselectAxis));
+				 pTransform = MakeStrongPtr(pObject->GetComponent<TransformComponent>(TransformComponent::g_Name));
+				 pTransform->SetVecPosition(vec3(ui.pX->value(), ui.pY->value(), ui.pZ->value()));
+				
+				 pTransform->BuildTransform();
+
+				 pObject = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActor(ZselectAxis));
+				 pTransform = MakeStrongPtr(pObject->GetComponent<TransformComponent>(TransformComponent::g_Name));
+				 pTransform->SetVecPosition(vec3(ui.pX->value(), ui.pY->value(), ui.pZ->value()));
+				
+				 pTransform->BuildTransform();
+			}
+		}
+	}
 }
 
 

@@ -21,6 +21,10 @@ OGLMeshNode::OGLMeshNode(const ObjectId Id,
 	ModelMatrixID = glGetUniformLocation(NodeShader->getProgram(), "Model");
 	lightPosLoc = glGetUniformLocation(NodeShader->getProgram(), "lightPos");
 	viewPosLoc = glGetUniformLocation(NodeShader->getProgram(), "viewPos");
+	PickingShader.reset(INFERNAL_NEW Shaders("..//shaders//PickingVert.glsl", "..//shaders//PickingFrag.glsl"));
+	PickingID = glGetUniformLocation(PickingShader->getProgram(), "whywontyouwork");
+
+	
 	
 	std::vector<vec3> sphereCalc;
 	LoadUtility::LoadCollider(meshPath, sphereCalc, std::vector<GLuint>(), std::vector<vec3>());
@@ -32,23 +36,41 @@ OGLMeshNode::OGLMeshNode(const ObjectId Id,
 
 void OGLMeshNode::VRender(Scene * pScene)
 {
-	NodeShader->Use();
+	if (!pScene->Picking()) {
+		NodeShader->Use();
 
-	vec3 campos = pScene->GetCamera()->GetCameraPosition();
-	
+		vec3 campos = pScene->GetCamera()->GetCameraPosition();
 
-	lightPos = vec3(0, 900, 900);
-	glUniform3fv(LC, 1, &lightColor[0]);
-	glUniform3f(lightPosLoc, lightPos.x, lightPos.y, lightPos.z);
-	glUniform3f(viewPosLoc, campos.x, campos.y, campos.z);
-	glUniformMatrix4fv(ProjectionMatrixID, 1, GL_FALSE, &ProjectionMat[0][0]);
-	glUniformMatrix4fv(ModelMatrixID, 1, GL_FALSE, &pScene->GetTopMatrix()[0][0]);
-	glUniformMatrix4fv(ViewMatrixID, 1, GL_FALSE, &ViewMat[0][0]);
 
-	for (int i = 0;i < m_Meshes.size();i++)
-	{
-		m_Meshes[i].DrawMesh(MeshType::TEXTURE_2D);
+		lightPos = vec3(0, 900, 900);
+		glUniform3fv(LC, 1, &lightColor[0]);
+		glUniform3f(lightPosLoc, lightPos.x, lightPos.y, lightPos.z);
+		glUniform3f(viewPosLoc, campos.x, campos.y, campos.z);
+		glUniformMatrix4fv(ProjectionMatrixID, 1, GL_FALSE, &ProjectionMat[0][0]);
+		glUniformMatrix4fv(ModelMatrixID, 1, GL_FALSE, &pScene->GetTopMatrix()[0][0]);
+		glUniformMatrix4fv(ViewMatrixID, 1, GL_FALSE, &ViewMat[0][0]);
+
+		for (int i = 0;i < m_Meshes.size();i++)
+		{
+			m_Meshes[i].DrawMesh(MeshType::TEXTURE_2D);
+		}
+
 	}
+	else {
+		PickingShader->Use();
+	
+		glUniformMatrix4fv(ProjectionMatrixID, 1, GL_FALSE, &ProjectionMat[0][0]);
+		glUniformMatrix4fv(ModelMatrixID, 1, GL_FALSE, &pScene->GetTopMatrix()[0][0]);
+		glUniformMatrix4fv(ViewMatrixID, 1, GL_FALSE, &ViewMat[0][0]);
+		
+		glUniform3fv(PickingID, 1, &vec4(m_Props.m_Id / 255.0f)[0]);
+		for (int i = 0;i < m_Meshes.size();i++)
+		{
+			m_Meshes[i].DrawMesh(MeshType::NO_TEXTURE);
+		}
+
+	}
+
 	
 }
 
