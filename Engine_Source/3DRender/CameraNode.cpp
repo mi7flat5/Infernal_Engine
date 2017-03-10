@@ -44,21 +44,10 @@ void CameraNode::UpdateOffsetsVectors()
 	if (pitch < -89)
 		pitch = -89;
 
-	theta = yaw - 90;
-	phi = pitch - 90;
-
-	//front.x = radius * sin(glm::radians(phi))*cos(glm::radians(theta));
-	//if (campos.y > TerrainHeight)
-	//front.y = radius * cos(glm::radians(pitch + 90));// +10; //TODO add parameter for adjusting y facing offset
-	//front.z = radius * cos(glm::radians(phi))*sin(glm::radians(theta));
-
 	camfront = glm::normalize(Target - campos);
 
-	//vdist = radius*sin(glm::radians(pitch));
-	//hdist = radius*cos(glm::radians(pitch));
-	//Xoffset = hdist*cos(glm::radians(yaw));
-	//Zoffset = hdist*sin(glm::radians(yaw));
-	vec3 CylinCamPos = glm::normalize(vec3(radius*cos(glm::radians(yaw)), 0, radius* sin(glm::radians(yaw))));
+
+	vec3 CylinCamPos = radius* glm::normalize(vec3(cos(glm::radians(yaw)), 0, sin(glm::radians(yaw))));
 	rightvec = glm::normalize(glm::cross(-glm::normalize( CylinCamPos),g_Up));
 
 }
@@ -66,14 +55,6 @@ void CameraNode::VRender(Scene *pScene)
 {
 	UpdateOffsetsVectors();
 
-	//glm::vec3 NewCampos;
-	//NewCampos.y = vdist + Target.y;	//TODO add parameter for vertical distance offset
-
-	//NewCampos.x = Target.x + Xoffset;
-	//NewCampos.z = Target.z + Zoffset;
-	//campos.x = NewCampos.x;
-	//campos.y = NewCampos.y;//Transform::Lerp(campos.y, NewCampos.y, .30);//TODO Create variable for camera y offset
-	//campos.z = NewCampos.z;
 
 	campos = radius * vec3(cos(glm::radians(yaw)), sin(glm::radians(pitch)), sin(glm::radians(yaw)))+Target;
 	View = glm::lookAt(campos, Target, camup);//*Transform::translate(0, -5, 0);
