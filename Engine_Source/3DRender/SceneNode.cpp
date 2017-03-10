@@ -19,7 +19,7 @@ void SceneNode::VSetTransform(const mat4 * toWorld, const mat4 * fromWorld)
 	if(!fromWorld)
 	m_Props.m_FromWorld = glm::inverse(*toWorld);
 
-
+	//find largest scaler to set radius for bounding sphere
 	float maxScale = m_Props.ToWorld()[0][0];
 
 	if (m_Props.ToWorld()[1][1] > m_Props.ToWorld()[0][0])

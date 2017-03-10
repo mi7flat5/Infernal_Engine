@@ -1,0 +1,10 @@
+<1 type="Mesh" resource="..//XML/1.xml">
+    <TransformComponent>
+        <Position x="0.000000L" y="0.000000L" z="0.000000L"/>
+        <Rotation pitch="90.000000L" yaw="0.000000L" roll="0.000000L"/>
+        <Scale x="0.200000L" y="0.200000L" z="0.200000L"/>
+    </TransformComponent>
+    <MeshRenderComponent>
+        <Paths shaderV="..//shaders//ReflectVert.glsl" shaderF="..//shaders//ReflectFrag.glsl" mesh="..//assets//jackal.fbx"/>
+    </MeshRenderComponent>
+</1>

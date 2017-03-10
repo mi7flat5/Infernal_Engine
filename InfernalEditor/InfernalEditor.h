@@ -39,6 +39,7 @@ protected:
 	void open();
 	void openScene();
 	void loadfile(const QString & fileName);
+
 	void SaveScene();
 	void UpdateXML(const char * resourcePath, ObjectId id);
 	

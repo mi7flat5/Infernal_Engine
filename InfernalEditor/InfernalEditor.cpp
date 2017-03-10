@@ -292,6 +292,7 @@ void InfernalEditor::SetSelectedNode(ObjectId id)
 		YselectAxis = pObject->GetId();
 		pObject = g_pApp->GetGameLogic()->VCreateActor("..//XML//ZAxis.xml", INVALID_OBJECT_ID);
 		ZselectAxis = pObject->GetId();
+		ui.openGLWidget->Set3DCursor(XselectAxis,YselectAxis,ZselectAxis);
 	}
 	
 	if (id != INVALID_OBJECT_ID&& id != XselectAxis)

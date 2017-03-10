@@ -36,6 +36,9 @@ EditWindow::EditWindow(QWidget *parent)
 	timer->start();
 	lastX = lastY = 0;
 	Fmove = Bmove = Lmove = Rmove = UpMove = DownMove = false;
+	cursorX = INVALID_OBJECT_ID;
+	cursorY = INVALID_OBJECT_ID;
+	cursorZ = INVALID_OBJECT_ID;
 }
 EditWindow::~EditWindow()
 {
@@ -283,21 +286,7 @@ void EditWindow::mouseMoveEvent(QMouseEvent *event)
 	xpos = event->x();
 	ypos = event->y();
 
-	if (event->buttons() & Qt::LeftButton)
-	{
 
-		GLfloat xoffset = xpos - lastX;
-		GLfloat yoffset = ypos - lastY;
-		/*lastX = xpos;
-		lastY = ypos;*/
-
-		GLfloat sensitivity = 0.3;	// TODO make variable for sensitivity
-		xoffset *= sensitivity;
-		yoffset *= sensitivity;
-
-		m_pCamera->SetYaw(xoffset);
-		m_pCamera->SetPitch(yoffset);
-	}
 	if (event->buttons() & Qt::RightButton)
 	{
 

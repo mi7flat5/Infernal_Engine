@@ -5,10 +5,13 @@
 
 class QOpenGLFramebufferObject;
 using ObjectMap = std::map< unsigned int, StrongObjectPtr>;
+
 class EditWindow : public QOpenGLWidget, protected QOpenGLFunctions
 {
 	bool Fmove, Bmove, Lmove, Rmove, UpMove, DownMove;
+	ObjectId cursorX, cursorY, cursorZ;
 public:
+	void Set3DCursor(ObjectId x, ObjectId y, ObjectId z) { cursorX = x;cursorY = y; cursorZ = z; }
 	EditWindow(QWidget *parent);
 	~EditWindow();
 	void UpdateContext();
