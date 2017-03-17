@@ -1,6 +1,5 @@
 <Scene>
-    <SkyBox type="CubeMap" resource="..//XML/SkyBox.xml"/>
+    <Arrow type="Mesh" resource="..//XML/Arrow.xml"/>
     <LavaTerrain type="Terrain" resource="..//XML/LavaTerrain.xml"/>
-    <RefelctiveTeapot type="Mesh" resource="..//XML/RefelctiveTeapot.xml"/>
-    <Jackyl type="Mesh" resource="..//XML/Jackyl.xml"/>
+    <SkyBox type="CubeMap" resource="..//XML/SkyBox.xml"/>
 </Scene>

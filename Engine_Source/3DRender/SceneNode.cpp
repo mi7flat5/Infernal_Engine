@@ -50,22 +50,21 @@ void SceneNode::VOnUpdate(Scene *pScene, unsigned long const elapsedMs)
 
 bool SceneNode::VPreRender(Scene * pScene)
 {
-
-	StrongObjectPtr pObject = MakeStrongPtr( g_pApp->GetGameLogic()->VGetActor(m_Props.m_Id));
-	if (pObject)
-	{
-		
-		std::shared_ptr<TransformComponent> pTc = MakeStrongPtr(pObject->GetComponent<TransformComponent>(TransformComponent::g_Name));
-		if (pTc)
+		StrongObjectPtr pObject = MakeStrongPtr(g_pApp->GetGameLogic()->VGetActor(m_Props.m_Id));
+		if (pObject)
 		{
-			
-			m_Props.m_ToWorld = pTc->GetTransform();
-			ViewMat = pScene->GetCamera()->GetView();
-			ProjectionMat = pScene->GetCamera()->GetProjection();
-			SetSpherePosition(vec3(ProjectionMat*ViewMat*m_Props.ToWorld()* vec4(m_Props.ModelSpherePosition, 1)));
-		
+
+			std::shared_ptr<TransformComponent> pTc = MakeStrongPtr(pObject->GetComponent<TransformComponent>(TransformComponent::g_Name));
+			if (pTc)
+			{
+
+				m_Props.m_ToWorld = pTc->GetTransform();
+				ViewMat = pScene->GetCamera()->GetView();
+				ProjectionMat = pScene->GetCamera()->GetProjection();
+				SetSpherePosition(vec3(ProjectionMat*ViewMat*m_Props.ToWorld()* vec4(m_Props.ModelSpherePosition, 1)));
+
+			}
 		}
-	}
 	
 	pScene->PushAndSetMatrix(m_Props.m_ToWorld);
 	

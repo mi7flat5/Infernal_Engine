@@ -12,8 +12,8 @@ CameraNode::CameraNode(const ObjectId Id,
 	yaw(90),
 	FieldOfView(90.0f), Target(vec3(0, 0, 0)), radius(20) {
 
-	Projection = glm::perspective(110.0f, (float)WIDTH / HEIGHT, 0.1f, 1800.0f);
-	m_Frustum.Init(glm::radians(110.0), (float)WIDTH / HEIGHT, 0.01f, 1800.0f);
+	Projection = glm::perspective(90.0f, (float)WIDTH / HEIGHT, 0.1f, 1800.0f);
+	m_Frustum.Init(glm::radians(90.0), (float)WIDTH / HEIGHT, 0.01f, 1800.0f);
 	UpdateOffsetsVectors();
 	SetRadius(0);
 	m_Props.m_Name = "CameraNode";
@@ -45,19 +45,31 @@ void CameraNode::UpdateOffsetsVectors()
 		pitch = -89;
 
 	camfront = glm::normalize(Target - campos);
+	
 
-
-	vec3 CylinCamPos = radius* glm::normalize(vec3(cos(glm::radians(yaw)), 0, sin(glm::radians(yaw))));
-	rightvec = glm::normalize(glm::cross(-glm::normalize( CylinCamPos),g_Up));
+	vdist = radius*sin(glm::radians(pitch));
+	hdist = radius*cos(glm::radians(pitch));
+	Xoffset = hdist*cos(glm::radians(yaw));
+	Zoffset = hdist*sin(glm::radians(yaw));
+	vec3 CylinCamPos = glm::normalize(vec3(radius*cos(glm::radians(yaw)), 0, radius* sin(glm::radians(yaw))));
+	rightvec = glm::normalize(glm::cross(-glm::normalize(CylinCamPos), g_Up));
 
 }
 void CameraNode::VRender(Scene *pScene)
 {
 	UpdateOffsetsVectors();
 
+	glm::vec3 NewCampos;
+	NewCampos.y = vdist + Target.y;	//TODO add parameter for vertical distance offset
 
-	campos = radius * vec3(cos(glm::radians(yaw)), sin(glm::radians(pitch)), sin(glm::radians(yaw)))+Target;
-	View = glm::lookAt(campos, Target, camup);//*Transform::translate(0, -5, 0);
+	NewCampos.x = Target.x + Xoffset;
+	NewCampos.z = Target.z + Zoffset;
+	campos.x = NewCampos.x;
+	campos.y = NewCampos.y;//Transform::Lerp(campos.y, NewCampos.y, .30);//TODO Create variable for camera y offset
+	campos.z = NewCampos.z;
+
+	View = glm::lookAt(campos, Target, camup);
+	
 
 }
 void CameraNode::VOnUpdate(Scene *pScene, unsigned long const elapsedMs)

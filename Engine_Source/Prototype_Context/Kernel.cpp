@@ -6,41 +6,21 @@
 
 Kernel::Kernel()
 {
-	init();
+	initContext();
+
 }
 
 void Kernel::runApp()
 {
 	
-	StrongObjectPtr a = maker.CreateActor(INVALID_OBJECT_ID,"..//XML//ReflectiveTeapot.xml");
-	StrongObjectPtr z = maker.CreateActor(INVALID_OBJECT_ID, "..//XML//cubemap.xml");
-	StrongObjectPtr d = maker.CreateActor(INVALID_OBJECT_ID, "..//XML//box.xml");
-	//(
-	std::shared_ptr<MeshRenderComponent>b( a->GetComponent<MeshRenderComponent>("MeshRenderComponent"));
-	std::shared_ptr<OGLMeshNode> c(std::static_pointer_cast<OGLMeshNode>(b->VGetSceneNode()));
-	
-	std::shared_ptr<MeshRenderComponent>e(d->GetComponent<MeshRenderComponent>("MeshRenderComponent"));
-	std::shared_ptr<OGLMeshNode> f(std::static_pointer_cast<OGLMeshNode>(e->VGetSceneNode()));
-	
-
-	m_pCamera->SetTarget(c);
-	vec3 tmpmover;
-	tmpmover.x = 2*cos(glfwGetTime());
-	//c->setPosition(vec3(0,0,10));
-	//f->setScale(Transform::scale(30, 15, 15));
-	
-	maker.CreateActor(INVALID_OBJECT_ID, "..//XML//Terrain.xml");
+	LoadScene(std::string("Scene.rsc"));
 	
 	while (!glfwWindowShouldClose(pContext))
 	{
-		tmpmover.x = 15 * cos(glfwGetTime());
-		tmpmover.y = 25 * sin(glfwGetTime() * 2);
-		tmpmover.z=10;
-		//f->setScale(Transform::scale(15, 15, 15));
+	
 		
 		update();
-		/*f->setPosition(tmpmover);
-		c->setPosition(tmpmover);*/
+	
 	}
 	
 	
@@ -67,6 +47,7 @@ void Kernel::update()
 
 }
 
+
 Kernel::~Kernel()
 {
 }
@@ -74,11 +55,32 @@ GLFWwindow * Kernel::getContext() const
 {
 	return pContext;
 }
-void Kernel::init()
-{
+void Kernel::LoadScene(std::string sceneFile)
+{	
+	tinyxml2::XMLDocument inDoc;
+	if (inDoc.LoadFile(std::string("..//XML//" + sceneFile).c_str()))
+	{
+		EDITOR_LOG("Failed to load scene file  " + std::string("..//XML//" + sceneFile))
+			return;
+	}
+
+
+	tinyxml2::XMLElement* pRoot = inDoc.FirstChildElement();
+
+	for (tinyxml2::XMLElement* pNode = pRoot->FirstChildElement(); pNode; pNode = pNode->NextSiblingElement())
+	{
+		
+		StrongObjectPtr pObject = g_pApp->GetGameLogic()->VCreateActor(pNode->Attribute("resource"), INVALID_OBJECT_ID);
 	
+	}
+
+}
+void Kernel::initContext()
+{
+		Init();
+		VCreateGameAndView();
 		glfwInit();
-		pContext = glfwCreateWindow(WIDTH, HEIGHT, "Loader", nullptr, nullptr);
+		pContext = glfwCreateWindow(WIDTH, HEIGHT, "PROTO", nullptr, nullptr);
 	
 		
 		if (pContext == nullptr)
@@ -86,7 +88,7 @@ void Kernel::init()
 			std::cout << "Failed to create GLFW window" << std::endl;
 			glfwTerminate();
 			system("pause");
-
+			
 		}
 		glfwMakeContextCurrent(pContext);
 		glewExperimental = GL_TRUE;
@@ -109,10 +111,10 @@ void Kernel::init()
 		glEnable(GL_CULL_FACE);
 		glCullFace(GL_BACK);
 		
-		m_pEventManager.reset( INFERNAL_NEW EventManager("Infernal Event Mgr", true));
-		m_pScene.reset( INFERNAL_NEW Scene());
 		m_pCamera.reset(INFERNAL_NEW CameraNode(INVALID_OBJECT_ID,
-			WeakBaseRenderComponentPtr(),(RenderPass)0));
+			WeakBaseRenderComponentPtr(), (RenderPass)0));
+		m_pScene.reset( INFERNAL_NEW Scene());
+	
 		m_pScene->AddChild(m_pCamera->GetObjectId(),m_pCamera);
 		m_pScene->SetCamera(m_pCamera);
 		m_pController.reset(INFERNAL_NEW MovementController(pContext,m_pCamera));
