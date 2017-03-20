@@ -65,7 +65,7 @@ void CameraNode::VRender(Scene *pScene)
 	NewCampos.x = Target.x + Xoffset;
 	NewCampos.z = Target.z + Zoffset;
 	campos.x = NewCampos.x;
-	campos.y = NewCampos.y;//Transform::Lerp(campos.y, NewCampos.y, .30);//TODO Create variable for camera y offset
+	campos.y = NewCampos.y;
 	campos.z = NewCampos.z;
 
 	View = glm::lookAt(campos, Target, camup);

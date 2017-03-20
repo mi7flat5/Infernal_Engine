@@ -16,11 +16,12 @@ InfernalEditor::InfernalEditor(QWidget *parent)
 {
 	ui.setupUi(this);
 	Init();
-	VCreateGameAndView();
+	
 	
 
 
 	ui.openGLWidget->setOwner(this);
+	VCreateGameAndView();
 
 	createMenus();
 

@@ -21,6 +21,12 @@ BaseGameLogic::~BaseGameLogic()
 
 bool BaseGameLogic::Init(void)
 {
+	m_pCamera.reset(INFERNAL_NEW CameraNode(INVALID_OBJECT_ID,
+		WeakBaseRenderComponentPtr(), (RenderPass)0));
+	m_pScene.reset(INFERNAL_NEW Scene());
+
+	m_pScene->AddChild(m_pCamera->GetObjectId(), m_pCamera);
+	m_pScene->SetCamera(m_pCamera);
 	m_pObjectFactory = VCreateActorFactory();
 	return true;
 }

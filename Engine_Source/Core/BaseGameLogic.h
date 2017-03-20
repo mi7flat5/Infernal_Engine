@@ -1,13 +1,13 @@
 #pragma once
 typedef std::map<ObjectId, StrongObjectPtr> ObjectMap;
 
-#include"EventSystem/EventManager.h"
+#include"..//Engine_Source/3DRender/SceneNode.h"
 class ObjectFactory;
-
+class CameraNode;
 
 class BaseGameLogic : public IGameLogic
 {
-	friend class GameCodeApp;						// This is only to gain access to the view list
+	friend class InferanlKernel;						// This is only to gain access to the view list
 	
 protected:
 	float m_Lifetime;								//indicates how long this game has been in session
@@ -16,6 +16,9 @@ protected:
 	ObjectId m_LastActorId;
 	BaseGameState m_State;							// game state: loading, running, etc.
 
+
+	std::shared_ptr<Scene> m_pScene;
+	std::shared_ptr<CameraNode> m_pCamera;
 	ObjectFactory* m_pObjectFactory;
 
 public:
@@ -56,6 +59,9 @@ public:
 
 	// event delegates
 	void RequestDestroyActorDelegate(IEventDataPtr pEventData);
+
+	std::shared_ptr<Scene> GetScene() const{ return m_pScene; }
+	std::shared_ptr<CameraNode> GetCamera()const { return m_pCamera; }
 
 protected:
 	virtual ObjectFactory* VCreateActorFactory(void);

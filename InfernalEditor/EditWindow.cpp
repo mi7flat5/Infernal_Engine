@@ -4,10 +4,12 @@
 #include <QCoreApplication>
 #include"InfernalEditor.h"
 #include"..//Engine_Source/SHObject/Object3D.h"
+
+
 #include <QOffscreenSurface>
 void EditWindow::resizeGL(int w, int h)
 {
-	m_pCamera->SetProjection(w, h);
+		GetCamera()->SetProjection(w, h);
 	if (Fbo)
 	{
 		delete Fbo;
@@ -22,11 +24,7 @@ void EditWindow::resizeGL(int w, int h)
 EditWindow::EditWindow(QWidget *parent)
 	: QOpenGLWidget(parent)
 {
-	m_pCamera = nullptr;
-	m_pScene = nullptr;
-	
-	
-	//MainWindow = parent;
+
 	timer = new QTimer(this);
 
 
@@ -42,13 +40,6 @@ EditWindow::EditWindow(QWidget *parent)
 }
 EditWindow::~EditWindow()
 {
-	
-	delete m_pCamera;
-	m_pCamera = nullptr;
-	delete m_pScene;
-	m_pScene = nullptr;
-
-
 }
 
 void EditWindow::UpdateContext()
@@ -56,30 +47,9 @@ void EditWindow::UpdateContext()
 	makeCurrent();
 }
 
-
-
 void EditWindow::init()
 {
 	makeCurrent();
-	
-	
-	
-	
-	if (!m_pScene)
-		m_pScene = new Scene();
-	if (!m_pCamera) {
-		InfernalEditor* properOwnerPointer = dynamic_cast<InfernalEditor*>(owner);
-		properOwnerPointer->registerDelegate();
-		m_pCamera = new CameraNode(INVALID_OBJECT_ID,
-			WeakBaseRenderComponentPtr(), (RenderPass)0);
-		std::shared_ptr<CameraNode> cam(m_pCamera);
-		m_pScene->AddChild(m_pCamera->GetObjectId(), cam);
-		m_pScene->SetCamera(cam);
-		
-		
-		
-	}
-
 	
 }
 
@@ -104,21 +74,13 @@ void EditWindow::initializeGL()
 	context()->setFormat(glFormat);
 
 	connect(context(), &QOpenGLContext::aboutToBeDestroyed, this, &EditWindow::cleanup);
-
-
-
-
+	
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-
-
-
-
 
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
-
 
 	init();
 }
@@ -152,27 +114,20 @@ void EditWindow::paintGL()
 	}
 	
 
-	m_pScene->OnUpdate(g_DeltaTime);
+	GetScene()->OnUpdate(g_DeltaTime);
 	if (picking) {
 
 			picking = false;
 	}
-	 m_pScene->OnRender();
 	
+	GetScene()->OnRender();
 	
-	
-	
-	//makeCurrent();
-
-
-
-
 	IEventManager::Get()->VUpdate();
 }
 
 void EditWindow::wheelEvent(QWheelEvent *event)
 {
-	m_pCamera->SetCamRadius(event->delta());
+	GetCamera()->SetCamRadius(event->delta());
 }
 
 void EditWindow::mousePressEvent(QMouseEvent *event)
@@ -186,9 +141,9 @@ void EditWindow::mousePressEvent(QMouseEvent *event)
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	m_pScene->SetPicking(true);
-	m_pScene->OnRender();
-	m_pScene->SetPicking(false);
+	GetScene()->SetPicking(true);
+	GetScene()->OnRender();
+	GetScene()->SetPicking(false);
 	
 	Fbo->bindDefault();
 
@@ -276,10 +231,10 @@ void EditWindow::keyPressEvent(QKeyEvent *event)
 		}
 	}
 }
-void EditWindow::MoveForward(float rate) { m_pCamera->MoveForward(3.5f*rate); }
+void EditWindow::MoveForward(float rate) { GetCamera()->MoveForward(3.5f*rate); }
 
-void EditWindow::MoveRight(float rate) { m_pCamera->MoveRight(3.5f*rate); }
-void EditWindow::MoveUp(float rate) { m_pCamera->MoveUp(3.5*rate); }
+void EditWindow::MoveRight(float rate) { GetCamera()->MoveRight(3.5f*rate); }
+void EditWindow::MoveUp(float rate) { GetCamera()->MoveUp(3.5*rate); }
 void EditWindow::mouseMoveEvent(QMouseEvent *event)
 {
 	double xpos, ypos;
@@ -299,8 +254,8 @@ void EditWindow::mouseMoveEvent(QMouseEvent *event)
 		xoffset *= sensitivity;
 		yoffset *= sensitivity;
 
-		m_pCamera->SetYaw(xoffset);
-		m_pCamera->SetPitch(yoffset);
+		GetCamera()->SetYaw(xoffset);
+		GetCamera()->SetPitch(yoffset);
 
 	}
 

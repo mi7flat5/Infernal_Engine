@@ -13,7 +13,7 @@ class InfernalEditor : public QMainWindow, public InfernalKernel
 		QStandardItemModel *m_pSceneTreeModel;
 	QStandardItem* m_pSceneViewRoot;
 public:
-	BaseGameLogic* VCreateGameAndView()override { m_pGame = new BaseGameLogic; m_pGame->Init(); return m_pGame; }
+	BaseGameLogic* VCreateGameAndView()override { m_pGame = ui.openGLWidget; m_pGame->Init(); return m_pGame; }
 	InfernalEditor(QWidget *parent = Q_NULLPTR);
 	~InfernalEditor();
 	void UpdateTransform();

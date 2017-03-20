@@ -11,7 +11,7 @@ public:
 	InfernalKernel();
 	bool Init();
 	~InfernalKernel();
-	BaseGameLogic *m_pGame;
+	
 
 	virtual BaseGameLogic *VCreateGameAndView() = 0;
 	EventManager *m_pEventManager;
@@ -19,6 +19,7 @@ public:
 	BaseGameLogic* GetGameLogic(void) const { return m_pGame; }
 
 protected:
+	BaseGameLogic *m_pGame;
 	virtual void VRegisterGameEvents(void) {}
 private:
 	void RegisterEngineEvents(void);

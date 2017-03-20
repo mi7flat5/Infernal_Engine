@@ -2,11 +2,11 @@
 //
 #include "qopenglwidget.h"
 #include"qopenglfunctions.h"
-
+#include "..//Engine_Source/Core/BaseGameLogic.h"
 class QOpenGLFramebufferObject;
 using ObjectMap = std::map< unsigned int, StrongObjectPtr>;
 
-class EditWindow : public QOpenGLWidget, protected QOpenGLFunctions
+class EditWindow : public QOpenGLWidget, protected QOpenGLFunctions, public BaseGameLogic
 {
 	bool Fmove, Bmove, Lmove, Rmove, UpMove, DownMove;
 	ObjectId cursorX, cursorY, cursorZ;
@@ -66,8 +66,7 @@ private:
 
 	//move to library side application layer
 	GLuint FBO, PickingTexture, DepthTexture;
-	Scene* m_pScene;
-	CameraNode* m_pCamera;
+
 
 
 };

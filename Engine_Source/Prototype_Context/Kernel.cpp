@@ -1,5 +1,8 @@
 #include"Engine.h"
 #include"Kernel.h"
+#include<future>
+#include<thread>
+#
 #include "..//SHObject/RenderComponent.h"
 #include"..//SHObject/Object3D.h"
 #include "../SHObject/ObjectComponent.h"
@@ -13,12 +16,12 @@ Kernel::Kernel()
 void Kernel::runApp()
 {
 	
+	
 	LoadScene(std::string("Scene.rsc"));
 	
 	while (!glfwWindowShouldClose(pContext))
 	{
 	
-		
 		update();
 	
 	}
@@ -27,6 +30,7 @@ void Kernel::runApp()
 	glfwTerminate();
 	
 }
+
 void Kernel::update() 
 {
 
@@ -35,11 +39,13 @@ void Kernel::update()
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		m_pController->UpdateControls();
 		glfwPollEvents();
-		m_pScene->OnUpdate(g_DeltaTime);//
+		
+		
+		m_pGame->GetScene()->OnUpdate(g_DeltaTime);//
 
 
-		m_pScene->OnRender();
-
+		m_pGame->GetScene()->OnRender();
+		IEventManager::Get()->VUpdate();
 		glfwSwapBuffers(pContext);
 
 	
@@ -77,9 +83,10 @@ void Kernel::LoadScene(std::string sceneFile)
 }
 void Kernel::initContext()
 {
+	
+		glfwInit();
 		Init();
 		VCreateGameAndView();
-		glfwInit();
 		pContext = glfwCreateWindow(WIDTH, HEIGHT, "PROTO", nullptr, nullptr);
 	
 		
@@ -111,12 +118,7 @@ void Kernel::initContext()
 		glEnable(GL_CULL_FACE);
 		glCullFace(GL_BACK);
 		
-		m_pCamera.reset(INFERNAL_NEW CameraNode(INVALID_OBJECT_ID,
-			WeakBaseRenderComponentPtr(), (RenderPass)0));
-		m_pScene.reset( INFERNAL_NEW Scene());
 	
-		m_pScene->AddChild(m_pCamera->GetObjectId(),m_pCamera);
-		m_pScene->SetCamera(m_pCamera);
-		m_pController.reset(INFERNAL_NEW MovementController(pContext,m_pCamera));
+		m_pController.reset(INFERNAL_NEW MovementController(pContext,m_pGame->GetCamera()));
 
 }
